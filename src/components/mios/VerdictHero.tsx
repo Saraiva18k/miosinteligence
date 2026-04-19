@@ -73,11 +73,9 @@ export function VerdictHero() {
               lineHeight: 1.1,
             }}
           >
-            Entrar agora.
+            Você encontrou
             <br />
-            <span style={{ color: "rgba(255,255,255,0.55)" }}>
-              A janela está aberta.
-            </span>
+            <span style={{ color: "var(--accent)" }}>uma veia de ouro.</span>
           </h1>
           <p
             className="mt-3"
