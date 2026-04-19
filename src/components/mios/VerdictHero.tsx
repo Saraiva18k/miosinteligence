@@ -171,7 +171,7 @@ export function VerdictHero() {
               whiteSpace: "nowrap",
             }}
           >
-            ★ Tier S · Excepcional
+            ★ Excepcional
           </div>
         </div>
 
