@@ -66,20 +66,13 @@ export function InsightCards() {
         return (
           <article
             key={i}
-            className="group relative fade-in-up transition-colors"
+            className="group relative fade-in-up mios-float transition-transform"
             style={{
-              background: "var(--card)",
               borderRadius: 10,
               padding: "14px 16px",
               borderLeft: `2px solid ${s.border}`,
               animationDelay: `${0.2 + i * 0.08}s`,
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.background = "var(--card-hover)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "var(--card)")
-            }
           >
             <div
               style={{

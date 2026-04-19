@@ -27,7 +27,7 @@ export function VerdictHero() {
 
   return (
     <section
-      className="verdict-hero fade-in-up"
+      className="verdict-hero mios-float fade-in-up"
       style={{ padding: "20px 24px" }}
       aria-label="Veredito de mercado"
     >
