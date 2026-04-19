@@ -118,36 +118,54 @@
 
   body {
     background-color: var(--bg-base);
+  }
+}
+
+@layer components {
+  /* Ambient canvas — fundo futurista para áreas de conteúdo.
+     Aurora âmbar + aurora fria + vinheta + grade fina.
+     Cards renderizados em cima parecem flutuar sobre profundidade. */
+  .mios-ambient {
+    position: relative;
+    background-color: #03050c;
     background-image:
-      /* Aurora âmbar — canto superior direito */
       radial-gradient(
-        ellipse 60% 50% at 85% 0%,
-        rgba(255, 149, 0, 0.08),
+        ellipse 70% 55% at 90% -10%,
+        rgba(255, 149, 0, 0.10),
         transparent 60%
       ),
-      /* Aurora fria — canto inferior esquerdo, contraste sutil */
       radial-gradient(
-        ellipse 50% 40% at 10% 100%,
-        rgba(59, 130, 246, 0.05),
+        ellipse 55% 45% at 5% 110%,
+        rgba(59, 130, 246, 0.06),
         transparent 65%
       ),
-      /* Vinheta central para profundidade */
       radial-gradient(
-        ellipse 80% 60% at 50% 50%,
-        transparent 40%,
-        rgba(0, 0, 0, 0.35) 100%
+        ellipse 90% 70% at 50% 50%,
+        transparent 35%,
+        rgba(0, 0, 0, 0.45) 100%
       ),
-      /* Grade futurista fina */
-      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
     background-size:
       100% 100%,
       100% 100%,
       100% 100%,
-      48px 48px,
-      48px 48px;
-    background-attachment: fixed;
+      52px 52px,
+      52px 52px;
     background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
+  }
+  .mios-ambient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(255, 149, 0, 0.04),
+        transparent 40%
+      );
+    mix-blend-mode: screen;
   }
 
   ::selection {

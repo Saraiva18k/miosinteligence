@@ -24,14 +24,14 @@ function Dashboard() {
   return (
     <div
       className="flex flex-col"
-      style={{ height: "100vh", background: "var(--bg-base)" }}
+      style={{ height: "100vh" }}
     >
       <Header />
       <div className="flex flex-1 min-h-0">
         <Sidebar />
         <main className="flex-1 flex flex-col min-w-0">
           <TopBar />
-          <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
+          <div className="mios-scroll mios-ambient flex-1 overflow-y-auto px-6 py-5 space-y-4">
             <VerdictHero />
             <SignalBars />
             <InsightCards />
