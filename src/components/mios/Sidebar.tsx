@@ -165,7 +165,7 @@ export function Sidebar() {
         borderRight: "1px solid var(--border)",
       }}
     >
-      <div className="flex-1 overflow-y-auto py-3">
+      <div className="flex-1 overflow-y-auto py-3 mios-scroll">
         {sections.map((section, sIdx) => (
           <div key={section.title}>
             <div
