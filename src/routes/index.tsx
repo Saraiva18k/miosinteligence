@@ -24,7 +24,7 @@ function Dashboard() {
   return (
     <div
       className="flex flex-col"
-      style={{ height: "100vh", background: "var(--bg-base)" }}
+      style={{ height: "100vh" }}
     >
       <Header />
       <div className="flex flex-1 min-h-0">
