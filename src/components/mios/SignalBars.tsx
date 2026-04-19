@@ -19,12 +19,10 @@ function colorFor(v: number) {
 export function SignalBars() {
   return (
     <div
-      className="grid grid-cols-4 fade-in-up"
+      className="grid grid-cols-4 fade-in-up mios-float"
       style={{
-        border: "1px solid var(--border)",
         borderRadius: 10,
         overflow: "hidden",
-        background: "var(--bg-base)",
         animationDelay: "0.1s",
       }}
     >
