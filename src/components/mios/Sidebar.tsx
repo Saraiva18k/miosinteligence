@@ -124,6 +124,9 @@ function TimelineRow({ module, isLast }: { module: TimelineModule; isLast: boole
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
 
+  // Flatten all modules for mini stepper
+  const allModules = sections.flatMap((s) => s.modules);
+
   if (collapsed) {
     return (
       <aside
@@ -140,7 +143,7 @@ export function Sidebar() {
           onClick={() => setCollapsed(false)}
           className="flex items-center justify-center transition-colors"
           style={{
-            height: 40,
+            height: 32,
             color: "rgba(255,255,255,0.4)",
             borderBottom: "1px solid rgba(255,255,255,0.04)",
           }}
@@ -150,6 +153,72 @@ export function Sidebar() {
         >
           <ChevronRight size={14} strokeWidth={2.5} />
         </button>
+
+        {/* Mini stepper — evolution timeline */}
+        <div className="flex-1 overflow-y-auto mios-scroll flex flex-col items-center pt-4 pb-3 gap-0">
+          {allModules.map((m, idx) => {
+            const isLast = idx === allModules.length - 1;
+            const lineColor =
+              m.status === "done" || m.status === "active"
+                ? "rgba(255,149,0,0.25)"
+                : "rgba(255,255,255,0.06)";
+            return (
+              <div
+                key={m.label}
+                className="relative flex flex-col items-center"
+                title={m.label}
+              >
+                <div className="relative z-10 py-[3px]">
+                  <NodeDot status={m.status} />
+                </div>
+                {!isLast && (
+                  <span
+                    style={{
+                      width: 1,
+                      height: 10,
+                      background: lineColor,
+                    }}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mentor icon — highlighted at the bottom */}
+        <div
+          className="flex items-center justify-center pb-3 pt-3"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+        >
+          <button
+            className="flex items-center justify-center relative transition-transform"
+            title="Mentor · IA"
+            style={{
+              width: 30,
+              height: 30,
+              borderRadius: 9,
+              background:
+                "linear-gradient(135deg, rgba(255,149,0,1), rgba(255,106,0,1))",
+              boxShadow:
+                "0 0 0 1px rgba(255,255,255,0.15) inset, 0 6px 16px rgba(255,149,0,0.55), 0 0 0 3px rgba(255,149,0,0.10)",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.08)")}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          >
+            <Brain size={15} strokeWidth={2.4} color="#04060f" />
+            <span
+              className="pulse-dot absolute rounded-full"
+              style={{
+                top: -2,
+                right: -2,
+                width: 7,
+                height: 7,
+                background: "rgb(168,85,247)",
+                boxShadow: "0 0 8px rgba(168,85,247,0.8)",
+              }}
+            />
+          </button>
+        </div>
       </aside>
     );
   }
