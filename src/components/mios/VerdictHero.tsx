@@ -19,9 +19,9 @@ export function VerdictHero() {
   }, []);
 
   // Ring geometry
-  const size = 148;
-  const stroke = 6;
-  const r = (size - stroke) / 2;
+  const size = 168;
+  const stroke = 8;
+  const r = (size - stroke) / 2 - 6;
   const c = 2 * Math.PI * r;
   const progress = (score / 100) * c;
 
