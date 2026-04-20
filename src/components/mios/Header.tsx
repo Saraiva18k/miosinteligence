@@ -1,14 +1,17 @@
 import { Logo } from "./Logo";
 import { MapPin } from "lucide-react";
+import { WorkspaceSwitcher } from "./WorkspaceSwitcher";
 
 export function Header() {
   return (
     <header
-      className="flex items-center px-4"
+      className="flex items-center px-4 relative z-30"
       style={{
         height: 44,
-        background: "var(--bg-base)",
-        borderBottom: "1px solid var(--border)",
+        background: "rgba(7,9,15,0.55)",
+        backdropFilter: "blur(18px) saturate(160%)",
+        WebkitBackdropFilter: "blur(18px) saturate(160%)",
+        borderBottom: "1px solid rgba(255,255,255,0.05)",
       }}
     >
       <Logo />
@@ -22,13 +25,7 @@ export function Header() {
         }}
       />
 
-      <div style={{ fontSize: 11 }}>
-        <span style={{ color: "var(--text-2)", fontWeight: 500 }}>
-          Estética Premium SP
-        </span>
-        <span style={{ color: "rgba(255,255,255,0.2)" }}> · </span>
-        <span style={{ color: "rgba(255,255,255,0.2)" }}>São Paulo</span>
-      </div>
+      <WorkspaceSwitcher />
 
       <div className="ml-auto flex items-center gap-3">
         <div
