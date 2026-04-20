@@ -128,43 +128,54 @@
   .mios-ambient {
     position: relative;
     isolation: isolate;
-    background-color: #06080f;
+    background-color: #05070d;
     background-image:
-      /* Aurora âmbar canto superior direito (forte) */
+      /* Orb âmbar volumétrico — superior direito */
       radial-gradient(
-        ellipse 65% 50% at 95% -5%,
-        rgba(255, 149, 0, 0.22),
-        transparent 60%
-      ),
-      /* Aurora ciano/azul canto inferior esquerdo */
-      radial-gradient(
-        ellipse 55% 50% at 0% 105%,
-        rgba(56, 189, 248, 0.14),
+        ellipse 55% 45% at 88% 8%,
+        rgba(255, 149, 0, 0.32),
+        rgba(255, 106, 0, 0.10) 35%,
         transparent 65%
       ),
-      /* Aurora violeta meio-baixo direito (profundidade) */
+      /* Orb ciano frio — inferior esquerdo */
       radial-gradient(
-        ellipse 45% 40% at 85% 90%,
-        rgba(168, 85, 247, 0.10),
+        ellipse 50% 45% at 8% 95%,
+        rgba(56, 189, 248, 0.20),
+        rgba(56, 189, 248, 0.06) 35%,
         transparent 70%
       ),
-      /* Vinheta central reforçando profundidade */
+      /* Orb violeta — meio direito (profundidade) */
       radial-gradient(
-        ellipse 95% 75% at 50% 45%,
-        transparent 30%,
-        rgba(0, 0, 0, 0.55) 100%
+        ellipse 40% 35% at 92% 60%,
+        rgba(168, 85, 247, 0.16),
+        transparent 70%
       ),
-      /* Grade futurista mais nítida */
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      /* Halo central suave */
+      radial-gradient(
+        ellipse 70% 50% at 35% 35%,
+        rgba(99, 102, 241, 0.08),
+        transparent 60%
+      ),
+      /* Vinheta profunda — borda escurecida cria "palco" */
+      radial-gradient(
+        ellipse 110% 90% at 50% 50%,
+        transparent 35%,
+        rgba(0, 0, 0, 0.45) 75%,
+        rgba(0, 0, 0, 0.85) 100%
+      ),
+      /* Grade fina futurista */
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
     background-size:
       100% 100%,
       100% 100%,
       100% 100%,
       100% 100%,
-      48px 48px,
-      48px 48px;
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat;
+      100% 100%,
+      52px 52px,
+      52px 52px;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat;
+    background-attachment: fixed, fixed, fixed, fixed, fixed, fixed, fixed;
   }
   /* Brilho difuso superior — "luz solar" entrando */
   .mios-ambient::before {
