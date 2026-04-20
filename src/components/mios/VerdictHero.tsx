@@ -31,36 +31,37 @@ export function VerdictHero() {
       style={{ padding: "20px 24px" }}
       aria-label="Veredito de mercado"
     >
-      <div className="grid grid-cols-[160px_1fr] gap-7 items-center relative z-10">
+      <div className="grid grid-cols-[180px_1fr] gap-7 items-center relative z-10">
         {/* Score Ring */}
         <div
-          className="relative"
-          style={{ width: size, height: size }}
+          className="relative mx-auto"
+          style={{ width: size, height: size + 22 }}
           aria-label={`Score ${target} de 100`}
         >
           {/* outer soft glow */}
           <div
-            className="absolute inset-0 rounded-full pointer-events-none"
+            className="absolute pointer-events-none"
             style={{
+              inset: "-8px -8px 30px -8px",
               background:
-                "radial-gradient(circle at 50% 50%, rgba(255,149,0,0.18), transparent 65%)",
-              filter: "blur(8px)",
+                "radial-gradient(circle at 50% 45%, rgba(255,149,0,0.22), transparent 62%)",
+              filter: "blur(10px)",
             }}
           />
           <svg
             width={size}
             height={size}
             viewBox={`0 0 ${size} ${size}`}
-            className="relative -rotate-90"
+            className="relative -rotate-90 block"
           >
             <defs>
               <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#ffab2e" />
-                <stop offset="55%" stopColor="#ff9500" />
+                <stop offset="0%" stopColor="#ffc06a" />
+                <stop offset="50%" stopColor="#ff9500" />
                 <stop offset="100%" stopColor="#ff6a00" />
               </linearGradient>
               <filter id="scoreGlow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="2.5" result="b" />
+                <feGaussianBlur stdDeviation="3" result="b" />
                 <feMerge>
                   <feMergeNode in="b" />
                   <feMergeNode in="SourceGraphic" />
@@ -73,16 +74,18 @@ export function VerdictHero() {
               cy={size / 2}
               r={r}
               fill="none"
-              stroke="rgba(255,255,255,0.05)"
+              stroke="rgba(255,255,255,0.06)"
               strokeWidth={stroke}
             />
-            {/* tick marks */}
-            {Array.from({ length: 60 }).map((_, i) => {
-              const angle = (i / 60) * 360;
-              const x1 = size / 2 + (r - stroke - 2) * Math.cos((angle * Math.PI) / 180);
-              const y1 = size / 2 + (r - stroke - 2) * Math.sin((angle * Math.PI) / 180);
-              const x2 = size / 2 + (r - stroke - 6) * Math.cos((angle * Math.PI) / 180);
-              const y2 = size / 2 + (r - stroke - 6) * Math.sin((angle * Math.PI) / 180);
+            {/* tick marks — sutis, mais curtos */}
+            {Array.from({ length: 48 }).map((_, i) => {
+              const angle = (i / 48) * 360;
+              const inner = r - stroke - 4;
+              const outer = r - stroke - 8;
+              const x1 = size / 2 + inner * Math.cos((angle * Math.PI) / 180);
+              const y1 = size / 2 + inner * Math.sin((angle * Math.PI) / 180);
+              const x2 = size / 2 + outer * Math.cos((angle * Math.PI) / 180);
+              const y2 = size / 2 + outer * Math.sin((angle * Math.PI) / 180);
               return (
                 <line
                   key={i}
@@ -90,7 +93,7 @@ export function VerdictHero() {
                   y1={y1}
                   x2={x2}
                   y2={y2}
-                  stroke="rgba(255,255,255,0.04)"
+                  stroke="rgba(255,255,255,0.05)"
                   strokeWidth={1}
                 />
               );
@@ -112,40 +115,43 @@ export function VerdictHero() {
           </svg>
 
           {/* center content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <div
+            className="absolute flex flex-col items-center justify-center"
+            style={{ inset: `0 0 22px 0` }}
+          >
             <div
               style={{
-                fontSize: 11,
+                fontSize: 9,
                 fontWeight: 700,
-                letterSpacing: "3px",
-                color: "rgba(255,149,0,0.45)",
+                letterSpacing: "3.5px",
+                color: "rgba(255,149,0,0.55)",
                 textTransform: "uppercase",
-                marginBottom: -2,
+                marginBottom: 2,
               }}
             >
               Score
             </div>
             <div
               style={{
-                fontSize: 56,
+                fontSize: 60,
                 fontWeight: 800,
                 color: "var(--accent)",
                 letterSpacing: "-3px",
                 lineHeight: 1,
                 fontVariantNumeric: "tabular-nums",
                 fontFamily: "var(--font-mono)",
-                textShadow: "0 0 24px rgba(255,149,0,0.35)",
+                textShadow: "0 0 28px rgba(255,149,0,0.4)",
               }}
             >
               {score}
             </div>
             <div
               style={{
-                fontSize: 10,
+                fontSize: 9,
                 fontWeight: 500,
-                color: "rgba(255,255,255,0.28)",
-                letterSpacing: "1px",
-                marginTop: 2,
+                color: "rgba(255,255,255,0.32)",
+                letterSpacing: "1.5px",
+                marginTop: 4,
                 fontFamily: "var(--font-mono)",
               }}
             >
@@ -157,17 +163,19 @@ export function VerdictHero() {
           <div
             className="absolute left-1/2 -translate-x-1/2"
             style={{
-              bottom: -10,
-              padding: "3px 10px",
+              bottom: 0,
+              padding: "5px 14px",
               borderRadius: 999,
-              background: "rgba(4,6,15,0.95)",
-              border: "1px solid rgba(255,149,0,0.35)",
-              fontSize: 8,
+              background:
+                "linear-gradient(180deg, rgba(20,14,4,0.95), rgba(8,6,2,0.95))",
+              border: "1px solid rgba(255,149,0,0.30)",
+              fontSize: 8.5,
               fontWeight: 800,
-              letterSpacing: "2.5px",
+              letterSpacing: "2.8px",
               color: "var(--accent)",
               textTransform: "uppercase",
-              boxShadow: "0 4px 16px rgba(255,149,0,0.25)",
+              boxShadow:
+                "0 6px 20px rgba(255,149,0,0.18), 0 0 0 1px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05) inset",
               whiteSpace: "nowrap",
             }}
           >
