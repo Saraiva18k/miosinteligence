@@ -1,4 +1,5 @@
-import { Zap, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { Zap, ArrowUpRight, ChevronLeft, ChevronRight, Sparkles, Brain } from "lucide-react";
 
 type ModuleStatus = "done" | "active" | "pending";
 
@@ -18,16 +19,8 @@ const sections: TimelineSection[] = [
     title: "PESQUISA",
     modules: [
       { label: "Dores", status: "done", preview: "Gap de confiança real" },
-      {
-        label: "Concorrentes",
-        status: "done",
-        preview: "5 players, NPS baixo",
-      },
-      {
-        label: "Tendências",
-        status: "done",
-        preview: "Busca +340% 6 meses",
-      },
+      { label: "Concorrentes", status: "done", preview: "5 players, NPS baixo" },
+      { label: "Tendências", status: "done", preview: "Busca +340% 6 meses" },
       { label: "Audiência", status: "pending" },
       { label: "Sentimento", status: "pending" },
       { label: "Canais", status: "pending" },
@@ -43,11 +36,7 @@ const sections: TimelineSection[] = [
       { label: "Compliance", status: "pending" },
       { label: "Investimento", status: "pending" },
       { label: "Business Plan", status: "pending" },
-      {
-        label: "Veredito",
-        status: "active",
-        preview: "Score 87 · Entrar agora",
-      },
+      { label: "Veredito", status: "active", preview: "Score 87 · Entrar agora" },
     ],
   },
 ];
@@ -81,26 +70,20 @@ function NodeDot({ status }: { status: ModuleStatus }) {
       style={{
         width: 7,
         height: 7,
-        background: "var(--bg-base)",
-        border: "1.5px solid rgba(255,255,255,0.1)",
+        background: "transparent",
+        border: "1.5px solid rgba(255,255,255,0.12)",
       }}
     />
   );
 }
 
-function TimelineRow({
-  module,
-  isLast,
-}: {
-  module: TimelineModule;
-  isLast: boolean;
-}) {
+function TimelineRow({ module, isLast }: { module: TimelineModule; isLast: boolean }) {
   const labelColor =
     module.status === "active"
       ? "rgba(255,149,0,0.9)"
       : module.status === "done"
-        ? "rgba(255,255,255,0.42)"
-        : "rgba(255,255,255,0.18)";
+        ? "rgba(255,255,255,0.46)"
+        : "rgba(255,255,255,0.20)";
   const labelWeight = module.status === "active" ? 600 : 500;
   const lineColor =
     module.status === "done" || module.status === "active"
@@ -109,31 +92,17 @@ function TimelineRow({
 
   return (
     <div className="relative flex gap-3 pl-4 pr-3">
-      {/* connector line */}
       {!isLast && (
         <span
           className="absolute"
-          style={{
-            left: 17,
-            top: 14,
-            bottom: -6,
-            width: 1,
-            background: lineColor,
-          }}
+          style={{ left: 17, top: 14, bottom: -6, width: 1, background: lineColor }}
         />
       )}
       <div className="pt-[6px]">
         <NodeDot status={module.status} />
       </div>
       <div className="pb-2.5 min-w-0">
-        <div
-          style={{
-            fontSize: 10,
-            fontWeight: labelWeight,
-            color: labelColor,
-            letterSpacing: 0.2,
-          }}
-        >
+        <div style={{ fontSize: 10, fontWeight: labelWeight, color: labelColor, letterSpacing: 0.2 }}>
           {module.label}
         </div>
         {module.preview && (
@@ -141,10 +110,7 @@ function TimelineRow({
             className="mt-0.5 truncate"
             style={{
               fontSize: 9,
-              color:
-                module.status === "active"
-                  ? "rgba(255,149,0,0.55)"
-                  : "rgba(255,149,0,0.32)",
+              color: module.status === "active" ? "rgba(255,149,0,0.6)" : "rgba(255,149,0,0.34)",
             }}
           >
             {module.preview}
@@ -156,16 +122,93 @@ function TimelineRow({
 }
 
 export function Sidebar() {
+  const [collapsed, setCollapsed] = useState(false);
+
+  if (collapsed) {
+    return (
+      <aside
+        className="flex flex-col shrink-0 relative z-20"
+        style={{
+          width: 44,
+          background: "rgba(7,9,15,0.45)",
+          backdropFilter: "blur(18px) saturate(160%)",
+          WebkitBackdropFilter: "blur(18px) saturate(160%)",
+          borderRight: "1px solid rgba(255,255,255,0.05)",
+        }}
+      >
+        <button
+          onClick={() => setCollapsed(false)}
+          className="flex items-center justify-center transition-colors"
+          style={{
+            height: 40,
+            color: "rgba(255,255,255,0.4)",
+            borderBottom: "1px solid rgba(255,255,255,0.04)",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+          aria-label="Expandir sidebar"
+        >
+          <ChevronRight size={14} strokeWidth={2.5} />
+        </button>
+      </aside>
+    );
+  }
+
   return (
     <aside
-      className="flex flex-col shrink-0"
+      className="flex flex-col shrink-0 relative z-20"
       style={{
-        width: 200,
-        background: "var(--bg-base)",
-        borderRight: "1px solid var(--border)",
+        width: 220,
+        background: "rgba(7,9,15,0.45)",
+        backdropFilter: "blur(18px) saturate(160%)",
+        WebkitBackdropFilter: "blur(18px) saturate(160%)",
+        borderRight: "1px solid rgba(255,255,255,0.05)",
+        boxShadow: "inset -1px 0 0 rgba(255,255,255,0.02)",
       }}
     >
-      <div className="flex-1 overflow-y-auto py-3 mios-scroll">
+      {/* Toggle bar */}
+      <div
+        className="flex items-center justify-between px-3"
+        style={{
+          height: 32,
+          borderBottom: "1px solid rgba(255,255,255,0.04)",
+        }}
+      >
+        <span
+          style={{
+            fontSize: 7,
+            fontWeight: 700,
+            letterSpacing: "2.5px",
+            color: "rgba(255,255,255,0.25)",
+          }}
+        >
+          PIPELINE
+        </span>
+        <button
+          onClick={() => setCollapsed(true)}
+          className="flex items-center justify-center transition-colors"
+          style={{
+            width: 18,
+            height: 18,
+            borderRadius: 5,
+            color: "rgba(255,255,255,0.3)",
+            background: "rgba(255,255,255,0.03)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = "var(--accent)";
+            e.currentTarget.style.background = "rgba(255,149,0,0.08)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = "rgba(255,255,255,0.3)";
+            e.currentTarget.style.background = "rgba(255,255,255,0.03)";
+          }}
+          aria-label="Recolher sidebar"
+        >
+          <ChevronLeft size={12} strokeWidth={2.5} />
+        </button>
+      </div>
+
+      <div className="flex-1 overflow-y-auto py-2 mios-scroll">
         {sections.map((section, sIdx) => (
           <div key={section.title}>
             <div
@@ -174,7 +217,7 @@ export function Sidebar() {
                 fontSize: 8,
                 fontWeight: 700,
                 letterSpacing: "2.5px",
-                color: "rgba(255,255,255,0.18)",
+                color: "rgba(255,255,255,0.22)",
               }}
             >
               ── {section.title} ──
@@ -195,65 +238,138 @@ export function Sidebar() {
           </div>
         ))}
 
-        {/* O Mentor card */}
-        <div className="px-2.5 mt-3">
+        {/* O Mentor card — premium / "module game-changer" */}
+        <div className="px-2.5 mt-4">
           <button
-            className="group w-full text-left transition-all duration-200 relative"
+            className="group w-full text-left transition-all duration-300 relative overflow-hidden"
             style={{
-              border: "1px solid rgba(255,149,0,0.18)",
-              background: "rgba(255,149,0,0.06)",
-              borderRadius: 10,
-              padding: "12px 12px 14px",
+              border: "1px solid rgba(255,149,0,0.28)",
+              background:
+                "linear-gradient(135deg, rgba(255,149,0,0.12) 0%, rgba(168,85,247,0.10) 100%)",
+              borderRadius: 12,
+              padding: "14px 13px 14px",
+              boxShadow:
+                "0 0 0 1px rgba(255,149,0,0.04) inset, 0 8px 24px -10px rgba(255,149,0,0.35), 0 2px 8px -2px rgba(168,85,247,0.20)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(255,149,0,0.10)";
-              e.currentTarget.style.borderColor = "rgba(255,149,0,0.30)";
+              e.currentTarget.style.transform = "translateY(-1px)";
+              e.currentTarget.style.boxShadow =
+                "0 0 0 1px rgba(255,149,0,0.08) inset, 0 14px 32px -10px rgba(255,149,0,0.55), 0 4px 12px -2px rgba(168,85,247,0.30)";
+              e.currentTarget.style.borderColor = "rgba(255,149,0,0.45)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(255,149,0,0.06)";
-              e.currentTarget.style.borderColor = "rgba(255,149,0,0.18)";
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow =
+                "0 0 0 1px rgba(255,149,0,0.04) inset, 0 8px 24px -10px rgba(255,149,0,0.35), 0 2px 8px -2px rgba(168,85,247,0.20)";
+              e.currentTarget.style.borderColor = "rgba(255,149,0,0.28)";
             }}
           >
+            {/* sheen */}
             <span
-              className="absolute pulse-dot rounded-full"
+              aria-hidden
+              className="absolute pointer-events-none"
               style={{
-                top: 10,
-                right: 10,
-                width: 6,
-                height: 6,
-                background: "var(--accent)",
-                color: "rgba(255,149,0,0.5)",
+                top: -40,
+                left: -40,
+                width: 80,
+                height: 200,
+                background:
+                  "linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.08) 50%, transparent 70%)",
+                transform: "rotate(15deg)",
+                transition: "transform 700ms ease",
               }}
             />
-            <div
+            {/* aurora glow inside card */}
+            <span
+              aria-hidden
+              className="absolute pointer-events-none"
               style={{
-                fontSize: 7,
-                fontWeight: 700,
-                letterSpacing: "2.5px",
-                color: "rgba(255,149,0,0.45)",
+                top: -30,
+                right: -30,
+                width: 120,
+                height: 120,
+                background:
+                  "radial-gradient(circle, rgba(255,149,0,0.35), transparent 70%)",
+                filter: "blur(8px)",
               }}
-            >
-              PLANO EXECUÇÃO
+            />
+
+            <div className="relative flex items-start gap-2.5">
+              <span
+                className="flex items-center justify-center shrink-0"
+                style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: 8,
+                  background:
+                    "linear-gradient(135deg, rgba(255,149,0,1), rgba(255,106,0,1))",
+                  boxShadow:
+                    "0 0 0 1px rgba(255,255,255,0.15) inset, 0 4px 12px rgba(255,149,0,0.45)",
+                }}
+              >
+                <Brain size={14} strokeWidth={2.4} color="#04060f" />
+              </span>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1">
+                  <span
+                    style={{
+                      fontSize: 7,
+                      fontWeight: 800,
+                      letterSpacing: "2.5px",
+                      color: "rgba(255,149,0,0.7)",
+                    }}
+                  >
+                    MENTOR · IA
+                  </span>
+                  <Sparkles size={8} style={{ color: "rgba(168,85,247,0.85)" }} />
+                </div>
+                <div
+                  className="mt-0.5"
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 700,
+                    color: "rgba(255,255,255,0.95)",
+                    letterSpacing: "-0.2px",
+                  }}
+                >
+                  Estratégia ao vivo
+                </div>
+              </div>
             </div>
+
             <div
-              className="mt-1.5"
-              style={{
-                fontSize: 11,
-                fontWeight: 700,
-                color: "rgba(255,149,0,0.85)",
-              }}
-            >
-              Consultar o Mentor
-            </div>
-            <div
-              className="mt-1"
+              className="relative mt-2"
               style={{
                 fontSize: 9,
-                lineHeight: 1.5,
-                color: "rgba(255,149,0,0.4)",
+                lineHeight: 1.55,
+                color: "rgba(255,255,255,0.55)",
               }}
             >
-              IA treinada no seu projeto. Estratégia em tempo real.
+              Treinado no seu projeto. Decisões em tempo real, com contexto.
+            </div>
+
+            <div className="relative mt-2.5 flex items-center justify-between">
+              <span
+                className="inline-flex items-center gap-1"
+                style={{
+                  fontSize: 9,
+                  fontWeight: 700,
+                  color: "rgba(255,149,0,0.95)",
+                  letterSpacing: "0.3px",
+                }}
+              >
+                Conversar agora
+                <ArrowUpRight size={10} strokeWidth={2.6} />
+              </span>
+              <span
+                className="pulse-dot inline-block rounded-full"
+                style={{
+                  width: 6,
+                  height: 6,
+                  background: "var(--accent)",
+                  color: "rgba(255,149,0,0.5)",
+                }}
+              />
             </div>
           </button>
         </div>
@@ -262,7 +378,7 @@ export function Sidebar() {
       {/* Footer */}
       <div
         className="p-2.5 space-y-1.5"
-        style={{ borderTop: "1px solid var(--border)" }}
+        style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
       >
         <button
           className="w-full flex items-center justify-center gap-1.5 transition-all"
