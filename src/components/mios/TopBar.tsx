@@ -9,8 +9,10 @@ export function TopBar() {
       className="flex items-center px-6 gap-6"
       style={{
         height: 40,
-        borderBottom: "1px solid var(--border)",
-        background: "var(--bg-base)",
+        borderBottom: "1px solid rgba(255,255,255,0.05)",
+        background: "rgba(7,9,15,0.45)",
+        backdropFilter: "blur(14px) saturate(160%)",
+        WebkitBackdropFilter: "blur(14px) saturate(160%)",
       }}
     >
       {tabs.map((tab) => {
