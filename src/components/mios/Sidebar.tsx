@@ -312,7 +312,7 @@ export function Sidebar({ activeModule }: SidebarProps = {}) {
       </div>
 
       <div className="flex-1 overflow-y-auto py-2 mios-scroll">
-        {sections.map((section, sIdx) => (
+        {computedSections.map((section, sIdx) => (
           <div key={section.title}>
             <div
               className="px-4 pt-3 pb-2"
@@ -332,7 +332,7 @@ export function Sidebar({ activeModule }: SidebarProps = {}) {
                 isLast={idx === section.modules.length - 1}
               />
             ))}
-            {sIdx < sections.length - 1 && (
+            {sIdx < computedSections.length - 1 && (
               <div
                 className="mx-3.5 my-2"
                 style={{ height: 1, background: "rgba(255,255,255,0.04)" }}
