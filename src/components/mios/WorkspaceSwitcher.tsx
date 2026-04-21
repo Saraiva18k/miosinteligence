@@ -106,9 +106,9 @@ export function WorkspaceSwitcher() {
             width: 280,
             borderRadius: 12,
             border: "1px solid rgba(255,255,255,0.08)",
-            background: "rgba(10,13,22,0.78)",
-            backdropFilter: "blur(60px) saturate(200%)",
-            WebkitBackdropFilter: "blur(60px) saturate(200%)",
+            background: "rgba(10,13,22,0.35)",
+            backdropFilter: "blur(80px) saturate(220%)",
+            WebkitBackdropFilter: "blur(80px) saturate(220%)",
             boxShadow:
               "0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 60px -16px rgba(0,0,0,0.7), 0 8px 20px -8px rgba(0,0,0,0.5)",
             animationDuration: "180ms",
