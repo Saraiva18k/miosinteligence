@@ -8,6 +8,7 @@ interface TimelineModule {
   label: string;
   status: ModuleStatus;
   preview?: string;
+  alertCount?: number;
 }
 
 interface TimelineSection {
@@ -26,7 +27,7 @@ const sections: TimelineSection[] = [
       { label: "Sentimento", status: "pending" },
       { label: "Canais", status: "pending" },
       { label: "Precificação", status: "pending" },
-      { label: "Social Intelligence", status: "pending" },
+      { label: "Social Intelligence", status: "pending", alertCount: 2 },
       { label: "DNA da Marca", status: "pending" },
     ],
   },
@@ -109,8 +110,29 @@ function TimelineRow({ module, isLast }: { module: TimelineModule; isLast: boole
         <NodeDot status={module.status} />
       </div>
       <div className="pb-2.5 min-w-0">
-        <div style={{ fontSize: 10, fontWeight: labelWeight, color: labelColor, letterSpacing: 0.2 }}>
-          {module.label}
+        <div className="flex items-center gap-1.5">
+          <span style={{ fontSize: 10, fontWeight: labelWeight, color: labelColor, letterSpacing: 0.2 }}>
+            {module.label}
+          </span>
+          {module.alertCount && (
+            <span
+              className="inline-flex items-center justify-center"
+              style={{
+                minWidth: 14,
+                height: 14,
+                padding: "0 4px",
+                borderRadius: 7,
+                background: "#ef4444",
+                border: "2px solid #04060f",
+                fontSize: 8,
+                fontWeight: 800,
+                color: "#fff",
+                lineHeight: 1,
+              }}
+            >
+              {module.alertCount}
+            </span>
+          )}
         </div>
         {module.preview && (
           <div
