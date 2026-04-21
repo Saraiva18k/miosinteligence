@@ -8,6 +8,7 @@ interface TimelineModule {
   label: string;
   status: ModuleStatus;
   preview?: string;
+  alertCount?: number;
 }
 
 interface TimelineSection {
@@ -26,7 +27,7 @@ const sections: TimelineSection[] = [
       { label: "Sentimento", status: "pending" },
       { label: "Canais", status: "pending" },
       { label: "Precificação", status: "pending" },
-      { label: "Social Intelligence", status: "pending" },
+      { label: "Social Intelligence", status: "pending", alertCount: 2 },
       { label: "DNA da Marca", status: "pending" },
     ],
   },
