@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Zap, ArrowUpRight, ChevronLeft, ChevronRight, Sparkles, Brain } from "lucide-react";
 
 type ModuleStatus = "done" | "active" | "pending";
@@ -40,6 +41,11 @@ const sections: TimelineSection[] = [
     ],
   },
 ];
+
+const moduleHrefs: Record<string, string> = {
+  Veredito: "/",
+  "Social Intelligence": "/social-intelligence",
+};
 
 function NodeDot({ status }: { status: ModuleStatus }) {
   if (status === "done") {
