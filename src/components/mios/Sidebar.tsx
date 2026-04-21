@@ -95,8 +95,9 @@ function TimelineRow({ module, isLast }: { module: TimelineModule; isLast: boole
     module.status === "done" || module.status === "active"
       ? "rgba(255,149,0,0.2)"
       : "rgba(255,255,255,0.06)";
+  const href = moduleHrefs[module.label];
 
-  return (
+  const inner = (
     <div className="relative flex gap-3 pl-4 pr-3">
       {!isLast && (
         <span
@@ -125,13 +126,40 @@ function TimelineRow({ module, isLast }: { module: TimelineModule; isLast: boole
       </div>
     </div>
   );
+
+  if (href) {
+    return (
+      <Link to={href} className="block transition-colors hover:bg-white/[0.02]">
+        {inner}
+      </Link>
+    );
+  }
+  return inner;
 }
 
-export function Sidebar() {
+interface SidebarProps {
+  activeModule?: string;
+}
+
+export function Sidebar({ activeModule }: SidebarProps = {}) {
   const [collapsed, setCollapsed] = useState(false);
 
+  // Re-map statuses based on the active module so the sidebar reflects the current page.
+  const computedSections: TimelineSection[] = activeModule
+    ? sections.map((s) => ({
+        ...s,
+        modules: s.modules.map((m) =>
+          m.label === activeModule
+            ? { ...m, status: "active" as ModuleStatus }
+            : m.status === "active"
+              ? { ...m, status: "pending" as ModuleStatus }
+              : m,
+        ),
+      }))
+    : sections;
+
   // Flatten all modules for mini stepper
-  const allModules = sections.flatMap((s) => s.modules);
+  const allModules = computedSections.flatMap((s) => s.modules);
 
   if (collapsed) {
     return (
