@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SocialIntelligenceRouteImport } from './routes/social-intelligence'
+import { Route as ConcorrentesRouteImport } from './routes/concorrentes'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({
   id: '/social-intelligence',
   path: '/social-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConcorrentesRoute = ConcorrentesRouteImport.update({
+  id: '/concorrentes',
+  path: '/concorrentes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -26,6 +32,8 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
+  '/concorrentes': typeof ConcorrentesRoute
+  '/concorrentes': typeof ConcorrentesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
