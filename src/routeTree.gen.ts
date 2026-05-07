@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SocialIntelligenceRouteImport } from './routes/social-intelligence'
 import { Route as ConcorrentesRouteImport } from './routes/concorrentes'
+import { Route as AudienciaRouteImport } from './routes/audiencia'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({
@@ -23,6 +24,11 @@ const ConcorrentesRoute = ConcorrentesRouteImport.update({
   path: '/concorrentes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AudienciaRoute = AudienciaRouteImport.update({
+  id: '/audiencia',
+  path: '/audiencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -33,30 +39,34 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
   '/concorrentes': typeof ConcorrentesRoute
+  '/audiencia': typeof AudienciaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
   '/concorrentes': typeof ConcorrentesRoute
+  '/audiencia': typeof AudienciaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
   '/concorrentes': typeof ConcorrentesRoute
+  '/audiencia': typeof AudienciaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/social-intelligence' | '/concorrentes'
+  fullPaths: '/' | '/social-intelligence' | '/concorrentes' | '/audiencia'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/social-intelligence' | '/concorrentes'
-  id: '__root__' | '/' | '/social-intelligence' | '/concorrentes'
+  to: '/' | '/social-intelligence' | '/concorrentes' | '/audiencia'
+  id: '__root__' | '/' | '/social-intelligence' | '/concorrentes' | '/audiencia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SocialIntelligenceRoute: typeof SocialIntelligenceRoute
   ConcorrentesRoute: typeof ConcorrentesRoute
+  AudienciaRoute: typeof AudienciaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConcorrentesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audiencia': {
+      id: '/audiencia'
+      path: '/audiencia'
+      fullPath: '/audiencia'
+      preLoaderRoute: typeof AudienciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SocialIntelligenceRoute: SocialIntelligenceRoute,
   ConcorrentesRoute: ConcorrentesRoute,
+  AudienciaRoute: AudienciaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
