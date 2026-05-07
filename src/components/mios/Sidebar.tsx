@@ -47,6 +47,7 @@ const moduleHrefs: Record<string, string> = {
   Veredito: "/",
   "Social Intelligence": "/social-intelligence",
   Concorrentes: "/concorrentes",
+  Audiencia: "/audiencia",
 };
 
 function NodeDot({ status }: { status: ModuleStatus }) {
