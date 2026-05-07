@@ -46,6 +46,7 @@ const sections: TimelineSection[] = [
 const moduleHrefs: Record<string, string> = {
   Veredito: "/",
   "Social Intelligence": "/social-intelligence",
+  Concorrentes: "/concorrentes",
 };
 
 function NodeDot({ status }: { status: ModuleStatus }) {
