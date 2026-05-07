@@ -29,14 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Mios Intelligence Market" },
+      { name: "description", content: "MIOS is a dynamic dashboard application designed to visualize and analyze market intelligence and social media data." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Mios Intelligence Market" },
+      { property: "og:description", content: "MIOS is a dynamic dashboard application designed to visualize and analyze market intelligence and social media data." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Mios Intelligence Market" },
+      { name: "twitter:description", content: "MIOS is a dynamic dashboard application designed to visualize and analyze market intelligence and social media data." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/s4Ga4sgjPmTu6HDtWNfY1MK1swn2/social-images/social-1778158509542-mios_proto_depth.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/s4Ga4sgjPmTu6HDtWNfY1MK1swn2/social-images/social-1778158509542-mios_proto_depth.webp" },
     ],
     links: [
       {
