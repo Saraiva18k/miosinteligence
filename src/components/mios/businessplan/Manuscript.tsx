@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import {
   FileText,
   TrendingUp,
@@ -121,7 +121,7 @@ function DataRow({ items }: { items: Array<{ label: string; value: string; sub?:
   );
 }
 
-function Paragraph({ children }: { children: React.ReactNode }) {
+function Paragraph({ children }: { children: ReactNode }) {
   return (
     <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.85, marginBottom: 14 }}>
       {children}
