@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   Instagram,
   Search,
@@ -18,7 +18,7 @@ import {
 
 interface PersonaChannel {
   name: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   reach: number; // 0-100
   behavior: string;
 }
