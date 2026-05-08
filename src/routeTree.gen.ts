@@ -1,4 +1,4 @@
-/* eslint-disable */ 
+/* eslint-disable */
 
 // @ts-nocheck
 
@@ -10,10 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SocialIntelligenceRouteImport } from './routes/social-intelligence'
-import { Route as ConcorrentesRouteImport } from './routes/concorrentes'
-import { Route as AudienciaRouteImport } from './routes/audiencia'
 import { Route as InvestimentoRouteImport } from './routes/investimento'
+import { Route as ConcorrentesRouteImport } from './routes/concorrentes'
 import { Route as BusinessPlanRouteImport } from './routes/business-plan'
+import { Route as AudienciaRouteImport } from './routes/audiencia'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({
@@ -21,24 +21,24 @@ const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({
   path: '/social-intelligence',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ConcorrentesRoute = ConcorrentesRouteImport.update({
-  id: '/concorrentes',
-  path: '/concorrentes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AudienciaRoute = AudienciaRouteImport.update({
-  id: '/audiencia',
-  path: '/audiencia',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const InvestimentoRoute = InvestimentoRouteImport.update({
   id: '/investimento',
   path: '/investimento',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConcorrentesRoute = ConcorrentesRouteImport.update({
+  id: '/concorrentes',
+  path: '/concorrentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BusinessPlanRoute = BusinessPlanRouteImport.update({
   id: '/business-plan',
   path: '/business-plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AudienciaRoute = AudienciaRouteImport.update({
+  id: '/audiencia',
+  path: '/audiencia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,44 +49,63 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/social-intelligence': typeof SocialIntelligenceRoute
-  '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
-  '/investimento': typeof InvestimentoRoute
   '/business-plan': typeof BusinessPlanRoute
+  '/concorrentes': typeof ConcorrentesRoute
+  '/investimento': typeof InvestimentoRoute
+  '/social-intelligence': typeof SocialIntelligenceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/social-intelligence': typeof SocialIntelligenceRoute
-  '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
-  '/investimento': typeof InvestimentoRoute
   '/business-plan': typeof BusinessPlanRoute
+  '/concorrentes': typeof ConcorrentesRoute
+  '/investimento': typeof InvestimentoRoute
+  '/social-intelligence': typeof SocialIntelligenceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/social-intelligence': typeof SocialIntelligenceRoute
-  '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
-  '/investimento': typeof InvestimentoRoute
   '/business-plan': typeof BusinessPlanRoute
+  '/concorrentes': typeof ConcorrentesRoute
+  '/investimento': typeof InvestimentoRoute
+  '/social-intelligence': typeof SocialIntelligenceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan'
+  fullPaths:
+    | '/'
+    | '/audiencia'
+    | '/business-plan'
+    | '/concorrentes'
+    | '/investimento'
+    | '/social-intelligence'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan'
-  id: '__root__' | '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan'
+  to:
+    | '/'
+    | '/audiencia'
+    | '/business-plan'
+    | '/concorrentes'
+    | '/investimento'
+    | '/social-intelligence'
+  id:
+    | '__root__'
+    | '/'
+    | '/audiencia'
+    | '/business-plan'
+    | '/concorrentes'
+    | '/investimento'
+    | '/social-intelligence'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  SocialIntelligenceRoute: typeof SocialIntelligenceRoute
-  ConcorrentesRoute: typeof ConcorrentesRoute
   AudienciaRoute: typeof AudienciaRoute
-  InvestimentoRoute: typeof InvestimentoRoute
   BusinessPlanRoute: typeof BusinessPlanRoute
+  ConcorrentesRoute: typeof ConcorrentesRoute
+  InvestimentoRoute: typeof InvestimentoRoute
+  SocialIntelligenceRoute: typeof SocialIntelligenceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -98,20 +117,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SocialIntelligenceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/concorrentes': {
-      id: '/concorrentes'
-      path: '/concorrentes'
-      fullPath: '/concorrentes'
-      preLoaderRoute: typeof ConcorrentesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/audiencia': {
-      id: '/audiencia'
-      path: '/audiencia'
-      fullPath: '/audiencia'
-      preLoaderRoute: typeof AudienciaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/investimento': {
       id: '/investimento'
       path: '/investimento'
@@ -119,11 +124,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InvestimentoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/concorrentes': {
+      id: '/concorrentes'
+      path: '/concorrentes'
+      fullPath: '/concorrentes'
+      preLoaderRoute: typeof ConcorrentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/business-plan': {
       id: '/business-plan'
       path: '/business-plan'
       fullPath: '/business-plan'
       preLoaderRoute: typeof BusinessPlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audiencia': {
+      id: '/audiencia'
+      path: '/audiencia'
+      fullPath: '/audiencia'
+      preLoaderRoute: typeof AudienciaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -138,11 +157,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  SocialIntelligenceRoute: SocialIntelligenceRoute,
-  ConcorrentesRoute: ConcorrentesRoute,
   AudienciaRoute: AudienciaRoute,
-  InvestimentoRoute: InvestimentoRoute,
   BusinessPlanRoute: BusinessPlanRoute,
+  ConcorrentesRoute: ConcorrentesRoute,
+  InvestimentoRoute: InvestimentoRoute,
+  SocialIntelligenceRoute: SocialIntelligenceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
