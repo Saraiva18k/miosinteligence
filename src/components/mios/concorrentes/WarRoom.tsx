@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -279,11 +279,11 @@ type SectionKey = "product" | "pricing" | "marketing" | "weaknesses";
 
 interface SectionProps {
   id: SectionKey;
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   open: boolean;
   onToggle: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function ColSection({ icon, label, open, onToggle, children }: SectionProps) {
