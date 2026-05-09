@@ -10,10 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SocialIntelligenceRouteImport } from './routes/social-intelligence'
-import { Route as InvestimentoRouteImport } from './routes/investimento'
 import { Route as ConcorrentesRouteImport } from './routes/concorrentes'
-import { Route as BusinessPlanRouteImport } from './routes/business-plan'
 import { Route as AudienciaRouteImport } from './routes/audiencia'
+import { Route as InvestimentoRouteImport } from './routes/investimento'
+import { Route as BusinessPlanRouteImport } from './routes/business-plan'
+import { Route as DoresRouteImport } from './routes/dores'
 import { Route as IndexRouteImport } from './routes/index'
 
 const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({
@@ -21,14 +22,19 @@ const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({
   path: '/social-intelligence',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InvestimentoRoute = InvestimentoRouteImport.update({
-  id: '/investimento',
-  path: '/investimento',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ConcorrentesRoute = ConcorrentesRouteImport.update({
   id: '/concorrentes',
   path: '/concorrentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AudienciaRoute = AudienciaRouteImport.update({
+  id: '/audiencia',
+  path: '/audiencia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestimentoRoute = InvestimentoRouteImport.update({
+  id: '/investimento',
+  path: '/investimento',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BusinessPlanRoute = BusinessPlanRouteImport.update({
@@ -36,9 +42,9 @@ const BusinessPlanRoute = BusinessPlanRouteImport.update({
   path: '/business-plan',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AudienciaRoute = AudienciaRouteImport.update({
-  id: '/audiencia',
-  path: '/audiencia',
+const DoresRoute = DoresRouteImport.update({
+  id: '/dores',
+  path: '/dores',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,63 +55,48 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/audiencia': typeof AudienciaRoute
-  '/business-plan': typeof BusinessPlanRoute
-  '/concorrentes': typeof ConcorrentesRoute
-  '/investimento': typeof InvestimentoRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
+  '/concorrentes': typeof ConcorrentesRoute
+  '/audiencia': typeof AudienciaRoute
+  '/investimento': typeof InvestimentoRoute
+  '/business-plan': typeof BusinessPlanRoute
+  '/dores': typeof DoresRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/audiencia': typeof AudienciaRoute
-  '/business-plan': typeof BusinessPlanRoute
-  '/concorrentes': typeof ConcorrentesRoute
-  '/investimento': typeof InvestimentoRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
+  '/concorrentes': typeof ConcorrentesRoute
+  '/audiencia': typeof AudienciaRoute
+  '/investimento': typeof InvestimentoRoute
+  '/business-plan': typeof BusinessPlanRoute
+  '/dores': typeof DoresRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/audiencia': typeof AudienciaRoute
-  '/business-plan': typeof BusinessPlanRoute
-  '/concorrentes': typeof ConcorrentesRoute
-  '/investimento': typeof InvestimentoRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
+  '/concorrentes': typeof ConcorrentesRoute
+  '/audiencia': typeof AudienciaRoute
+  '/investimento': typeof InvestimentoRoute
+  '/business-plan': typeof BusinessPlanRoute
+  '/dores': typeof DoresRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/audiencia'
-    | '/business-plan'
-    | '/concorrentes'
-    | '/investimento'
-    | '/social-intelligence'
+  fullPaths: '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/audiencia'
-    | '/business-plan'
-    | '/concorrentes'
-    | '/investimento'
-    | '/social-intelligence'
-  id:
-    | '__root__'
-    | '/'
-    | '/audiencia'
-    | '/business-plan'
-    | '/concorrentes'
-    | '/investimento'
-    | '/social-intelligence'
+  to: '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  id: '__root__' | '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AudienciaRoute: typeof AudienciaRoute
-  BusinessPlanRoute: typeof BusinessPlanRoute
-  ConcorrentesRoute: typeof ConcorrentesRoute
-  InvestimentoRoute: typeof InvestimentoRoute
   SocialIntelligenceRoute: typeof SocialIntelligenceRoute
+  ConcorrentesRoute: typeof ConcorrentesRoute
+  AudienciaRoute: typeof AudienciaRoute
+  InvestimentoRoute: typeof InvestimentoRoute
+  BusinessPlanRoute: typeof BusinessPlanRoute
+  DoresRoute: typeof DoresRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -117,18 +108,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SocialIntelligenceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/investimento': {
-      id: '/investimento'
-      path: '/investimento'
-      fullPath: '/investimento'
-      preLoaderRoute: typeof InvestimentoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/concorrentes': {
       id: '/concorrentes'
       path: '/concorrentes'
       fullPath: '/concorrentes'
       preLoaderRoute: typeof ConcorrentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audiencia': {
+      id: '/audiencia'
+      path: '/audiencia'
+      fullPath: '/audiencia'
+      preLoaderRoute: typeof AudienciaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investimento': {
+      id: '/investimento'
+      path: '/investimento'
+      fullPath: '/investimento'
+      preLoaderRoute: typeof InvestimentoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/business-plan': {
@@ -138,11 +136,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessPlanRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/audiencia': {
-      id: '/audiencia'
-      path: '/audiencia'
-      fullPath: '/audiencia'
-      preLoaderRoute: typeof AudienciaRouteImport
+    '/dores': {
+      id: '/dores'
+      path: '/dores'
+      fullPath: '/dores'
+      preLoaderRoute: typeof DoresRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -157,12 +155,22 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AudienciaRoute: AudienciaRoute,
-  BusinessPlanRoute: BusinessPlanRoute,
-  ConcorrentesRoute: ConcorrentesRoute,
-  InvestimentoRoute: InvestimentoRoute,
   SocialIntelligenceRoute: SocialIntelligenceRoute,
+  ConcorrentesRoute: ConcorrentesRoute,
+  AudienciaRoute: AudienciaRoute,
+  InvestimentoRoute: InvestimentoRoute,
+  BusinessPlanRoute: BusinessPlanRoute,
+  DoresRoute: DoresRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
