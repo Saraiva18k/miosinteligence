@@ -180,6 +180,62 @@ const LAYER_META = [
   { id: "05", label: "EMERGENT",   sub: "O sinal"        },
 ];
 
+
+// ─── Arsenal data ─────────────────────────────────────────────────────────────
+
+type Disruption = "critico" | "alto";
+type WeaponStatus = "deploy_ready" | "setup_needed";
+
+interface Weapon {
+  id:             string;
+  name:           string;
+  signal:         string;
+  disruption:     Disruption;
+  implementTime:  string;
+  window:         string;
+  logic:          string;
+  impact:         string;
+  status:         WeaponStatus;
+}
+
+const WEAPONS: Weapon[] = [
+  {
+    id: "ARMA-01", name: "Protocolo de Retencao Ativa", signal: "SIG-001",
+    disruption: "critico", implementTime: "48h", window: "4-6 meses",
+    logic: "Abandono acontece no silencio. Check-in automatico em D+3, D+7 e D+14 transforma o sumico em presenca constante. Concorrentes nao fazem porque exige processo, nao produto — e exatamente por isso que vira vantagem.",
+    impact: "-73% abandono pos-pagamento · +34% retencao no 2o procedimento",
+    status: "deploy_ready",
+  },
+  {
+    id: "ARMA-02", name: "Garantia Documentada de Resultado", signal: "SIG-002",
+    disruption: "critico", implementTime: "7 dias", window: "6-8 meses",
+    logic: "Foto antes/depois padronizada + termo de garantia por escrito + protocolo de intercorrencias. Transforma promessa verbal em compromisso contratual. Unico player com garantia formal no raio 5km.",
+    impact: "2.3x conversao de leads · unico com garantia formal no mercado",
+    status: "deploy_ready",
+  },
+  {
+    id: "ARMA-03", name: "Tabela de Precos Finais Publicos", signal: "SIG-003",
+    disruption: "alto", implementTime: "24h", window: "2-3 meses",
+    logic: "Publicar o preco com tudo incluido captura as 2.400 buscas mensais sem resposta. Contraintuitivo para o mercado — e exatamente por isso que funciona. Quem faz primeiro define o padrao do setor.",
+    impact: "Captura 2.400 buscas/mes sem resposta · elimina objecao de preco antes do contato",
+    status: "deploy_ready",
+  },
+  {
+    id: "ARMA-04", name: "Protocolo Zero Espera", signal: "SIG-004",
+    disruption: "alto", implementTime: "7 dias", window: "3-4 meses",
+    logic: "Slots reais no agendamento digital + compensacao automatica se atrasar mais de 5 minutos. Vira argumento de marketing mensuravel. Os 4 concorrentes tem media de 40+ minutos de espera — o contraste e imediato.",
+    impact: "Diferenciaciao imediata dos 4 concorrentes · endereca 189 reclamacoes/mes",
+    status: "deploy_ready",
+  },
+  {
+    id: "ARMA-05", name: "Sistema de Follow-up Estruturado", signal: "SIG-005",
+    disruption: "alto", implementTime: "72h", window: "8-12 meses",
+    logic: "D+3 verificacao de resultado, D+7 check-in completo, D+30 avaliacao final. Protocolo de intercorrencias com resposta em menos de 2h. Captura o sinal emergente antes de virar expectativa padrao do setor.",
+    impact: "Captura sinal emergente +340% · unico protocolo formal no setor",
+    status: "deploy_ready",
+  },
+];
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function Interrogatorio() {
@@ -895,6 +951,238 @@ export function Interrogatorio() {
 
         </div>{/* end layers */}
       </div>{/* end body */}
+      {/* ═══════════════════════════════════════════════════
+          ARSENAL DE ATAQUE
+      ═══════════════════════════════════════════════════ */}
+      <div style={{ marginTop: 56 }}>
+
+        {/* Arsenal header */}
+        <div style={{
+          padding: "18px 22px",
+          background: "rgba(16,185,129,0.04)",
+          border: "1px solid rgba(16,185,129,0.15)",
+          borderTop: "2px solid rgba(16,185,129,0.5)",
+          borderRadius: "0 0 0 0",
+          marginBottom: 2,
+          display: "flex", justifyContent: "space-between", alignItems: "flex-start",
+          flexWrap: "wrap", gap: 12,
+        }}>
+          <div>
+            <div className="flex items-center gap-3 flex-wrap" style={{ marginBottom: 6 }}>
+              <span style={{
+                fontSize: 8, fontWeight: 900, letterSpacing: 1.5,
+                color: "#10b981", fontFamily: "JetBrains Mono, monospace",
+                border: "1px solid rgba(16,185,129,0.3)", borderRadius: 3, padding: "2px 7px",
+              }}>
+                ARSENAL DE ATAQUE
+              </span>
+              <span style={{
+                fontSize: 8, fontWeight: 800, letterSpacing: 0.8,
+                color: "rgba(255,255,255,0.5)", fontFamily: "JetBrains Mono, monospace",
+              }}>
+                5 ARMAS PRONTAS · 0 CONCORRENTES UTILIZANDO
+              </span>
+            </div>
+            <p style={{
+              fontSize: 13, fontWeight: 600,
+              color: "rgba(255,255,255,0.72)", lineHeight: 1.5,
+            }}>
+              Cada dor mapeada tem uma resposta disruptiva.{" "}
+              <span style={{ color: "#10b981" }}>Nenhum player do mercado implementou qualquer uma delas.</span>
+            </p>
+          </div>
+          <div style={{
+            padding: "8px 14px",
+            background: "rgba(16,185,129,0.08)",
+            border: "1px solid rgba(16,185,129,0.2)",
+            borderRadius: 6, textAlign: "right",
+          }}>
+            <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.25)", marginBottom: 3, fontFamily: "JetBrains Mono, monospace" }}>
+              JANELA MEDIA
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 900, color: "#10b981", fontFamily: "JetBrains Mono, monospace" }}>
+              3-8 meses
+            </div>
+            <div style={{ fontSize: 8, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>
+              antes de saturacao
+            </div>
+          </div>
+        </div>
+
+        {/* Weapon cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          {WEAPONS.map((w, idx) => {
+            const isCrit = w.disruption === "critico";
+            const accentColor = isCrit ? "#ef4444" : "#f97316";
+            const accentBg    = isCrit ? "rgba(239,68,68,0.06)" : "rgba(249,115,22,0.04)";
+            const accentBorder= isCrit ? "rgba(239,68,68,0.15)" : "rgba(249,115,22,0.1)";
+            return (
+              <div key={w.id} style={{
+                display: "flex", gap: 0,
+                background: idx === 0 ? accentBg : "rgba(255,255,255,0.018)",
+                border: `1px solid ${idx < 2 ? accentBorder : "rgba(255,255,255,0.05)"}`,
+                borderLeft: `3px solid ${accentColor}`,
+                borderRadius: "0 6px 6px 0",
+                overflow: "hidden",
+              }}>
+                <div style={{ flex: 1, padding: "15px 18px" }}>
+                  {/* Top row */}
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
+                    <span style={{
+                      fontSize: 8, fontWeight: 700, letterSpacing: 0.5,
+                      color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace",
+                      flexShrink: 0, paddingTop: 2,
+                    }}>
+                      {w.id}
+                    </span>
+                    <span style={{
+                      fontSize: 12, fontWeight: 800,
+                      color: "rgba(255,255,255,0.85)", flex: 1, minWidth: 160,
+                    }}>
+                      {w.name}
+                    </span>
+                    <div className="flex items-center gap-2" style={{ flexShrink: 0, flexWrap: "wrap" }}>
+                      <span style={{
+                        fontSize: 7, fontWeight: 900, letterSpacing: 1,
+                        color: accentColor,
+                        background: `${accentColor}15`,
+                        borderRadius: 3, padding: "2px 6px",
+                        fontFamily: "JetBrains Mono, monospace",
+                      }}>
+                        {isCrit ? "CRITICO" : "ALTO"}
+                      </span>
+                      <span style={{
+                        fontSize: 7, fontWeight: 900, letterSpacing: 1,
+                        color: "#10b981",
+                        background: "rgba(16,185,129,0.1)",
+                        border: "1px solid rgba(16,185,129,0.25)",
+                        borderRadius: 3, padding: "2px 6px",
+                        fontFamily: "JetBrains Mono, monospace",
+                      }}>
+                        DEPLOY READY
+                      </span>
+                      <span style={{
+                        fontSize: 7, fontWeight: 600,
+                        color: "rgba(255,149,0,0.7)",
+                        background: "rgba(255,149,0,0.07)",
+                        borderRadius: 3, padding: "2px 6px",
+                        fontFamily: "JetBrains Mono, monospace",
+                      }}>
+                        RESP: {w.signal}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Logic */}
+                  <p style={{
+                    fontSize: 11, color: "rgba(255,255,255,0.50)",
+                    lineHeight: 1.65, marginBottom: 12,
+                  }}>
+                    {w.logic}
+                  </p>
+
+                  {/* Bottom metrics */}
+                  <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+                    {[
+                      { label: "IMPLEMENTAR EM", value: w.implementTime, color: "#10b981"                  },
+                      { label: "JANELA",          value: w.window,        color: "#ff9500"                  },
+                      { label: "IMPACTO ESPERADO", value: w.impact,       color: "rgba(255,255,255,0.45)"   },
+                    ].map(m => (
+                      <div key={m.label}>
+                        <div style={{
+                          fontSize: 7, fontWeight: 700, letterSpacing: 1.2,
+                          color: "rgba(255,255,255,0.2)", marginBottom: 2,
+                          fontFamily: "JetBrains Mono, monospace",
+                        }}>
+                          {m.label}
+                        </div>
+                        <div style={{
+                          fontSize: 10, fontWeight: 700,
+                          color: m.color, fontFamily: "JetBrains Mono, monospace",
+                        }}>
+                          {m.value}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Cumulative advantage */}
+        <div style={{
+          marginTop: 3, padding: "22px 22px",
+          background: "rgba(0,0,0,0.35)",
+          border: "1px solid rgba(255,255,255,0.06)",
+          borderRadius: "0 0 8px 8px",
+          marginBottom: 56,
+        }}>
+          <div style={{ marginBottom: 16 }}>
+            <span style={{
+              fontSize: 8, fontWeight: 900, letterSpacing: 2,
+              color: "rgba(255,255,255,0.28)",
+              fontFamily: "JetBrains Mono, monospace",
+            }}>
+              VANTAGEM CUMULATIVA — EFEITO COMBINADO
+            </span>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 20 }}>
+            {[
+              { combo: "ARMA-01 + ARMA-05", result: "Ciclo de vida do cliente coberto do pagamento ao resultado — zero janela de abandono", color: "#ef4444" },
+              { combo: "ARMA-02 + ARMA-03", result: "Preco claro + resultado garantido = confianca irrecuperavel pelos concorrentes",         color: "#f97316" },
+              { combo: "ARMA-03",            result: "Captura 2.400 buscas/mes que voltam sem resposta — fluxo de leads passivo imediato",    color: "#f59e0b" },
+              { combo: "ARMA-04",            result: "Contraste direto com os 4 concorrentes — 40+ min de espera vs zero — vira benchmark",   color: "#10b981" },
+            ].map((c, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <span style={{
+                  fontSize: 8, fontWeight: 800, letterSpacing: 0.5,
+                  color: c.color, flexShrink: 0, paddingTop: 1,
+                  fontFamily: "JetBrains Mono, monospace", minWidth: 120,
+                }}>
+                  {c.combo}
+                </span>
+                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.38)", lineHeight: 1.55 }}>
+                  {c.result}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{
+            paddingTop: 18,
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            flexWrap: "wrap", gap: 12,
+          }}>
+            <p style={{
+              fontSize: 12, fontWeight: 600,
+              color: "rgba(255,255,255,0.55)", lineHeight: 1.6,
+              maxWidth: 520,
+            }}>
+              As 5 armas implementadas em conjunto nao somam vantagens — as multiplicam.
+              Cada protocolo reforco os outros, criando uma operacao que demora{" "}
+              <span style={{ color: "#ff9500", fontWeight: 800 }}>18 a 24 meses</span>{" "}
+              para um concorrente replicar integralmente.
+            </p>
+            <div style={{ textAlign: "right" }}>
+              <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.2)", marginBottom: 4, fontFamily: "JetBrains Mono, monospace" }}>
+                DISTANCIA COMPETITIVA TOTAL
+              </div>
+              <div style={{ fontSize: 28, fontWeight: 900, color: "#10b981", fontFamily: "JetBrains Mono, monospace", letterSpacing: -1 }}>
+                18-24
+              </div>
+              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>
+                meses de vantagem
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </>
   );
 }
