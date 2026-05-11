@@ -14,6 +14,7 @@ import { Route as TendenciasRouteImport } from './routes/tendencias'
 import { Route as SentimentoRouteImport } from './routes/sentimento'
 import { Route as CanaisRouteImport } from './routes/canais'
 import { Route as PrecificacaoRouteImport } from './routes/precificacao'
+import { Route as DnaRouteImport } from './routes/dna'
 import { Route as ConcorrentesRouteImport } from './routes/concorrentes'
 import { Route as AudienciaRouteImport } from './routes/audiencia'
 import { Route as InvestimentoRouteImport } from './routes/investimento'
@@ -26,6 +27,7 @@ const TendenciasRoute         = TendenciasRouteImport.update({         id: '/ten
 const SentimentoRoute         = SentimentoRouteImport.update({         id: '/sentimento',          path: '/sentimento',          getParentRoute: () => rootRouteImport } as any)
 const CanaisRoute             = CanaisRouteImport.update({             id: '/canais',              path: '/canais',              getParentRoute: () => rootRouteImport } as any)
 const PrecificacaoRoute       = PrecificacaoRouteImport.update({       id: '/precificacao',        path: '/precificacao',        getParentRoute: () => rootRouteImport } as any)
+const DnaRoute                = DnaRouteImport.update({                id: '/dna',                 path: '/dna',                 getParentRoute: () => rootRouteImport } as any)
 const ConcorrentesRoute       = ConcorrentesRouteImport.update({       id: '/concorrentes',        path: '/concorrentes',        getParentRoute: () => rootRouteImport } as any)
 const AudienciaRoute          = AudienciaRouteImport.update({          id: '/audiencia',           path: '/audiencia',           getParentRoute: () => rootRouteImport } as any)
 const InvestimentoRoute       = InvestimentoRouteImport.update({       id: '/investimento',        path: '/investimento',        getParentRoute: () => rootRouteImport } as any)
@@ -40,6 +42,7 @@ export interface FileRoutesByFullPath {
   '/sentimento': typeof SentimentoRoute
   '/canais': typeof CanaisRoute
   '/precificacao': typeof PrecificacaoRoute
+  '/dna': typeof DnaRoute
   '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
   '/investimento': typeof InvestimentoRoute
@@ -53,6 +56,7 @@ export interface FileRoutesByTo {
   '/sentimento': typeof SentimentoRoute
   '/canais': typeof CanaisRoute
   '/precificacao': typeof PrecificacaoRoute
+  '/dna': typeof DnaRoute
   '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
   '/investimento': typeof InvestimentoRoute
@@ -67,6 +71,7 @@ export interface FileRoutesById {
   '/sentimento': typeof SentimentoRoute
   '/canais': typeof CanaisRoute
   '/precificacao': typeof PrecificacaoRoute
+  '/dna': typeof DnaRoute
   '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
   '/investimento': typeof InvestimentoRoute
@@ -75,10 +80,10 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  fullPaths: '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
-  id: '__root__' | '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  to: '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  id: '__root__' | '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -88,6 +93,7 @@ export interface RootRouteChildren {
   SentimentoRoute: typeof SentimentoRoute
   CanaisRoute: typeof CanaisRoute
   PrecificacaoRoute: typeof PrecificacaoRoute
+  DnaRoute: typeof DnaRoute
   ConcorrentesRoute: typeof ConcorrentesRoute
   AudienciaRoute: typeof AudienciaRoute
   InvestimentoRoute: typeof InvestimentoRoute
@@ -102,6 +108,7 @@ declare module '@tanstack/react-router' {
     '/sentimento':          { id: '/sentimento';          path: '/sentimento';          fullPath: '/sentimento';          preLoaderRoute: typeof SentimentoRouteImport;          parentRoute: typeof rootRouteImport }
     '/canais':              { id: '/canais';              path: '/canais';              fullPath: '/canais';              preLoaderRoute: typeof CanaisRouteImport;              parentRoute: typeof rootRouteImport }
     '/precificacao':        { id: '/precificacao';        path: '/precificacao';        fullPath: '/precificacao';        preLoaderRoute: typeof PrecificacaoRouteImport;        parentRoute: typeof rootRouteImport }
+    '/dna':                 { id: '/dna';                 path: '/dna';                 fullPath: '/dna';                 preLoaderRoute: typeof DnaRouteImport;                 parentRoute: typeof rootRouteImport }
     '/concorrentes':        { id: '/concorrentes';        path: '/concorrentes';        fullPath: '/concorrentes';        preLoaderRoute: typeof ConcorrentesRouteImport;        parentRoute: typeof rootRouteImport }
     '/audiencia':           { id: '/audiencia';           path: '/audiencia';           fullPath: '/audiencia';           preLoaderRoute: typeof AudienciaRouteImport;           parentRoute: typeof rootRouteImport }
     '/investimento':        { id: '/investimento';        path: '/investimento';        fullPath: '/investimento';        preLoaderRoute: typeof InvestimentoRouteImport;        parentRoute: typeof rootRouteImport }
@@ -113,7 +120,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute, SocialIntelligenceRoute, TendenciasRoute, SentimentoRoute,
-  CanaisRoute, PrecificacaoRoute, ConcorrentesRoute, AudienciaRoute,
+  CanaisRoute, PrecificacaoRoute, DnaRoute, ConcorrentesRoute, AudienciaRoute,
   InvestimentoRoute, BusinessPlanRoute, DoresRoute,
 }
 export const routeTree = rootRouteImport
