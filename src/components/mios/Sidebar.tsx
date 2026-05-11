@@ -26,7 +26,7 @@ const sections: TimelineSection[] = [
       { label: "Tendências",         status: "done",    href: "/tendencias",         preview: "Busca +340% 6 meses"     },
       { label: "Audiência",          status: "done",    href: "/audiencia"                                              },
       { label: "Sentimento",         status: "done",    href: "/sentimento"                                              },
-      { label: "Canais",             status: "pending"                                                                  },
+      { label: "Canais",             status: "done",    href: "/canais"                                                  },
       { label: "Precificação",       status: "pending"                                                                  },
       { label: "Social Intelligence",status: "done",    href: "/social-intelligence",alertCount: 2                     },
       { label: "DNA da Marca",       status: "pending"                                                                  },
