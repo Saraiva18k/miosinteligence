@@ -27,7 +27,7 @@ const sections: TimelineSection[] = [
       { label: "Audiência",          status: "done",    href: "/audiencia"                                              },
       { label: "Sentimento",         status: "done",    href: "/sentimento"                                              },
       { label: "Canais",             status: "done",    href: "/canais"                                                  },
-      { label: "Precificação",       status: "pending"                                                                  },
+      { label: "Precificação",       status: "done",    href: "/precificacao"                                           },
       { label: "Social Intelligence",status: "done",    href: "/social-intelligence",alertCount: 2                     },
       { label: "DNA da Marca",       status: "pending"                                                                  },
     ],
