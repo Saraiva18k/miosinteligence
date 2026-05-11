@@ -9,6 +9,7 @@ interface TimelineModule {
   status: ModuleStatus;
   preview?: string;
   alertCount?: number;
+  href?: string;
 }
 
 interface TimelineSection {
@@ -20,39 +21,28 @@ const sections: TimelineSection[] = [
   {
     title: "PESQUISA",
     modules: [
-      { label: "Dores", status: "done", preview: "Gap de confiança real" },
-      { label: "Concorrentes", status: "done", preview: "5 players, NPS baixo" },
-      { label: "Tendências", status: "done", preview: "Busca +340% 6 meses" },
-      { label: "Audiência", status: "pending" },
-      { label: "Sentimento", status: "pending" },
-      { label: "Canais", status: "pending" },
-      { label: "Precificação", status: "pending" },
-      { label: "Social Intelligence", status: "pending", alertCount: 2 },
-      { label: "DNA da Marca", status: "pending" },
+      { label: "Dores",              status: "done",    href: "/dores",              preview: "Gap de confiança real"   },
+      { label: "Concorrentes",       status: "done",    href: "/concorrentes",       preview: "5 players, NPS baixo"    },
+      { label: "Tendências",         status: "done",    href: "/tendencias",         preview: "Busca +340% 6 meses"     },
+      { label: "Audiência",          status: "done",    href: "/audiencia"                                              },
+      { label: "Sentimento",         status: "pending"                                                                  },
+      { label: "Canais",             status: "pending"                                                                  },
+      { label: "Precificação",       status: "pending"                                                                  },
+      { label: "Social Intelligence",status: "done",    href: "/social-intelligence",alertCount: 2                     },
+      { label: "DNA da Marca",       status: "pending"                                                                  },
     ],
   },
   {
     title: "SÍNTESE",
     modules: [
-      { label: "Inovação", status: "pending" },
-      { label: "Compliance", status: "pending" },
-      { label: "Investimento", status: "pending" },
-      { label: "Business Plan", status: "pending" },
-      { label: "Veredito", status: "active", preview: "Score 87 · Entrar agora" },
+      { label: "Inovação",      status: "pending"                                                                       },
+      { label: "Compliance",    status: "pending"                                                                       },
+      { label: "Investimento",  status: "done",    href: "/investimento"                                               },
+      { label: "Business Plan", status: "done",    href: "/business-plan"                                              },
+      { label: "Veredito",      status: "active",  href: "/",                   preview: "Score 87 · Entrar agora"    },
     ],
   },
 ];
-
-const moduleHrefs: Record<string, string> = {
-  Veredito: "/",
-  "Social Intelligence": "/social-intelligence",
-  Dores: "/dores",
-  "Tendências": "/tendencias",
-  Concorrentes: "/concorrentes",
-  "Audiência": "/audiencia",
-  Investimento: "/investimento",
-  "Business Plan": "/business-plan",
-};
 
 interface SidebarProps {
   activeModule?: string;
@@ -216,7 +206,6 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
             <div className="mt-1">
               {section.modules.map((m) => {
                 const isActive = m.label === activeModule;
-                const href = moduleHrefs[m.label];
                 const dotColor =
                   m.status === "done"
                     ? "rgba(16,185,129,0.8)"
@@ -280,8 +269,8 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
                   </div>
                 );
 
-                return href ? (
-                  <Link key={m.label} to={href} className="block">
+                return m.href ? (
+                  <Link key={m.label} to={m.href as any} className="block">
                     {content}
                   </Link>
                 ) : (
