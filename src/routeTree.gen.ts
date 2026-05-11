@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SocialIntelligenceRouteImport } from './routes/social-intelligence'
+import { Route as TendenciasRouteImport } from './routes/tendencias'
 import { Route as ConcorrentesRouteImport } from './routes/concorrentes'
 import { Route as AudienciaRouteImport } from './routes/audiencia'
 import { Route as InvestimentoRouteImport } from './routes/investimento'
@@ -20,6 +21,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({
   id: '/social-intelligence',
   path: '/social-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TendenciasRoute = TendenciasRouteImport.update({
+  id: '/tendencias',
+  path: '/tendencias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConcorrentesRoute = ConcorrentesRouteImport.update({
@@ -56,6 +62,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
+  '/tendencias': typeof TendenciasRoute
   '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
   '/investimento': typeof InvestimentoRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
+  '/tendencias': typeof TendenciasRoute
   '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
   '/investimento': typeof InvestimentoRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
+  '/tendencias': typeof TendenciasRoute
   '/concorrentes': typeof ConcorrentesRoute
   '/audiencia': typeof AudienciaRoute
   '/investimento': typeof InvestimentoRoute
@@ -83,15 +92,16 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  fullPaths: '/' | '/social-intelligence' | '/tendencias' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
-  id: '__root__' | '/' | '/social-intelligence' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  to: '/' | '/social-intelligence' | '/tendencias' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  id: '__root__' | '/' | '/social-intelligence' | '/tendencias' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SocialIntelligenceRoute: typeof SocialIntelligenceRoute
+  TendenciasRoute: typeof TendenciasRoute
   ConcorrentesRoute: typeof ConcorrentesRoute
   AudienciaRoute: typeof AudienciaRoute
   InvestimentoRoute: typeof InvestimentoRoute
@@ -106,6 +116,13 @@ declare module '@tanstack/react-router' {
       path: '/social-intelligence'
       fullPath: '/social-intelligence'
       preLoaderRoute: typeof SocialIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tendencias': {
+      id: '/tendencias'
+      path: '/tendencias'
+      fullPath: '/tendencias'
+      preLoaderRoute: typeof TendenciasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/concorrentes': {
@@ -156,6 +173,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SocialIntelligenceRoute: SocialIntelligenceRoute,
+  TendenciasRoute: TendenciasRoute,
   ConcorrentesRoute: ConcorrentesRoute,
   AudienciaRoute: AudienciaRoute,
   InvestimentoRoute: InvestimentoRoute,
