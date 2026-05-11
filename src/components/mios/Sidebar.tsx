@@ -35,7 +35,7 @@ const sections: TimelineSection[] = [
   {
     title: "SÍNTESE",
     modules: [
-      { label: "Inovação",      status: "pending"                                                                       },
+      { label: "Inovação",      status: "done",    href: "/inovacao"                                               },
       { label: "Compliance",    status: "pending"                                                                       },
       { label: "Investimento",  status: "done",    href: "/investimento"                                               },
       { label: "Business Plan", status: "done",    href: "/business-plan"                                              },
