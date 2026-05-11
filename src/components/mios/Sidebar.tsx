@@ -29,7 +29,7 @@ const sections: TimelineSection[] = [
       { label: "Canais",             status: "done",    href: "/canais"                                                  },
       { label: "Precificação",       status: "done",    href: "/precificacao"                                           },
       { label: "Social Intelligence",status: "done",    href: "/social-intelligence",alertCount: 2                     },
-      { label: "DNA da Marca",       status: "pending"                                                                  },
+      { label: "DNA da Marca",       status: "done",    href: "/dna"                                                    },
     ],
   },
   {
