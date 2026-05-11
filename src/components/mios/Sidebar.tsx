@@ -25,7 +25,7 @@ const sections: TimelineSection[] = [
       { label: "Concorrentes",       status: "done",    href: "/concorrentes",       preview: "5 players, NPS baixo"    },
       { label: "Tendências",         status: "done",    href: "/tendencias",         preview: "Busca +340% 6 meses"     },
       { label: "Audiência",          status: "done",    href: "/audiencia"                                              },
-      { label: "Sentimento",         status: "pending"                                                                  },
+      { label: "Sentimento",         status: "done",    href: "/sentimento"                                              },
       { label: "Canais",             status: "pending"                                                                  },
       { label: "Precificação",       status: "pending"                                                                  },
       { label: "Social Intelligence",status: "done",    href: "/social-intelligence",alertCount: 2                     },
