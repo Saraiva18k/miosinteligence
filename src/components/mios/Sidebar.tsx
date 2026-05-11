@@ -47,6 +47,7 @@ const moduleHrefs: Record<string, string> = {
   Veredito: "/",
   "Social Intelligence": "/social-intelligence",
   Dores: "/dores",
+  "Tendências": "/tendencias",
   Concorrentes: "/concorrentes",
   "Audiência": "/audiencia",
   Investimento: "/investimento",
