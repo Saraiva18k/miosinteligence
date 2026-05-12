@@ -13,8 +13,8 @@ export function SocialHero() {
       className="verdict-hero mios-float relative"
       style={{
         background: "rgba(255,149,0,0.05)",
-        backdropFilter: "blur(12px) saturate(150%)",
-        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: "1px solid rgba(255,149,0,0.15)",
         padding: "20px 24px",
       }}
@@ -63,8 +63,8 @@ export function SocialHero() {
             padding: "4px 8px",
             borderRadius: 6,
             background: "rgba(16,185,129,0.10)",
-            backdropFilter: "blur(12px) saturate(150%)",
-            WebkitBackdropFilter: "blur(12px) saturate(150%)",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
             border: "1px solid rgba(16,185,129,0.30)",
             color: "rgba(16,185,129,0.85)",
           }}
