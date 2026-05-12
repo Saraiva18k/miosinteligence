@@ -85,6 +85,8 @@ export function SocialHero() {
                 borderRadius: 20,
                 border: `1px solid rgba(${p.color},0.4)`,
                 background: `rgba(${p.color},0.08)`,
+                backdropFilter: "blur(12px) saturate(160%)",
+                WebkitBackdropFilter: "blur(12px) saturate(160%)",
                 color: `rgba(${p.color},0.9)`,
                 fontSize: 11,
                 fontWeight: 700,
