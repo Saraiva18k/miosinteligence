@@ -328,8 +328,8 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
   return (
     <div
       style={{
-        minWidth: c.isHero ? 300 : 252,
-        maxWidth: c.isHero ? 300 : 252,
+        minWidth: 272,
+        maxWidth: 272,
         background: "var(--card)",
         backdropFilter: "blur(16px) saturate(180%)",
         WebkitBackdropFilter: "blur(16px) saturate(180%)",
