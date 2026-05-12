@@ -7,7 +7,7 @@ export function Header() {
     <header
       className="flex items-center px-4 relative z-30"
       style={{
-        height: 44,
+        height: 52,
         background: "rgba(7,9,15,0.55)",
         backdropFilter: "blur(18px) saturate(160%)",
         WebkitBackdropFilter: "blur(18px) saturate(160%)",
