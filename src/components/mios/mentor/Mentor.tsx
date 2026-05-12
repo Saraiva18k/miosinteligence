@@ -284,7 +284,7 @@ function EqualizerStrip({ thinking }: { thinking: boolean }) {
         );
       })}
       <span style={{
-        fontSize: 7,
+        fontSize: 9,
         letterSpacing: 2,
         color: thinking ? "rgba(255,149,0,0.5)" : "rgba(255,149,0,0.2)",
         fontFamily: "JetBrains Mono, monospace",
@@ -396,9 +396,11 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
         <div style={{
           maxWidth: "72%", padding: "10px 14px",
           background: "rgba(255,255,255,0.06)",
+          backdropFilter: "blur(12px) saturate(150%)",
+          WebkitBackdropFilter: "blur(12px) saturate(150%)",
           border: "1px solid rgba(255,255,255,0.08)",
           borderRadius: "12px 12px 2px 12px",
-          fontSize: 12, color: "rgba(255,255,255,0.72)", lineHeight: 1.65,
+          fontSize: 13, color: "rgba(255,255,255,0.72)", lineHeight: 1.65,
         }}>{msg.text}</div>
       </div>
     );
@@ -410,16 +412,18 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
         width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
         background: "rgba(255,149,0,0.1)", border: "1px solid rgba(255,149,0,0.3)",
         display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: 10, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace",
+        fontSize: 12, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace",
       }}>M</div>
 
       <div style={{ flex: 1 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-          <span style={{ fontSize: 9, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1 }}>MENTOR</span>
+          <span style={{ fontSize: 11, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1 }}>MENTOR</span>
           {msg.refs?.map(r => (
             <span key={r} style={{
-              fontSize: 7, padding: "1px 6px",
+              fontSize: 9, padding: "1px 6px",
               background: "rgba(255,149,0,0.08)", color: "rgba(255,149,0,0.6)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,149,0,0.18)", borderRadius: 3,
               fontFamily: "JetBrains Mono, monospace",
             }}>{r}</span>
@@ -428,10 +432,12 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
         <div style={{
           padding: "12px 16px",
           background: "rgba(255,149,0,0.03)",
+          backdropFilter: "blur(12px) saturate(150%)",
+          WebkitBackdropFilter: "blur(12px) saturate(150%)",
           border: "1px solid rgba(255,149,0,0.12)",
           borderLeft: "2px solid rgba(255,149,0,0.5)",
           borderRadius: "0 10px 10px 10px",
-          fontSize: 12, color: "rgba(255,255,255,0.62)", lineHeight: 1.75,
+          fontSize: 13, color: "rgba(255,255,255,0.62)", lineHeight: 1.75,
         }}>
           {renderText(msg.text)}
           {isTyping && <TypingCursor />}
@@ -512,8 +518,8 @@ export function Mentor() {
       <div style={{ padding: "14px 24px 13px", borderBottom: "1px solid rgba(255,255,255,0.05)", flexShrink: 0 }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
-            <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● ONLINE</span>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>MENTOR IA — O SÓCIO</span>
+            <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● ONLINE</span>
+            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>MENTOR IA — O SÓCIO</span>
           </div>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[
@@ -523,7 +529,7 @@ export function Mentor() {
               { label: "SKILLS",            value: "6",       color: "rgba(255,255,255,0.35)" },
             ].map(m => (
               <div key={m.label} style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
+                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
                 <div style={{ fontSize: 14, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
               </div>
             ))}
@@ -543,14 +549,14 @@ export function Mentor() {
             </div>
             <div style={{ textAlign: "center", marginTop: 4 }}>
               <div style={{ fontSize: 13, fontWeight: 900, color: "rgba(255,255,255,0.88)", letterSpacing: 1 }}>MENTOR IA</div>
-              <div style={{ fontSize: 8, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1.5, marginTop: 2 }}>
+              <div style={{ fontSize: 10, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1.5, marginTop: 2 }}>
                 {thinking ? "PROCESSANDO..." : "● ONLINE"}
               </div>
             </div>
           </div>
 
           <div style={{ margin: "10px 14px 0", padding: "10px 14px", background: "rgba(255,149,0,0.04)", border: "1px solid rgba(255,149,0,0.12)", borderRadius: 6 }}>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>TREINAMENTO</div>
+            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>TREINAMENTO</div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               {[
                 { val: "14",   sub: "módulos" },
@@ -559,18 +565,18 @@ export function Mentor() {
               ].map(s => (
                 <div key={s.sub} style={{ textAlign: "center" }}>
                   <div style={{ fontSize: 20, fontWeight: 900, color: s.color ?? "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>{s.val}</div>
-                  <div style={{ fontSize: 7, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{s.sub}</div>
+                  <div style={{ fontSize: 9, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{s.sub}</div>
                 </div>
               ))}
             </div>
           </div>
 
           <div style={{ flex: 1, overflowY: "auto", padding: "12px 14px", marginTop: 6 }}>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>MÓDULOS INTEGRADOS</div>
+            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>MÓDULOS INTEGRADOS</div>
             {MODULES_TRAINED.map((mod, i) => (
               <div key={mod} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5, animation: `msg-appear 0.2s ease ${i * 0.03}s both` }}>
                 <div style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(16,185,129,0.75)", flexShrink: 0, boxShadow: "0 0 5px rgba(16,185,129,0.4)" }} />
-                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.38)" }}>{mod}</span>
+                <span style={{ fontSize: 12, color: "rgba(255,255,255,0.38)" }}>{mod}</span>
               </div>
             ))}
           </div>
@@ -590,14 +596,14 @@ export function Mentor() {
 
             {shownMessages.length === 0 && !thinking && (
               <div style={{ display: "flex", justifyContent: "center", paddingTop: 40 }}>
-                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>Iniciando sessão...</span>
+                <span style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>Iniciando sessão...</span>
               </div>
             )}
 
             {/* Initial thinking state */}
             {thinking && shownMessages.length === 0 && (
               <div style={{ display: "flex", gap: 12 }}>
-                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,149,0,0.1)", border: "1px solid rgba(255,149,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", flexShrink: 0 }}>M</div>
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,149,0,0.1)", border: "1px solid rgba(255,149,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", flexShrink: 0 }}>M</div>
                 <div style={{ padding: "14px 18px", background: "rgba(255,149,0,0.03)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "2px solid rgba(255,149,0,0.5)", borderRadius: "0 10px 10px 10px", display: "flex", gap: 6, alignItems: "center" }}>
                   {[0,1,2].map(i => (
                     <div key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: "#ff9500", animation: `thinking-dot 1.2s ease ${i * 0.15}s infinite` }} />
@@ -613,7 +619,7 @@ export function Mentor() {
             {/* Inline thinking indicator when conversation is active */}
             {thinking && shownMessages.length > 0 && (
               <div style={{ display: "flex", gap: 12 }}>
-                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,149,0,0.1)", border: "1px solid rgba(255,149,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", flexShrink: 0 }}>M</div>
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,149,0,0.1)", border: "1px solid rgba(255,149,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", flexShrink: 0 }}>M</div>
                 <div style={{ padding: "14px 18px", background: "rgba(255,149,0,0.03)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "2px solid rgba(255,149,0,0.5)", borderRadius: "0 10px 10px 10px", display: "flex", gap: 6, alignItems: "center" }}>
                   {[0,1,2].map(i => (
                     <div key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: "#ff9500", animation: `thinking-dot 1.2s ease ${i * 0.15}s infinite` }} />
@@ -630,8 +636,10 @@ export function Mentor() {
             <div style={{ padding: "0 32px 10px", display: "flex", flexWrap: "wrap", gap: 6, position: "relative", zIndex: 1 }}>
               {SUGGESTED.filter(s => !messages.find(m => m.text === s.q)).slice(0, 4).map(s => (
                 <button key={s.q} onClick={() => handleQuestion(s.q)} style={{
-                  padding: "6px 13px", fontSize: 10, fontWeight: 600,
+                  padding: "6px 13px", fontSize: 12, fontWeight: 600,
                   background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.45)",
+                  backdropFilter: "blur(12px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
                   border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20,
                   cursor: "pointer", transition: "all 0.15s ease", textAlign: "left",
                 }}
@@ -656,9 +664,11 @@ export function Mentor() {
                 style={{
                   flex: 1, padding: "11px 16px",
                   background: "rgba(255,255,255,0.03)",
+                  backdropFilter: "blur(12px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
                   border: "1px solid rgba(255,255,255,0.08)",
                   borderRadius: 8,
-                  color: "rgba(255,255,255,0.8)", fontSize: 12,
+                  color: "rgba(255,255,255,0.8)", fontSize: 13,
                   outline: "none", transition: "border-color 0.15s",
                   fontFamily: "inherit",
                 }}
@@ -671,7 +681,7 @@ export function Mentor() {
                 border: `1px solid ${input.trim() ? "rgba(255,149,0,0.35)" : "rgba(255,255,255,0.06)"}`,
                 borderRadius: 8, cursor: input.trim() ? "pointer" : "default",
                 color: input.trim() ? "#ff9500" : "rgba(255,255,255,0.2)",
-                fontSize: 12, fontWeight: 700, transition: "all 0.15s",
+                fontSize: 13, fontWeight: 700, transition: "all 0.15s",
               }}>Enviar</button>
             </div>
           </div>
