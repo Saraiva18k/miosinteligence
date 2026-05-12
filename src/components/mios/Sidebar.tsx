@@ -130,21 +130,25 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
           </span>
         </div>
 
-        <button
-          className="flex items-center justify-center"
+        <Link
+          to="/mentor"
           style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             width: 36,
             height: 36,
             borderRadius: 10,
             background:
               "linear-gradient(135deg, rgba(255,149,0,0.18), rgba(255,149,0,0.06))",
-            border: "1px solid rgba(255,149,0,0.4)",
+            border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.7)" : "rgba(255,149,0,0.4)"}`,
             color: "rgba(255,149,0,0.95)",
+            textDecoration: "none",
           }}
           aria-label="Mentor IA"
         >
           <Brain size={16} strokeWidth={2.2} />
-        </button>
+        </Link>
       </aside>
     );
   }
@@ -288,22 +292,25 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
           borderTop: "1px solid rgba(255,255,255,0.05)",
         }}
       >
-        <button
+        <Link
+          to="/mentor"
           className="w-full flex items-center gap-2 transition-all"
           style={{
             padding: "8px 10px",
             borderRadius: 8,
-            background:
-              "linear-gradient(135deg, rgba(255,149,0,0.12), rgba(255,149,0,0.04))",
-            border: "1px solid rgba(255,149,0,0.35)",
+            background: activeModule === "Mentor IA"
+              ? "linear-gradient(135deg, rgba(255,149,0,0.18), rgba(255,149,0,0.08))"
+              : "linear-gradient(135deg, rgba(255,149,0,0.12), rgba(255,149,0,0.04))",
+            border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.55)" : "rgba(255,149,0,0.35)"}`,
             color: "rgba(255,149,0,0.95)",
+            textDecoration: "none",
+            display: "flex",
           }}
         >
           <Brain size={13} strokeWidth={2.2} />
           <span style={{ fontSize: 11, fontWeight: 600 }}>{mentor.label}</span>
           <ArrowUpRight size={11} className="ml-auto" />
-          <Zap size={10} style={{ display: "none" }} />
-        </button>
+        </Link>
       </div>
     </aside>
   );
