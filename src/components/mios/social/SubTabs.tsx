@@ -27,7 +27,7 @@ export function SubTabs({ active, onChange }: SubTabsProps) {
             style={{
               padding: "7px 16px",
               borderRadius: "8px 8px 0 0",
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 500,
               color: isActive ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.3)",
               background: isActive ? "rgba(255,149,0,0.04)" : "transparent",
