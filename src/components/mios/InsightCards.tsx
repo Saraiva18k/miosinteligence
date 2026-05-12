@@ -76,7 +76,7 @@ export function InsightCards() {
           >
             <div
               style={{
-                fontSize: 8,
+                fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: "2px",
                 color: s.tagColor,
@@ -88,7 +88,7 @@ export function InsightCards() {
             <h3
               className="mt-2"
               style={{
-                fontSize: 12,
+                fontSize: 13,
                 fontWeight: 600,
                 color: "rgba(255,255,255,0.82)",
                 lineHeight: 1.35,
@@ -100,7 +100,7 @@ export function InsightCards() {
             <p
               className="mt-1.5"
               style={{
-                fontSize: 10,
+                fontSize: 12,
                 color: "rgba(255,255,255,0.38)",
                 lineHeight: 1.65,
               }}
@@ -116,9 +116,11 @@ export function InsightCards() {
                 padding: "4px 9px",
                 borderRadius: 6,
                 background: "rgba(255,149,0,0.12)",
+                backdropFilter: "blur(12px) saturate(150%)",
+                WebkitBackdropFilter: "blur(12px) saturate(150%)",
                 border: "1px solid rgba(255,149,0,0.20)",
                 color: "rgba(255,149,0,0.80)",
-                fontSize: 8,
+                fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: "1px",
                 textTransform: "uppercase",
