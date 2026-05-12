@@ -297,7 +297,7 @@ function ColSection({ icon, label, open, onToggle, children }: SectionProps) {
         <div className="flex items-center gap-2">
           <span style={{ color: "var(--accent)", opacity: 0.8 }}>{icon}</span>
           <span style={{
-            fontSize: 10, fontWeight: 600,
+            fontSize: 12, fontWeight: 600,
             color: "rgba(255,255,255,0.5)",
             letterSpacing: 0.8, textTransform: "uppercase" as const,
           }}>
@@ -386,7 +386,7 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
             background: t.color, boxShadow: `0 0 6px ${t.color}`,
           }} />
           <span style={{
-            fontSize: 9, fontWeight: 700, color: t.color, letterSpacing: 1,
+            fontSize: 11, fontWeight: 700, color: t.color, letterSpacing: 1,
           }}>
             AMEACA {t.label}
           </span>
@@ -395,11 +395,11 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-1.5">
             <MapPin size={10} style={{ color: "rgba(255,255,255,0.25)" }} />
-            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>{c.location}</span>
+            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>{c.location}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Calendar size={10} style={{ color: "rgba(255,255,255,0.25)" }} />
-            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>
+            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
               No mercado desde {c.established}
             </span>
           </div>
@@ -410,18 +410,20 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
             className="mt-3 flex items-start gap-2 rounded-lg p-2"
             style={{
               background: "rgba(255,149,0,0.06)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,149,0,0.15)",
             }}
           >
             <Bell size={10} style={{ color: "var(--accent)", marginTop: 2, flexShrink: 0 }} />
             <div>
               <span style={{
-                fontSize: 9, fontWeight: 700, color: "var(--accent)", letterSpacing: 0.6,
+                fontSize: 11, fontWeight: 700, color: "var(--accent)", letterSpacing: 0.6,
               }}>
                 MOVIMENTO — {c.recentAlert.daysAgo}d atras
               </span>
               <p style={{
-                fontSize: 10, color: "rgba(255,255,255,0.55)", marginTop: 1, lineHeight: 1.4,
+                fontSize: 12, color: "rgba(255,255,255,0.55)", marginTop: 1, lineHeight: 1.4,
               }}>
                 {c.recentAlert.message}
               </p>
@@ -435,19 +437,19 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
         open={open.product} onToggle={() => toggle("product")}
       >
         <p style={{
-          fontSize: 11, color: "rgba(255,255,255,0.6)",
+          fontSize: 13, color: "rgba(255,255,255,0.6)",
           lineHeight: 1.55, marginBottom: 8,
         }}>
           {c.product.description}
         </p>
         <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 6, padding: "6px 8px" }}>
           <span style={{
-            fontSize: 9, fontWeight: 600,
+            fontSize: 11, fontWeight: 600,
             color: "rgba(255,255,255,0.3)", letterSpacing: 0.6,
           }}>
             DIFERENCIAL
           </span>
-          <p style={{ fontSize: 11, color: "rgba(255,149,0,0.85)", marginTop: 2 }}>
+          <p style={{ fontSize: 13, color: "rgba(255,149,0,0.85)", marginTop: 2 }}>
             {c.product.differential}
           </p>
         </div>
@@ -466,7 +468,7 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
             {c.pricing.range}
           </span>
           <span style={{
-            fontSize: 9, fontWeight: 600,
+            fontSize: 11, fontWeight: 600,
             color: "rgba(255,255,255,0.35)",
             background: "rgba(255,255,255,0.05)",
             borderRadius: 4, padding: "2px 6px",
@@ -474,7 +476,7 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
             {PRICING_LABEL[c.pricing.position]}
           </span>
         </div>
-        <p style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", lineHeight: 1.5 }}>
+        <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", lineHeight: 1.5 }}>
           {c.pricing.strategy}
         </p>
       </ColSection>
@@ -489,13 +491,15 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
               key={ch.name}
               style={{
                 background: "rgba(255,255,255,0.04)",
+                backdropFilter: "blur(12px) saturate(150%)",
+                WebkitBackdropFilter: "blur(12px) saturate(150%)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 borderRadius: 5, padding: "3px 7px",
               }}
             >
-              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.5)" }}>{ch.name} </span>
+              <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)" }}>{ch.name} </span>
               <span style={{
-                fontSize: 9, fontWeight: 700,
+                fontSize: 11, fontWeight: 700,
                 color: "rgba(255,255,255,0.75)",
                 fontFamily: "JetBrains Mono, monospace",
               }}>
@@ -505,17 +509,17 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
           ))}
         </div>
         <div className="flex items-center justify-between mb-2">
-          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>FREQUENCIA</span>
-          <span style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.6)" }}>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>FREQUENCIA</span>
+          <span style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.6)" }}>
             {c.marketing.frequency}
           </span>
         </div>
         <div style={{
           background: "rgba(255,255,255,0.03)", borderRadius: 6, padding: "6px 8px",
         }}>
-          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>MENSAGEM PRINCIPAL</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>MENSAGEM PRINCIPAL</span>
           <p style={{
-            fontSize: 11, fontStyle: "italic",
+            fontSize: 13, fontStyle: "italic",
             color: "rgba(255,255,255,0.6)", marginTop: 2,
           }}>
             {c.marketing.topMessage}
@@ -535,7 +539,7 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
                 background: "#ef4444", marginTop: 4, flexShrink: 0,
               }} />
               <span style={{
-                fontSize: 10, color: "rgba(255,255,255,0.5)", lineHeight: 1.45,
+                fontSize: 12, color: "rgba(255,255,255,0.5)", lineHeight: 1.45,
               }}>
                 {w}
               </span>
@@ -544,18 +548,20 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
         </div>
         <div style={{
           background: "rgba(16,185,129,0.07)",
+          backdropFilter: "blur(12px) saturate(150%)",
+          WebkitBackdropFilter: "blur(12px) saturate(150%)",
           border: "1px solid rgba(16,185,129,0.18)",
           borderRadius: 7, padding: "8px 10px",
         }}>
           <div className="flex items-center gap-1.5 mb-1">
             <Zap size={9} style={{ color: "#10b981" }} />
             <span style={{
-              fontSize: 9, fontWeight: 700, color: "#10b981", letterSpacing: 0.6,
+              fontSize: 11, fontWeight: 700, color: "#10b981", letterSpacing: 0.6,
             }}>
               SUA OPORTUNIDADE
             </span>
           </div>
-          <p style={{ fontSize: 10, color: "rgba(255,255,255,0.65)", lineHeight: 1.5 }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", lineHeight: 1.5 }}>
             {c.opportunity}
           </p>
         </div>
@@ -570,7 +576,7 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
           {DIM_LABELS.map(({ key, label }) => (
             <div key={key} className="flex items-center justify-between gap-2">
               <span style={{
-                fontSize: 9, color: "rgba(255,255,255,0.3)", width: 64, flexShrink: 0,
+                fontSize: 11, color: "rgba(255,255,255,0.3)", width: 64, flexShrink: 0,
               }}>
                 {label}
               </span>
@@ -599,12 +605,12 @@ function BattleMap() {
             background: "var(--accent)", boxShadow: "0 0 8px var(--accent)",
           }} />
           <h2 style={{
-            fontSize: 11, fontWeight: 700,
+            fontSize: 13, fontWeight: 700,
             color: "rgba(255,255,255,0.7)", letterSpacing: 1,
           }}>
             MAPA DE BATALHA
           </h2>
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", marginLeft: 4 }}>
+          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginLeft: 4 }}>
             — comparativo de forcas por dimensao
           </span>
         </div>
@@ -616,14 +622,14 @@ function BattleMap() {
             <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
               <th style={{
                 width: 120, padding: "10px 20px", textAlign: "left",
-                fontSize: 9, fontWeight: 600,
+                fontSize: 11, fontWeight: 600,
                 color: "rgba(255,255,255,0.25)", letterSpacing: 0.8,
               }}>
                 DIMENSAO
               </th>
               <th style={{ padding: "10px 16px", textAlign: "center" }}>
                 <div style={{
-                  fontSize: 9, fontWeight: 700,
+                  fontSize: 11, fontWeight: 700,
                   color: "var(--accent)", letterSpacing: 0.6,
                 }}>
                   NOS
@@ -632,7 +638,7 @@ function BattleMap() {
               {mockCompetitors.map(c => (
                 <th key={c.id} style={{ padding: "10px 16px", textAlign: "center" }}>
                   <div style={{
-                    fontSize: 9, fontWeight: 600,
+                    fontSize: 11, fontWeight: 600,
                     color: "rgba(255,255,255,0.35)", letterSpacing: 0.5,
                   }}>
                     {c.initials}
@@ -655,7 +661,7 @@ function BattleMap() {
                 }}
               >
                 <td style={{
-                  padding: "10px 20px", fontSize: 10, fontWeight: 500,
+                  padding: "10px 20px", fontSize: 12, fontWeight: 500,
                   color: "rgba(255,255,255,0.45)",
                 }}>
                   {label}
@@ -675,7 +681,7 @@ function BattleMap() {
                       <div className="flex flex-col items-center gap-1">
                         <DimDots value={val} />
                         <span style={{
-                          fontSize: 8, letterSpacing: 0.4, fontWeight: 600,
+                          fontSize: 10, letterSpacing: 0.4, fontWeight: 600,
                           color: isWinning
                             ? "#10b981"
                             : isTied
@@ -712,7 +718,7 @@ export function WarRoom() {
               animation: "pulse 2s infinite",
             }} />
             <span style={{
-              fontSize: 9, fontWeight: 700, color: "#ef4444", letterSpacing: 1.2,
+              fontSize: 11, fontWeight: 700, color: "#ef4444", letterSpacing: 1.2,
             }}>
               4 CONCORRENTES MONITORADOS
             </span>
@@ -724,7 +730,7 @@ export function WarRoom() {
           }}>
             A Sala de Guerra
           </h1>
-          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
             Inteligencia competitiva em tempo real · Itaim Bibi, SP · raio 5km
           </p>
         </div>
@@ -748,7 +754,7 @@ export function WarRoom() {
                 <div style={{
                   width: 5, height: 5, borderRadius: "50%", background: t.color,
                 }} />
-                <span style={{ fontSize: 9, fontWeight: 700, color: t.color }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: t.color }}>
                   {count} {t.label}
                 </span>
               </div>
