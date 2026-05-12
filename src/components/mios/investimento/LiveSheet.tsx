@@ -168,6 +168,8 @@ function MetricPill({ label, value, sub, color }: {
   return (
     <div style={{
       background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)",
+      backdropFilter: "blur(16px) saturate(180%)",
+      WebkitBackdropFilter: "blur(16px) saturate(180%)",
       borderRadius: 10, padding: "14px 16px", flex: 1, minWidth: 120,
     }}>
       <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.3)", letterSpacing: 0.8, marginBottom: 6 }}>
@@ -369,8 +371,8 @@ function InputField({
             onChange={e => onChange(Number(e.target.value))}
             style={{
               width: 80, background: "rgba(255,255,255,0.05)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6,
               color: "var(--accent)", fontSize: 13, fontWeight: 700,
               fontFamily: "JetBrains Mono, monospace",
@@ -506,8 +508,8 @@ export function LiveSheet() {
       {panelOpen && (
         <div style={{
           background: "rgba(255,149,0,0.03)",
-          backdropFilter: "blur(12px) saturate(150%)",
-          WebkitBackdropFilter: "blur(12px) saturate(150%)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,149,0,0.15)",
           borderRadius: 12, padding: "20px 24px",
           animation: "fadeIn 0.2s ease",
