@@ -209,11 +209,11 @@ function ChannelBar({ channel }: { channel: PersonaChannel }) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span style={{ color: "var(--accent)", opacity: 0.7 }}>{channel.icon}</span>
-          <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>
+          <span style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>
             {channel.name}
           </span>
         </div>
-        <span style={{ fontSize: 10, fontFamily: "JetBrains Mono, monospace", color: "var(--accent)" }}>
+        <span style={{ fontSize: 12, fontFamily: "JetBrains Mono, monospace", color: "var(--accent)" }}>
           {channel.reach}%
         </span>
       </div>
@@ -228,7 +228,7 @@ function ChannelBar({ channel }: { channel: PersonaChannel }) {
           boxShadow: "0 0 8px rgba(255,149,0,0.4)",
         }} />
       </div>
-      <p style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", lineHeight: 1.4 }}>
+      <p style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", lineHeight: 1.4 }}>
         {channel.behavior}
       </p>
     </div>
@@ -265,7 +265,7 @@ function JourneyMap({ stages }: { stages: JourneyStage[] }) {
             {/* Labels */}
             <div className="mt-2 px-1 text-center" style={{ minWidth: 0 }}>
               <div style={{
-                fontSize: 9, fontWeight: 700,
+                fontSize: 11, fontWeight: 700,
                 color: stage.active ? "var(--accent)" : "rgba(255,255,255,0.35)",
                 letterSpacing: 0.3, marginBottom: 3,
                 whiteSpace: "nowrap",
@@ -273,7 +273,7 @@ function JourneyMap({ stages }: { stages: JourneyStage[] }) {
                 {stage.label}
               </div>
               <div style={{
-                fontSize: 8, color: "rgba(255,255,255,0.25)",
+                fontSize: 10, color: "rgba(255,255,255,0.25)",
                 lineHeight: 1.4,
               }}>
                 {stage.sub}
@@ -302,7 +302,7 @@ export function Portrait() {
               width: 5, height: 5, borderRadius: "50%",
               background: "var(--accent)", boxShadow: "0 0 8px var(--accent)",
             }} />
-            <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,149,0,0.8)", letterSpacing: 1.2 }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,149,0,0.8)", letterSpacing: 1.2 }}>
               {personas.length} PERSONAS IDENTIFICADAS
             </span>
           </div>
@@ -313,7 +313,7 @@ export function Portrait() {
           }}>
             O Retrato
           </h1>
-          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
             Quem e o seu cliente real — comportamentos, jornada e gatilhos de compra
           </p>
         </div>
@@ -339,12 +339,12 @@ export function Portrait() {
               <PersonaAvatar persona={persona} size={26} />
               <div style={{ textAlign: "left" }}>
                 <div style={{
-                  fontSize: 10, fontWeight: 700,
+                  fontSize: 12, fontWeight: 700,
                   color: i === activePersona ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.5)",
                 }}>
                   {persona.name.split(" ")[0]}
                 </div>
-                <div style={{ fontSize: 8, color: "rgba(255,255,255,0.25)" }}>
+                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.25)" }}>
                   {persona.age} anos
                 </div>
               </div>
@@ -378,7 +378,7 @@ export function Portrait() {
                 {p.name}
               </div>
               <div style={{
-                fontSize: 10, color: "rgba(255,255,255,0.4)",
+                fontSize: 12, color: "rgba(255,255,255,0.4)",
                 fontWeight: 500, marginBottom: 10,
               }}>
                 {p.age} anos
@@ -390,7 +390,7 @@ export function Portrait() {
               ].map(({ icon, text }) => (
                 <div key={text} className="flex items-center justify-center gap-1.5 mb-1">
                   <span style={{ color: "rgba(255,255,255,0.25)" }}>{icon}</span>
-                  <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", lineHeight: 1.3 }}>
+                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", lineHeight: 1.3 }}>
                     {text}
                   </span>
                 </div>
@@ -403,6 +403,8 @@ export function Portrait() {
             {/* Big quote */}
             <div style={{
               background: "rgba(255,149,0,0.04)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,149,0,0.1)",
               borderLeft: "3px solid rgba(255,149,0,0.5)",
               borderRadius: "0 10px 10px 0",
@@ -421,7 +423,7 @@ export function Portrait() {
             {/* Behavior tags */}
             <div>
               <div style={{
-                fontSize: 9, fontWeight: 700,
+                fontSize: 11, fontWeight: 700,
                 color: "rgba(255,255,255,0.25)", letterSpacing: 1,
                 marginBottom: 10,
               }}>
@@ -434,7 +436,7 @@ export function Portrait() {
                     <span
                       key={tag.label}
                       style={{
-                        fontSize: 10, fontWeight: 500,
+                        fontSize: 12, fontWeight: 500,
                         padding: "3px 9px", borderRadius: 5,
                         background: s.bg, color: s.color,
                         border: `1px solid ${s.color}25`,
@@ -455,7 +457,7 @@ export function Portrait() {
           padding: "16px 24px 20px",
         }}>
           <div style={{
-            fontSize: 9, fontWeight: 700,
+            fontSize: 11, fontWeight: 700,
             color: "rgba(255,255,255,0.25)", letterSpacing: 1, marginBottom: 14,
           }}>
             JORNADA DE COMPRA
@@ -476,7 +478,7 @@ export function Portrait() {
           <div className="flex items-center gap-2 mb-4">
             <Clock size={12} style={{ color: "var(--accent)", opacity: 0.7 }} />
             <span style={{
-              fontSize: 9, fontWeight: 700,
+              fontSize: 11, fontWeight: 700,
               color: "rgba(255,255,255,0.4)", letterSpacing: 1,
             }}>
               UM DIA NA VIDA
@@ -486,7 +488,7 @@ export function Portrait() {
             {p.dayInLife.map((moment, i) => (
               <div key={i} className="flex gap-3">
                 <div style={{
-                  fontSize: 9, fontWeight: 700,
+                  fontSize: 11, fontWeight: 700,
                   color: "var(--accent)", fontFamily: "JetBrains Mono, monospace",
                   width: 28, flexShrink: 0, paddingTop: 1,
                 }}>
@@ -494,14 +496,14 @@ export function Portrait() {
                 </div>
                 <div style={{ flex: 1 }}>
                   <p style={{
-                    fontSize: 10, color: "rgba(255,255,255,0.6)",
+                    fontSize: 12, color: "rgba(255,255,255,0.6)",
                     lineHeight: 1.45,
                   }}>
                     {moment.action}
                   </p>
                   {moment.touchpoint && (
                     <span style={{
-                      fontSize: 8, fontWeight: 600,
+                      fontSize: 10, fontWeight: 600,
                       color: "rgba(255,149,0,0.6)",
                       background: "rgba(255,149,0,0.06)",
                       borderRadius: 4, padding: "1px 5px",
@@ -518,13 +520,15 @@ export function Portrait() {
           <div style={{
             marginTop: 14,
             background: "rgba(255,149,0,0.06)",
+            backdropFilter: "blur(12px) saturate(150%)",
+            WebkitBackdropFilter: "blur(12px) saturate(150%)",
             border: "1px solid rgba(255,149,0,0.15)",
             borderRadius: 8, padding: "8px 10px",
           }}>
-            <div style={{ fontSize: 9, fontWeight: 700, color: "var(--accent)", marginBottom: 2 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "var(--accent)", marginBottom: 2 }}>
               JANELA DE COMPRA
             </div>
-            <p style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.4 }}>
+            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.4 }}>
               {p.buyingWindow}
             </p>
           </div>
@@ -539,7 +543,7 @@ export function Portrait() {
           <div className="flex items-center gap-2 mb-4">
             <Instagram size={12} style={{ color: "var(--accent)", opacity: 0.7 }} />
             <span style={{
-              fontSize: 9, fontWeight: 700,
+              fontSize: 11, fontWeight: 700,
               color: "rgba(255,255,255,0.4)", letterSpacing: 1,
             }}>
               ONDE ESTA ONLINE
@@ -564,7 +568,7 @@ export function Portrait() {
             <div className="flex items-center gap-2 mb-3">
               <Zap size={12} style={{ color: "#10b981", opacity: 0.8 }} />
               <span style={{
-                fontSize: 9, fontWeight: 700,
+                fontSize: 11, fontWeight: 700,
                 color: "rgba(255,255,255,0.4)", letterSpacing: 1,
               }}>
                 GATILHOS DE COMPRA
@@ -574,7 +578,7 @@ export function Portrait() {
               {p.triggers.map((t, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <ChevronRight size={9} style={{ color: "#10b981", marginTop: 2, flexShrink: 0 }} />
-                  <span style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.45 }}>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.45 }}>
                     {t}
                   </span>
                 </div>
@@ -587,7 +591,7 @@ export function Portrait() {
             <div className="flex items-center gap-2 mb-3">
               <ShieldAlert size={12} style={{ color: "#ef4444", opacity: 0.8 }} />
               <span style={{
-                fontSize: 9, fontWeight: 700,
+                fontSize: 11, fontWeight: 700,
                 color: "rgba(255,255,255,0.4)", letterSpacing: 1,
               }}>
                 OBJECOES E MEDOS
@@ -597,10 +601,12 @@ export function Portrait() {
               {p.objections.map((o, i) => (
                 <div key={i} style={{
                   background: "rgba(239,68,68,0.05)",
+                  backdropFilter: "blur(12px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
                   border: "1px solid rgba(239,68,68,0.12)",
                   borderRadius: 6, padding: "5px 8px",
                 }}>
-                  <span style={{ fontSize: 10, color: "rgba(239,100,100,0.8)", lineHeight: 1.4 }}>
+                  <span style={{ fontSize: 12, color: "rgba(239,100,100,0.8)", lineHeight: 1.4 }}>
                     "{o}"
                   </span>
                 </div>
