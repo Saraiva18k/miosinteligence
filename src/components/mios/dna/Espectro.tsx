@@ -392,8 +392,8 @@ export function Espectro() {
                 <span key={i} style={{
                   padding: "5px 12px", fontSize: 12, fontWeight: 700,
                   background: "rgba(255,149,0,0.08)", color: "#ff9500",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(255,149,0,0.22)", borderRadius: 4,
                   fontFamily: "JetBrains Mono, monospace",
                   animation: `word-appear 0.25s ease ${i * 0.05}s both`,
@@ -409,8 +409,8 @@ export function Espectro() {
                 <span key={i} style={{
                   padding: "5px 12px", fontSize: 12, fontWeight: 700,
                   background: "rgba(239,68,68,0.06)", color: "rgba(239,68,68,0.7)",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(239,68,68,0.18)", borderRadius: 4,
                   fontFamily: "JetBrains Mono, monospace",
                   textDecoration: "line-through",
@@ -447,8 +447,8 @@ export function Espectro() {
               <div key={i} style={{
                 padding: "12px 14px",
                 background: "rgba(16,185,129,0.025)",
-                backdropFilter: "blur(12px) saturate(150%)",
-                WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: "1px solid rgba(16,185,129,0.07)",
                 borderTop: "none",
                 animation: `word-appear 0.25s ease ${i * 0.07}s both`,
@@ -463,8 +463,8 @@ export function Espectro() {
               <div key={i} style={{
                 padding: "12px 14px",
                 background: "rgba(239,68,68,0.025)",
-                backdropFilter: "blur(12px) saturate(150%)",
-                WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: "1px solid rgba(239,68,68,0.07)",
                 borderTop: "none",
                 gridColumn: 2,
@@ -490,8 +490,8 @@ export function Espectro() {
           {PILLARS.map((p, i) => (
             <div key={i} style={{
               background: "rgba(255,255,255,0.018)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,149,0,0.12)",
               borderTop: "3px solid rgba(255,149,0,0.5)",
               borderRadius: "0 0 8px 8px",
