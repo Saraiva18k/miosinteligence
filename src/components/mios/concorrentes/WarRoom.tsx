@@ -331,6 +331,8 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
         minWidth: c.isHero ? 300 : 252,
         maxWidth: c.isHero ? 300 : 252,
         background: "var(--card)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: c.isHero
           ? `1px solid ${t.color}30`
           : "1px solid rgba(255,255,255,0.055)",
@@ -377,6 +379,8 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
           className="inline-flex items-center gap-1.5 mb-3"
           style={{
             background: t.bg,
+            backdropFilter: "blur(12px) saturate(160%)",
+            WebkitBackdropFilter: "blur(12px) saturate(160%)",
             border: `1px solid ${t.color}25`,
             borderRadius: 6, padding: "3px 8px",
           }}
@@ -442,7 +446,7 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
         }}>
           {c.product.description}
         </p>
-        <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 6, padding: "6px 8px" }}>
+        <div style={{ background: "rgba(255,255,255,0.03)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 6, padding: "6px 8px" }}>
           <span style={{
             fontSize: 11, fontWeight: 600,
             color: "rgba(255,255,255,0.3)", letterSpacing: 0.6,
@@ -471,6 +475,9 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
             fontSize: 11, fontWeight: 600,
             color: "rgba(255,255,255,0.35)",
             background: "rgba(255,255,255,0.05)",
+            backdropFilter: "blur(12px) saturate(160%)",
+            WebkitBackdropFilter: "blur(12px) saturate(160%)",
+            border: "1px solid rgba(255,255,255,0.07)",
             borderRadius: 4, padding: "2px 6px",
           }}>
             {PRICING_LABEL[c.pricing.position]}
@@ -515,7 +522,7 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
           </span>
         </div>
         <div style={{
-          background: "rgba(255,255,255,0.03)", borderRadius: 6, padding: "6px 8px",
+          background: "rgba(255,255,255,0.03)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 6, padding: "6px 8px",
         }}>
           <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>MENSAGEM PRINCIPAL</span>
           <p style={{
@@ -595,6 +602,8 @@ function BattleMap() {
   return (
     <div style={{
       background: "var(--card)",
+      backdropFilter: "blur(16px) saturate(180%)",
+      WebkitBackdropFilter: "blur(16px) saturate(180%)",
       border: "1px solid rgba(255,255,255,0.055)",
       borderRadius: 12, overflow: "hidden",
     }}>
@@ -747,6 +756,8 @@ export function WarRoom() {
                 className="flex items-center gap-1.5"
                 style={{
                   background: t.bg,
+                  backdropFilter: "blur(12px) saturate(160%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(160%)",
                   border: `1px solid ${t.color}25`,
                   borderRadius: 6, padding: "4px 10px",
                 }}
