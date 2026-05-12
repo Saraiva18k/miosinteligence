@@ -341,6 +341,8 @@ function HealthBadge({ status, label }: { status: HealthStatus; label: string })
         fontWeight: 700,
         letterSpacing: "1px",
         background: `rgba(${color},0.10)`,
+        backdropFilter: "blur(12px) saturate(160%)",
+        WebkitBackdropFilter: "blur(12px) saturate(160%)",
         border: `1px solid rgba(${color},0.30)`,
         color: `rgba(${color},0.90)`,
       }}
@@ -378,6 +380,8 @@ export function PlatformGrid() {
               style={{
                 padding: "12px 14px",
                 background: "rgba(255,255,255,0.03)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 borderBottom: "1px solid rgba(255,255,255,0.05)",
               }}
             >
@@ -389,6 +393,8 @@ export function PlatformGrid() {
                     height: 28,
                     borderRadius: 8,
                     background: `rgba(${card.color},0.12)`,
+                    backdropFilter: "blur(12px) saturate(160%)",
+                    WebkitBackdropFilter: "blur(12px) saturate(160%)",
                     border: `1px solid rgba(${card.color},0.30)`,
                     color: `rgba(${card.color},0.95)`,
                   }}
