@@ -337,7 +337,7 @@ function HealthBadge({ status, label }: { status: HealthStatus; label: string })
       style={{
         padding: "3px 7px",
         borderRadius: 10,
-        fontSize: 8,
+        fontSize: 10,
         fontWeight: 700,
         letterSpacing: "1px",
         background: `rgba(${color},0.10)`,
@@ -398,7 +398,7 @@ export function PlatformGrid() {
                 <div className="min-w-0">
                   <div
                     style={{
-                      fontSize: 8,
+                      fontSize: 10,
                       fontWeight: 700,
                       letterSpacing: "1.5px",
                       color: "rgba(255,255,255,0.30)",
@@ -409,7 +409,7 @@ export function PlatformGrid() {
                   <div
                     className="truncate"
                     style={{
-                      fontSize: 12,
+                      fontSize: 13,
                       fontWeight: 600,
                       color: "rgba(255,255,255,0.72)",
                     }}
@@ -418,7 +418,7 @@ export function PlatformGrid() {
                   </div>
                   <div
                     className="mt-0.5 truncate"
-                    style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}
+                    style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}
                   >
                     {card.metrics}
                   </div>
@@ -431,12 +431,14 @@ export function PlatformGrid() {
                   className="inline-flex items-center gap-1 transition-opacity"
                   style={{
                     opacity: hovered === card.platform ? 1 : 0,
-                    fontSize: 9,
+                    fontSize: 11,
                     fontWeight: 600,
                     color: "rgba(255,149,0,0.7)",
                     padding: "3px 7px",
                     borderRadius: 5,
                     background: "rgba(255,149,0,0.06)",
+                    backdropFilter: "blur(12px) saturate(150%)",
+                    WebkitBackdropFilter: "blur(12px) saturate(150%)",
                     border: "1px solid rgba(255,149,0,0.18)",
                   }}
                 >
@@ -465,7 +467,7 @@ export function PlatformGrid() {
                       <SIcon size={10} strokeWidth={2.4} style={{ color: section.iconColor }} />
                       <span
                         style={{
-                          fontSize: 8,
+                          fontSize: 10,
                           fontWeight: 700,
                           letterSpacing: "1.5px",
                           textTransform: "uppercase",
@@ -489,7 +491,7 @@ export function PlatformGrid() {
                       <button
                         className="mt-1.5"
                         style={{
-                          fontSize: 9,
+                          fontSize: 11,
                           color: "rgba(255,149,0,0.55)",
                           cursor: "pointer",
                           fontWeight: 600,
