@@ -36,7 +36,7 @@ const sections: TimelineSection[] = [
     title: "SÍNTESE",
     modules: [
       { label: "Inovação",      status: "done",    href: "/inovacao"                                               },
-      { label: "Compliance",    status: "pending"                                                                       },
+      { label: "Compliance",    status: "done",    href: "/compliance"                                             },
       { label: "Investimento",  status: "done",    href: "/investimento"                                               },
       { label: "Business Plan", status: "done",    href: "/business-plan"                                              },
       { label: "Veredito",      status: "active",  href: "/",                   preview: "Score 87 · Entrar agora"    },
