@@ -396,8 +396,8 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
         <div style={{
           maxWidth: "72%", padding: "10px 14px",
           background: "rgba(255,255,255,0.06)",
-          backdropFilter: "blur(12px) saturate(150%)",
-          WebkitBackdropFilter: "blur(12px) saturate(150%)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.08)",
           borderRadius: "12px 12px 2px 12px",
           fontSize: 13, color: "rgba(255,255,255,0.72)", lineHeight: 1.65,
@@ -422,8 +422,8 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
             <span key={r} style={{
               fontSize: 9, padding: "1px 6px",
               background: "rgba(255,149,0,0.08)", color: "rgba(255,149,0,0.6)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,149,0,0.18)", borderRadius: 3,
               fontFamily: "JetBrains Mono, monospace",
             }}>{r}</span>
@@ -432,8 +432,8 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
         <div style={{
           padding: "12px 16px",
           background: "rgba(255,149,0,0.03)",
-          backdropFilter: "blur(12px) saturate(150%)",
-          WebkitBackdropFilter: "blur(12px) saturate(150%)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,149,0,0.12)",
           borderLeft: "2px solid rgba(255,149,0,0.5)",
           borderRadius: "0 10px 10px 10px",
@@ -638,8 +638,8 @@ export function Mentor() {
                 <button key={s.q} onClick={() => handleQuestion(s.q)} style={{
                   padding: "6px 13px", fontSize: 12, fontWeight: 600,
                   background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.45)",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20,
                   cursor: "pointer", transition: "all 0.15s ease", textAlign: "left",
                 }}
@@ -664,8 +664,8 @@ export function Mentor() {
                 style={{
                   flex: 1, padding: "11px 16px",
                   background: "rgba(255,255,255,0.03)",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(255,255,255,0.08)",
                   borderRadius: 8,
                   color: "rgba(255,255,255,0.8)", fontSize: 13,
