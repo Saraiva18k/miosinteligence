@@ -31,30 +31,33 @@ const KEYFRAMES = `
   0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
   40%           { transform: scale(1);   opacity: 1; }
 }
-@keyframes skill-hover {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
 @keyframes cursor-blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+@keyframes eq1 { 0%,100%{ height:2px  } 45%{ height:11px } }
+@keyframes eq2 { 0%,100%{ height:3px  } 50%{ height:20px } }
+@keyframes eq3 { 0%,100%{ height:2px  } 40%{ height: 7px } }
+@keyframes eq4 { 0%,100%{ height:4px  } 60%{ height:16px } }
+@keyframes eq5 { 0%,100%{ height:3px  } 35%{ height:13px } }
+@keyframes ambient-breathe {
+  0%, 100% { opacity: 0.65; transform: translate(-50%, -50%) scale(1);    }
+  50%       { opacity: 1;    transform: translate(-50%, -50%) scale(1.12); }
+}
+@keyframes ring-expand {
+  0%   { opacity: 0;   transform: translate(-50%, -50%) scale(0.65); }
+  35%  { opacity: 1; }
+  100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.3);  }
 }
 `;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface Message {
-  id:     string;
-  role:   "mentor" | "user";
-  text:   string;
-  refs?:  string[];  // module references
-}
-
-interface Skill {
-  icon:   string;
-  name:   string;
-  desc:   string;
-  price:  string;
+  id:    string;
+  role:  "mentor" | "user";
+  text:  string;
+  refs?: string[];
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -83,12 +86,12 @@ Por onde quer começar?`,
   refs: ["Compliance", "Precificação", "Canais"],
 };
 
-const SUGGESTED: { q: string; icon: string }[] = [
-  { q: "Como estruturo os primeiros 90 dias?",             icon: "→" },
-  { q: "Qual canal priorizar com orçamento limitado?",     icon: "→" },
-  { q: "Como resolver o compliance LGPD rapidamente?",     icon: "→" },
-  { q: "Como usar o DNA de marca na prática agora?",       icon: "→" },
-  { q: "Qual a estratégia de precificação para lançar?",   icon: "→" },
+const SUGGESTED: { q: string }[] = [
+  { q: "Como estruturo os primeiros 90 dias?"           },
+  { q: "Qual canal priorizar com orçamento limitado?"   },
+  { q: "Como resolver o compliance LGPD rapidamente?"   },
+  { q: "Como usar o DNA de marca na prática agora?"     },
+  { q: "Qual a estratégia de precificação para lançar?" },
 ];
 
 const QA: Record<string, Message> = {
@@ -170,20 +173,11 @@ Quando você tiver 10–15 clientes com resultado documentado, apresenta o Premi
   },
 };
 
-const SKILLS: Skill[] = [
-  { icon: "🌐", name: "Criação de Site",            desc: "Site publicado baseado no DNA da Marca identificado", price: "R$297/mês" },
-  { icon: "📣", name: "Gestão Meta Ads",            desc: "Campanha montada com base nos canais e audiência mapeados", price: "R$397/mês" },
-  { icon: "📊", name: "Relatório Mensal",           desc: "Atualização automática dos módulos mais voláteis", price: "R$197/mês" },
-  { icon: "💬", name: "Automação WhatsApp",         desc: "Fluxos de follow-up baseados nas dores reais mapeadas", price: "R$247/mês" },
-  { icon: "👁", name: "Monitor de Concorrentes",   desc: "Alertas semanais de movimentos detectados no mercado", price: "R$197/mês" },
-  { icon: "✍️", name: "Conteúdo Editorial",         desc: "Posts mensais baseados no que o Social Intelligence detectou", price: "R$297/mês" },
-];
-
 // ─── Mentor Signal SVG ────────────────────────────────────────────────────────
 
 function MentorSignal({ thinking }: { thinking: boolean }) {
   const CX = 90, CY = 90, R1 = 30, R2 = 52, R3 = 72;
-  const N = MODULES_TRAINED.length; // 14
+  const N = MODULES_TRAINED.length;
 
   const dot = (r: number, i: number, total: number) => {
     const angle = (Math.PI * 2 * i) / total - Math.PI / 2;
@@ -206,10 +200,8 @@ function MentorSignal({ thinking }: { thinking: boolean }) {
         </filter>
       </defs>
 
-      {/* Ambient glow */}
-      <circle cx={CX} cy={CY} r={R3 + 14} fill="#ff9500" opacity={thinking ? 0.06 : 0.03} filter="url(#softGlow)" />
+      <circle cx={CX} cy={CY} r={R3 + 14} fill="#ff9500" opacity={thinking ? 0.07 : 0.03} filter="url(#softGlow)" />
 
-      {/* Outer ring — slow CW */}
       <g style={{ transformOrigin: `${CX}px ${CY}px`, animation: "ring-cw 28s linear infinite" }}>
         <circle cx={CX} cy={CY} r={R3} fill="none" stroke="rgba(255,149,0,0.12)" strokeWidth="0.6" strokeDasharray="2,4" />
         {MODULES_TRAINED.map((_, i) => {
@@ -223,7 +215,6 @@ function MentorSignal({ thinking }: { thinking: boolean }) {
         })}
       </g>
 
-      {/* Middle ring — CCW */}
       <g style={{ transformOrigin: `${CX}px ${CY}px`, animation: "ring-ccw 18s linear infinite" }}>
         <circle cx={CX} cy={CY} r={R2} fill="none" stroke="rgba(255,149,0,0.18)" strokeWidth="0.5" strokeDasharray="3,6" />
         {[0,1,2,3,4,5,6].map(i => {
@@ -232,22 +223,18 @@ function MentorSignal({ thinking }: { thinking: boolean }) {
         })}
       </g>
 
-      {/* Inner ring — CW faster */}
       <g style={{ transformOrigin: `${CX}px ${CY}px`, animation: "ring-cw 10s linear infinite" }}>
         <circle cx={CX} cy={CY} r={R1} fill="none" stroke="rgba(255,149,0,0.25)" strokeWidth="0.6" strokeDasharray="4,4" />
       </g>
 
-      {/* Core */}
       <circle cx={CX} cy={CY} r={18} fill="url(#coreGrad)" opacity={0.15} filter="url(#softGlow)" />
       <circle cx={CX} cy={CY} r={13} fill="rgba(255,149,0,0.08)" stroke="rgba(255,149,0,0.35)" strokeWidth="1"
         style={{ animation: thinking ? "core-breathe 0.8s ease infinite" : "core-breathe 3s ease infinite" }} />
 
-      {/* M letter */}
       <text x={CX} y={CY + 4.5} textAnchor="middle" fontSize="12" fontWeight="900"
         fill="#ff9500" fontFamily="JetBrains Mono" opacity="0.9"
         filter="url(#mentorGlow)">M</text>
 
-      {/* Thinking indicator */}
       {thinking && (
         <g>
           {[0,1,2].map(i => (
@@ -258,6 +245,121 @@ function MentorSignal({ thinking }: { thinking: boolean }) {
         </g>
       )}
     </svg>
+  );
+}
+
+// ─── Equalizer strip ─────────────────────────────────────────────────────────
+
+const EQ_ANIMS = ["eq1","eq2","eq3","eq4","eq5"] as const;
+
+function EqualizerStrip({ thinking }: { thinking: boolean }) {
+  return (
+    <div style={{
+      padding: "0 28px",
+      display: "flex",
+      alignItems: "flex-end",
+      gap: 2,
+      height: 36,
+      borderBottom: "1px solid rgba(255,255,255,0.04)",
+      flexShrink: 0,
+    }}>
+      {Array.from({ length: 32 }).map((_, i) => {
+        const anim  = EQ_ANIMS[i % 5];
+        const dur   = thinking
+          ? (0.32 + (i * 0.09) % 0.52) + "s"
+          : (0.85 + (i * 0.17) % 1.15) + "s";
+        const delay = ((i * 0.058) % 0.78) + "s";
+        const opacity = thinking
+          ? 0.42 + (i % 4) * 0.13
+          : 0.12 + (i % 5) * 0.04;
+        return (
+          <div key={i} style={{
+            width: 2,
+            background: `rgba(255,149,0,${opacity})`,
+            borderRadius: 1,
+            animation: `${anim} ${dur} ease ${delay} infinite`,
+            flexShrink: 0,
+            transition: "opacity 0.5s",
+          }} />
+        );
+      })}
+      <span style={{
+        fontSize: 7,
+        letterSpacing: 2,
+        color: thinking ? "rgba(255,149,0,0.5)" : "rgba(255,149,0,0.2)",
+        fontFamily: "JetBrains Mono, monospace",
+        marginLeft: 10,
+        marginBottom: 3,
+        transition: "color 0.5s",
+        flexShrink: 0,
+        whiteSpace: "nowrap",
+      }}>
+        {thinking ? "●● PROCESSANDO" : "● ESCUTANDO"}
+      </span>
+    </div>
+  );
+}
+
+// ─── Ambient orb ─────────────────────────────────────────────────────────────
+
+function AmbientOrb({ thinking }: { thinking: boolean }) {
+  const speed = thinking ? "1.8s" : "7s";
+  const ringSpeed = thinking ? "4s" : "9s";
+  return (
+    <div style={{
+      position: "absolute",
+      top: "42%",
+      left: "50%",
+      width: 0,
+      height: 0,
+      pointerEvents: "none",
+      zIndex: 0,
+    }}>
+      {/* Central gradient blob */}
+      <div style={{
+        position: "absolute",
+        width: 520,
+        height: 520,
+        transform: "translate(-50%, -50%)",
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(255,149,0,0.05) 0%, rgba(255,100,0,0.02) 40%, transparent 65%)",
+        animation: `ambient-breathe ${speed} ease infinite`,
+        transition: "animation 0.5s",
+      }} />
+      {/* Ring 1 */}
+      <div style={{
+        position: "absolute",
+        width: 260,
+        height: 260,
+        transform: "translate(-50%, -50%)",
+        borderRadius: "50%",
+        border: `1px solid rgba(255,149,0,${thinking ? 0.08 : 0.04})`,
+        animation: `ring-expand ${ringSpeed} ease-in-out infinite`,
+        transition: "border-color 0.5s",
+      }} />
+      {/* Ring 2 */}
+      <div style={{
+        position: "absolute",
+        width: 390,
+        height: 390,
+        transform: "translate(-50%, -50%)",
+        borderRadius: "50%",
+        border: `1px solid rgba(255,149,0,${thinking ? 0.05 : 0.025})`,
+        animation: `ring-expand ${ringSpeed} ease-in-out ${thinking ? "1.5s" : "3s"} infinite`,
+        transition: "border-color 0.5s",
+      }} />
+      {/* Ring 3 — outermost, very faint */}
+      <div style={{
+        position: "absolute",
+        width: 520,
+        height: 520,
+        transform: "translate(-50%, -50%)",
+        borderRadius: "50%",
+        border: `1px solid rgba(255,149,0,${thinking ? 0.03 : 0.015})`,
+        animation: `ring-expand ${ringSpeed} ease-in-out ${thinking ? "3s" : "6s"} infinite`,
+        transition: "border-color 0.5s",
+      }} />
+    </div>
   );
 }
 
@@ -277,7 +379,7 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
     return lines.map((line, i) => {
       const parts = line.split(/\*\*(.+?)\*\*/g);
       return (
-        <div key={i} style={{ marginBottom: i < lines.length - 1 && line === "" ? 8 : line.startsWith("**") || parts.length > 1 ? 6 : 3 }}>
+        <div key={i} style={{ marginBottom: i < lines.length - 1 && line === "" ? 8 : parts.length > 1 ? 6 : 3 }}>
           {parts.map((part, j) =>
             j % 2 === 1
               ? <span key={j} style={{ color: "rgba(255,255,255,0.85)", fontWeight: 700 }}>{part}</span>
@@ -304,7 +406,6 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
 
   return (
     <div style={{ display: "flex", gap: 12, animation: "msg-appear 0.3s ease" }}>
-      {/* Avatar */}
       <div style={{
         width: 28, height: 28, borderRadius: "50%", flexShrink: 0,
         background: "rgba(255,149,0,0.1)", border: "1px solid rgba(255,149,0,0.3)",
@@ -324,7 +425,6 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
             }}>{r}</span>
           ))}
         </div>
-
         <div style={{
           padding: "12px 16px",
           background: "rgba(255,149,0,0.03)",
@@ -344,22 +444,19 @@ function MentorMessage({ msg, isTyping }: { msg: Message; isTyping?: boolean }) 
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function Mentor() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [thinking, setThinking] = useState(false);
-  const [typingMsg, setTypingMsg] = useState<Message | null>(null);
-  const [input, setInput] = useState("");
+  const [messages, setMessages]     = useState<Message[]>([]);
+  const [thinking, setThinking]     = useState(false);
+  const [typingMsg, setTypingMsg]   = useState<Message | null>(null);
+  const [input, setInput]           = useState("");
   const [openingDone, setOpeningDone] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Simulate opening message on mount
   useEffect(() => {
     const t1 = setTimeout(() => setThinking(true), 600);
     const t2 = setTimeout(() => {
       setThinking(false);
       setTypingMsg(OPENING_MESSAGE);
-      // After a delay proportional to message length, show fully
-      const chars = OPENING_MESSAGE.text.length;
-      const duration = Math.min(chars * 8, 2000);
+      const duration = Math.min(OPENING_MESSAGE.text.length * 8, 2200);
       setTimeout(() => {
         setTypingMsg(null);
         setMessages([OPENING_MESSAGE]);
@@ -387,7 +484,7 @@ export function Mentor() {
         setTimeout(() => {
           setTypingMsg(null);
           setMessages(prev => [...prev, r]);
-        }, Math.min(r.text.length * 6, 2200));
+        }, Math.min(r.text.length * 6, 2400));
       } else {
         setThinking(false);
         setMessages(prev => [...prev, {
@@ -395,7 +492,7 @@ export function Mentor() {
           text: "Essa dimensão está sendo processada. Para uma análise aprofundada, ative o Mentor completo com conexão à API.",
         }]);
       }
-    }, 1400);
+    }, 1500);
   };
 
   const handleSend = () => {
@@ -411,19 +508,19 @@ export function Mentor() {
     <>
       <style>{KEYFRAMES}</style>
 
-      {/* ── HEADER ────────────────────────────────────────────────────────── */}
-      <div style={{ padding: "14px 24px 13px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+      {/* ── MODULE HEADER ─────────────────────────────────────────────────── */}
+      <div style={{ padding: "14px 24px 13px", borderBottom: "1px solid rgba(255,255,255,0.05)", flexShrink: 0 }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● ONLINE</span>
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>MENTOR IA — O SÓCIO</span>
           </div>
-          <div style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[
               { label: "MÓDULOS TREINADOS", value: "14",      color: "#ff9500"                },
               { label: "SCORE DO NEGÓCIO",  value: "87/100",  color: "#ff9500"                },
               { label: "JANELA",            value: "ATIVA",   color: "rgba(16,185,129,0.85)" },
-              { label: "SKILLS DISPONÍVEIS",value: "6",       color: "rgba(255,255,255,0.4)" },
+              { label: "SKILLS",            value: "6",       color: "rgba(255,255,255,0.35)" },
             ].map(m => (
               <div key={m.label} style={{ textAlign: "right" }}>
                 <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
@@ -434,13 +531,12 @@ export function Mentor() {
         </div>
       </div>
 
-      {/* ── MAIN LAYOUT ───────────────────────────────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: "256px 1fr 288px", height: "calc(100vh - 120px)", minHeight: 0 }}>
+      {/* ── MAIN LAYOUT: 2 columns ────────────────────────────────────────── */}
+      <div style={{ display: "grid", gridTemplateColumns: "256px 1fr", height: "calc(100vh - 120px)", minHeight: 0 }}>
 
         {/* ── LEFT: Mentor Identity ──────────────────────────────────────── */}
         <div style={{ borderRight: "1px solid rgba(255,255,255,0.05)", display: "flex", flexDirection: "column", overflow: "hidden" }}>
 
-          {/* Signal */}
           <div style={{ padding: "20px 20px 8px", display: "flex", flexDirection: "column", alignItems: "center" }}>
             <div style={{ width: 160, height: 160 }}>
               <MentorSignal thinking={thinking} />
@@ -453,32 +549,27 @@ export function Mentor() {
             </div>
           </div>
 
-          {/* Training stats */}
           <div style={{ margin: "10px 14px 0", padding: "10px 14px", background: "rgba(255,149,0,0.04)", border: "1px solid rgba(255,149,0,0.12)", borderRadius: 6 }}>
             <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>TREINAMENTO</div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>14</div>
-                <div style={{ fontSize: 7, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>módulos</div>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>847</div>
-                <div style={{ fontSize: 7, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>dados</div>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 900, color: "rgba(16,185,129,0.85)", fontFamily: "JetBrains Mono, monospace" }}>100%</div>
-                <div style={{ fontSize: 7, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>sincronizado</div>
-              </div>
+              {[
+                { val: "14",   sub: "módulos" },
+                { val: "847",  sub: "dados" },
+                { val: "100%", sub: "sincronizado", color: "rgba(16,185,129,0.85)" },
+              ].map(s => (
+                <div key={s.sub} style={{ textAlign: "center" }}>
+                  <div style={{ fontSize: 20, fontWeight: 900, color: s.color ?? "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>{s.val}</div>
+                  <div style={{ fontSize: 7, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{s.sub}</div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Modules list */}
           <div style={{ flex: 1, overflowY: "auto", padding: "12px 14px", marginTop: 6 }}>
             <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>MÓDULOS INTEGRADOS</div>
             {MODULES_TRAINED.map((mod, i) => (
               <div key={mod} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5, animation: `msg-appear 0.2s ease ${i * 0.03}s both` }}>
-                <div style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(16,185,129,0.75)", flexShrink: 0,
-                  boxShadow: "0 0 5px rgba(16,185,129,0.4)" }} />
+                <div style={{ width: 5, height: 5, borderRadius: "50%", background: "rgba(16,185,129,0.75)", flexShrink: 0, boxShadow: "0 0 5px rgba(16,185,129,0.4)" }} />
                 <span style={{ fontSize: 10, color: "rgba(255,255,255,0.38)" }}>{mod}</span>
               </div>
             ))}
@@ -486,16 +577,24 @@ export function Mentor() {
         </div>
 
         {/* ── CENTER: Conversation ───────────────────────────────────────── */}
-        <div style={{ display: "flex", flexDirection: "column", minHeight: 0 }}>
+        <div style={{ display: "flex", flexDirection: "column", minHeight: 0, position: "relative" }}>
+
+          {/* Equalizer strip — always-alive listening indicator */}
+          <EqualizerStrip thinking={thinking} />
+
+          {/* Ambient orb — background organism */}
+          <AmbientOrb thinking={thinking} />
 
           {/* Messages */}
-          <div style={{ flex: 1, overflowY: "auto", padding: "24px 28px", display: "flex", flexDirection: "column", gap: 20 }}>
+          <div style={{ flex: 1, overflowY: "auto", padding: "24px 32px", display: "flex", flexDirection: "column", gap: 20, position: "relative", zIndex: 1 }}>
+
             {shownMessages.length === 0 && !thinking && (
               <div style={{ display: "flex", justifyContent: "center", paddingTop: 40 }}>
                 <span style={{ fontSize: 10, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>Iniciando sessão...</span>
               </div>
             )}
 
+            {/* Initial thinking state */}
             {thinking && shownMessages.length === 0 && (
               <div style={{ display: "flex", gap: 12 }}>
                 <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,149,0,0.1)", border: "1px solid rgba(255,149,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", flexShrink: 0 }}>M</div>
@@ -507,14 +606,11 @@ export function Mentor() {
               </div>
             )}
 
-            {shownMessages.map((msg, i) => (
-              <MentorMessage
-                key={msg.id}
-                msg={msg}
-                isTyping={typingMsg?.id === msg.id}
-              />
+            {shownMessages.map(msg => (
+              <MentorMessage key={msg.id} msg={msg} isTyping={typingMsg?.id === msg.id} />
             ))}
 
+            {/* Inline thinking indicator when conversation is active */}
             {thinking && shownMessages.length > 0 && (
               <div style={{ display: "flex", gap: 12 }}>
                 <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,149,0,0.1)", border: "1px solid rgba(255,149,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", flexShrink: 0 }}>M</div>
@@ -531,17 +627,16 @@ export function Mentor() {
 
           {/* Suggested questions */}
           {openingDone && !thinking && !typingMsg && (
-            <div style={{ padding: "0 28px 12px", display: "flex", flexWrap: "wrap", gap: 6 }}>
+            <div style={{ padding: "0 32px 10px", display: "flex", flexWrap: "wrap", gap: 6, position: "relative", zIndex: 1 }}>
               {SUGGESTED.filter(s => !messages.find(m => m.text === s.q)).slice(0, 4).map(s => (
                 <button key={s.q} onClick={() => handleQuestion(s.q)} style={{
                   padding: "6px 13px", fontSize: 10, fontWeight: 600,
                   background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.45)",
                   border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20,
-                  cursor: "pointer", transition: "all 0.15s ease",
-                  textAlign: "left",
+                  cursor: "pointer", transition: "all 0.15s ease", textAlign: "left",
                 }}
-                  onMouseEnter={e => { (e.target as HTMLButtonElement).style.background = "rgba(255,149,0,0.07)"; (e.target as HTMLButtonElement).style.color = "rgba(255,149,0,0.8)"; (e.target as HTMLButtonElement).style.borderColor = "rgba(255,149,0,0.2)"; }}
-                  onMouseLeave={e => { (e.target as HTMLButtonElement).style.background = "rgba(255,255,255,0.03)"; (e.target as HTMLButtonElement).style.color = "rgba(255,255,255,0.45)"; (e.target as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.08)"; }}
+                  onMouseEnter={e => { const el = e.target as HTMLButtonElement; el.style.background = "rgba(255,149,0,0.07)"; el.style.color = "rgba(255,149,0,0.8)"; el.style.borderColor = "rgba(255,149,0,0.2)"; }}
+                  onMouseLeave={e => { const el = e.target as HTMLButtonElement; el.style.background = "rgba(255,255,255,0.03)"; el.style.color = "rgba(255,255,255,0.45)"; el.style.borderColor = "rgba(255,255,255,0.08)"; }}
                 >
                   {s.q}
                 </button>
@@ -550,7 +645,7 @@ export function Mentor() {
           )}
 
           {/* Input */}
-          <div style={{ padding: "12px 28px 20px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+          <div style={{ padding: "12px 32px 20px", borderTop: "1px solid rgba(255,255,255,0.05)", position: "relative", zIndex: 1 }}>
             <div style={{ display: "flex", gap: 10 }}>
               <input
                 value={input}
@@ -564,12 +659,11 @@ export function Mentor() {
                   border: "1px solid rgba(255,255,255,0.08)",
                   borderRadius: 8,
                   color: "rgba(255,255,255,0.8)", fontSize: 12,
-                  outline: "none",
-                  transition: "border-color 0.15s",
+                  outline: "none", transition: "border-color 0.15s",
                   fontFamily: "inherit",
                 }}
                 onFocus={e => (e.target.style.borderColor = "rgba(255,149,0,0.35)")}
-                onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
+                onBlur={e  => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
               />
               <button onClick={handleSend} disabled={!input.trim() || !!thinking || !!typingMsg} style={{
                 padding: "11px 18px",
@@ -580,51 +674,6 @@ export function Mentor() {
                 fontSize: 12, fontWeight: 700, transition: "all 0.15s",
               }}>Enviar</button>
             </div>
-          </div>
-        </div>
-
-        {/* ── RIGHT: Skills ─────────────────────────────────────────────── */}
-        <div style={{ borderLeft: "1px solid rgba(255,255,255,0.05)", overflowY: "auto", padding: "20px 16px 40px" }}>
-
-          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>SKILLS DO MENTOR</div>
-          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", lineHeight: 1.5, marginBottom: 16 }}>
-            Ative skills mensalmente conforme a necessidade do seu negócio.
-          </div>
-
-          {SKILLS.map((skill, i) => (
-            <div key={i} style={{
-              marginBottom: 8, padding: "13px 14px",
-              background: "rgba(255,255,255,0.018)",
-              border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: 8, position: "relative",
-              overflow: "hidden",
-              animation: `skill-hover 0.3s ease ${i * 0.06}s both`,
-            }}>
-              {/* Lock overlay */}
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "rgba(4,6,15,0.45)",
-                backdropFilter: "blur(2px)",
-                display: "flex", alignItems: "center", justifyContent: "flex-end",
-                padding: "0 12px",
-                pointerEvents: "none",
-              }}>
-                <span style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", padding: "3px 8px", borderRadius: 3 }}>EM BREVE</span>
-              </div>
-
-              <div style={{ fontSize: 14, marginBottom: 4 }}>{skill.icon}</div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>{skill.name}</div>
-              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.28)", lineHeight: 1.5, marginBottom: 8 }}>{skill.desc}</div>
-              <div style={{ fontSize: 10, fontWeight: 900, color: "rgba(255,149,0,0.45)", fontFamily: "JetBrains Mono, monospace" }}>{skill.price}</div>
-            </div>
-          ))}
-
-          {/* Base plan note */}
-          <div style={{ marginTop: 12, padding: "14px 14px", background: "rgba(255,149,0,0.04)", border: "1px solid rgba(255,149,0,0.15)", borderRadius: 8 }}>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 6 }}>COMO FUNCIONA</div>
-            <p style={{ fontSize: 10, color: "rgba(255,255,255,0.38)", lineHeight: 1.65 }}>
-              O Mentor base inclui todo o contexto dos 14 módulos e está disponível 24/7. Skills são capacidades de execução ativáveis mensalmente — você decide quando precisa e por quanto tempo.
-            </p>
           </div>
         </div>
       </div>
