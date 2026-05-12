@@ -156,14 +156,14 @@ function ScoreRing({ score }: { score: number }) {
         position: "absolute", top: 0, left: 0, right: 0, bottom: 28,
         display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
       }}>
-        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 3, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>SCORE</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>SCORE</div>
         <div style={{
           fontSize: 76, fontWeight: 900, color: "#ff9500", letterSpacing: -4, lineHeight: 1,
           fontFamily: "JetBrains Mono, monospace",
           textShadow: "0 0 40px rgba(255,149,0,0.45)",
           fontVariantNumeric: "tabular-nums",
         }}>{score}</div>
-        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1, marginTop: 4 }}>/ 100</div>
+        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1, marginTop: 4 }}>/ 100</div>
       </div>
 
       {/* Badge */}
@@ -172,7 +172,7 @@ function ScoreRing({ score }: { score: number }) {
         padding: "6px 18px", borderRadius: 999,
         background: "linear-gradient(180deg, rgba(22,16,4,0.97), rgba(10,7,2,0.97))",
         border: "1px solid rgba(255,149,0,0.35)",
-        fontSize: 9, fontWeight: 900, letterSpacing: 3, color: "#ff9500",
+        fontSize: 11, fontWeight: 900, letterSpacing: 3, color: "#ff9500",
         whiteSpace: "nowrap",
         boxShadow: "0 4px 20px rgba(255,149,0,0.2), 0 0 0 1px rgba(0,0,0,0.5)",
       }}>★ EXCEPCIONAL</div>
@@ -219,20 +219,20 @@ export function VerdictHero() {
         <div>
           {/* Live + module tag */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
-            <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "dot-live 2s infinite" }}>● LIVE</span>
-            <span style={{ fontSize: 8, letterSpacing: 2, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>VEREDITO DE MERCADO · Q2 2026</span>
+            <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "dot-live 2s infinite" }}>● LIVE</span>
+            <span style={{ fontSize: 10, letterSpacing: 2, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>VEREDITO DE MERCADO · Q2 2026</span>
           </div>
 
           {/* Big verdict headline */}
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10, textTransform: "uppercase" }}>O mercado confirma:</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10, textTransform: "uppercase" }}>O mercado confirma:</div>
             <h1 style={{ fontSize: 38, fontWeight: 900, color: "rgba(255,255,255,0.95)", letterSpacing: -1.5, lineHeight: 1.05, margin: 0 }}>
               Você encontrou<br />
               <span style={{ color: "#ff9500" }}>uma veia de ouro.</span>
             </h1>
           </div>
 
-          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.42)", lineHeight: 1.85, maxWidth: 480, marginBottom: 24 }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.85, maxWidth: 480, marginBottom: 24 }}>
             Mercado fragmentado. Dores críticas sem solução premium. Concorrentes com NPS de 31.
             CAC comportável. Janela de 4 a 7 meses antes da consolidação. A análise de 14 módulos
             converge num único sinal — <span style={{ color: "rgba(255,255,255,0.72)", fontWeight: 600 }}>entrar agora</span>.
@@ -252,7 +252,7 @@ export function VerdictHero() {
                 borderRadius: i === 0 ? "8px 0 0 8px" : i === 2 ? "0 8px 8px 0" : 0,
                 borderLeft: i > 0 ? "none" : undefined,
               }}>
-                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{k.label}</div>
+                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{k.label}</div>
                 <div style={{ fontSize: 22, fontWeight: 900, color: k.color, fontFamily: "JetBrains Mono, monospace" }}>{k.value}</div>
               </div>
             ))}
@@ -263,9 +263,9 @@ export function VerdictHero() {
       {/* ── SECTION 2: SIGNAL EQUALIZER ──────────────────────────────────── */}
       <div style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div style={{ padding: "12px 32px 6px", display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>SINAIS DO MERCADO</span>
+          <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>SINAIS DO MERCADO</span>
           <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.04)" }} />
-          <span style={{ fontSize: 7, color: "rgba(255,255,255,0.12)", fontFamily: "JetBrains Mono, monospace" }}>6 DIMENSÕES</span>
+          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.12)", fontFamily: "JetBrains Mono, monospace" }}>6 DIMENSÕES</span>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
@@ -278,7 +278,7 @@ export function VerdictHero() {
                 borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.04)" : "none",
                 display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 10,
               }}>
-                <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace", textTransform: "uppercase" }}>{sig.label}</div>
+                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace", textTransform: "uppercase" }}>{sig.label}</div>
 
                 {/* Vertical bar */}
                 <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
@@ -297,9 +297,9 @@ export function VerdictHero() {
 
                 <div>
                   <div style={{ fontSize: 24, fontWeight: 900, color: sig.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>
-                    {sig.value}<span style={{ fontSize: 11, opacity: 0.6 }}>{sig.unit}</span>
+                    {sig.value}<span style={{ fontSize: 13, opacity: 0.6 }}>{sig.unit}</span>
                   </div>
-                  <div style={{ fontSize: 9, color: "rgba(255,255,255,0.28)", marginTop: 4 }}>{sig.verdict}</div>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.28)", marginTop: 4 }}>{sig.verdict}</div>
                 </div>
               </div>
             );
@@ -310,9 +310,9 @@ export function VerdictHero() {
       {/* ── SECTION 3: EVIDENCE WALL ─────────────────────────────────────── */}
       <div style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div style={{ padding: "12px 32px 6px", display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>EVIDÊNCIAS DO VEREDITO</span>
+          <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>EVIDÊNCIAS DO VEREDITO</span>
           <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.04)" }} />
-          <span style={{ fontSize: 7, color: "rgba(255,255,255,0.12)", fontFamily: "JetBrains Mono, monospace" }}>2 FORÇAS · 1 ATENÇÃO · 1 RISCO</span>
+          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.12)", fontFamily: "JetBrains Mono, monospace" }}>2 FORÇAS · 1 ATENÇÃO · 1 RISCO</span>
         </div>
 
         {EVIDENCE.map((ev, i) => (
@@ -329,16 +329,16 @@ export function VerdictHero() {
               display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start",
             }}>
               <div style={{ fontSize: 48, fontWeight: 900, color: ev.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1, letterSpacing: -2 }}>{ev.stat}</div>
-              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace", marginTop: 4 }}>{ev.statLabel}</div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace", marginTop: 4 }}>{ev.statLabel}</div>
             </div>
 
             {/* Text */}
             <div style={{ padding: "20px 28px" }}>
-              <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: ev.color, fontFamily: "JetBrains Mono, monospace", marginBottom: 7, textTransform: "uppercase" }}>
+              <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: ev.color, fontFamily: "JetBrains Mono, monospace", marginBottom: 7, textTransform: "uppercase" }}>
                 {ev.type === "force" ? "FORÇA" : ev.type === "warn" ? "ATENÇÃO" : "RISCO"}
               </div>
               <div style={{ fontSize: 14, fontWeight: 800, color: "rgba(255,255,255,0.85)", lineHeight: 1.3, marginBottom: 10 }}>{ev.title}</div>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", lineHeight: 1.75 }}>{ev.body}</p>
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", lineHeight: 1.75 }}>{ev.body}</p>
             </div>
           </div>
         ))}
@@ -347,9 +347,9 @@ export function VerdictHero() {
       {/* ── SECTION 4: ENTRY WINDOW ──────────────────────────────────────── */}
       <div style={{ padding: "20px 32px 40px" }}>
         <div style={{ marginBottom: 14, display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>JANELA DE ENTRADA</span>
+          <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>JANELA DE ENTRADA</span>
           <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.04)" }} />
-          <span style={{ fontSize: 8, fontWeight: 700, color: "rgba(16,185,129,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "dot-live 2s infinite" }}>● ATIVA</span>
+          <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(16,185,129,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "dot-live 2s infinite" }}>● ATIVA</span>
         </div>
 
         {/* Timeline */}
@@ -373,13 +373,13 @@ export function VerdictHero() {
             { label: "Consolidação",  pos: "82%",  color: "rgba(239,68,68,0.4)"   },
           ].map((m, i) => (
             <div key={i} style={{ position: "absolute", left: m.pos, top: 0, transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div style={{ fontSize: 8, fontWeight: 600, color: m.color, fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap", marginBottom: 4 }}>{m.label}</div>
+              <div style={{ fontSize: 10, fontWeight: 600, color: m.color, fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap", marginBottom: 4 }}>{m.label}</div>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: m.color, marginTop: 17 }} />
             </div>
           ))}
         </div>
 
-        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", lineHeight: 1.7, maxWidth: 620 }}>
+        <p style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", lineHeight: 1.7, maxWidth: 620 }}>
           A análise identifica uma janela de <span style={{ color: "rgba(255,255,255,0.6)", fontWeight: 600 }}>4 a 7 meses</span> antes da consolidação competitiva do nicho. Após esse período, o custo de entrada aumenta e o diferencial de pioneirismo se dilui. O score de 87 não é eterno — é a leitura do mercado hoje.
         </p>
       </div>
