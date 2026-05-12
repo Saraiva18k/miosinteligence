@@ -271,8 +271,8 @@ export function Interrogatorio() {
       <div style={{
         padding: "14px 18px",
         background: "rgba(255,255,255,0.016)",
-        backdropFilter: "blur(12px) saturate(150%)",
-        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: "1px solid rgba(255,255,255,0.06)",
         borderLeft: "3px solid #10b981",
         borderRadius: 6,
@@ -507,8 +507,8 @@ export function Interrogatorio() {
             style={{
               marginTop: 40, padding: "24px 20px",
               background: "rgba(99,102,241,0.04)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(99,102,241,0.12)",
               borderRadius: 8,
             }}
@@ -597,8 +597,8 @@ export function Interrogatorio() {
                       fontSize: 9, fontWeight: 900, letterSpacing: 0.8,
                       color: "#ff9500",
                       background: "rgba(255,149,0,0.08)",
-                      backdropFilter: "blur(12px) saturate(150%)",
-                      WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                      backdropFilter: "blur(16px) saturate(180%)",
+                      WebkitBackdropFilter: "blur(16px) saturate(180%)",
                       border: "1px solid rgba(255,149,0,0.2)",
                       borderRadius: 3, padding: "2px 6px",
                       alignSelf: "center", display: "inline-block",
@@ -618,8 +618,8 @@ export function Interrogatorio() {
             <div style={{
               marginTop: 16, padding: "10px 14px",
               background: "rgba(99,102,241,0.08)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(99,102,241,0.2)",
               borderRadius: 6,
             }}>
@@ -642,6 +642,8 @@ export function Interrogatorio() {
               marginTop: 40, padding: "24px 20px",
               background: "rgba(0,0,0,0.3)",
               border: "1px solid rgba(255,255,255,0.05)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               borderRadius: 8,
             }}
           >
@@ -736,8 +738,8 @@ export function Interrogatorio() {
             <div style={{
               marginTop: 14, padding: "9px 12px",
               background: "rgba(255,255,255,0.02)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,255,255,0.05)",
               borderRadius: 5,
             }}>
@@ -760,8 +762,8 @@ export function Interrogatorio() {
               marginTop: 40,
               padding: "28px 28px",
               background: "rgba(255,149,0,0.04)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,149,0,0.2)",
               borderTop: "2px solid rgba(255,149,0,0.5)",
               borderRadius: "0 0 8px 8px",
@@ -848,8 +850,8 @@ export function Interrogatorio() {
               marginTop: 40, marginBottom: 48,
               padding: "22px 20px",
               background: "rgba(255,255,255,0.015)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,255,255,0.06)",
               borderRadius: 8,
             }}
@@ -948,8 +950,8 @@ export function Interrogatorio() {
             <div style={{
               marginTop: 22, padding: "12px 16px",
               background: "rgba(239,68,68,0.06)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(239,68,68,0.15)",
               borderRadius: 6,
             }}>
@@ -976,8 +978,8 @@ export function Interrogatorio() {
         <div style={{
           padding: "18px 22px",
           background: "rgba(16,185,129,0.04)",
-          backdropFilter: "blur(12px) saturate(150%)",
-          WebkitBackdropFilter: "blur(12px) saturate(150%)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(16,185,129,0.15)",
           borderTop: "2px solid rgba(16,185,129,0.5)",
           borderRadius: "0 0 0 0",
@@ -1012,8 +1014,8 @@ export function Interrogatorio() {
           <div style={{
             padding: "8px 14px",
             background: "rgba(16,185,129,0.08)",
-            backdropFilter: "blur(12px) saturate(150%)",
-            WebkitBackdropFilter: "blur(12px) saturate(150%)",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
             border: "1px solid rgba(16,185,129,0.2)",
             borderRadius: 6, textAlign: "right",
           }}>
@@ -1075,8 +1077,8 @@ export function Interrogatorio() {
                         fontSize: 9, fontWeight: 900, letterSpacing: 1,
                         color: "#10b981",
                         background: "rgba(16,185,129,0.1)",
-                        backdropFilter: "blur(12px) saturate(150%)",
-                        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                        backdropFilter: "blur(16px) saturate(180%)",
+                        WebkitBackdropFilter: "blur(16px) saturate(180%)",
                         border: "1px solid rgba(16,185,129,0.25)",
                         borderRadius: 3, padding: "2px 6px",
                         fontFamily: "JetBrains Mono, monospace",
