@@ -388,6 +388,9 @@ export function Ticker() {
             <span style={{
               fontSize: 9, fontWeight: 900, letterSpacing: 1.2,
               color: traj.color, border: `1px solid ${traj.color}45`,
+              background: `${traj.color}10`,
+              backdropFilter: "blur(12px) saturate(160%)",
+              WebkitBackdropFilter: "blur(12px) saturate(160%)",
               borderRadius: 3, padding: "2px 7px",
               fontFamily: "JetBrains Mono, monospace",
             }}>{traj.label}</span>
@@ -395,6 +398,9 @@ export function Ticker() {
               fontSize: 9, fontWeight: 700, letterSpacing: 0.8,
               color: "rgba(255,255,255,0.22)",
               background: "rgba(255,255,255,0.04)",
+              backdropFilter: "blur(12px) saturate(160%)",
+              WebkitBackdropFilter: "blur(12px) saturate(160%)",
+              border: "1px solid rgba(255,255,255,0.07)",
               borderRadius: 3, padding: "2px 7px",
               fontFamily: "JetBrains Mono, monospace",
             }}>{CAT[trend.category]}</span>
@@ -456,6 +462,8 @@ export function Ticker() {
           <div style={{
             padding: "15px 18px",
             background: "rgba(0,0,0,0.28)",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
             border: "1px solid rgba(255,255,255,0.06)",
             borderTop: "2px solid rgba(255,255,255,0.1)",
             borderRadius: "0 0 8px 8px",
@@ -496,6 +504,8 @@ export function Ticker() {
                 background: i === 0
                   ? (isCrit ? "rgba(239,68,68,0.04)" : "rgba(249,115,22,0.03)")
                   : "rgba(255,255,255,0.016)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: `1px solid ${i < 1
                   ? (isCrit ? "rgba(239,68,68,0.12)" : "rgba(249,115,22,0.1)")
                   : "rgba(255,255,255,0.05)"}`,
@@ -576,6 +586,8 @@ export function Ticker() {
                 flexShrink: 0, width: 32, height: 32,
                 borderRadius: 6,
                 background: `${u.color}14`,
+                backdropFilter: "blur(12px) saturate(160%)",
+                WebkitBackdropFilter: "blur(12px) saturate(160%)",
                 border: `1px solid ${u.color}35`,
                 display: "flex", alignItems: "center", justifyContent: "center",
               }}>
