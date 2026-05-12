@@ -417,8 +417,8 @@ function BalancaTab() {
             <div style={{
               padding: "16px 18px",
               background: "rgba(239,68,68,0.025)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(239,68,68,0.08)",
               borderRight: "none",
               borderTop: i > 0 ? "none" : undefined,
@@ -450,8 +450,8 @@ function BalancaTab() {
             <div style={{
               padding: "16px 18px",
               background: "rgba(255,149,0,0.025)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,149,0,0.08)",
               borderLeft: "none",
               borderTop: i > 0 ? "none" : undefined,
@@ -501,8 +501,8 @@ function TiersTab() {
         {TIERS.map((tier, i) => (
           <div key={i} style={{
             background: "rgba(255,255,255,0.018)",
-            backdropFilter: "blur(12px) saturate(150%)",
-            WebkitBackdropFilter: "blur(12px) saturate(150%)",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
             border: `1px solid rgba(255,149,0,${0.15 + i * 0.08})`,
             borderTop: `3px solid ${tier.dimColor}`,
             borderRadius: "0 0 10px 10px",
@@ -664,8 +664,8 @@ export function Balanca() {
               <span style={{
                 fontSize: 9, fontWeight: 900, padding: "2px 6px",
                 background: "rgba(239,68,68,0.15)", color: "#ef4444",
-                backdropFilter: "blur(12px) saturate(150%)",
-                WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: "1px solid rgba(239,68,68,0.3)", borderRadius: 3,
                 fontFamily: "JetBrains Mono, monospace",
               }}>{t.badge}</span>
