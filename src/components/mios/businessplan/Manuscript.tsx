@@ -42,7 +42,7 @@ function SectionHeader({ numeral, title, subtitle }: { numeral: string; title: s
     <div className="mb-6">
       <div className="flex items-baseline gap-3 mb-1">
         <span style={{
-          fontSize: 10, fontWeight: 800, color: "rgba(255,149,0,0.5)",
+          fontSize: 12, fontWeight: 800, color: "rgba(255,149,0,0.5)",
           fontFamily: "JetBrains Mono, monospace", letterSpacing: 1.5,
           userSelect: "none",
         }}>
@@ -56,7 +56,7 @@ function SectionHeader({ numeral, title, subtitle }: { numeral: string; title: s
         </h2>
       </div>
       {subtitle && (
-        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", paddingLeft: 28 }}>
+        <p style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", paddingLeft: 28 }}>
           {subtitle}
         </p>
       )}
@@ -81,7 +81,7 @@ function PullQuote({ text, author }: { text: string; author?: string }) {
         "{text}"
       </p>
       {author && (
-        <p style={{ fontSize: 10, color: "rgba(255,149,0,0.6)", marginTop: 6, fontWeight: 600 }}>
+        <p style={{ fontSize: 12, color: "rgba(255,149,0,0.6)", marginTop: 6, fontWeight: 600 }}>
           — {author}
         </p>
       )}
@@ -102,13 +102,13 @@ function DataCallout({ label, value, sub, color = "var(--accent)" }: {
       padding: "10px 14px",
       minWidth: 120,
     }}>
-      <span style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.3)", letterSpacing: 0.8, marginBottom: 4 }}>
+      <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.3)", letterSpacing: 0.8, marginBottom: 4 }}>
         {label}
       </span>
       <span style={{ fontSize: 16, fontWeight: 800, color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>
         {value}
       </span>
-      {sub && <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginTop: 3 }}>{sub}</span>}
+      {sub && <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 3 }}>{sub}</span>}
     </div>
   );
 }
@@ -123,7 +123,7 @@ function DataRow({ items }: { items: Array<{ label: string; value: string; sub?:
 
 function Paragraph({ children }: { children: ReactNode }) {
   return (
-    <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.85, marginBottom: 14 }}>
+    <p style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.85, marginBottom: 14 }}>
       {children}
     </p>
   );
@@ -135,7 +135,7 @@ function BulletList({ items, color = "var(--accent)" }: { items: string[]; color
       {items.map((item, i) => (
         <div key={i} className="flex items-start gap-3">
           <ChevronRight size={11} style={{ color, marginTop: 3, flexShrink: 0 }} />
-          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{item}</span>
+          <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{item}</span>
         </div>
       ))}
     </div>
@@ -153,22 +153,22 @@ function RiskRow({ risk, prob, impact, mitigation }: {
       gap: 12, padding: "10px 14px", alignItems: "start",
       borderBottom: "1px solid rgba(255,255,255,0.04)",
     }}>
-      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.65)", lineHeight: 1.4 }}>{risk}</span>
+      <span style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", lineHeight: 1.4 }}>{risk}</span>
       <span style={{
-        fontSize: 9, fontWeight: 700, textAlign: "center",
+        fontSize: 11, fontWeight: 700, textAlign: "center",
         color: PROB_COLOR[prob], background: `${PROB_COLOR[prob]}15`,
         borderRadius: 5, padding: "3px 0",
       }}>
         {prob.toUpperCase()}
       </span>
       <span style={{
-        fontSize: 9, fontWeight: 700, textAlign: "center",
+        fontSize: 11, fontWeight: 700, textAlign: "center",
         color: IMP_COLOR[impact], background: `${IMP_COLOR[impact]}15`,
         borderRadius: 5, padding: "3px 0",
       }}>
         {impact.toUpperCase()}
       </span>
-      <span style={{ fontSize: 10, color: "rgba(255,255,255,0.38)", lineHeight: 1.4, fontStyle: "italic" }}>
+      <span style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", lineHeight: 1.4, fontStyle: "italic" }}>
         {mitigation}
       </span>
     </div>
@@ -196,9 +196,9 @@ function MilestoneRow({ phase, period, items, done }: {
       </div>
       <div style={{ paddingBottom: 20, flex: 1 }}>
         <div className="flex items-center gap-2 mb-1">
-          <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.8)" }}>{phase}</span>
+          <span style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.8)" }}>{phase}</span>
           <span style={{
-            fontSize: 9, color: done ? "#10b981" : "rgba(255,149,0,0.7)",
+            fontSize: 11, color: done ? "#10b981" : "rgba(255,149,0,0.7)",
             background: done ? "rgba(16,185,129,0.08)" : "rgba(255,149,0,0.07)",
             border: `1px solid ${done ? "rgba(16,185,129,0.2)" : "rgba(255,149,0,0.2)"}`,
             borderRadius: 4, padding: "1px 6px", fontWeight: 600,
@@ -210,7 +210,7 @@ function MilestoneRow({ phase, period, items, done }: {
           {items.map((item, i) => (
             <div key={i} className="flex items-center gap-2">
               <div style={{ width: 4, height: 4, borderRadius: "50%", background: "rgba(255,255,255,0.15)", flexShrink: 0 }} />
-              <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{item}</span>
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.45)" }}>{item}</span>
             </div>
           ))}
         </div>
@@ -307,10 +307,10 @@ function PropostaValor() {
         }}>
           <div style={{ color: pillar.color, marginTop: 2, flexShrink: 0 }}>{pillar.icon}</div>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.8)", marginBottom: 4 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.8)", marginBottom: 4 }}>
               {pillar.title}
             </div>
-            <p style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>{pillar.body}</p>
+            <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>{pillar.body}</p>
           </div>
         </div>
       ))}
@@ -330,7 +330,7 @@ function ModeloNegocio() {
           <thead>
             <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
               {["Produto", "Ticket", "Frequencia", "LTV 6M", "Margem"].map(h => (
-                <th key={h} style={{ padding: "8px 12px", textAlign: "left", fontSize: 9, fontWeight: 700,
+                <th key={h} style={{ padding: "8px 12px", textAlign: "left", fontSize: 11, fontWeight: 700,
                   color: "rgba(255,255,255,0.25)", letterSpacing: 0.7 }}>
                   {h}
                 </th>
@@ -347,14 +347,14 @@ function ModeloNegocio() {
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
                 background: row.accent ? "rgba(255,149,0,0.04)" : "transparent",
               }}>
-                <td style={{ padding: "9px 12px", fontSize: 11, fontWeight: row.accent ? 700 : 400,
+                <td style={{ padding: "9px 12px", fontSize: 13, fontWeight: row.accent ? 700 : 400,
                   color: row.accent ? "var(--accent)" : "rgba(255,255,255,0.65)" }}>{row.produto}</td>
-                <td style={{ padding: "9px 12px", fontSize: 11, fontFamily: "JetBrains Mono, monospace",
+                <td style={{ padding: "9px 12px", fontSize: 13, fontFamily: "JetBrains Mono, monospace",
                   color: "rgba(255,255,255,0.7)" }}>{row.ticket}</td>
-                <td style={{ padding: "9px 12px", fontSize: 10, color: "rgba(255,255,255,0.45)" }}>{row.freq}</td>
-                <td style={{ padding: "9px 12px", fontSize: 11, fontWeight: 700, fontFamily: "JetBrains Mono, monospace",
+                <td style={{ padding: "9px 12px", fontSize: 12, color: "rgba(255,255,255,0.45)" }}>{row.freq}</td>
+                <td style={{ padding: "9px 12px", fontSize: 13, fontWeight: 700, fontFamily: "JetBrains Mono, monospace",
                   color: "#10b981" }}>{row.ltv}</td>
-                <td style={{ padding: "9px 12px", fontSize: 10, color: "rgba(255,255,255,0.5)" }}>{row.margem}</td>
+                <td style={{ padding: "9px 12px", fontSize: 12, color: "rgba(255,255,255,0.5)" }}>{row.margem}</td>
               </tr>
             ))}
           </tbody>
@@ -409,7 +409,7 @@ function GoToMarket() {
       ].map(h => (
         <div key={h.phase} style={{ marginBottom: 16 }}>
           <div style={{
-            fontSize: 10, fontWeight: 700, color: h.color, marginBottom: 8,
+            fontSize: 12, fontWeight: 700, color: h.color, marginBottom: 8,
             display: "flex", alignItems: "center", gap: 6,
           }}>
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: h.color }} />
@@ -505,6 +505,8 @@ function AnaliseRiscos() {
 
       <div style={{
         background: "rgba(255,255,255,0.02)",
+        backdropFilter: "blur(12px) saturate(150%)",
+        WebkitBackdropFilter: "blur(12px) saturate(150%)",
         border: "1px solid rgba(255,255,255,0.06)",
         borderRadius: 10, overflow: "hidden", marginBottom: 16,
       }}>
@@ -516,7 +518,7 @@ function AnaliseRiscos() {
           borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}>
           {["Risco", "Prob.", "Impacto", "Mitigacao"].map(h => (
-            <span key={h} style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.3)", letterSpacing: 0.7 }}>
+            <span key={h} style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.3)", letterSpacing: 0.7 }}>
               {h}
             </span>
           ))}
@@ -550,14 +552,16 @@ function AnaliseRiscos() {
 
       <div style={{
         background: "rgba(16,185,129,0.05)",
+        backdropFilter: "blur(12px) saturate(150%)",
+        WebkitBackdropFilter: "blur(12px) saturate(150%)",
         border: "1px solid rgba(16,185,129,0.15)",
         borderRadius: 8, padding: "12px 16px",
       }}>
         <div className="flex items-center gap-2 mb-2">
           <CheckCircle size={12} style={{ color: "#10b981" }} />
-          <span style={{ fontSize: 10, fontWeight: 700, color: "#10b981" }}>VANTAGEM DEFENSIVA</span>
+          <span style={{ fontSize: 12, fontWeight: 700, color: "#10b981" }}>VANTAGEM DEFENSIVA</span>
         </div>
-        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>
+        <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>
           O maior ativo defensivo do negocio e a relacao de confianca construida cliente a cliente. Concorrentes podem copiar procedimentos, equipamentos e ate precos — mas nao conseguem replicar o historico de resultados e a credibilidade acumulada com cada cliente atendida.
         </p>
       </div>
@@ -624,7 +628,7 @@ export function Manuscript() {
           <div style={{ padding: "0 16px 12px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
             <div className="flex items-center gap-2">
               <FileText size={11} style={{ color: "var(--accent)", opacity: 0.7 }} />
-              <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.4)", letterSpacing: 0.8 }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.4)", letterSpacing: 0.8 }}>
                 INDICE
               </span>
             </div>
@@ -649,7 +653,7 @@ export function Manuscript() {
                   }}
                 >
                   <span style={{
-                    fontSize: 8, fontWeight: 800,
+                    fontSize: 10, fontWeight: 800,
                     color: isActive ? "var(--accent)" : "rgba(255,255,255,0.2)",
                     fontFamily: "JetBrains Mono, monospace",
                     width: 22, flexShrink: 0,
@@ -657,7 +661,7 @@ export function Manuscript() {
                     {item.numeral}
                   </span>
                   <span style={{
-                    fontSize: 10, fontWeight: isActive ? 700 : 400,
+                    fontSize: 12, fontWeight: isActive ? 700 : 400,
                     color: isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.35)",
                     lineHeight: 1.3,
                   }}>
@@ -669,11 +673,11 @@ export function Manuscript() {
           </nav>
           {/* Completion */}
           <div style={{ padding: "12px 16px 0", borderTop: "1px solid rgba(255,255,255,0.05)", marginTop: 4 }}>
-            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.25)", marginBottom: 6 }}>COMPLETUDE</div>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", marginBottom: 6 }}>COMPLETUDE</div>
             <div style={{ height: 3, borderRadius: 2, background: "rgba(255,255,255,0.06)", marginBottom: 4 }}>
               <div style={{ height: "100%", width: "78%", borderRadius: 2, background: "var(--accent)" }} />
             </div>
-            <div style={{ fontSize: 9, fontWeight: 700, color: "var(--accent)", fontFamily: "JetBrains Mono, monospace" }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "var(--accent)", fontFamily: "JetBrains Mono, monospace" }}>
               78%
             </div>
           </div>
@@ -694,20 +698,20 @@ export function Manuscript() {
         }}>
           <div className="flex items-start justify-between">
             <div>
-              <div style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,149,0,0.6)", letterSpacing: 1.5, marginBottom: 6 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,149,0,0.6)", letterSpacing: 1.5, marginBottom: 6 }}>
                 BUSINESS PLAN · DOCUMENTO EXECUTIVO
               </div>
               <h1 style={{ fontSize: 22, fontWeight: 900, color: "rgba(255,255,255,0.92)", letterSpacing: -0.5, marginBottom: 4 }}>
                 O Manuscrito
               </h1>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.35)" }}>
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
                 Studio Estetica Premium · Itaim Bibi, SP · Versao 1.0
               </p>
             </div>
             <div className="flex items-center gap-3">
               <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 9, color: "rgba(255,255,255,0.25)", marginBottom: 2 }}>GERADO EM</div>
-                <div style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.5)",
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", marginBottom: 2 }}>GERADO EM</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)",
                   fontFamily: "JetBrains Mono, monospace" }}>
                   Mai 2026
                 </div>
@@ -718,7 +722,7 @@ export function Manuscript() {
                 borderRadius: 7, padding: "6px 12px",
               }}>
                 <BarChart3 size={11} style={{ color: "#10b981" }} />
-                <span style={{ fontSize: 10, fontWeight: 700, color: "#10b981" }}>Pronto para investidor</span>
+                <span style={{ fontSize: 12, fontWeight: 700, color: "#10b981" }}>Pronto para investidor</span>
               </div>
             </div>
           </div>
