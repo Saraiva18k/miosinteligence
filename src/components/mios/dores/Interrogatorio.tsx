@@ -428,6 +428,8 @@ export function Interrogatorio() {
                     background: idx === 0
                       ? "rgba(239,68,68,0.06)"
                       : "rgba(255,255,255,0.018)",
+                    backdropFilter: "blur(16px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(16px) saturate(180%)",
                     border: `1px solid ${idx === 0 ? "rgba(239,68,68,0.15)" : "rgba(255,255,255,0.05)"}`,
                     borderRadius: 6,
                   }}>
@@ -671,6 +673,9 @@ export function Interrogatorio() {
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {VERBATIMS.map((vb, idx) => (
                 <div key={idx} style={{
+                  background: "rgba(255,255,255,0.02)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(255,255,255,0.06)",
                   borderLeft: `3px solid ${vb.color}`,
                   borderRadius: "0 6px 6px 0",
@@ -681,6 +686,8 @@ export function Interrogatorio() {
                     display: "flex", justifyContent: "space-between", alignItems: "center",
                     padding: "7px 12px",
                     background: "rgba(255,255,255,0.025)",
+                    backdropFilter: "blur(12px) saturate(160%)",
+                    WebkitBackdropFilter: "blur(12px) saturate(160%)",
                     borderBottom: "1px solid rgba(255,255,255,0.05)",
                     flexWrap: "wrap", gap: 8,
                   }}>
@@ -1042,6 +1049,8 @@ export function Interrogatorio() {
               <div key={w.id} style={{
                 display: "flex", gap: 0,
                 background: idx === 0 ? accentBg : "rgba(255,255,255,0.018)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: `1px solid ${idx < 2 ? accentBorder : "rgba(255,255,255,0.05)"}`,
                 borderLeft: `3px solid ${accentColor}`,
                 borderRadius: "0 6px 6px 0",
@@ -1139,6 +1148,8 @@ export function Interrogatorio() {
         <div style={{
           marginTop: 3, padding: "22px 22px",
           background: "rgba(0,0,0,0.35)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.06)",
           borderRadius: "0 0 8px 8px",
           marginBottom: 56,
