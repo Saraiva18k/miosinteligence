@@ -16,6 +16,8 @@ export function SubTabs({ active, onChange }: SubTabsProps) {
         gap: 4,
         paddingTop: 4,
         borderBottom: "1px solid rgba(255,255,255,0.06)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
       }}
     >
       {tabs.map((t) => {
@@ -30,7 +32,9 @@ export function SubTabs({ active, onChange }: SubTabsProps) {
               fontSize: 13,
               fontWeight: 500,
               color: isActive ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.3)",
-              background: isActive ? "rgba(255,149,0,0.04)" : "transparent",
+              background: isActive ? "rgba(255,149,0,0.04)" : "rgba(255,255,255,0.008)",
+              backdropFilter: "blur(12px) saturate(160%)",
+              WebkitBackdropFilter: "blur(12px) saturate(160%)",
               borderBottom: `2px solid ${isActive ? "#ff9500" : "transparent"}`,
               marginBottom: -1,
               transition: "all 0.15s ease",
