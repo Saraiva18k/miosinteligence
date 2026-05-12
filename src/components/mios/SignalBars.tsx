@@ -38,7 +38,7 @@ export function SignalBars() {
           >
             <div
               style={{
-                fontSize: 8,
+                fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: "1.5px",
                 color: "rgba(255,255,255,0.30)",
