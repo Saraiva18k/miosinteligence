@@ -11,7 +11,7 @@ export function Logo() {
         src="/mios-brain.png"
         alt="MIOS"
         style={{
-          height: 36,
+          height: 44,
           width: "auto",
           display: "block",
           mixBlendMode: "screen",
