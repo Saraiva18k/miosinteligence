@@ -210,16 +210,16 @@ export function Ticker() {
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <span style={{
-              fontSize: 8, fontWeight: 900, letterSpacing: 2,
+              fontSize: 10, fontWeight: 900, letterSpacing: 2,
               color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace",
               animation: "mios-pulse 2s infinite",
             }}>● LIVE</span>
             <span style={{
-              fontSize: 11, fontWeight: 700, letterSpacing: 1.5,
+              fontSize: 13, fontWeight: 700, letterSpacing: 1.5,
               color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace",
             }}>TENDÊNCIAS — O TICKER</span>
             <span style={{
-              fontSize: 8, color: "rgba(255,255,255,0.12)",
+              fontSize: 10, color: "rgba(255,255,255,0.12)",
               fontFamily: "JetBrains Mono, monospace",
             }}>v2.4.1</span>
           </div>
@@ -232,7 +232,7 @@ export function Ticker() {
             ].map(m => (
               <div key={m.label} style={{ textAlign: "right" }}>
                 <div style={{
-                  fontSize: 7, letterSpacing: 1.2,
+                  fontSize: 9, letterSpacing: 1.2,
                   color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 1,
                 }}>{m.label}</div>
                 <div style={{
@@ -273,21 +273,21 @@ export function Ticker() {
               gap: 5, padding: "0 18px", whiteSpace: "nowrap",
             }}>
               <span style={{
-                fontSize: 7, fontWeight: 900,
+                fontSize: 9, fontWeight: 900,
                 color: item.dir === "up" ? "#ff9500" : "#ef4444",
                 fontFamily: "JetBrains Mono, monospace",
               }}>{item.dir === "up" ? "▲" : "▼"}</span>
               <span style={{
-                fontSize: 8, fontWeight: 700, letterSpacing: 0.8,
+                fontSize: 10, fontWeight: 700, letterSpacing: 0.8,
                 color: "rgba(255,255,255,0.42)", fontFamily: "JetBrains Mono, monospace",
               }}>{item.label}</span>
               <span style={{
-                fontSize: 9, fontWeight: 900,
+                fontSize: 11, fontWeight: 900,
                 color: item.dir === "up" ? "#ff9500" : "#ef4444",
                 fontFamily: "JetBrains Mono, monospace",
               }}>{item.change}</span>
               <span style={{
-                fontSize: 8, color: "rgba(255,255,255,0.08)",
+                fontSize: 10, color: "rgba(255,255,255,0.08)",
                 marginLeft: 6, fontFamily: "JetBrains Mono, monospace",
               }}>|</span>
             </span>
@@ -311,7 +311,7 @@ export function Ticker() {
             borderBottom: "1px solid rgba(255,255,255,0.04)",
           }}>
             <span style={{
-              fontSize: 7, fontWeight: 700, letterSpacing: 1.8,
+              fontSize: 9, fontWeight: 700, letterSpacing: 1.8,
               color: "rgba(255,255,255,0.16)", fontFamily: "JetBrains Mono, monospace",
             }}>SINAIS DE MERCADO</span>
           </div>
@@ -336,17 +336,17 @@ export function Ticker() {
               >
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
                   <span style={{
-                    fontSize: 8, fontWeight: 700,
+                    fontSize: 10, fontWeight: 700,
                     color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace",
                   }}>{t.id}</span>
                   <span style={{
-                    fontSize: 9, fontWeight: 900,
+                    fontSize: 11, fontWeight: 900,
                     color: down ? "#ef4444" : "#ff9500",
                     fontFamily: "JetBrains Mono, monospace",
                   }}>{t.change}</span>
                 </div>
                 <div style={{
-                  fontSize: 10, fontWeight: 600, lineHeight: 1.35, marginBottom: 8,
+                  fontSize: 12, fontWeight: 600, lineHeight: 1.35, marginBottom: 8,
                   color: isActive ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.38)",
                 }}>{t.name}</div>
                 <div style={{
@@ -361,11 +361,11 @@ export function Ticker() {
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   <span style={{
-                    fontSize: 7, fontWeight: 700,
+                    fontSize: 9, fontWeight: 700,
                     color: tr.color, fontFamily: "JetBrains Mono, monospace",
                   }}>{tr.label}</span>
                   <span style={{
-                    fontSize: 7, color: "rgba(255,255,255,0.15)",
+                    fontSize: 9, color: "rgba(255,255,255,0.15)",
                     fontFamily: "JetBrains Mono, monospace",
                   }}>{t.momentum}</span>
                 </div>
@@ -382,17 +382,17 @@ export function Ticker() {
           {/* Trend header */}
           <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 10 }}>
             <span style={{
-              fontSize: 7, fontWeight: 700,
+              fontSize: 9, fontWeight: 700,
               color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace",
             }}>{trend.id}</span>
             <span style={{
-              fontSize: 7, fontWeight: 900, letterSpacing: 1.2,
+              fontSize: 9, fontWeight: 900, letterSpacing: 1.2,
               color: traj.color, border: `1px solid ${traj.color}45`,
               borderRadius: 3, padding: "2px 7px",
               fontFamily: "JetBrains Mono, monospace",
             }}>{traj.label}</span>
             <span style={{
-              fontSize: 7, fontWeight: 700, letterSpacing: 0.8,
+              fontSize: 9, fontWeight: 700, letterSpacing: 0.8,
               color: "rgba(255,255,255,0.22)",
               background: "rgba(255,255,255,0.04)",
               borderRadius: 3, padding: "2px 7px",
@@ -421,7 +421,7 @@ export function Ticker() {
             ].map(m => (
               <div key={m.label}>
                 <div style={{
-                  fontSize: 7, letterSpacing: 1.2,
+                  fontSize: 9, letterSpacing: 1.2,
                   color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 3,
                 }}>{m.label}</div>
                 <div style={{
@@ -436,17 +436,19 @@ export function Ticker() {
           <div style={{
             padding: "15px 18px",
             background: "rgba(255,149,0,0.04)",
+            backdropFilter: "blur(12px) saturate(150%)",
+            WebkitBackdropFilter: "blur(12px) saturate(150%)",
             border: "1px solid rgba(255,149,0,0.1)",
             borderLeft: "2px solid rgba(255,149,0,0.4)",
             borderRadius: "0 6px 6px 0",
             marginBottom: 10,
           }}>
             <div style={{
-              fontSize: 7, fontWeight: 900, letterSpacing: 1.5,
+              fontSize: 9, fontWeight: 900, letterSpacing: 1.5,
               color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8,
             }}>EVIDÊNCIA DE MERCADO</div>
             <p style={{
-              fontSize: 12, color: "rgba(255,255,255,0.52)", lineHeight: 1.75,
+              fontSize: 13, color: "rgba(255,255,255,0.52)", lineHeight: 1.75,
             }}>{trend.evidence}</p>
           </div>
 
@@ -459,7 +461,7 @@ export function Ticker() {
             borderRadius: "0 0 8px 8px",
           }}>
             <div style={{
-              fontSize: 7, fontWeight: 900, letterSpacing: 1.5,
+              fontSize: 9, fontWeight: 900, letterSpacing: 1.5,
               color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8,
             }}>IMPLICAÇÃO ESTRATÉGICA</div>
             <p style={{
@@ -475,12 +477,12 @@ export function Ticker() {
       <div style={{ padding: "26px 24px 0" }}>
         <div style={{ marginBottom: 14 }}>
           <span style={{
-            fontSize: 8, fontWeight: 900, letterSpacing: 2,
+            fontSize: 10, fontWeight: 900, letterSpacing: 2,
             color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace",
             marginRight: 12,
           }}>PONTOS DE CONVERGÊNCIA</span>
           <span style={{
-            fontSize: 7, color: "rgba(255,255,255,0.18)",
+            fontSize: 9, color: "rgba(255,255,255,0.18)",
             fontFamily: "JetBrains Mono, monospace",
           }}>ONDE TENDÊNCIAS SE CRUZAM E CRIAM JANELAS ÚNICAS</span>
         </div>
@@ -505,7 +507,7 @@ export function Ticker() {
                 <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 8 }}>
                   {c.trends.map(tid => (
                     <span key={tid} style={{
-                      fontSize: 7, fontWeight: 700,
+                      fontSize: 9, fontWeight: 700,
                       color: "rgba(255,149,0,0.65)",
                       background: "rgba(255,149,0,0.07)",
                       borderRadius: 3, padding: "2px 6px",
@@ -513,7 +515,7 @@ export function Ticker() {
                     }}>{tid}</span>
                   ))}
                   <span style={{
-                    fontSize: 7, fontWeight: 900, letterSpacing: 0.8,
+                    fontSize: 9, fontWeight: 900, letterSpacing: 0.8,
                     color: col, background: `${col}14`,
                     borderRadius: 3, padding: "2px 6px",
                     fontFamily: "JetBrains Mono, monospace",
@@ -526,20 +528,22 @@ export function Ticker() {
                 }}>{c.title}</h3>
 
                 <p style={{
-                  fontSize: 11, color: "rgba(255,255,255,0.44)", lineHeight: 1.72, marginBottom: 10,
+                  fontSize: 13, color: "rgba(255,255,255,0.44)", lineHeight: 1.72, marginBottom: 10,
                 }}>{c.body}</p>
 
                 <div style={{
                   padding: "8px 12px",
                   background: "rgba(255,149,0,0.05)",
+                  backdropFilter: "blur(12px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
                   border: "1px solid rgba(255,149,0,0.12)",
                   borderRadius: 4,
                 }}>
                   <span style={{
-                    fontSize: 7, fontWeight: 900, letterSpacing: 1,
+                    fontSize: 9, fontWeight: 900, letterSpacing: 1,
                     color: "#ff9500", fontFamily: "JetBrains Mono, monospace", marginRight: 8,
                   }}>AÇÃO</span>
-                  <span style={{ fontSize: 10, color: "rgba(255,255,255,0.48)" }}>{c.action}</span>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.48)" }}>{c.action}</span>
                 </div>
               </div>
             );
@@ -551,7 +555,7 @@ export function Ticker() {
       <div style={{ padding: "0 24px 56px" }}>
         <div style={{ marginBottom: 12 }}>
           <span style={{
-            fontSize: 8, fontWeight: 900, letterSpacing: 2,
+            fontSize: 10, fontWeight: 900, letterSpacing: 2,
             color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace",
           }}>FILA DE URGÊNCIA — PRÓXIMOS 90 DIAS</span>
         </div>
@@ -562,6 +566,8 @@ export function Ticker() {
               display: "flex", alignItems: "flex-start", gap: 16,
               padding: "14px 18px",
               background: "rgba(255,255,255,0.016)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,255,255,0.05)",
               borderLeft: `3px solid ${u.color}`,
               borderRadius: "0 6px 6px 0",
@@ -580,20 +586,20 @@ export function Ticker() {
               </div>
               <div style={{ flex: 1 }}>
                 <div className="flex items-center gap-3 flex-wrap" style={{ marginBottom: 4 }}>
-                  <span style={{ fontSize: 11, fontWeight: 800, color: "rgba(255,255,255,0.8)" }}>{u.name}</span>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: "rgba(255,255,255,0.8)" }}>{u.name}</span>
                   <span style={{
-                    fontSize: 7, fontWeight: 700,
+                    fontSize: 9, fontWeight: 700,
                     color: u.color, background: `${u.color}12`,
                     borderRadius: 3, padding: "2px 6px",
                     fontFamily: "JetBrains Mono, monospace",
                   }}>{u.id}</span>
                   <span style={{
-                    fontSize: 7, fontWeight: 700,
+                    fontSize: 9, fontWeight: 700,
                     color: "rgba(255,255,255,0.22)",
                     fontFamily: "JetBrains Mono, monospace",
                   }}>JANELA: {u.window}</span>
                 </div>
-                <p style={{ fontSize: 11, color: "rgba(255,255,255,0.38)", lineHeight: 1.62 }}>{u.reason}</p>
+                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.38)", lineHeight: 1.62 }}>{u.reason}</p>
               </div>
             </div>
           ))}
