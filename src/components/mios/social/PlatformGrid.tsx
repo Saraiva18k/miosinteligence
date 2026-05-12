@@ -437,8 +437,8 @@ export function PlatformGrid() {
                     padding: "3px 7px",
                     borderRadius: 5,
                     background: "rgba(255,149,0,0.06)",
-                    backdropFilter: "blur(12px) saturate(150%)",
-                    WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                    backdropFilter: "blur(16px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(16px) saturate(180%)",
                     border: "1px solid rgba(255,149,0,0.18)",
                   }}
                 >
