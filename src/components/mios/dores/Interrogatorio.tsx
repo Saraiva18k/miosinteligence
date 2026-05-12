@@ -138,7 +138,7 @@ const EMERGENT_POINTS = [11, 18, 23, 41, 67, 112, 189, 298, 412];
 function Bar({ strength, color = "#ff9500" }: { strength: number; color?: string }) {
   const f = Math.round(strength / 10);
   return (
-    <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, letterSpacing: -0.5 }}>
+    <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 12, letterSpacing: -0.5 }}>
       <span style={{ color }}>{Array(f).fill("█").join("")}</span>
       <span style={{ color: "rgba(255,255,255,0.08)" }}>{Array(10 - f).fill("█").join("")}</span>
     </span>
@@ -271,6 +271,8 @@ export function Interrogatorio() {
       <div style={{
         padding: "14px 18px",
         background: "rgba(255,255,255,0.016)",
+        backdropFilter: "blur(12px) saturate(150%)",
+        WebkitBackdropFilter: "blur(12px) saturate(150%)",
         border: "1px solid rgba(255,255,255,0.06)",
         borderLeft: "3px solid #10b981",
         borderRadius: 6,
@@ -285,14 +287,14 @@ export function Interrogatorio() {
               background: "#10b981", flexShrink: 0,
             }} />
             <span style={{
-              fontSize: 10, fontWeight: 800, letterSpacing: 2,
+              fontSize: 12, fontWeight: 800, letterSpacing: 2,
               color: "#10b981", fontFamily: "JetBrains Mono, monospace",
             }}>
               SCAN CONCLUÍDO
             </span>
           </div>
           <div style={{
-            fontSize: 11, fontFamily: "JetBrains Mono, monospace",
+            fontSize: 13, fontFamily: "JetBrains Mono, monospace",
             color: "rgba(255,255,255,0.55)", lineHeight: 1.6,
           }}>
             <span style={{ color: "rgba(255,255,255,0.75)", fontWeight: 600 }}>MERCADO:</span>{" "}
@@ -304,13 +306,13 @@ export function Interrogatorio() {
         </div>
         <div style={{ textAlign: "right" }}>
           <div style={{
-            fontSize: 9, fontFamily: "JetBrains Mono, monospace",
+            fontSize: 11, fontFamily: "JetBrains Mono, monospace",
             color: "rgba(255,255,255,0.22)", marginBottom: 3,
           }}>
             ÚLTIMA VARREDURA
           </div>
           <div style={{
-            fontSize: 12, fontFamily: "JetBrains Mono, monospace",
+            fontSize: 13, fontFamily: "JetBrains Mono, monospace",
             color: "rgba(255,255,255,0.6)", fontWeight: 600,
           }}>
             08/05/2026 · 14:32:07
@@ -324,7 +326,7 @@ export function Interrogatorio() {
               { label: "FONTES",     value: "9"      },
             ].map(s => (
               <span key={s.label} style={{
-                fontSize: 8, fontFamily: "JetBrains Mono, monospace",
+                fontSize: 10, fontFamily: "JetBrains Mono, monospace",
                 color: "rgba(255,255,255,0.3)", letterSpacing: 0.5,
               }}>
                 {s.label}: <span style={{ color: "rgba(255,255,255,0.6)", fontWeight: 700 }}>{s.value}</span>
@@ -344,7 +346,7 @@ export function Interrogatorio() {
           paddingTop: 4,
         }}>
           <div style={{
-            fontSize: 7, fontWeight: 800, letterSpacing: 2,
+            fontSize: 9, fontWeight: 800, letterSpacing: 2,
             color: "rgba(255,255,255,0.18)", marginBottom: 14,
             fontFamily: "JetBrains Mono, monospace",
           }}>
@@ -370,7 +372,7 @@ export function Interrogatorio() {
                     boxShadow: active ? "0 0 6px rgba(255,149,0,0.5)" : "none",
                   }} />
                   <div style={{
-                    fontSize: 8, fontWeight: 800, letterSpacing: 1.5,
+                    fontSize: 10, fontWeight: 800, letterSpacing: 1.5,
                     color: active ? "#ff9500" : "rgba(255,255,255,0.2)",
                     fontFamily: "JetBrains Mono, monospace",
                     transition: "color 0.3s ease",
@@ -378,7 +380,7 @@ export function Interrogatorio() {
                     {lm.id} {lm.label}
                   </div>
                   <div style={{
-                    fontSize: 9, color: active ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.15)",
+                    fontSize: 11, color: active ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.15)",
                     transition: "color 0.3s ease", marginTop: 1,
                   }}>
                     {lm.sub}
@@ -399,18 +401,18 @@ export function Interrogatorio() {
             <div style={{ marginBottom: 20 }}>
               <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 6 }}>
                 <span style={{
-                  fontSize: 8, fontWeight: 900, letterSpacing: 1.5,
+                  fontSize: 10, fontWeight: 900, letterSpacing: 1.5,
                   color: "rgba(255,149,0,0.8)", fontFamily: "JetBrains Mono, monospace",
                   border: "1px solid rgba(255,149,0,0.25)", borderRadius: 3, padding: "2px 7px",
                 }}>
                   NÍVEL 01
                 </span>
-                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
+                <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
                   SURFACE SCAN · O QUE O MERCADO DECLARA
                 </span>
               </div>
               <p style={{
-                fontSize: 11, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace",
+                fontSize: 13, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace",
                 letterSpacing: 0.3,
               }}>
                 SIGNAL DETECTED: 5 padrões críticos recorrentes · 0 resolvidos por qualquer player mapeado
@@ -432,7 +434,7 @@ export function Interrogatorio() {
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 9, flexWrap: "wrap" }}>
                       {/* Signal ID */}
                       <span style={{
-                        fontSize: 8, fontWeight: 700, letterSpacing: 0.5,
+                        fontSize: 10, fontWeight: 700, letterSpacing: 0.5,
                         color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace",
                         flexShrink: 0, paddingTop: 1,
                       }}>
@@ -440,7 +442,7 @@ export function Interrogatorio() {
                       </span>
                       {/* Name */}
                       <span style={{
-                        fontSize: 12, fontWeight: 700,
+                        fontSize: 13, fontWeight: 700,
                         color: idx < 2 ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.60)",
                         flex: 1, minWidth: 180,
                       }}>
@@ -455,14 +457,14 @@ export function Interrogatorio() {
                           {sig.count.toLocaleString("pt-BR")}
                         </span>
                         <span style={{
-                          fontSize: 9, fontWeight: 800,
+                          fontSize: 11, fontWeight: 800,
                           color: sig.trendUp ? "#ef4444" : "#10b981",
                           fontFamily: "JetBrains Mono, monospace",
                         }}>
                           {sig.trendUp ? "↑" : "→"} +{sig.trendPct}% D-30
                         </span>
                         <span style={{
-                          fontSize: 8, fontWeight: 800, letterSpacing: 0.8,
+                          fontSize: 10, fontWeight: 800, letterSpacing: 0.8,
                           color: sig.resolved ? "#10b981" : "#ef4444",
                           background: sig.resolved ? "rgba(16,185,129,0.1)" : "rgba(239,68,68,0.1)",
                           borderRadius: 3, padding: "2px 6px",
@@ -476,7 +478,7 @@ export function Interrogatorio() {
                     <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
                       <Bar strength={sig.strength} color={barColor} />
                       <span style={{
-                        fontSize: 9, color: "rgba(255,255,255,0.25)",
+                        fontSize: 11, color: "rgba(255,255,255,0.25)",
                         fontFamily: "JetBrains Mono, monospace",
                       }}>
                         {sig.strength}%
@@ -484,7 +486,7 @@ export function Interrogatorio() {
                       <div style={{ width: 1, height: 12, background: "rgba(255,255,255,0.08)" }} />
                       {sig.sources.map(src => (
                         <span key={src.label} style={{
-                          fontSize: 8, fontWeight: 600, letterSpacing: 0.3,
+                          fontSize: 10, fontWeight: 600, letterSpacing: 0.3,
                           color: src.color, fontFamily: "JetBrains Mono, monospace",
                         }}>
                           {src.label} {src.pct}%
@@ -505,6 +507,8 @@ export function Interrogatorio() {
             style={{
               marginTop: 40, padding: "24px 20px",
               background: "rgba(99,102,241,0.04)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(99,102,241,0.12)",
               borderRadius: 8,
             }}
@@ -512,18 +516,18 @@ export function Interrogatorio() {
             <div style={{ marginBottom: 20 }}>
               <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 6 }}>
                 <span style={{
-                  fontSize: 8, fontWeight: 900, letterSpacing: 1.5,
+                  fontSize: 10, fontWeight: 900, letterSpacing: 1.5,
                   color: "rgba(99,102,241,0.9)", fontFamily: "JetBrains Mono, monospace",
                   border: "1px solid rgba(99,102,241,0.3)", borderRadius: 3, padding: "2px 7px",
                 }}>
                   NÍVEL 02
                 </span>
-                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
+                <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
                   BEHAVIORAL INTELLIGENCE · O QUE O MERCADO BUSCA MAS NÃO ENCONTRA
                 </span>
               </div>
               <p style={{
-                fontSize: 11, color: "rgba(99,102,241,0.6)",
+                fontSize: 13, color: "rgba(99,102,241,0.6)",
                 fontFamily: "JetBrains Mono, monospace", letterSpacing: 0.3,
               }}>
                 ⚠ Dados de comportamento de busca — invisíveis para concorrentes sem ferramentas de inteligência
@@ -540,7 +544,7 @@ export function Interrogatorio() {
             }}>
               {["INTENÇÃO DE BUSCA", "VOL/MÊS", "DEMANDA", "OFERTA", "STATUS"].map(h => (
                 <span key={h} style={{
-                  fontSize: 7, fontWeight: 800, letterSpacing: 1.5,
+                  fontSize: 9, fontWeight: 800, letterSpacing: 1.5,
                   color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace",
                 }}>
                   {h}
@@ -561,28 +565,28 @@ export function Interrogatorio() {
                   marginLeft: bt.key ? -8 : 0,
                 }}>
                   <span style={{
-                    fontSize: 10, fontWeight: bt.key ? 700 : 400,
+                    fontSize: 12, fontWeight: bt.key ? 700 : 400,
                     color: bt.key ? "rgba(255,255,255,0.78)" : "rgba(255,255,255,0.42)",
                     fontFamily: "JetBrains Mono, monospace",
                   }}>
                     "{bt.term}"
                   </span>
                   <span style={{
-                    fontSize: 11, fontWeight: 800,
+                    fontSize: 13, fontWeight: 800,
                     color: bt.key ? "#6366f1" : "rgba(255,255,255,0.35)",
                     fontFamily: "JetBrains Mono, monospace",
                   }}>
                     {bt.volume.toLocaleString("pt-BR")}
                   </span>
                   <span style={{
-                    fontSize: 8, fontWeight: 700,
+                    fontSize: 10, fontWeight: 700,
                     color: bt.demand === "alta" ? "#ef4444" : "#f59e0b",
                     fontFamily: "JetBrains Mono, monospace", letterSpacing: 0.5,
                   }}>
                     {bt.demand.toUpperCase()}
                   </span>
                   <span style={{
-                    fontSize: 8, fontWeight: 800,
+                    fontSize: 10, fontWeight: 800,
                     color: supplyColor,
                     fontFamily: "JetBrains Mono, monospace", letterSpacing: 0.5,
                   }}>
@@ -590,9 +594,11 @@ export function Interrogatorio() {
                   </span>
                   {bt.anomaly ? (
                     <span style={{
-                      fontSize: 7, fontWeight: 900, letterSpacing: 0.8,
+                      fontSize: 9, fontWeight: 900, letterSpacing: 0.8,
                       color: "#ff9500",
                       background: "rgba(255,149,0,0.08)",
+                      backdropFilter: "blur(12px) saturate(150%)",
+                      WebkitBackdropFilter: "blur(12px) saturate(150%)",
                       border: "1px solid rgba(255,149,0,0.2)",
                       borderRadius: 3, padding: "2px 6px",
                       alignSelf: "center", display: "inline-block",
@@ -600,7 +606,7 @@ export function Interrogatorio() {
                       {bt.anomaly}
                     </span>
                   ) : (
-                    <span style={{ fontSize: 8, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>
+                    <span style={{ fontSize: 10, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>
                       —
                     </span>
                   )}
@@ -612,11 +618,13 @@ export function Interrogatorio() {
             <div style={{
               marginTop: 16, padding: "10px 14px",
               background: "rgba(99,102,241,0.08)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(99,102,241,0.2)",
               borderRadius: 6,
             }}>
               <span style={{
-                fontSize: 10, color: "rgba(99,102,241,0.9)",
+                fontSize: 12, color: "rgba(99,102,241,0.9)",
                 fontFamily: "JetBrains Mono, monospace", lineHeight: 1.6,
               }}>
                 ★ 3 intenções de alta demanda com oferta ZERO no mercado — nenhum concorrente mapeado cobre qualquer uma delas.
@@ -640,18 +648,18 @@ export function Interrogatorio() {
             <div style={{ marginBottom: 20 }}>
               <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 6 }}>
                 <span style={{
-                  fontSize: 8, fontWeight: 900, letterSpacing: 1.5,
+                  fontSize: 10, fontWeight: 900, letterSpacing: 1.5,
                   color: "rgba(245,158,11,0.9)", fontFamily: "JetBrains Mono, monospace",
                   border: "1px solid rgba(245,158,11,0.25)", borderRadius: 3, padding: "2px 7px",
                 }}>
                   NÍVEL 03
                 </span>
-                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
+                <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
                   DEEP CHANNEL SCAN · CANAIS NÃO MONITORADOS
                 </span>
               </div>
               <p style={{
-                fontSize: 11, color: "rgba(245,158,11,0.5)",
+                fontSize: 13, color: "rgba(245,158,11,0.5)",
                 fontFamily: "JetBrains Mono, monospace", letterSpacing: 0.3,
               }}>
                 Linguagem não filtrada pelo medo de parecer mal — onde o mercado fala o que realmente sente
@@ -676,14 +684,14 @@ export function Interrogatorio() {
                   }}>
                     <div className="flex items-center gap-2">
                       <span style={{
-                        fontSize: 7, fontWeight: 900, letterSpacing: 1.2,
+                        fontSize: 9, fontWeight: 900, letterSpacing: 1.2,
                         color: vb.color, fontFamily: "JetBrains Mono, monospace",
                         background: `${vb.color}15`, borderRadius: 2, padding: "1px 5px",
                       }}>
                         {vb.srcType}
                       </span>
                       <span style={{
-                        fontSize: 9, fontWeight: 600,
+                        fontSize: 11, fontWeight: 600,
                         color: "rgba(255,255,255,0.45)", fontFamily: "JetBrains Mono, monospace",
                       }}>
                         {vb.srcName}
@@ -691,13 +699,13 @@ export function Interrogatorio() {
                     </div>
                     <div className="flex items-center gap-3">
                       <span style={{
-                        fontSize: 8, color: "rgba(255,255,255,0.22)",
+                        fontSize: 10, color: "rgba(255,255,255,0.22)",
                         fontFamily: "JetBrains Mono, monospace",
                       }}>
                         {vb.srcSize}
                       </span>
                       <span style={{
-                        fontSize: 8, fontWeight: 600,
+                        fontSize: 10, fontWeight: 600,
                         color: vb.color, background: `${vb.color}12`,
                         borderRadius: 3, padding: "1px 6px",
                         fontFamily: "JetBrains Mono, monospace",
@@ -715,7 +723,7 @@ export function Interrogatorio() {
                       "{vb.quote}"
                     </p>
                     <span style={{
-                      fontSize: 8, color: "rgba(255,255,255,0.2)",
+                      fontSize: 10, color: "rgba(255,255,255,0.2)",
                       fontFamily: "JetBrains Mono, monospace",
                     }}>
                       {vb.date}
@@ -728,11 +736,13 @@ export function Interrogatorio() {
             <div style={{
               marginTop: 14, padding: "9px 12px",
               background: "rgba(255,255,255,0.02)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,255,255,0.05)",
               borderRadius: 5,
             }}>
               <span style={{
-                fontSize: 9, color: "rgba(255,255,255,0.28)",
+                fontSize: 11, color: "rgba(255,255,255,0.28)",
                 fontFamily: "JetBrains Mono, monospace", lineHeight: 1.6,
               }}>
                 NOTA: Linguagem privada revela dores mais profundas que reviews públicos.
@@ -750,6 +760,8 @@ export function Interrogatorio() {
               marginTop: 40,
               padding: "28px 28px",
               background: "rgba(255,149,0,0.04)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,149,0,0.2)",
               borderTop: "2px solid rgba(255,149,0,0.5)",
               borderRadius: "0 0 8px 8px",
@@ -758,13 +770,13 @@ export function Interrogatorio() {
             <div style={{ marginBottom: 20 }}>
               <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 6 }}>
                 <span style={{
-                  fontSize: 8, fontWeight: 900, letterSpacing: 1.5,
+                  fontSize: 10, fontWeight: 900, letterSpacing: 1.5,
                   color: "#ff9500", fontFamily: "JetBrains Mono, monospace",
                   border: "1px solid rgba(255,149,0,0.35)", borderRadius: 3, padding: "2px 7px",
                 }}>
                   NÍVEL 04
                 </span>
-                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
+                <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
                   CORE DIAGNOSIS · A NECESSIDADE REAL
                 </span>
               </div>
@@ -809,7 +821,7 @@ export function Interrogatorio() {
               ].map(m => (
                 <div key={m.label}>
                   <div style={{
-                    fontSize: 7, fontWeight: 700, letterSpacing: 1.5,
+                    fontSize: 9, fontWeight: 700, letterSpacing: 1.5,
                     color: "rgba(255,255,255,0.22)", marginBottom: 4,
                     fontFamily: "JetBrains Mono, monospace",
                   }}>
@@ -836,6 +848,8 @@ export function Interrogatorio() {
               marginTop: 40, marginBottom: 48,
               padding: "22px 20px",
               background: "rgba(255,255,255,0.015)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,255,255,0.06)",
               borderRadius: 8,
             }}
@@ -843,13 +857,13 @@ export function Interrogatorio() {
             <div style={{ marginBottom: 18 }}>
               <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 6 }}>
                 <span style={{
-                  fontSize: 8, fontWeight: 900, letterSpacing: 1.5,
+                  fontSize: 10, fontWeight: 900, letterSpacing: 1.5,
                   color: "rgba(239,68,68,0.9)", fontFamily: "JetBrains Mono, monospace",
                   border: "1px solid rgba(239,68,68,0.25)", borderRadius: 3, padding: "2px 7px",
                 }}>
                   NÍVEL 05
                 </span>
-                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
+                <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.35)" }}>
                   EMERGENT SIGNAL · O QUE ESTÁ CRESCENDO AGORA
                 </span>
                 <span className="mios-pulse-dot" style={{
@@ -857,7 +871,7 @@ export function Interrogatorio() {
                   background: "#ef4444", flexShrink: 0,
                 }} />
                 <span style={{
-                  fontSize: 8, color: "#ef4444",
+                  fontSize: 10, color: "#ef4444",
                   fontFamily: "JetBrains Mono, monospace",
                 }}>
                   DETECTADO HÁ 47 DIAS · ACELERANDO
@@ -875,7 +889,7 @@ export function Interrogatorio() {
                   Exigência de resultado documentado
                 </p>
                 <p style={{
-                  fontSize: 11, color: "rgba(255,255,255,0.38)", lineHeight: 1.65, marginBottom: 16,
+                  fontSize: 13, color: "rgba(255,255,255,0.38)", lineHeight: 1.65, marginBottom: 16,
                 }}>
                   Consumidores passaram a exigir foto antes/depois padronizada e garantia por escrito
                   antes de fechar. Mudança de expectativa detectada antes de virar reclamação massiva.
@@ -889,14 +903,14 @@ export function Interrogatorio() {
                   ].map(m => (
                     <div key={m.label} className="flex items-center gap-3">
                       <span style={{
-                        fontSize: 7, fontWeight: 700, letterSpacing: 1.5,
+                        fontSize: 9, fontWeight: 700, letterSpacing: 1.5,
                         color: "rgba(255,255,255,0.2)", width: 140, flexShrink: 0,
                         fontFamily: "JetBrains Mono, monospace",
                       }}>
                         {m.label}
                       </span>
                       <span style={{
-                        fontSize: 11, fontWeight: 800,
+                        fontSize: 13, fontWeight: 800,
                         color: m.color, fontFamily: "JetBrains Mono, monospace",
                       }}>
                         {m.value}
@@ -909,7 +923,7 @@ export function Interrogatorio() {
               {/* Right: sparkline */}
               <div style={{ flexShrink: 0 }}>
                 <div style={{
-                  fontSize: 7, fontWeight: 700, letterSpacing: 1.5,
+                  fontSize: 9, fontWeight: 700, letterSpacing: 1.5,
                   color: "rgba(255,255,255,0.2)", marginBottom: 10,
                   fontFamily: "JetBrains Mono, monospace",
                 }}>
@@ -918,7 +932,7 @@ export function Interrogatorio() {
                 <Sparkline data={EMERGENT_POINTS} />
                 <div style={{
                   display: "flex", justifyContent: "space-between", marginTop: 6,
-                  fontSize: 7, color: "rgba(255,255,255,0.18)",
+                  fontSize: 9, color: "rgba(255,255,255,0.18)",
                   fontFamily: "JetBrains Mono, monospace",
                 }}>
                   <span>Jan 26</span>
@@ -934,11 +948,13 @@ export function Interrogatorio() {
             <div style={{
               marginTop: 22, padding: "12px 16px",
               background: "rgba(239,68,68,0.06)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(239,68,68,0.15)",
               borderRadius: 6,
             }}>
               <p style={{
-                fontSize: 11, color: "rgba(255,255,255,0.55)", lineHeight: 1.65,
+                fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.65,
                 fontFamily: "JetBrains Mono, monospace",
               }}>
                 <span style={{ color: "#ef4444", fontWeight: 800 }}>⚠ JANELA ABERTA:</span>{" "}
@@ -960,6 +976,8 @@ export function Interrogatorio() {
         <div style={{
           padding: "18px 22px",
           background: "rgba(16,185,129,0.04)",
+          backdropFilter: "blur(12px) saturate(150%)",
+          WebkitBackdropFilter: "blur(12px) saturate(150%)",
           border: "1px solid rgba(16,185,129,0.15)",
           borderTop: "2px solid rgba(16,185,129,0.5)",
           borderRadius: "0 0 0 0",
@@ -970,14 +988,14 @@ export function Interrogatorio() {
           <div>
             <div className="flex items-center gap-3 flex-wrap" style={{ marginBottom: 6 }}>
               <span style={{
-                fontSize: 8, fontWeight: 900, letterSpacing: 1.5,
+                fontSize: 10, fontWeight: 900, letterSpacing: 1.5,
                 color: "#10b981", fontFamily: "JetBrains Mono, monospace",
                 border: "1px solid rgba(16,185,129,0.3)", borderRadius: 3, padding: "2px 7px",
               }}>
                 ARSENAL DE ATAQUE
               </span>
               <span style={{
-                fontSize: 8, fontWeight: 800, letterSpacing: 0.8,
+                fontSize: 10, fontWeight: 800, letterSpacing: 0.8,
                 color: "rgba(255,255,255,0.5)", fontFamily: "JetBrains Mono, monospace",
               }}>
                 5 ARMAS PRONTAS · 0 CONCORRENTES UTILIZANDO
@@ -994,16 +1012,18 @@ export function Interrogatorio() {
           <div style={{
             padding: "8px 14px",
             background: "rgba(16,185,129,0.08)",
+            backdropFilter: "blur(12px) saturate(150%)",
+            WebkitBackdropFilter: "blur(12px) saturate(150%)",
             border: "1px solid rgba(16,185,129,0.2)",
             borderRadius: 6, textAlign: "right",
           }}>
-            <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.25)", marginBottom: 3, fontFamily: "JetBrains Mono, monospace" }}>
+            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.25)", marginBottom: 3, fontFamily: "JetBrains Mono, monospace" }}>
               JANELA MEDIA
             </div>
             <div style={{ fontSize: 16, fontWeight: 900, color: "#10b981", fontFamily: "JetBrains Mono, monospace" }}>
               3-8 meses
             </div>
-            <div style={{ fontSize: 8, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>
+            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>
               antes de saturacao
             </div>
           </div>
@@ -1029,21 +1049,21 @@ export function Interrogatorio() {
                   {/* Top row */}
                   <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
                     <span style={{
-                      fontSize: 8, fontWeight: 700, letterSpacing: 0.5,
+                      fontSize: 10, fontWeight: 700, letterSpacing: 0.5,
                       color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace",
                       flexShrink: 0, paddingTop: 2,
                     }}>
                       {w.id}
                     </span>
                     <span style={{
-                      fontSize: 12, fontWeight: 800,
+                      fontSize: 13, fontWeight: 800,
                       color: "rgba(255,255,255,0.85)", flex: 1, minWidth: 160,
                     }}>
                       {w.name}
                     </span>
                     <div className="flex items-center gap-2" style={{ flexShrink: 0, flexWrap: "wrap" }}>
                       <span style={{
-                        fontSize: 7, fontWeight: 900, letterSpacing: 1,
+                        fontSize: 9, fontWeight: 900, letterSpacing: 1,
                         color: accentColor,
                         background: `${accentColor}15`,
                         borderRadius: 3, padding: "2px 6px",
@@ -1052,9 +1072,11 @@ export function Interrogatorio() {
                         {isCrit ? "CRITICO" : "ALTO"}
                       </span>
                       <span style={{
-                        fontSize: 7, fontWeight: 900, letterSpacing: 1,
+                        fontSize: 9, fontWeight: 900, letterSpacing: 1,
                         color: "#10b981",
                         background: "rgba(16,185,129,0.1)",
+                        backdropFilter: "blur(12px) saturate(150%)",
+                        WebkitBackdropFilter: "blur(12px) saturate(150%)",
                         border: "1px solid rgba(16,185,129,0.25)",
                         borderRadius: 3, padding: "2px 6px",
                         fontFamily: "JetBrains Mono, monospace",
@@ -1062,7 +1084,7 @@ export function Interrogatorio() {
                         DEPLOY READY
                       </span>
                       <span style={{
-                        fontSize: 7, fontWeight: 600,
+                        fontSize: 9, fontWeight: 600,
                         color: "rgba(255,149,0,0.7)",
                         background: "rgba(255,149,0,0.07)",
                         borderRadius: 3, padding: "2px 6px",
@@ -1075,7 +1097,7 @@ export function Interrogatorio() {
 
                   {/* Logic */}
                   <p style={{
-                    fontSize: 11, color: "rgba(255,255,255,0.50)",
+                    fontSize: 13, color: "rgba(255,255,255,0.50)",
                     lineHeight: 1.65, marginBottom: 12,
                   }}>
                     {w.logic}
@@ -1090,14 +1112,14 @@ export function Interrogatorio() {
                     ].map(m => (
                       <div key={m.label}>
                         <div style={{
-                          fontSize: 7, fontWeight: 700, letterSpacing: 1.2,
+                          fontSize: 9, fontWeight: 700, letterSpacing: 1.2,
                           color: "rgba(255,255,255,0.2)", marginBottom: 2,
                           fontFamily: "JetBrains Mono, monospace",
                         }}>
                           {m.label}
                         </div>
                         <div style={{
-                          fontSize: 10, fontWeight: 700,
+                          fontSize: 12, fontWeight: 700,
                           color: m.color, fontFamily: "JetBrains Mono, monospace",
                         }}>
                           {m.value}
@@ -1121,7 +1143,7 @@ export function Interrogatorio() {
         }}>
           <div style={{ marginBottom: 16 }}>
             <span style={{
-              fontSize: 8, fontWeight: 900, letterSpacing: 2,
+              fontSize: 10, fontWeight: 900, letterSpacing: 2,
               color: "rgba(255,255,255,0.28)",
               fontFamily: "JetBrains Mono, monospace",
             }}>
@@ -1138,13 +1160,13 @@ export function Interrogatorio() {
             ].map((c, i) => (
               <div key={i} className="flex items-start gap-3">
                 <span style={{
-                  fontSize: 8, fontWeight: 800, letterSpacing: 0.5,
+                  fontSize: 10, fontWeight: 800, letterSpacing: 0.5,
                   color: c.color, flexShrink: 0, paddingTop: 1,
                   fontFamily: "JetBrains Mono, monospace", minWidth: 120,
                 }}>
                   {c.combo}
                 </span>
-                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.38)", lineHeight: 1.55 }}>
+                <span style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", lineHeight: 1.55 }}>
                   {c.result}
                 </span>
               </div>
@@ -1158,7 +1180,7 @@ export function Interrogatorio() {
             flexWrap: "wrap", gap: 12,
           }}>
             <p style={{
-              fontSize: 12, fontWeight: 600,
+              fontSize: 13, fontWeight: 600,
               color: "rgba(255,255,255,0.55)", lineHeight: 1.6,
               maxWidth: 520,
             }}>
@@ -1168,13 +1190,13 @@ export function Interrogatorio() {
               para um concorrente replicar integralmente.
             </p>
             <div style={{ textAlign: "right" }}>
-              <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.2)", marginBottom: 4, fontFamily: "JetBrains Mono, monospace" }}>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.2)", marginBottom: 4, fontFamily: "JetBrains Mono, monospace" }}>
                 DISTANCIA COMPETITIVA TOTAL
               </div>
               <div style={{ fontSize: 28, fontWeight: 900, color: "#10b981", fontFamily: "JetBrains Mono, monospace", letterSpacing: -1 }}>
                 18-24
               </div>
-              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>
                 meses de vantagem
               </div>
             </div>
