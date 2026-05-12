@@ -55,7 +55,7 @@ export function CrossInsights() {
     >
       <div
         style={{
-          fontSize: 8,
+          fontSize: 10,
           fontWeight: 700,
           letterSpacing: "2px",
           color: "rgba(255,255,255,0.30)",
@@ -80,7 +80,7 @@ export function CrossInsights() {
           >
             <div
               style={{
-                fontSize: 8,
+                fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: "1.8px",
                 color: `rgba(${i.color},0.85)`,
