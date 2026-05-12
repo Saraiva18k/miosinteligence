@@ -9,13 +9,15 @@ function Diagnostico() {
       className="verdict-hero mios-float relative"
       style={{
         background: "rgba(255,149,0,0.05)",
+        backdropFilter: "blur(12px) saturate(150%)",
+        WebkitBackdropFilter: "blur(12px) saturate(150%)",
         border: "1px solid rgba(255,149,0,0.15)",
         padding: "20px 24px",
       }}
     >
       <div
         style={{
-          fontSize: 9,
+          fontSize: 11,
           fontWeight: 700,
           letterSpacing: "2.5px",
           color: "rgba(255,149,0,0.55)",
@@ -37,12 +39,12 @@ function Diagnostico() {
       </h2>
       <p
         className="mt-2"
-        style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.8, maxWidth: 720 }}
+        style={{ fontSize: 13, color: "rgba(255,255,255,0.35)", lineHeight: 1.8, maxWidth: 720 }}
       >
         O mercado de estética SP nas redes sociais é um território de alta frequência e baixa
         inteligência. Todo mundo posta. Ninguém converte com intenção. Essa é a sua vantagem.
       </p>
-      <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2" style={{ fontSize: 11 }}>
+      <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2" style={{ fontSize: 13 }}>
         <span style={{ color: "rgba(255,255,255,0.25)" }}>
           <strong style={{ color: "#ff9500", fontWeight: 700 }}>0</strong> canais YouTube ativos
         </span>
@@ -89,7 +91,7 @@ function WhatWorks() {
       <div
         className="mb-3"
         style={{
-          fontSize: 9,
+          fontSize: 11,
           fontWeight: 700,
           letterSpacing: "2px",
           color: "rgba(255,255,255,0.3)",
@@ -111,7 +113,7 @@ function WhatWorks() {
               <Check size={10} strokeWidth={2.6} style={{ color: "rgba(16,185,129,0.7)" }} />
               <span
                 style={{
-                  fontSize: 8,
+                  fontSize: 10,
                   fontWeight: 700,
                   letterSpacing: "1.5px",
                   color: "rgba(16,185,129,0.6)",
@@ -120,7 +122,7 @@ function WhatWorks() {
                 O QUE FUNCIONA PARA ELES
               </span>
             </div>
-            <div className="mt-1.5" style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
+            <div className="mt-1.5" style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
               {c.works}
             </div>
             <div
@@ -140,7 +142,7 @@ function WhatWorks() {
                 <ArrowUp size={10} strokeWidth={2.6} style={{ color: "rgba(255,149,0,0.7)" }} />
                 <span
                   style={{
-                    fontSize: 8,
+                    fontSize: 10,
                     fontWeight: 700,
                     letterSpacing: "1.5px",
                     color: "rgba(255,149,0,0.7)",
@@ -151,7 +153,7 @@ function WhatWorks() {
               </div>
               <div
                 className="mt-1.5"
-                style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}
+                style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}
               >
                 {c.surpass}
               </div>
@@ -220,6 +222,8 @@ function Armadilhas() {
     <div
       style={{
         background: "rgba(239,68,68,0.04)",
+        backdropFilter: "blur(12px) saturate(150%)",
+        WebkitBackdropFilter: "blur(12px) saturate(150%)",
         border: "1px solid rgba(239,68,68,0.12)",
         borderRadius: 10,
         padding: "16px 20px",
@@ -227,7 +231,7 @@ function Armadilhas() {
     >
       <div
         style={{
-          fontSize: 9,
+          fontSize: 11,
           fontWeight: 700,
           letterSpacing: "2px",
           color: "rgba(239,68,68,0.55)",
@@ -253,7 +257,7 @@ function Armadilhas() {
             <div className="min-w-0">
               <div
                 style={{
-                  fontSize: 11,
+                  fontSize: 13,
                   fontWeight: 700,
                   color: "rgba(255,255,255,0.7)",
                   letterSpacing: "0.3px",
@@ -421,6 +425,8 @@ function PlanoAcao() {
     <div
       style={{
         background: "rgba(255,255,255,0.02)",
+        backdropFilter: "blur(12px) saturate(150%)",
+        WebkitBackdropFilter: "blur(12px) saturate(150%)",
         border: "1px solid rgba(255,255,255,0.05)",
         borderRadius: 10,
         padding: 20,
@@ -429,7 +435,7 @@ function PlanoAcao() {
       <div
         className="mb-3"
         style={{
-          fontSize: 9,
+          fontSize: 11,
           fontWeight: 700,
           letterSpacing: "2px",
           color: "rgba(255,255,255,0.3)",
@@ -451,7 +457,7 @@ function PlanoAcao() {
               style={{
                 padding: "5px 12px",
                 borderRadius: 16,
-                fontSize: 10,
+                fontSize: 12,
                 fontWeight: 600,
                 background: isActive ? "rgba(255,149,0,0.1)" : "transparent",
                 border: `1px solid ${isActive ? "rgba(255,149,0,0.25)" : "rgba(255,255,255,0.06)"}`,
@@ -467,10 +473,10 @@ function PlanoAcao() {
 
       <div className="space-y-4">
         <PlanSection label="FREQUÊNCIA RECOMENDADA">
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>
+          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>
             {plan.frequency}
           </div>
-          <div className="mt-1" style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>
+          <div className="mt-1" style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
             {plan.frequencyDetail}
           </div>
         </PlanSection>
@@ -478,14 +484,14 @@ function PlanoAcao() {
         <PlanSection label="MELHORES HORÁRIOS (BASEADO NOS DADOS)">
           <div className="space-y-1.5 mt-1">
             {plan.schedule.map((s, i) => (
-              <div key={i} className="flex items-baseline gap-2" style={{ fontSize: 11 }}>
+              <div key={i} className="flex items-baseline gap-2" style={{ fontSize: 13 }}>
                 {s.ok ? (
                   <Check size={11} strokeWidth={3} style={{ color: "rgba(16,185,129,0.8)" }} />
                 ) : (
                   <X size={11} strokeWidth={3} style={{ color: "rgba(239,68,68,0.7)" }} />
                 )}
                 <span style={{ color: "rgba(255,255,255,0.65)", fontWeight: 600 }}>{s.time}</span>
-                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>← {s.reason}</span>
+                <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>← {s.reason}</span>
               </div>
             ))}
           </div>
@@ -502,15 +508,17 @@ function PlanoAcao() {
                     height: 18,
                     borderRadius: 9,
                     background: "rgba(255,149,0,0.1)",
+                    backdropFilter: "blur(12px) saturate(150%)",
+                    WebkitBackdropFilter: "blur(12px) saturate(150%)",
                     border: "1px solid rgba(255,149,0,0.25)",
-                    fontSize: 10,
+                    fontSize: 12,
                     fontWeight: 700,
                     color: "rgba(255,149,0,0.85)",
                   }}
                 >
                   {i + 1}
                 </span>
-                <span style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
+                <span style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
                   {t}
                 </span>
               </li>
@@ -521,6 +529,8 @@ function PlanoAcao() {
         <div
           style={{
             background: "rgba(255,149,0,0.04)",
+            backdropFilter: "blur(12px) saturate(150%)",
+            WebkitBackdropFilter: "blur(12px) saturate(150%)",
             border: "1px solid rgba(255,149,0,0.1)",
             borderRadius: 8,
             padding: 14,
@@ -528,7 +538,7 @@ function PlanoAcao() {
         >
           <div
             style={{
-              fontSize: 8,
+              fontSize: 10,
               fontWeight: 700,
               letterSpacing: "1.5px",
               color: "rgba(255,149,0,0.65)",
@@ -536,7 +546,7 @@ function PlanoAcao() {
           >
             PRIMEIRO POST RECOMENDADO
           </div>
-          <div className="mt-2 space-y-1" style={{ fontSize: 11, color: "rgba(255,255,255,0.6)" }}>
+          <div className="mt-2 space-y-1" style={{ fontSize: 13, color: "rgba(255,255,255,0.6)" }}>
             <div>
               <span style={{ color: "rgba(255,255,255,0.35)" }}>Formato:</span>{" "}
               <span style={{ fontWeight: 600 }}>{plan.firstPost.format}</span>
@@ -562,7 +572,7 @@ function PlanoAcao() {
                 <div style={{ fontSize: 18, fontWeight: 800, color: "var(--accent)" }}>{m.value}</div>
                 <div
                   className="mt-0.5"
-                  style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", lineHeight: 1.4 }}
+                  style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", lineHeight: 1.4 }}
                 >
                   {m.label}
                 </div>
@@ -580,7 +590,7 @@ function PlanSection({ label, children }: { label: string; children: React.React
     <div>
       <div
         style={{
-          fontSize: 8,
+          fontSize: 10,
           fontWeight: 700,
           letterSpacing: "1.5px",
           color: "rgba(255,255,255,0.25)",
@@ -645,7 +655,7 @@ function Radar() {
       <div
         className="mb-3"
         style={{
-          fontSize: 9,
+          fontSize: 11,
           fontWeight: 700,
           letterSpacing: "2px",
           color: "rgba(255,255,255,0.3)",
@@ -656,6 +666,8 @@ function Radar() {
       <div
         style={{
           background: "rgba(255,255,255,0.02)",
+          backdropFilter: "blur(12px) saturate(150%)",
+          WebkitBackdropFilter: "blur(12px) saturate(150%)",
           border: "1px solid rgba(255,255,255,0.05)",
           borderRadius: 10,
           overflow: "hidden",
@@ -673,7 +685,7 @@ function Radar() {
               <div className="flex items-center gap-2">
                 <span
                   style={{
-                    fontSize: 12,
+                    fontSize: 13,
                     color: r.urgency === "relevant" ? "rgba(255,255,255,0.25)" : `rgba(${r.color},1)`,
                   }}
                 >
@@ -681,7 +693,7 @@ function Radar() {
                 </span>
                 <span
                   style={{
-                    fontSize: 8,
+                    fontSize: 10,
                     fontWeight: 700,
                     letterSpacing: "2px",
                     color: r.urgency === "relevant" ? "rgba(255,255,255,0.45)" : `rgba(${r.color},0.85)`,
@@ -696,10 +708,12 @@ function Radar() {
                   style={{
                     padding: "2px 7px",
                     borderRadius: 4,
-                    fontSize: 8,
+                    fontSize: 10,
                     fontWeight: 700,
                     letterSpacing: "1px",
                     background: "rgba(255,149,0,0.08)",
+                    backdropFilter: "blur(12px) saturate(150%)",
+                    WebkitBackdropFilter: "blur(12px) saturate(150%)",
                     border: "1px solid rgba(255,149,0,0.2)",
                     color: "rgba(255,149,0,0.85)",
                   }}
@@ -710,21 +724,23 @@ function Radar() {
             </div>
             <div
               className="mt-2"
-              style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.78)" }}
+              style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.78)" }}
             >
               {r.title}
             </div>
-            <div className="mt-1" style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", lineHeight: 1.65 }}>
+            <div className="mt-1" style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.65 }}>
               {r.data.map((d, di) => (
                 <div key={di}>{d}</div>
               ))}
             </div>
-            <div className="mt-2 flex items-center gap-2" style={{ fontSize: 9 }}>
+            <div className="mt-2 flex items-center gap-2" style={{ fontSize: 11 }}>
               <span
                 style={{
                   padding: "2px 7px",
                   borderRadius: 4,
                   background: "rgba(16,185,129,0.08)",
+                  backdropFilter: "blur(12px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
                   border: "1px solid rgba(16,185,129,0.2)",
                   color: "rgba(16,185,129,0.8)",
                   fontWeight: 600,
@@ -737,6 +753,8 @@ function Radar() {
                   padding: "2px 7px",
                   borderRadius: 4,
                   background: "rgba(255,149,0,0.08)",
+                  backdropFilter: "blur(12px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
                   border: "1px solid rgba(255,149,0,0.2)",
                   color: "rgba(255,149,0,0.85)",
                   fontWeight: 600,
@@ -779,7 +797,7 @@ function Score() {
       <div
         className="mb-3"
         style={{
-          fontSize: 9,
+          fontSize: 11,
           fontWeight: 700,
           letterSpacing: "2px",
           color: "rgba(255,255,255,0.3)",
@@ -790,6 +808,8 @@ function Score() {
       <div
         style={{
           background: "rgba(255,255,255,0.02)",
+          backdropFilter: "blur(12px) saturate(150%)",
+          WebkitBackdropFilter: "blur(12px) saturate(150%)",
           border: "1px solid rgba(255,255,255,0.05)",
           borderRadius: 10,
           padding: "8px 18px",
@@ -810,7 +830,7 @@ function Score() {
               <div style={{ width: 160, flexShrink: 0 }}>
                 <div
                   style={{
-                    fontSize: 11,
+                    fontSize: 13,
                     fontWeight: 500,
                     color: s.isUser ? "rgba(255,149,0,0.75)" : "rgba(255,255,255,0.4)",
                   }}
@@ -854,7 +874,7 @@ function Score() {
               <div
                 style={{
                   width: 220,
-                  fontSize: 9,
+                  fontSize: 11,
                   color: s.isUser ? "rgba(255,149,0,0.5)" : "rgba(255,255,255,0.25)",
                   fontStyle: s.isUser ? "italic" : "normal",
                 }}
