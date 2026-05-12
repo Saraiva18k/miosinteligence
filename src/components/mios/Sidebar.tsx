@@ -1,6 +1,21 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Zap, ArrowUpRight, ChevronLeft, ChevronRight, Sparkles, Brain } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Sparkles, Brain } from "lucide-react";
+
+const MENTOR_KF = `
+@keyframes mentor-shimmer {
+  0%   { transform: translateX(-130%); }
+  100% { transform: translateX(230%); }
+}
+@keyframes mentor-glow {
+  0%,100% { box-shadow: 0 0 8px rgba(255,149,0,0.08); }
+  50%      { box-shadow: 0 0 22px rgba(255,149,0,0.22), 0 0 40px rgba(255,149,0,0.06); }
+}
+@keyframes online-ripple {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+`;
 
 type ModuleStatus = "done" | "active" | "pending";
 
@@ -58,10 +73,10 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
   const doneCount = activeIdx >= 0 ? activeIdx : 0;
   const progress = Math.round((doneCount / total) * 100);
 
-  const mentor = { label: "Mentor IA", icon: Brain };
-
   if (collapsed) {
     return (
+      <>
+      <style>{MENTOR_KF}</style>
       <aside
         className="flex flex-col items-center shrink-0"
         style={{
@@ -139,21 +154,24 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
             width: 36,
             height: 36,
             borderRadius: 10,
-            background:
-              "linear-gradient(135deg, rgba(255,149,0,0.18), rgba(255,149,0,0.06))",
+            background: "linear-gradient(135deg, rgba(255,149,0,0.2), rgba(255,149,0,0.07))",
             border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.7)" : "rgba(255,149,0,0.4)"}`,
             color: "rgba(255,149,0,0.95)",
             textDecoration: "none",
+            animation: "mentor-glow 3s ease infinite",
           }}
           aria-label="Mentor IA"
         >
           <Brain size={16} strokeWidth={2.2} />
         </Link>
       </aside>
+      </>
     );
   }
 
   return (
+    <>
+    <style>{MENTOR_KF}</style>
     <aside
       className="flex flex-col shrink-0"
       style={{
@@ -286,32 +304,75 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
         ))}
       </div>
 
-      <div
-        style={{
-          padding: "10px 12px",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
-        }}
-      >
+      <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
         <Link
           to="/mentor"
-          className="w-full flex items-center gap-2 transition-all"
           style={{
-            padding: "8px 10px",
-            borderRadius: 8,
-            background: activeModule === "Mentor IA"
-              ? "linear-gradient(135deg, rgba(255,149,0,0.18), rgba(255,149,0,0.08))"
-              : "linear-gradient(135deg, rgba(255,149,0,0.12), rgba(255,149,0,0.04))",
-            border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.55)" : "rgba(255,149,0,0.35)"}`,
-            color: "rgba(255,149,0,0.95)",
+            display: "block",
+            borderRadius: 10,
             textDecoration: "none",
-            display: "flex",
+            overflow: "hidden",
+            position: "relative",
+            animation: "mentor-glow 3s ease infinite",
+            background: activeModule === "Mentor IA"
+              ? "linear-gradient(135deg, rgba(255,149,0,0.16) 0%, rgba(255,80,0,0.08) 100%)"
+              : "linear-gradient(135deg, rgba(255,149,0,0.1) 0%, rgba(255,80,0,0.04) 100%)",
+            border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.65)" : "rgba(255,149,0,0.32)"}`,
           }}
         >
-          <Brain size={13} strokeWidth={2.2} />
-          <span style={{ fontSize: 11, fontWeight: 600 }}>{mentor.label}</span>
-          <ArrowUpRight size={11} className="ml-auto" />
+          {/* Shimmer sweep */}
+          <div style={{
+            position: "absolute",
+            top: 0, bottom: 0,
+            width: "55%",
+            background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.08), transparent)",
+            animation: "mentor-shimmer 4s ease infinite",
+            pointerEvents: "none",
+          }} />
+
+          <div style={{ padding: "10px 12px", position: "relative" }}>
+            {/* Row 1: Online + label + score */}
+            <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 6 }}>
+              {/* Pulsing online dot with ripple */}
+              <div style={{ position: "relative", width: 8, height: 8, flexShrink: 0 }}>
+                <div style={{
+                  position: "absolute", inset: 0,
+                  borderRadius: "50%",
+                  background: "rgba(16,185,129,0.9)",
+                }} />
+                <div style={{
+                  position: "absolute", inset: 0,
+                  borderRadius: "50%",
+                  background: "rgba(16,185,129,0.5)",
+                  animation: "online-ripple 2s ease-out infinite",
+                }} />
+              </div>
+              <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.2, color: "#ff9500" }}>
+                MENTOR IA
+              </span>
+              <div style={{ marginLeft: "auto", display: "flex", alignItems: "baseline", gap: 1 }}>
+                <span style={{ fontSize: 14, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>87</span>
+                <span style={{ fontSize: 7, color: "rgba(255,149,0,0.45)", fontFamily: "JetBrains Mono, monospace" }}>/100</span>
+              </div>
+            </div>
+
+            {/* Row 2: Description */}
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.38)", marginBottom: 8, lineHeight: 1.35 }}>
+              O Sócio · 14 módulos integrados
+            </div>
+
+            {/* Row 3: CTA */}
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <Brain size={9} style={{ color: "rgba(255,149,0,0.6)", flexShrink: 0 }} />
+              <span style={{ fontSize: 8, color: "rgba(255,149,0,0.65)", letterSpacing: 0.6 }}>
+                Janela ativa · Conversar
+              </span>
+              <ArrowUpRight size={9} style={{ color: "rgba(255,149,0,0.55)", marginLeft: "auto" }} />
+            </div>
+          </div>
         </Link>
       </div>
     </aside>
+    </>
   );
 }
