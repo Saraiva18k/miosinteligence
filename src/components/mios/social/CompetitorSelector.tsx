@@ -162,7 +162,9 @@ export function CompetitorSelector({
         style={{
           padding: "4px 10px",
           borderRadius: 6,
-          background: compareMode ? "rgba(255,149,0,0.08)" : "transparent",
+          background: compareMode ? "rgba(255,149,0,0.08)" : "rgba(255,255,255,0.01)",
+          backdropFilter: "blur(12px) saturate(160%)",
+          WebkitBackdropFilter: "blur(12px) saturate(160%)",
           border: `1px solid ${compareMode ? "rgba(255,149,0,0.3)" : "rgba(255,255,255,0.08)"}`,
           fontSize: 11,
           fontWeight: 600,
