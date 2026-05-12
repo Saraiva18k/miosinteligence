@@ -9,8 +9,8 @@ function Diagnostico() {
       className="verdict-hero mios-float relative"
       style={{
         background: "rgba(255,149,0,0.05)",
-        backdropFilter: "blur(12px) saturate(150%)",
-        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: "1px solid rgba(255,149,0,0.15)",
         padding: "20px 24px",
       }}
@@ -105,6 +105,8 @@ function WhatWorks() {
             key={i}
             style={{
               background: "rgba(255,255,255,0.025)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               borderRadius: 10,
               padding: 16,
             }}
@@ -222,8 +224,8 @@ function Armadilhas() {
     <div
       style={{
         background: "rgba(239,68,68,0.04)",
-        backdropFilter: "blur(12px) saturate(150%)",
-        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: "1px solid rgba(239,68,68,0.12)",
         borderRadius: 10,
         padding: "16px 20px",
@@ -425,8 +427,8 @@ function PlanoAcao() {
     <div
       style={{
         background: "rgba(255,255,255,0.02)",
-        backdropFilter: "blur(12px) saturate(150%)",
-        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: "1px solid rgba(255,255,255,0.05)",
         borderRadius: 10,
         padding: 20,
@@ -508,8 +510,8 @@ function PlanoAcao() {
                     height: 18,
                     borderRadius: 9,
                     background: "rgba(255,149,0,0.1)",
-                    backdropFilter: "blur(12px) saturate(150%)",
-                    WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                    backdropFilter: "blur(16px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(16px) saturate(180%)",
                     border: "1px solid rgba(255,149,0,0.25)",
                     fontSize: 12,
                     fontWeight: 700,
@@ -529,8 +531,8 @@ function PlanoAcao() {
         <div
           style={{
             background: "rgba(255,149,0,0.04)",
-            backdropFilter: "blur(12px) saturate(150%)",
-            WebkitBackdropFilter: "blur(12px) saturate(150%)",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
             border: "1px solid rgba(255,149,0,0.1)",
             borderRadius: 8,
             padding: 14,
@@ -666,8 +668,8 @@ function Radar() {
       <div
         style={{
           background: "rgba(255,255,255,0.02)",
-          backdropFilter: "blur(12px) saturate(150%)",
-          WebkitBackdropFilter: "blur(12px) saturate(150%)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.05)",
           borderRadius: 10,
           overflow: "hidden",
@@ -712,8 +714,8 @@ function Radar() {
                     fontWeight: 700,
                     letterSpacing: "1px",
                     background: "rgba(255,149,0,0.08)",
-                    backdropFilter: "blur(12px) saturate(150%)",
-                    WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                    backdropFilter: "blur(16px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(16px) saturate(180%)",
                     border: "1px solid rgba(255,149,0,0.2)",
                     color: "rgba(255,149,0,0.85)",
                   }}
@@ -739,8 +741,8 @@ function Radar() {
                   padding: "2px 7px",
                   borderRadius: 4,
                   background: "rgba(16,185,129,0.08)",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(16,185,129,0.2)",
                   color: "rgba(16,185,129,0.8)",
                   fontWeight: 600,
@@ -753,8 +755,8 @@ function Radar() {
                   padding: "2px 7px",
                   borderRadius: 4,
                   background: "rgba(255,149,0,0.08)",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(255,149,0,0.2)",
                   color: "rgba(255,149,0,0.85)",
                   fontWeight: 600,
@@ -808,8 +810,8 @@ function Score() {
       <div
         style={{
           background: "rgba(255,255,255,0.02)",
-          backdropFilter: "blur(12px) saturate(150%)",
-          WebkitBackdropFilter: "blur(12px) saturate(150%)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.05)",
           borderRadius: 10,
           padding: "8px 18px",
