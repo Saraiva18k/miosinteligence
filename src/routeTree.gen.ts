@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MentorRouteImport } from './routes/mentor'
 import { Route as SocialIntelligenceRouteImport } from './routes/social-intelligence'
 import { Route as TendenciasRouteImport } from './routes/tendencias'
 import { Route as SentimentoRouteImport } from './routes/sentimento'
@@ -24,6 +25,7 @@ import { Route as BusinessPlanRouteImport } from './routes/business-plan'
 import { Route as DoresRouteImport } from './routes/dores'
 import { Route as IndexRouteImport } from './routes/index'
 
+const MentorRoute           = MentorRouteImport.update({           id: '/mentor',            path: '/mentor',            getParentRoute: () => rootRouteImport } as any)
 const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({ id: '/social-intelligence', path: '/social-intelligence', getParentRoute: () => rootRouteImport } as any)
 const TendenciasRoute         = TendenciasRouteImport.update({         id: '/tendencias',          path: '/tendencias',          getParentRoute: () => rootRouteImport } as any)
 const SentimentoRoute         = SentimentoRouteImport.update({         id: '/sentimento',          path: '/sentimento',          getParentRoute: () => rootRouteImport } as any)
@@ -41,6 +43,7 @@ const IndexRoute              = IndexRouteImport.update({              id: '/', 
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mentor': typeof MentorRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
   '/tendencias': typeof TendenciasRoute
   '/sentimento': typeof SentimentoRoute
@@ -57,6 +60,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mentor': typeof MentorRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
   '/tendencias': typeof TendenciasRoute
   '/sentimento': typeof SentimentoRoute
@@ -74,6 +78,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/mentor': typeof MentorRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
   '/tendencias': typeof TendenciasRoute
   '/sentimento': typeof SentimentoRoute
@@ -90,14 +95,15 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  fullPaths: '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
-  id: '__root__' | '/' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  to: '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  id: '__root__' | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MentorRoute: typeof MentorRoute
   SocialIntelligenceRoute: typeof SocialIntelligenceRoute
   TendenciasRoute: typeof TendenciasRoute
   SentimentoRoute: typeof SentimentoRoute
@@ -115,6 +121,7 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/mentor':             { id: '/mentor';             path: '/mentor';             fullPath: '/mentor';             preLoaderRoute: typeof MentorRouteImport;             parentRoute: typeof rootRouteImport }
     '/social-intelligence': { id: '/social-intelligence'; path: '/social-intelligence'; fullPath: '/social-intelligence'; preLoaderRoute: typeof SocialIntelligenceRouteImport; parentRoute: typeof rootRouteImport }
     '/tendencias':          { id: '/tendencias';          path: '/tendencias';          fullPath: '/tendencias';          preLoaderRoute: typeof TendenciasRouteImport;          parentRoute: typeof rootRouteImport }
     '/sentimento':          { id: '/sentimento';          path: '/sentimento';          fullPath: '/sentimento';          preLoaderRoute: typeof SentimentoRouteImport;          parentRoute: typeof rootRouteImport }
@@ -133,7 +140,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute, SocialIntelligenceRoute, TendenciasRoute, SentimentoRoute,
+  IndexRoute, MentorRoute, SocialIntelligenceRoute, TendenciasRoute, SentimentoRoute,
   CanaisRoute, PrecificacaoRoute, DnaRoute, InovacaoRoute, ComplianceRoute,
   ConcorrentesRoute, AudienciaRoute, InvestimentoRoute, BusinessPlanRoute, DoresRoute,
 }
