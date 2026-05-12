@@ -62,7 +62,7 @@ export function WorkspaceSwitcher() {
             height: 18,
             borderRadius: 5,
             background: "linear-gradient(135deg, rgba(255,149,0,0.9), rgba(255,106,0,0.9))",
-            fontSize: 9,
+            fontSize: 11,
             fontWeight: 800,
             color: "var(--bg-base)",
             letterSpacing: 0,
@@ -74,7 +74,7 @@ export function WorkspaceSwitcher() {
         <span className="flex items-baseline gap-1.5 min-w-0">
           <span
             style={{
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 600,
               color: "rgba(255,255,255,0.78)",
               whiteSpace: "nowrap",
@@ -82,7 +82,7 @@ export function WorkspaceSwitcher() {
           >
             {active.name}
           </span>
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.22)" }}>
+          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.22)" }}>
             · {active.location}
           </span>
         </span>
@@ -127,7 +127,7 @@ export function WorkspaceSwitcher() {
               placeholder="Buscar workspace…"
               className="flex-1 bg-transparent outline-none"
               style={{
-                fontSize: 11,
+                fontSize: 13,
                 color: "rgba(255,255,255,0.85)",
               }}
             />
@@ -136,7 +136,7 @@ export function WorkspaceSwitcher() {
           <div
             className="px-2 py-2"
             style={{
-              fontSize: 7,
+              fontSize: 9,
               fontWeight: 700,
               letterSpacing: "2.5px",
               color: "rgba(255,255,255,0.22)",
@@ -178,7 +178,7 @@ export function WorkspaceSwitcher() {
                       background: isActive
                         ? "linear-gradient(135deg, rgba(255,149,0,0.9), rgba(255,106,0,0.9))"
                         : "rgba(255,255,255,0.05)",
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: 800,
                       color: isActive ? "var(--bg-base)" : "rgba(255,255,255,0.5)",
                     }}
@@ -188,7 +188,7 @@ export function WorkspaceSwitcher() {
                   <div className="flex-1 text-left min-w-0">
                     <div
                       style={{
-                        fontSize: 11,
+                        fontSize: 13,
                         fontWeight: 600,
                         color: isActive
                           ? "rgba(255,149,0,0.9)"
@@ -199,7 +199,7 @@ export function WorkspaceSwitcher() {
                     </div>
                     <div
                       style={{
-                        fontSize: 9,
+                        fontSize: 11,
                         color: "rgba(255,255,255,0.3)",
                         marginTop: 1,
                       }}
@@ -220,7 +220,7 @@ export function WorkspaceSwitcher() {
             style={{
               padding: "10px 14px",
               borderTop: "1px solid rgba(255,255,255,0.05)",
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 600,
               color: "rgba(255,149,0,0.85)",
               borderBottomLeftRadius: 12,
