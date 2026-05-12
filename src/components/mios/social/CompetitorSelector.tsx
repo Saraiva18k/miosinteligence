@@ -25,7 +25,7 @@ export function CompetitorSelector({
       <div className="flex items-center gap-2 flex-wrap">
         <span
           style={{
-            fontSize: 10,
+            fontSize: 12,
             fontWeight: 600,
             letterSpacing: "1.5px",
             textTransform: "uppercase",
@@ -43,8 +43,10 @@ export function CompetitorSelector({
               padding: "5px 12px",
               borderRadius: 20,
               background: "rgba(255,255,255,0.04)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,255,255,0.08)",
-              fontSize: 11,
+              fontSize: 13,
               fontWeight: 500,
               color: "rgba(255,255,255,0.65)",
             }}
@@ -76,7 +78,7 @@ export function CompetitorSelector({
                   style={{
                     padding: "7px 10px",
                     borderRadius: 6,
-                    fontSize: 11,
+                    fontSize: 13,
                     color: c === selected ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.55)",
                     background: c === selected ? "rgba(255,149,0,0.08)" : "transparent",
                   }}
@@ -118,8 +120,10 @@ export function CompetitorSelector({
               padding: "5px 12px",
               borderRadius: 20,
               background: "rgba(255,149,0,0.06)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,149,0,0.25)",
-              fontSize: 11,
+              fontSize: 13,
               color: "rgba(255,255,255,0.85)",
               outline: "none",
               minWidth: 180,
@@ -134,7 +138,7 @@ export function CompetitorSelector({
               borderRadius: 20,
               background: "transparent",
               border: "1px dashed rgba(255,255,255,0.12)",
-              fontSize: 10,
+              fontSize: 12,
               color: "rgba(255,255,255,0.4)",
             }}
             onMouseEnter={(e) => {
@@ -160,7 +164,7 @@ export function CompetitorSelector({
           borderRadius: 6,
           background: compareMode ? "rgba(255,149,0,0.08)" : "transparent",
           border: `1px solid ${compareMode ? "rgba(255,149,0,0.3)" : "rgba(255,255,255,0.08)"}`,
-          fontSize: 9,
+          fontSize: 11,
           fontWeight: 600,
           color: compareMode ? "rgba(255,149,0,0.85)" : "rgba(255,255,255,0.4)",
           letterSpacing: "0.5px",
