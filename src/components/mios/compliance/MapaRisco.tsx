@@ -293,8 +293,8 @@ export function MapaRisco() {
       <div style={{ padding: "16px 24px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
-            <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>COMPLIANCE — O MAPA DE RISCO</span>
+            <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
+            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>COMPLIANCE — O MAPA DE RISCO</span>
           </div>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[
@@ -304,7 +304,7 @@ export function MapaRisco() {
               { label: "DOMÍNIOS",       value: String(DOMAINS.length), color: "rgba(255,255,255,0.55)" },
             ].map(m => (
               <div key={m.label} style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
+                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
                 <div style={{ fontSize: 16, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
               </div>
             ))}
@@ -322,7 +322,7 @@ export function MapaRisco() {
           <div style={{ padding: "20px 20px 16px", display: "flex", gap: 20, alignItems: "center", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
             <ScoreRing score={overallScore} />
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>PERFIL DE RISCO</div>
+              <div style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>PERFIL DE RISCO</div>
               {[
                 { sev: "CRÍTICO" as Severity, count: RISKS.filter(r=>r.severity==="CRÍTICO").length },
                 { sev: "ALTO"    as Severity, count: RISKS.filter(r=>r.severity==="ALTO").length    },
@@ -331,8 +331,8 @@ export function MapaRisco() {
               ].map(({ sev, count }) => (
                 <div key={sev} className="flex items-center gap-2" style={{ marginBottom: 5 }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: SEVERITY_STYLE[sev].color, flexShrink: 0 }} />
-                  <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace", flex: 1 }}>{sev}</span>
-                  <span style={{ fontSize: 11, fontWeight: 900, color: SEVERITY_STYLE[sev].color, fontFamily: "JetBrains Mono, monospace" }}>{count}</span>
+                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace", flex: 1 }}>{sev}</span>
+                  <span style={{ fontSize: 13, fontWeight: 900, color: SEVERITY_STYLE[sev].color, fontFamily: "JetBrains Mono, monospace" }}>{count}</span>
                 </div>
               ))}
             </div>
@@ -340,11 +340,11 @@ export function MapaRisco() {
 
           {/* Matrix */}
           <div style={{ padding: "16px 16px 12px" }}>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>MATRIZ PROBABILIDADE × IMPACTO</div>
+            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>MATRIZ PROBABILIDADE × IMPACTO</div>
             <div style={{ aspectRatio: "300/260" }}>
               <RiskMatrix selected={selected} onSelect={setSelected} />
             </div>
-            <div style={{ fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginTop: 6, textAlign: "center" }}>Clique em um nó para ver o detalhe</div>
+            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginTop: 6, textAlign: "center" }}>Clique em um nó para ver o detalhe</div>
           </div>
         </div>
 
@@ -353,20 +353,20 @@ export function MapaRisco() {
           {/* Severity badge + ID */}
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
             <span style={{
-              fontSize: 8, fontWeight: 900, letterSpacing: 2, padding: "4px 10px",
+              fontSize: 10, fontWeight: 900, letterSpacing: 2, padding: "4px 10px",
               background: ss.bg, color: ss.color, border: `1px solid ${ss.border}`,
               borderRadius: 4, fontFamily: "JetBrains Mono, monospace",
             }}>{activeRisk.severity}</span>
-            <span style={{ fontSize: 8, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>{activeRisk.id} · {activeRisk.domain}</span>
-            <span style={{ marginLeft: "auto", fontSize: 8, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>{activeRisk.law}</span>
+            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>{activeRisk.id} · {activeRisk.domain}</span>
+            <span style={{ marginLeft: "auto", fontSize: 10, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>{activeRisk.law}</span>
           </div>
 
           <div style={{ fontSize: 18, fontWeight: 900, color: "rgba(255,255,255,0.88)", lineHeight: 1.3 }}>{activeRisk.title}</div>
 
           {/* Risk description */}
           <div style={{ padding: "14px 16px", background: ss.bg, border: `1px solid ${ss.border}`, borderLeft: `3px solid ${ss.color}`, borderRadius: "0 6px 6px 0" }}>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: ss.color, fontFamily: "JetBrains Mono, monospace", marginBottom: 6 }}>EXPOSIÇÃO</div>
-            <p style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", lineHeight: 1.7 }}>{activeRisk.description}</p>
+            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: ss.color, fontFamily: "JetBrains Mono, monospace", marginBottom: 6 }}>EXPOSIÇÃO</div>
+            <p style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.7 }}>{activeRisk.description}</p>
           </div>
 
           {/* Scores */}
@@ -377,9 +377,9 @@ export function MapaRisco() {
               { label: "SCORE RISCO",   value: activeRisk.prob * activeRisk.impact, max: 25, color: ss.color },
             ].map(m => (
               <div key={m.label} style={{ padding: "10px 12px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 5 }}>
-                <div style={{ fontSize: 7, letterSpacing: 1, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{m.label}</div>
+                <div style={{ fontSize: 9, letterSpacing: 1, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{m.label}</div>
                 <div style={{ fontSize: 22, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>
-                  {m.value}<span style={{ fontSize: 10, opacity: 0.5 }}>/{m.max}</span>
+                  {m.value}<span style={{ fontSize: 12, opacity: 0.5 }}>/{m.max}</span>
                 </div>
                 <div style={{ marginTop: 6, height: 3, background: "rgba(255,255,255,0.05)", borderRadius: 2, overflow: "hidden" }}>
                   <div style={{ height: "100%", width: `${(m.value / m.max) * 100}%`, background: m.color, borderRadius: 2, animation: "bar-grow 0.4s ease both", transformOrigin: "left" }} />
@@ -391,23 +391,23 @@ export function MapaRisco() {
           {/* Action */}
           <div style={{ padding: "16px 18px", background: "rgba(255,149,0,0.05)", border: "1px solid rgba(255,149,0,0.18)", borderTop: "2px solid rgba(255,149,0,0.4)", borderRadius: "0 0 8px 8px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-              <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace" }}>AÇÃO RECOMENDADA</div>
+              <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace" }}>AÇÃO RECOMENDADA</div>
               {activeRisk.deadline && (
-                <span style={{ fontSize: 8, fontWeight: 700, color: activeRisk.deadline === "Imediato" ? "#ef4444" : "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>
+                <span style={{ fontSize: 10, fontWeight: 700, color: activeRisk.deadline === "Imediato" ? "#ef4444" : "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>
                   ⏱ {activeRisk.deadline}
                 </span>
               )}
             </div>
-            <p style={{ fontSize: 11, color: "rgba(255,255,255,0.62)", lineHeight: 1.7 }}>{activeRisk.action}</p>
+            <p style={{ fontSize: 13, color: "rgba(255,255,255,0.62)", lineHeight: 1.7 }}>{activeRisk.action}</p>
           </div>
 
           {/* Risk list quick-nav */}
           <div>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>TODOS OS RISCOS</div>
+            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>TODOS OS RISCOS</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
               {RISKS.map(r => (
                 <button key={r.id} onClick={() => setSelected(r.id)} style={{
-                  padding: "4px 8px", fontSize: 8, fontWeight: 700,
+                  padding: "4px 8px", fontSize: 10, fontWeight: 700,
                   background: selected === r.id ? SEVERITY_STYLE[r.severity].bg : "rgba(255,255,255,0.02)",
                   color: selected === r.id ? SEVERITY_STYLE[r.severity].color : "rgba(255,255,255,0.25)",
                   border: `1px solid ${selected === r.id ? SEVERITY_STYLE[r.severity].border : "rgba(255,255,255,0.06)"}`,
@@ -425,7 +425,7 @@ export function MapaRisco() {
 
         {/* Domains */}
         <div style={{ padding: "20px 24px 48px", borderRight: "1px solid rgba(255,255,255,0.05)" }}>
-          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>SAÚDE POR DOMÍNIO</div>
+          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>SAÚDE POR DOMÍNIO</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
             {DOMAINS.map((d, i) => {
               const scoreColor = d.score < 40 ? "#ef4444" : d.score < 60 ? "#f97316" : d.score < 75 ? "#ff9500" : "rgba(16,185,129,0.85)";
@@ -433,6 +433,8 @@ export function MapaRisco() {
                 <div key={d.key} style={{
                   padding: "14px 16px",
                   background: "rgba(255,255,255,0.018)",
+                  backdropFilter: "blur(12px) saturate(150%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
                   border: `1px solid rgba(255,255,255,0.06)`,
                   borderTop: `2px solid ${scoreColor}`,
                   borderRadius: "0 0 8px 8px",
@@ -442,14 +444,14 @@ export function MapaRisco() {
                     <span style={{ fontSize: 14 }}>{d.icon}</span>
                     <span style={{ fontSize: 20, fontWeight: 900, color: scoreColor, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>{d.score}%</span>
                   </div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.65)", marginBottom: 8 }}>{d.label}</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.65)", marginBottom: 8 }}>{d.label}</div>
                   <div style={{ height: 3, background: "rgba(255,255,255,0.06)", borderRadius: 2, marginBottom: 8, overflow: "hidden" }}>
                     <div style={{ height: "100%", width: `${d.score}%`, background: scoreColor, borderRadius: 2, animation: `bar-grow 0.5s ease ${0.2 + i * 0.07}s both`, transformOrigin: "left" }} />
                   </div>
                   <div style={{ display: "flex", gap: 8 }}>
-                    <span style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{d.risks} riscos</span>
+                    <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{d.risks} riscos</span>
                     {d.critical > 0 && (
-                      <span style={{ fontSize: 8, fontWeight: 700, color: "#ef4444", fontFamily: "JetBrains Mono, monospace" }}>· {d.critical} crítico</span>
+                      <span style={{ fontSize: 10, fontWeight: 700, color: "#ef4444", fontFamily: "JetBrains Mono, monospace" }}>· {d.critical} crítico</span>
                     )}
                   </div>
                 </div>
@@ -460,7 +462,7 @@ export function MapaRisco() {
 
         {/* Deadlines */}
         <div style={{ padding: "20px 20px 48px" }}>
-          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>PRAZOS REGULATÓRIOS</div>
+          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>PRAZOS REGULATÓRIOS</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {DEADLINES.sort((a, b) => a.days - b.days).map((dl, i) => (
               <div key={i} style={{
@@ -472,20 +474,20 @@ export function MapaRisco() {
                 animation: dl.urgent ? "deadline-pulse 2s infinite" : "none",
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-                  <span style={{ fontSize: 7, fontWeight: 700, color: dl.urgent ? "#ef4444" : "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>
+                  <span style={{ fontSize: 9, fontWeight: 700, color: dl.urgent ? "#ef4444" : "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>
                     {dl.days === 0 ? "IMEDIATO" : `${dl.days} dias`}
                   </span>
-                  <span style={{ fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>{dl.domain}</span>
+                  <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>{dl.domain}</span>
                 </div>
-                <div style={{ fontSize: 10, fontWeight: 600, color: dl.urgent ? "rgba(255,255,255,0.75)" : "rgba(255,255,255,0.5)", lineHeight: 1.4 }}>{dl.title}</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: dl.urgent ? "rgba(255,255,255,0.75)" : "rgba(255,255,255,0.5)", lineHeight: 1.4 }}>{dl.title}</div>
               </div>
             ))}
           </div>
 
           {/* Compliance CTA */}
           <div style={{ marginTop: 16, padding: "16px 16px", background: "rgba(255,149,0,0.04)", border: "1px solid rgba(255,149,0,0.15)", borderRadius: 8 }}>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 6 }}>LEITURA DO MAPA</div>
-            <p style={{ fontSize: 10, color: "rgba(255,255,255,0.45)", lineHeight: 1.65 }}>
+            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 6 }}>LEITURA DO MAPA</div>
+            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", lineHeight: 1.65 }}>
               Score geral de <span style={{ color: "#f97316", fontWeight: 700 }}>48%</span> indica exposição significativa. LGPD e Sanitária são as frentes mais urgentes — juntas concentram todos os riscos críticos. Resolução em 30 dias pode elevar o score para acima de 70%.
             </p>
           </div>
