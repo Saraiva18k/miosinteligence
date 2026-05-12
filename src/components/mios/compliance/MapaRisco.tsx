@@ -433,8 +433,8 @@ export function MapaRisco() {
                 <div key={d.key} style={{
                   padding: "14px 16px",
                   background: "rgba(255,255,255,0.018)",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: `1px solid rgba(255,255,255,0.06)`,
                   borderTop: `2px solid ${scoreColor}`,
                   borderRadius: "0 0 8px 8px",
