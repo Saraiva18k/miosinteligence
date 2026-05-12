@@ -170,14 +170,14 @@ function MetricPill({ label, value, sub, color }: {
       background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)",
       borderRadius: 10, padding: "14px 16px", flex: 1, minWidth: 120,
     }}>
-      <div style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.3)", letterSpacing: 0.8, marginBottom: 6 }}>
+      <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.3)", letterSpacing: 0.8, marginBottom: 6 }}>
         {label}
       </div>
       <div style={{ fontSize: 18, fontWeight: 800, fontFamily: "JetBrains Mono, monospace",
         color: color ?? "rgba(255,255,255,0.9)", marginBottom: 2 }}>
         {value}
       </div>
-      {sub && <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>{sub}</div>}
+      {sub && <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>{sub}</div>}
     </div>
   );
 }
@@ -226,7 +226,7 @@ function MonthTable({ scenario }: { scenario: Scenario }) {
             <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
               {["Mes","Clientes","Receita","Custos","Lucro","Status"].map(h => (
                 <th key={h} style={{ padding: "8px 12px", textAlign: h === "Mes" ? "left" : "right",
-                  fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.25)", letterSpacing: 0.6 }}>
+                  fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.25)", letterSpacing: 0.6 }}>
                   {h}
                 </th>
               ))}
@@ -240,15 +240,15 @@ function MonthTable({ scenario }: { scenario: Scenario }) {
                   borderBottom: "1px solid rgba(255,255,255,0.03)",
                   background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)",
                 }}>
-                  <td style={{ padding: "8px 12px", fontSize: 10, fontWeight: 600,
+                  <td style={{ padding: "8px 12px", fontSize: 12, fontWeight: 600,
                     color: "rgba(255,255,255,0.6)", fontFamily: "JetBrains Mono, monospace" }}>{m.month}</td>
-                  <td style={{ padding: "8px 12px", textAlign: "right", fontSize: 10,
+                  <td style={{ padding: "8px 12px", textAlign: "right", fontSize: 12,
                     color: "rgba(255,255,255,0.5)", fontFamily: "JetBrains Mono, monospace" }}>{m.clientes}</td>
-                  <td style={{ padding: "8px 12px", textAlign: "right", fontSize: 10,
+                  <td style={{ padding: "8px 12px", textAlign: "right", fontSize: 12,
                     color: "rgba(255,255,255,0.7)", fontFamily: "JetBrains Mono, monospace" }}>{fmtK(m.receita)}</td>
-                  <td style={{ padding: "8px 12px", textAlign: "right", fontSize: 10,
+                  <td style={{ padding: "8px 12px", textAlign: "right", fontSize: 12,
                     color: "rgba(239,68,68,0.7)", fontFamily: "JetBrains Mono, monospace" }}>{fmtK(m.custos)}</td>
-                  <td style={{ padding: "8px 12px", textAlign: "right", fontSize: 11, fontWeight: 700,
+                  <td style={{ padding: "8px 12px", textAlign: "right", fontSize: 13, fontWeight: 700,
                     fontFamily: "JetBrains Mono, monospace",
                     color: isPositive ? "#10b981" : "#ef4444" }}>
                     {isPositive ? "+" : ""}{fmtK(m.lucro)}
@@ -266,7 +266,7 @@ function MonthTable({ scenario }: { scenario: Scenario }) {
       </div>
       <button onClick={() => setExpanded(v => !v)}
         className="w-full flex items-center justify-center gap-2 py-2 mt-1"
-        style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.3)", fontSize: 10 }}>
+        style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.3)", fontSize: 12 }}>
         {expanded ? <><ChevronUp size={12} /> Ver menos</> : <><ChevronDown size={12} /> Ver 12 meses completos</>}
       </button>
     </div>
@@ -281,19 +281,19 @@ function InvestmentSection({ investimentoInicial }: { investimentoInicial: numbe
       <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="flex items-center gap-2">
           <DollarSign size={13} style={{ color: "var(--accent)", opacity: 0.7 }} />
-          <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.7)", letterSpacing: 0.8 }}>
+          <span style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.7)", letterSpacing: 0.8 }}>
             PLANO DE INVESTIMENTO
           </span>
         </div>
         <div className="flex items-center gap-4">
           <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginBottom: 1 }}>MINIMO ESSENCIAL</div>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginBottom: 1 }}>MINIMO ESSENCIAL</div>
             <div style={{ fontSize: 13, fontWeight: 800, color: "#10b981", fontFamily: "JetBrains Mono, monospace" }}>
               {fmt(totalEssential)}
             </div>
           </div>
           <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginBottom: 1 }}>INVESTIMENTO INFORMADO</div>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginBottom: 1 }}>INVESTIMENTO INFORMADO</div>
             <div style={{ fontSize: 13, fontWeight: 800, color: "var(--accent)", fontFamily: "JetBrains Mono, monospace" }}>
               {fmt(investimentoInicial)}
             </div>
@@ -306,10 +306,10 @@ function InvestmentSection({ investimentoInicial }: { investimentoInicial: numbe
           return (
             <div key={cat.category}>
               <div className="flex items-center justify-between mb-3">
-                <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: 0.5 }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.5)", letterSpacing: 0.5 }}>
                   {cat.category}
                 </span>
-                <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.4)", fontFamily: "JetBrains Mono, monospace" }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.4)", fontFamily: "JetBrains Mono, monospace" }}>
                   {fmt(catTotal)}
                 </span>
               </div>
@@ -320,17 +320,17 @@ function InvestmentSection({ investimentoInicial }: { investimentoInicial: numbe
                     <div className="flex items-center gap-2 min-w-0">
                       <div style={{ width: 5, height: 5, borderRadius: "50%", flexShrink: 0, background: item.essential ? "#10b981" : "rgba(255,255,255,0.2)" }} />
                       <div style={{ minWidth: 0 }}>
-                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.65)" }}>{item.name}</span>
-                        {item.note && <span style={{ fontSize: 9, color: "rgba(255,149,0,0.6)", marginLeft: 6 }}>· {item.note}</span>}
+                        <span style={{ fontSize: 13, color: "rgba(255,255,255,0.65)" }}>{item.name}</span>
+                        {item.note && <span style={{ fontSize: 11, color: "rgba(255,149,0,0.6)", marginLeft: 6 }}>· {item.note}</span>}
                       </div>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {!item.essential && (
-                        <span style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.04)", borderRadius: 4, padding: "1px 5px" }}>
+                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.04)", borderRadius: 4, padding: "1px 5px" }}>
                           opcional
                         </span>
                       )}
-                      <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.8)", fontFamily: "JetBrains Mono, monospace" }}>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.8)", fontFamily: "JetBrains Mono, monospace" }}>
                         {fmt(item.value)}
                       </span>
                     </div>
@@ -357,9 +357,9 @@ function InputField({
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-        <span style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.5)" }}>{label}</span>
+        <span style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.5)" }}>{label}</span>
         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          {prefix && <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>{prefix}</span>}
+          {prefix && <span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>{prefix}</span>}
           <input
             type="number"
             value={value}
@@ -369,13 +369,15 @@ function InputField({
             onChange={e => onChange(Number(e.target.value))}
             style={{
               width: 80, background: "rgba(255,255,255,0.05)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,255,255,0.1)", borderRadius: 6,
-              color: "var(--accent)", fontSize: 12, fontWeight: 700,
+              color: "var(--accent)", fontSize: 13, fontWeight: 700,
               fontFamily: "JetBrains Mono, monospace",
               padding: "3px 6px", textAlign: "right", outline: "none",
             }}
           />
-          {suffix && <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>{suffix}</span>}
+          {suffix && <span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>{suffix}</span>}
         </div>
       </div>
       {/* Slider */}
@@ -404,7 +406,7 @@ function InputField({
           pointerEvents: "none",
         }} />
       </div>
-      {hint && <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)" }}>{hint}</span>}
+      {hint && <span style={{ fontSize: 11, color: "rgba(255,255,255,0.2)" }}>{hint}</span>}
     </div>
   );
 }
@@ -441,12 +443,12 @@ export function LiveSheet() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <TrendingUp size={10} style={{ color: "var(--accent)" }} />
-            <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,149,0,0.8)", letterSpacing: 1.2 }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,149,0,0.8)", letterSpacing: 1.2 }}>
               ANALISE FINANCEIRA · 3 CENARIOS
             </span>
             {isCustomized && (
               <span style={{
-                fontSize: 8, fontWeight: 700, color: "var(--accent)",
+                fontSize: 10, fontWeight: 700, color: "var(--accent)",
                 background: "rgba(255,149,0,0.12)", border: "1px solid rgba(255,149,0,0.3)",
                 borderRadius: 4, padding: "1px 6px", letterSpacing: 0.5,
               }}>
@@ -457,7 +459,7 @@ export function LiveSheet() {
           <h1 style={{ fontSize: 20, fontWeight: 800, color: "rgba(255,255,255,0.92)", letterSpacing: -0.5, marginBottom: 4 }}>
             A Planilha Viva
           </h1>
-          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
             Projecoes financeiras dinamicas · Custo fixo {fmt(inputs.custoFixo)}/mes · Investimento inicial {fmt(inputs.investimentoInicial)}
           </p>
         </div>
@@ -472,7 +474,7 @@ export function LiveSheet() {
               background: panelOpen ? "rgba(255,149,0,0.12)" : "rgba(255,255,255,0.04)",
               outline: panelOpen ? "1px solid rgba(255,149,0,0.3)" : "1px solid rgba(255,255,255,0.08)",
               color: panelOpen ? "var(--accent)" : "rgba(255,255,255,0.5)",
-              fontSize: 11, fontWeight: 600, transition: "all 0.2s",
+              fontSize: 13, fontWeight: 600, transition: "all 0.2s",
             }}
           >
             <SlidersHorizontal size={12} />
@@ -489,7 +491,7 @@ export function LiveSheet() {
                 padding: "7px 14px", borderRadius: 8, cursor: "pointer", border: "none",
                 background: isActive ? sc.bg : "rgba(255,255,255,0.03)",
                 outline: isActive ? `1px solid ${sc.color}40` : "1px solid rgba(255,255,255,0.06)",
-                fontSize: 11, fontWeight: 700,
+                fontSize: 13, fontWeight: 700,
                 color: isActive ? sc.color : "rgba(255,255,255,0.35)",
                 transition: "all 0.2s",
               }}>
@@ -504,16 +506,18 @@ export function LiveSheet() {
       {panelOpen && (
         <div style={{
           background: "rgba(255,149,0,0.03)",
+          backdropFilter: "blur(12px) saturate(150%)",
+          WebkitBackdropFilter: "blur(12px) saturate(150%)",
           border: "1px solid rgba(255,149,0,0.15)",
           borderRadius: 12, padding: "20px 24px",
           animation: "fadeIn 0.2s ease",
         }}>
           <div className="flex items-center justify-between mb-5">
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.7)", marginBottom: 2 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.7)", marginBottom: 2 }}>
                 CONFIGURE SUA REALIDADE
               </div>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>
                 Os 3 cenarios se recalculam automaticamente com os seus numeros
               </div>
             </div>
@@ -522,7 +526,7 @@ export function LiveSheet() {
                 display: "flex", alignItems: "center", gap: 5,
                 padding: "5px 11px", borderRadius: 7, cursor: "pointer", border: "none",
                 background: "rgba(255,255,255,0.04)", outline: "1px solid rgba(255,255,255,0.08)",
-                color: "rgba(255,255,255,0.4)", fontSize: 10, fontWeight: 600,
+                color: "rgba(255,255,255,0.4)", fontSize: 12, fontWeight: 600,
               }}>
                 <RotateCcw size={10} /> Restaurar padrao
               </button>
@@ -574,14 +578,14 @@ export function LiveSheet() {
                   flex: 1, background: sc.bg, border: `1px solid ${sc.color}20`,
                   borderRadius: 8, padding: "10px 12px",
                 }}>
-                  <div style={{ fontSize: 9, fontWeight: 700, color: sc.color, marginBottom: 4 }}>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: sc.color, marginBottom: 4 }}>
                     {sc.label.toUpperCase()}
                   </div>
                   <div style={{ fontSize: 13, fontWeight: 800, color: "rgba(255,255,255,0.85)",
                     fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>
                     {fmtK(l12)}
                   </div>
-                  <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
                     lucro 12m · ROI {sc.roi12m}% · breakeven mes {sc.breakevenMes}
                   </div>
                 </div>
@@ -608,10 +612,10 @@ export function LiveSheet() {
       <div style={{ background: "var(--card)", border: `1px solid ${s.color}20`, borderRadius: 12, padding: "20px 24px" }}>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.6)", marginBottom: 2 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.6)", marginBottom: 2 }}>
               EVOLUCAO DO LUCRO — 12 MESES
             </div>
-            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>
               Crescimento mensal de {s.crescimentoMensal}% na base de clientes
             </div>
           </div>
@@ -619,7 +623,7 @@ export function LiveSheet() {
             {s.roi12m > 0
               ? <TrendingUp size={14} style={{ color: "#10b981" }} />
               : <TrendingDown size={14} style={{ color: "#ef4444" }} />}
-            <span style={{ fontSize: 11, fontWeight: 700, color: s.roi12m > 0 ? "#10b981" : "#ef4444" }}>
+            <span style={{ fontSize: 13, fontWeight: 700, color: s.roi12m > 0 ? "#10b981" : "#ef4444" }}>
               ROI {s.roi12m}%
             </span>
           </div>
@@ -628,11 +632,11 @@ export function LiveSheet() {
         <div className="flex items-center gap-4 mt-3">
           <div className="flex items-center gap-1.5">
             <div style={{ width: 20, height: 2, background: s.color, borderRadius: 1 }} />
-            <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>Lucro mensal</span>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>Lucro mensal</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div style={{ width: 20, height: 1, borderTop: "1px dashed rgba(255,255,255,0.15)" }} />
-            <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)" }}>Ponto de equilibrio</span>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>Ponto de equilibrio</span>
           </div>
         </div>
       </div>
@@ -642,7 +646,7 @@ export function LiveSheet() {
         <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
           <div className="flex items-center gap-2">
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: s.color, boxShadow: `0 0 8px ${s.color}` }} />
-            <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.7)", letterSpacing: 0.8 }}>
+            <span style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.7)", letterSpacing: 0.8 }}>
               PLANILHA MENSAL — CENARIO {s.label.toUpperCase()}
             </span>
           </div>
@@ -660,7 +664,7 @@ export function LiveSheet() {
         <div className="flex items-start gap-3">
           <AlertTriangle size={14} style={{ color: "#f59e0b", marginTop: 1, flexShrink: 0 }} />
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#f59e0b", marginBottom: 6 }}>ALERTAS FINANCEIROS</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#f59e0b", marginBottom: 6 }}>ALERTAS FINANCEIROS</div>
             <div className="space-y-2">
               {[
                 "Reserva de 3 meses de custo fixo e obrigatoria antes de qualquer lancamento",
@@ -669,7 +673,7 @@ export function LiveSheet() {
               ].map((alert, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#f59e0b", marginTop: 4, flexShrink: 0 }} />
-                  <span style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{alert}</span>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{alert}</span>
                 </div>
               ))}
             </div>
