@@ -505,8 +505,8 @@ function AnaliseRiscos() {
 
       <div style={{
         background: "rgba(255,255,255,0.02)",
-        backdropFilter: "blur(12px) saturate(150%)",
-        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: "1px solid rgba(255,255,255,0.06)",
         borderRadius: 10, overflow: "hidden", marginBottom: 16,
       }}>
@@ -552,8 +552,8 @@ function AnaliseRiscos() {
 
       <div style={{
         background: "rgba(16,185,129,0.05)",
-        backdropFilter: "blur(12px) saturate(150%)",
-        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: "1px solid rgba(16,185,129,0.15)",
         borderRadius: 8, padding: "12px 16px",
       }}>
@@ -719,6 +719,8 @@ export function Manuscript() {
               <div style={{
                 display: "flex", alignItems: "center", gap: 6,
                 background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.2)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 borderRadius: 7, padding: "6px 12px",
               }}>
                 <BarChart3 size={11} style={{ color: "#10b981" }} />
