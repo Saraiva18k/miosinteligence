@@ -74,6 +74,8 @@ export function CrossInsights() {
             style={{
               background: "rgba(255,255,255,0.025)",
               borderLeft: `2px solid rgba(${i.color},0.65)`,
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               borderRadius: 8,
               padding: "11px 13px",
             }}
