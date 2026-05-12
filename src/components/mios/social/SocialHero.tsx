@@ -13,6 +13,8 @@ export function SocialHero() {
       className="verdict-hero mios-float relative"
       style={{
         background: "rgba(255,149,0,0.05)",
+        backdropFilter: "blur(12px) saturate(150%)",
+        WebkitBackdropFilter: "blur(12px) saturate(150%)",
         border: "1px solid rgba(255,149,0,0.15)",
         padding: "20px 24px",
       }}
@@ -21,7 +23,7 @@ export function SocialHero() {
         <div className="min-w-0">
           <div
             style={{
-              fontSize: 10,
+              fontSize: 12,
               fontWeight: 700,
               letterSpacing: "3px",
               color: "rgba(255,149,0,0.5)",
@@ -43,7 +45,7 @@ export function SocialHero() {
           </h1>
           <div
             className="mt-2 flex items-center gap-2"
-            style={{ fontSize: 11, color: "rgba(255,255,255,0.25)" }}
+            style={{ fontSize: 13, color: "rgba(255,255,255,0.25)" }}
           >
             <span>4 plataformas</span>
             <span>·</span>
@@ -55,12 +57,14 @@ export function SocialHero() {
         <span
           className="shrink-0 inline-flex items-center"
           style={{
-            fontSize: 8,
+            fontSize: 10,
             fontWeight: 700,
             letterSpacing: "2px",
             padding: "4px 8px",
             borderRadius: 6,
             background: "rgba(16,185,129,0.10)",
+            backdropFilter: "blur(12px) saturate(150%)",
+            WebkitBackdropFilter: "blur(12px) saturate(150%)",
             border: "1px solid rgba(16,185,129,0.30)",
             color: "rgba(16,185,129,0.85)",
           }}
@@ -82,7 +86,7 @@ export function SocialHero() {
                 border: `1px solid rgba(${p.color},0.4)`,
                 background: `rgba(${p.color},0.08)`,
                 color: `rgba(${p.color},0.9)`,
-                fontSize: 9,
+                fontSize: 11,
                 fontWeight: 700,
                 letterSpacing: "1.5px",
               }}
