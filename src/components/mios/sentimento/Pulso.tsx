@@ -223,7 +223,7 @@ export function Pulso() {
       <style>{KEYFRAMES}</style>
 
       {/* ── SCAN HEADER ──────────────────────────────────────────────────── */}
-      <div style={{ padding: "16px 24px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)", flexShrink: 0 }}>
+      <div style={{ padding: "16px 24px 14px", background: "rgba(255,255,255,0.012)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", borderBottom: "1px solid rgba(255,255,255,0.05)", flexShrink: 0 }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
@@ -247,7 +247,7 @@ export function Pulso() {
       </div>
 
       {/* ── EKG STRIP ────────────────────────────────────────────────────── */}
-      <div style={{ position: "relative", overflow: "hidden", borderBottom: "1px solid rgba(255,149,0,0.08)", background: "rgba(255,149,0,0.02)", padding: "10px 24px", flexShrink: 0 }}>
+      <div style={{ position: "relative", overflow: "hidden", borderBottom: "1px solid rgba(255,149,0,0.08)", background: "rgba(255,149,0,0.025)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", padding: "10px 24px", flexShrink: 0 }}>
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to right, #04060f, transparent)", zIndex: 2, pointerEvents: "none" }} />
         <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to left, #04060f, transparent)", zIndex: 2, pointerEvents: "none" }} />
         <svg width="100%" height="64" viewBox="0 0 600 64" preserveAspectRatio="none" fill="none">
@@ -276,7 +276,7 @@ export function Pulso() {
       <div style={{ display: "flex", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
 
         {/* Canal index */}
-        <div style={{ width: 214, flexShrink: 0, borderRight: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ width: 214, flexShrink: 0, background: "rgba(255,255,255,0.01)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", borderRight: "1px solid rgba(255,255,255,0.05)" }}>
           <div style={{ padding: "10px 14px 8px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
             <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.8, color: "rgba(255,255,255,0.16)", fontFamily: "JetBrains Mono, monospace" }}>CANAIS MONITORADOS</span>
           </div>
@@ -287,7 +287,9 @@ export function Pulso() {
               <button key={c.id} onClick={() => setActiveChannel(c.id)} style={{
                 width: "100%", textAlign: "left", display: "block",
                 padding: "10px 14px",
-                background: isActive ? "rgba(255,149,0,0.05)" : "transparent",
+                background: isActive ? "rgba(255,149,0,0.06)" : "rgba(255,255,255,0.01)",
+                backdropFilter: "blur(12px) saturate(160%)",
+                WebkitBackdropFilter: "blur(12px) saturate(160%)",
                 borderLeft: `2px solid ${isActive ? "#ff9500" : "transparent"}`,
                 borderRight: "none", borderTop: "none",
                 borderBottom: "1px solid rgba(255,255,255,0.03)",
