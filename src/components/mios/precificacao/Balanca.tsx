@@ -160,8 +160,8 @@ function MapaTab() {
       {/* Matrix */}
       <div>
         <div style={{ marginBottom: 12 }}>
-          <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>QUADRANTE PREÇO × VALOR PERCEBIDO</span>
-          <span style={{ fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>5 PLAYERS DO MERCADO + POSIÇÃO ALVO</span>
+          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>QUADRANTE PREÇO × VALOR PERCEBIDO</span>
+          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>5 PLAYERS DO MERCADO + POSIÇÃO ALVO</span>
         </div>
         <div style={{ aspectRatio: "1 / 1", maxHeight: 420, background: "rgba(4,6,15,0.8)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, overflow: "hidden", position: "relative" }}>
           <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "100%", display: "block" }} preserveAspectRatio="xMidYMid meet">
@@ -220,12 +220,12 @@ function MapaTab() {
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
         {/* Zone legend */}
         <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 8, padding: "16px" }}>
-          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 12 }}>ZONAS DO MAPA</div>
+          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 12 }}>ZONAS DO MAPA</div>
           {Object.entries(ZONE_STYLE).map(([key, zs]) => (
             <div key={key} className="flex items-center gap-3" style={{ marginBottom: 10 }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: zs.color, flexShrink: 0 }} />
               <div>
-                <div style={{ fontSize: 9, fontWeight: 700, color: zs.color, fontFamily: "JetBrains Mono, monospace" }}>{zs.label}</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: zs.color, fontFamily: "JetBrains Mono, monospace" }}>{zs.label}</div>
               </div>
             </div>
           ))}
@@ -233,11 +233,11 @@ function MapaTab() {
 
         {/* Insight card */}
         <div style={{ flex: 1, background: "rgba(255,149,0,0.04)", border: "1px solid rgba(255,149,0,0.15)", borderLeft: "3px solid #ff9500", borderRadius: "0 8px 8px 0", padding: "18px 16px" }}>
-          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>LEITURA DO MAPA</div>
+          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>LEITURA DO MAPA</div>
           <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, marginBottom: 12 }}>
             A zona <span style={{ color: "#ff9500" }}>OCULTO</span> está vazia.
           </p>
-          <p style={{ fontSize: 11, color: "rgba(255,255,255,0.42)", lineHeight: 1.7 }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.7 }}>
             Nenhum player local ocupa o quadrante alto valor + preço médio-alto. Todos estão ou no commodity ou cobrando caro por baixa entrega. O quadrante vazio não pede guerra de preço — pede prova de valor.
           </p>
         </div>
@@ -251,7 +251,7 @@ function MapaTab() {
             { label: "GAP DE VALOR", value: "↑40%", color: "#ff9500" },
           ].map(m => (
             <div key={m.label} style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 6, padding: "10px 12px" }}>
-              <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{m.label}</div>
+              <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{m.label}</div>
               <div style={{ fontSize: 18, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
             </div>
           ))}
@@ -266,14 +266,14 @@ function PrecosTab() {
   return (
     <div style={{ padding: "24px", animation: "sweep-in 0.3s ease" }}>
       <div style={{ marginBottom: 20 }}>
-        <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>INTELIGÊNCIA DE PREÇOS</span>
-        <span style={{ fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>AMPLITUDE DE MERCADO POR PROCEDIMENTO</span>
+        <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>INTELIGÊNCIA DE PREÇOS</span>
+        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>AMPLITUDE DE MERCADO POR PROCEDIMENTO</span>
       </div>
 
       {/* Scale header */}
       <div style={{ display: "flex", gap: 0, marginBottom: 4, paddingLeft: 200 }}>
         {[0, 25, 50, 75, 100].map(p => (
-          <div key={p} style={{ flex: 1, textAlign: "center", fontSize: 7, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>
+          <div key={p} style={{ flex: 1, textAlign: "center", fontSize: 9, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>
             R${Math.round(MAX_PRICE * p / 100).toLocaleString("pt-BR")}
           </div>
         ))}
@@ -289,10 +289,10 @@ function PrecosTab() {
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
             {/* Label */}
             <div style={{ width: 188, flexShrink: 0 }}>
-              <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>{bar.label}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>{bar.label}</div>
               <div style={{ display: "flex", gap: 10, marginTop: 3 }}>
-                <span style={{ fontSize: 8, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>média R${bar.avg.toLocaleString("pt-BR")}</span>
-                <span style={{ fontSize: 8, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>
+                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>média R${bar.avg.toLocaleString("pt-BR")}</span>
+                <span style={{ fontSize: 10, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>
                   {bar.isTarget ? "GRÁTIS" : `alvo R$${bar.target.toLocaleString("pt-BR")}`}
                 </span>
               </div>
@@ -345,10 +345,10 @@ function PrecosTab() {
               )}
 
               {/* Min/max labels */}
-              <div style={{ position: "absolute", left: `${minPct}%`, top: "100%", marginTop: 2, fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", transform: "translateX(-50%)" }}>
+              <div style={{ position: "absolute", left: `${minPct}%`, top: "100%", marginTop: 2, fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", transform: "translateX(-50%)" }}>
                 {bar.min === 0 ? "0" : `R$${bar.min}`}
               </div>
-              <div style={{ position: "absolute", left: `${maxPct}%`, top: "100%", marginTop: 2, fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", transform: "translateX(-50%)" }}>
+              <div style={{ position: "absolute", left: `${maxPct}%`, top: "100%", marginTop: 2, fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", transform: "translateX(-50%)" }}>
                 R${bar.max.toLocaleString("pt-BR")}
               </div>
             </div>
@@ -360,20 +360,20 @@ function PrecosTab() {
       <div style={{ display: "flex", gap: 20, marginTop: 24, padding: "12px 16px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 6 }}>
         <div className="flex items-center gap-2">
           <div style={{ width: 24, height: 8, background: "rgba(255,255,255,0.1)", borderRadius: 4 }} />
-          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>Amplitude do mercado</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>Amplitude do mercado</span>
         </div>
         <div className="flex items-center gap-2">
           <div style={{ width: 2, height: 18, background: "rgba(255,255,255,0.35)", borderRadius: 1 }} />
-          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>Média de mercado</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>Média de mercado</span>
         </div>
         <div className="flex items-center gap-2">
           <div style={{ width: 3, height: 18, background: "#ff9500", borderRadius: 1.5, boxShadow: "0 0 8px rgba(255,149,0,0.4)" }} />
-          <span style={{ fontSize: 9, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>Posição alvo</span>
+          <span style={{ fontSize: 11, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>Posição alvo</span>
         </div>
       </div>
 
       <div style={{ marginTop: 12, padding: "14px 18px", background: "rgba(255,149,0,0.04)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "3px solid #ff9500", borderRadius: "0 6px 6px 0" }}>
-        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.45)", lineHeight: 1.65 }}>
+        <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.65 }}>
           <span style={{ color: "#ff9500", fontWeight: 700 }}>Estratégia:</span> Posição alvo fica 8–15% abaixo do Premium Ref. e 10–20% acima da média — diferencial está no <em>o que está incluso</em>, não apenas no número.
         </p>
       </div>
@@ -391,20 +391,20 @@ function BalancaTab() {
   return (
     <div style={{ padding: "24px", animation: "sweep-in 0.3s ease" }}>
       <div style={{ marginBottom: 20 }}>
-        <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>A BALANÇA</span>
-        <span style={{ fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>O QUE O MERCADO ENTREGA vs. O QUE O CLIENTE QUER</span>
+        <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>A BALANÇA</span>
+        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>O QUE O MERCADO ENTREGA vs. O QUE O CLIENTE QUER</span>
       </div>
 
       {/* Column headers */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 100px 1fr", marginBottom: 3 }}>
         <div style={{ padding: "12px 18px", background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: "8px 0 0 0", textAlign: "center" }}>
-          <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 1.5, color: "#ef4444", fontFamily: "JetBrains Mono, monospace" }}>MERCADO ENTREGA</span>
+          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 1.5, color: "#ef4444", fontFamily: "JetBrains Mono, monospace" }}>MERCADO ENTREGA</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.015)", border: "1px solid rgba(255,255,255,0.05)", borderLeft: "none", borderRight: "none" }}>
-          <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>GAP</span>
+          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>GAP</span>
         </div>
         <div style={{ padding: "12px 18px", background: "rgba(255,149,0,0.06)", border: "1px solid rgba(255,149,0,0.15)", borderRadius: "0 8px 0 0", textAlign: "center" }}>
-          <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 1.5, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>CLIENTE QUER</span>
+          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 1.5, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>CLIENTE QUER</span>
         </div>
       </div>
 
@@ -417,12 +417,14 @@ function BalancaTab() {
             <div style={{
               padding: "16px 18px",
               background: "rgba(239,68,68,0.025)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(239,68,68,0.08)",
               borderRight: "none",
               borderTop: i > 0 ? "none" : undefined,
             }}>
-              <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>{row.dimension}</div>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.38)", lineHeight: 1.6 }}>{row.market}</p>
+              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>{row.dimension}</div>
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.38)", lineHeight: 1.6 }}>{row.market}</p>
             </div>
 
             {/* Gap column */}
@@ -436,7 +438,7 @@ function BalancaTab() {
               <div style={{
                 writingMode: "vertical-rl",
                 textOrientation: "mixed",
-                fontSize: 8, fontWeight: 900,
+                fontSize: 10, fontWeight: 900,
                 color: gs.color,
                 fontFamily: "JetBrains Mono, monospace",
                 letterSpacing: 2,
@@ -448,12 +450,14 @@ function BalancaTab() {
             <div style={{
               padding: "16px 18px",
               background: "rgba(255,149,0,0.025)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,149,0,0.08)",
               borderLeft: "none",
               borderTop: i > 0 ? "none" : undefined,
             }}>
-              <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>{row.dimension}</div>
-              <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.68)", lineHeight: 1.6 }}>{row.client}</p>
+              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>{row.dimension}</div>
+              <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.68)", lineHeight: 1.6 }}>{row.client}</p>
             </div>
           </div>
         );
@@ -468,14 +472,14 @@ function BalancaTab() {
         ].map(g => (
           <div key={g.label} style={{ padding: "12px 16px", background: "rgba(255,255,255,0.02)", border: `1px solid ${g.color}25`, borderTop: `2px solid ${g.color}`, borderRadius: "0 0 6px 6px", textAlign: "center" }}>
             <div style={{ fontSize: 32, fontWeight: 900, color: g.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>{g.count}</div>
-            <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 1.5, color: `${g.color}80`, fontFamily: "JetBrains Mono, monospace", marginTop: 4 }}>GAP {g.label}</div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, color: `${g.color}80`, fontFamily: "JetBrains Mono, monospace", marginTop: 4 }}>GAP {g.label}</div>
           </div>
         ))}
       </div>
 
       {/* Synthesis */}
       <div style={{ padding: "20px 24px", background: "rgba(255,149,0,0.05)", border: "1px solid rgba(255,149,0,0.18)", borderTop: "2px solid #ff9500", borderRadius: "0 0 8px 8px" }}>
-        <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>VEREDITO DA BALANÇA</div>
+        <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>VEREDITO DA BALANÇA</div>
         <p style={{ fontSize: 14, fontWeight: 700, color: "rgba(255,255,255,0.78)", lineHeight: 1.65 }}>
           O mercado cobra pelo procedimento. O cliente quer pagar pelo <span style={{ color: "#ff9500" }}>resultado com segurança</span>. Quem fechar esse gap primeiro domina o preço sem competir.
         </p>
@@ -488,8 +492,8 @@ function TiersTab() {
   return (
     <div style={{ padding: "24px 24px 48px", animation: "sweep-in 0.3s ease" }}>
       <div style={{ marginBottom: 20 }}>
-        <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>ARQUITETURA DE PREÇOS</span>
-        <span style={{ fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>3 TIERS — ESTRATÉGIA DE PERCEPÇÃO DE VALOR</span>
+        <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>ARQUITETURA DE PREÇOS</span>
+        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>3 TIERS — ESTRATÉGIA DE PERCEPÇÃO DE VALOR</span>
       </div>
 
       {/* Tier cards */}
@@ -497,6 +501,8 @@ function TiersTab() {
         {TIERS.map((tier, i) => (
           <div key={i} style={{
             background: "rgba(255,255,255,0.018)",
+            backdropFilter: "blur(12px) saturate(150%)",
+            WebkitBackdropFilter: "blur(12px) saturate(150%)",
             border: `1px solid rgba(255,149,0,${0.15 + i * 0.08})`,
             borderTop: `3px solid ${tier.dimColor}`,
             borderRadius: "0 0 10px 10px",
@@ -506,7 +512,7 @@ function TiersTab() {
             {/* Tier number + name */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
               <div>
-                <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>TIER {tier.number}</div>
+                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>TIER {tier.number}</div>
                 <div style={{ fontSize: 20, fontWeight: 900, color: "rgba(255,255,255,0.88)" }}>{tier.name}</div>
               </div>
               <div style={{
@@ -522,14 +528,14 @@ function TiersTab() {
             {/* Price */}
             <div style={{ marginBottom: 4 }}>
               <div style={{ fontSize: 22, fontWeight: 900, color: tier.color, fontFamily: "JetBrains Mono, monospace", letterSpacing: -0.5 }}>{tier.range}</div>
-              <div style={{ fontSize: 8, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace", marginTop: 2 }}>{tier.anchor}</div>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace", marginTop: 2 }}>{tier.anchor}</div>
             </div>
 
             {/* Revenue share bar */}
             <div style={{ margin: "14px 0", padding: "10px 12px", background: "rgba(0,0,0,0.2)", borderRadius: 6 }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-                <span style={{ fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>MIX DE RECEITA</span>
-                <span style={{ fontSize: 9, fontWeight: 900, color: tier.dimColor, fontFamily: "JetBrains Mono, monospace" }}>{tier.share}%</span>
+                <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>MIX DE RECEITA</span>
+                <span style={{ fontSize: 11, fontWeight: 900, color: tier.dimColor, fontFamily: "JetBrains Mono, monospace" }}>{tier.share}%</span>
               </div>
               <div style={{ height: 4, background: "rgba(255,255,255,0.06)", borderRadius: 2, overflow: "hidden" }}>
                 <div style={{
@@ -547,15 +553,15 @@ function TiersTab() {
             <div style={{ marginBottom: 14 }}>
               {tier.items.map((item, j) => (
                 <div key={j} style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 7 }}>
-                  <span style={{ color: tier.dimColor, fontSize: 10, flexShrink: 0, marginTop: 1, fontWeight: 700 }}>+</span>
-                  <span style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", lineHeight: 1.45 }}>{item}</span>
+                  <span style={{ color: tier.dimColor, fontSize: 12, flexShrink: 0, marginTop: 1, fontWeight: 700 }}>+</span>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", lineHeight: 1.45 }}>{item}</span>
                 </div>
               ))}
             </div>
 
             {/* Tagline */}
             <div style={{ padding: "10px 12px", background: `rgba(255,149,0,${0.04 + i * 0.02})`, border: `1px solid rgba(255,149,0,${0.12 + i * 0.04})`, borderRadius: 5 }}>
-              <p style={{ fontSize: 10, color: "rgba(255,255,255,0.45)", lineHeight: 1.6, fontStyle: "italic" }}>{tier.tagline}</p>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", lineHeight: 1.6, fontStyle: "italic" }}>{tier.tagline}</p>
             </div>
           </div>
         ))}
@@ -563,7 +569,7 @@ function TiersTab() {
 
       {/* Revenue mix visual */}
       <div style={{ marginBottom: 16, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 8, padding: "18px 20px" }}>
-        <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 12 }}>MIX DE RECEITA PROJETADO</div>
+        <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 12 }}>MIX DE RECEITA PROJETADO</div>
         <div style={{ height: 24, borderRadius: 6, overflow: "hidden", display: "flex" }}>
           {TIERS.map((tier, i) => (
             <div key={i} style={{
@@ -573,20 +579,20 @@ function TiersTab() {
               animation: `bar-grow 0.7s ease ${i * 0.08}s both`,
               transformOrigin: "left",
             }}>
-              <span style={{ fontSize: 9, fontWeight: 900, color: "rgba(255,255,255,0.9)", fontFamily: "JetBrains Mono, monospace" }}>{tier.share}%</span>
+              <span style={{ fontSize: 11, fontWeight: 900, color: "rgba(255,255,255,0.9)", fontFamily: "JetBrains Mono, monospace" }}>{tier.share}%</span>
             </div>
           ))}
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
           {TIERS.map((tier, i) => (
-            <span key={i} style={{ fontSize: 8, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>Tier {i+1}: {tier.name}</span>
+            <span key={i} style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>Tier {i+1}: {tier.name}</span>
           ))}
         </div>
       </div>
 
       {/* Logic */}
       <div style={{ padding: "20px 24px", background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)", borderTop: "2px solid rgba(255,255,255,0.08)", borderRadius: "0 0 8px 8px" }}>
-        <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>LÓGICA DA ARQUITETURA</div>
+        <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>LÓGICA DA ARQUITETURA</div>
         <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.65)", lineHeight: 1.7, maxWidth: 700 }}>
           Três tiers não são três produtos — são uma <span style={{ color: "#ff9500" }}>estratégia de percepção</span>. O Tier 3 existe para fazer o Tier 2 parecer razoável por comparação. O Tier 1 existe para dar a primeira experiência sem risco. A receita acontece no meio.
         </p>
@@ -615,8 +621,8 @@ export function Balanca() {
       <div style={{ padding: "16px 24px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
-            <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>PRECIFICAÇÃO — A BALANÇA</span>
+            <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
+            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>PRECIFICAÇÃO — A BALANÇA</span>
           </div>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[
@@ -626,7 +632,7 @@ export function Balanca() {
               { label: "TIERS ALVO",   value: "3",       color: "#ff9500"                },
             ].map(m => (
               <div key={m.label} style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
+                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
                 <div style={{ fontSize: 16, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
               </div>
             ))}
@@ -643,7 +649,7 @@ export function Balanca() {
             style={{
               display: "flex", alignItems: "center", gap: 7,
               padding: "11px 22px",
-              fontSize: 10, fontWeight: 700, letterSpacing: 0.5,
+              fontSize: 12, fontWeight: 700, letterSpacing: 0.5,
               color: activeTab === t.key ? "#ff9500" : "rgba(255,255,255,0.28)",
               background: activeTab === t.key ? "rgba(255,149,0,0.04)" : "transparent",
               border: "none",
@@ -656,8 +662,10 @@ export function Balanca() {
             {t.label}
             {t.badge && (
               <span style={{
-                fontSize: 7, fontWeight: 900, padding: "2px 6px",
+                fontSize: 9, fontWeight: 900, padding: "2px 6px",
                 background: "rgba(239,68,68,0.15)", color: "#ef4444",
+                backdropFilter: "blur(12px) saturate(150%)",
+                WebkitBackdropFilter: "blur(12px) saturate(150%)",
                 border: "1px solid rgba(239,68,68,0.3)", borderRadius: 3,
                 fontFamily: "JetBrains Mono, monospace",
               }}>{t.badge}</span>
