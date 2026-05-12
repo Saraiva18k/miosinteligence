@@ -410,8 +410,8 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
             className="mt-3 flex items-start gap-2 rounded-lg p-2"
             style={{
               background: "rgba(255,149,0,0.06)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,149,0,0.15)",
             }}
           >
@@ -491,8 +491,8 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
               key={ch.name}
               style={{
                 background: "rgba(255,255,255,0.04)",
-                backdropFilter: "blur(12px) saturate(150%)",
-                WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 borderRadius: 5, padding: "3px 7px",
               }}
@@ -548,8 +548,8 @@ function CompetitorColumn({ c }: { c: CompetitorData }) {
         </div>
         <div style={{
           background: "rgba(16,185,129,0.07)",
-          backdropFilter: "blur(12px) saturate(150%)",
-          WebkitBackdropFilter: "blur(12px) saturate(150%)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(16,185,129,0.18)",
           borderRadius: 7, padding: "8px 10px",
         }}>
