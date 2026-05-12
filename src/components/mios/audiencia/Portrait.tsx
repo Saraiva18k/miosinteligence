@@ -330,6 +330,8 @@ export function Portrait() {
                 background: i === activePersona
                   ? "rgba(255,149,0,0.12)"
                   : "rgba(255,255,255,0.03)",
+                backdropFilter: "blur(12px) saturate(160%)",
+                WebkitBackdropFilter: "blur(12px) saturate(160%)",
                 outline: i === activePersona
                   ? "1px solid rgba(255,149,0,0.3)"
                   : "1px solid rgba(255,255,255,0.06)",
@@ -356,6 +358,8 @@ export function Portrait() {
       {/* Editorial hero */}
       <div style={{
         background: "var(--card)",
+        backdropFilter: "blur(16px) saturate(180%)",
+        WebkitBackdropFilter: "blur(16px) saturate(180%)",
         border: "1px solid rgba(255,255,255,0.055)",
         borderRadius: 14, overflow: "hidden",
       }}>
@@ -364,6 +368,8 @@ export function Portrait() {
           <div style={{
             width: 220, flexShrink: 0,
             background: "rgba(255,255,255,0.015)",
+            backdropFilter: "blur(12px) saturate(160%)",
+            WebkitBackdropFilter: "blur(12px) saturate(160%)",
             borderRight: "1px solid rgba(255,255,255,0.05)",
             display: "flex", flexDirection: "column",
             alignItems: "center", justifyContent: "center",
@@ -439,6 +445,8 @@ export function Portrait() {
                         fontSize: 12, fontWeight: 500,
                         padding: "3px 9px", borderRadius: 5,
                         background: s.bg, color: s.color,
+                        backdropFilter: "blur(10px) saturate(150%)",
+                        WebkitBackdropFilter: "blur(10px) saturate(150%)",
                         border: `1px solid ${s.color}25`,
                       }}
                     >
@@ -472,6 +480,8 @@ export function Portrait() {
         {/* Day in life */}
         <div style={{
           background: "var(--card)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.055)",
           borderRadius: 12, padding: "18px 18px",
         }}>
@@ -506,6 +516,9 @@ export function Portrait() {
                       fontSize: 10, fontWeight: 600,
                       color: "rgba(255,149,0,0.6)",
                       background: "rgba(255,149,0,0.06)",
+                      backdropFilter: "blur(10px) saturate(150%)",
+                      WebkitBackdropFilter: "blur(10px) saturate(150%)",
+                      border: "1px solid rgba(255,149,0,0.12)",
                       borderRadius: 4, padding: "1px 5px",
                       marginTop: 3, display: "inline-block",
                     }}>
@@ -537,6 +550,8 @@ export function Portrait() {
         {/* Channels */}
         <div style={{
           background: "var(--card)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.055)",
           borderRadius: 12, padding: "18px 18px",
         }}>
@@ -559,6 +574,8 @@ export function Portrait() {
         {/* Triggers & objections */}
         <div style={{
           background: "var(--card)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.055)",
           borderRadius: 12, padding: "18px 18px",
           display: "flex", flexDirection: "column", gap: 20,
