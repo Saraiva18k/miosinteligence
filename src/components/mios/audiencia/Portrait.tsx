@@ -403,8 +403,8 @@ export function Portrait() {
             {/* Big quote */}
             <div style={{
               background: "rgba(255,149,0,0.04)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,149,0,0.1)",
               borderLeft: "3px solid rgba(255,149,0,0.5)",
               borderRadius: "0 10px 10px 0",
@@ -520,8 +520,8 @@ export function Portrait() {
           <div style={{
             marginTop: 14,
             background: "rgba(255,149,0,0.06)",
-            backdropFilter: "blur(12px) saturate(150%)",
-            WebkitBackdropFilter: "blur(12px) saturate(150%)",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
             border: "1px solid rgba(255,149,0,0.15)",
             borderRadius: 8, padding: "8px 10px",
           }}>
@@ -601,8 +601,8 @@ export function Portrait() {
               {p.objections.map((o, i) => (
                 <div key={i} style={{
                   background: "rgba(239,68,68,0.05)",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(239,68,68,0.12)",
                   borderRadius: 6, padding: "5px 8px",
                 }}>
