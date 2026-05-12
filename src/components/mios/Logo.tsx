@@ -1,34 +1,24 @@
-// MIOS Logo — uses the real brand image with mix-blend-mode: screen
-// The dark background of the PNG blends away against the dark header,
-// leaving only the glowing brain visible. No image editing needed.
+// MIOS Logo — real brand image, background removed via mix-blend-mode: screen
 
 export function Logo() {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10, userSelect: "none" }}>
 
-      {/* ── Brain icon ───────────────────────────────────────────
-          Container clips the image to show only the brain portion
-          (the right side has the "MIOS" text which we render separately).
-          mix-blend-mode: screen removes the dark background.         ── */}
-      <div style={{
-        width: 28,
-        height: 32,
-        overflow: "hidden",
-        flexShrink: 0,
-      }}>
-        <img
-          src="/mios-brain.png"
-          alt="MIOS brain"
-          style={{
-            height: 32,
-            width: "auto",
-            display: "block",
-            mixBlendMode: "screen",
-          }}
-        />
-      </div>
+      {/* Brain — 99x120px source → 30x36px display
+          mix-blend-mode: screen makes the dark bg disappear,
+          leaving only the glowing neural network visible */}
+      <img
+        src="/mios-brain.png"
+        alt="MIOS"
+        style={{
+          height: 36,
+          width: "auto",
+          display: "block",
+          mixBlendMode: "screen",
+        }}
+      />
 
-      {/* ── MIOS wordmark ──────────────────────────────────────── */}
+      {/* MIOS wordmark */}
       <span style={{
         fontSize: 15,
         fontWeight: 600,
