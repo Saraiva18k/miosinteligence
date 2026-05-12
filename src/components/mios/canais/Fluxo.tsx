@@ -168,6 +168,8 @@ function RecBadge({ rec }: { rec: Recommendation }) {
     <span style={{
       fontSize: 9, fontWeight: 900, letterSpacing: 1.2,
       color: c.color, background: c.bg,
+      backdropFilter: "blur(10px) saturate(150%)",
+      WebkitBackdropFilter: "blur(10px) saturate(150%)",
       border: `1px solid ${c.color}40`,
       borderRadius: 3, padding: "2px 7px",
       fontFamily: "JetBrains Mono, monospace",
@@ -206,7 +208,7 @@ export function Fluxo() {
       <style>{KEYFRAMES}</style>
 
       {/* ── SCAN HEADER ──────────────────────────────────────────────────── */}
-      <div style={{ padding: "16px 24px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ padding: "16px 24px 14px", background: "rgba(255,255,255,0.012)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
@@ -230,7 +232,7 @@ export function Fluxo() {
       </div>
 
       {/* ── FLOW MAP OVERVIEW ────────────────────────────────────────────── */}
-      <div style={{ padding: "14px 24px", borderBottom: "1px solid rgba(255,255,255,0.05)", background: "rgba(255,255,255,0.01)" }}>
+      <div style={{ padding: "14px 24px", borderBottom: "1px solid rgba(255,255,255,0.05)", background: "rgba(255,255,255,0.01)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)" }}>
         <div style={{ marginBottom: 10 }}>
           <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.8, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>VISÃO GERAL DO FLUXO — VOLUME × SAÚDE</span>
         </div>
@@ -281,7 +283,7 @@ export function Fluxo() {
       <div style={{ display: "flex", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
 
         {/* Canal index */}
-        <div style={{ width: 214, flexShrink: 0, borderRight: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ width: 214, flexShrink: 0, background: "rgba(255,255,255,0.01)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", borderRight: "1px solid rgba(255,255,255,0.05)" }}>
           <div style={{ padding: "10px 14px 8px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
             <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.8, color: "rgba(255,255,255,0.16)", fontFamily: "JetBrains Mono, monospace" }}>CANAIS</span>
           </div>
@@ -291,7 +293,9 @@ export function Fluxo() {
             return (
               <button key={c.id} onClick={() => setActiveCanal(c.id)} style={{
                 width: "100%", textAlign: "left", display: "block", padding: "10px 14px",
-                background: isActive ? "rgba(255,149,0,0.05)" : "transparent",
+                background: isActive ? "rgba(255,149,0,0.06)" : "rgba(255,255,255,0.01)",
+                backdropFilter: "blur(12px) saturate(160%)",
+                WebkitBackdropFilter: "blur(12px) saturate(160%)",
                 borderLeft: `2px solid ${isActive ? "#ff9500" : "transparent"}`,
                 borderRight: "none", borderTop: "none",
                 borderBottom: "1px solid rgba(255,255,255,0.03)",
@@ -314,8 +318,8 @@ export function Fluxo() {
           {/* Header */}
           <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 10 }}>
             <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>{canal.id}</span>
-            <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.22)", background: "rgba(255,255,255,0.04)", borderRadius: 3, padding: "2px 7px", fontFamily: "JetBrains Mono, monospace" }}>{TYPE_LABEL[canal.type]}</span>
-            <span style={{ fontSize: 9, fontWeight: 700, color: trend.color, border: `1px solid ${trend.color}45`, borderRadius: 3, padding: "2px 7px", fontFamily: "JetBrains Mono, monospace" }}>{trend.label}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.22)", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(10px) saturate(150%)", WebkitBackdropFilter: "blur(10px) saturate(150%)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 3, padding: "2px 7px", fontFamily: "JetBrains Mono, monospace" }}>{TYPE_LABEL[canal.type]}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, color: trend.color, background: `${trend.color}10`, backdropFilter: "blur(10px) saturate(150%)", WebkitBackdropFilter: "blur(10px) saturate(150%)", border: `1px solid ${trend.color}45`, borderRadius: 3, padding: "2px 7px", fontFamily: "JetBrains Mono, monospace" }}>{trend.label}</span>
             <RecBadge rec={canal.recommendation} />
           </div>
 
@@ -339,13 +343,13 @@ export function Fluxo() {
           </div>
 
           {/* Evidence */}
-          <div style={{ padding: "14px 18px", background: "rgba(255,149,0,0.03)", border: "1px solid rgba(255,149,0,0.08)", borderLeft: "2px solid rgba(255,149,0,0.35)", borderRadius: "0 6px 6px 0", marginBottom: 10 }}>
+          <div style={{ padding: "14px 18px", background: "rgba(255,149,0,0.03)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.08)", borderLeft: "2px solid rgba(255,149,0,0.35)", borderRadius: "0 6px 6px 0", marginBottom: 10 }}>
             <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>EVIDÊNCIA DE CANAL</div>
             <p style={{ fontSize: 13, color: "rgba(255,255,255,0.52)", lineHeight: 1.75 }}>{canal.evidence}</p>
           </div>
 
           {/* Implication */}
-          <div style={{ padding: "14px 18px", background: "rgba(0,0,0,0.28)", border: "1px solid rgba(255,255,255,0.06)", borderTop: "2px solid rgba(255,255,255,0.1)", borderRadius: "0 0 8px 8px" }}>
+          <div style={{ padding: "14px 18px", background: "rgba(0,0,0,0.28)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.06)", borderTop: "2px solid rgba(255,255,255,0.1)", borderRadius: "0 0 8px 8px" }}>
             <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>IMPLICAÇÃO ESTRATÉGICA</div>
             <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.7)", lineHeight: 1.65 }}>{canal.implication}</p>
           </div>
@@ -367,18 +371,20 @@ export function Fluxo() {
               <div key={i} style={{
                 padding: "16px 20px",
                 background: i === 0 ? "rgba(239,68,68,0.03)" : "rgba(255,255,255,0.016)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: `1px solid ${i === 0 ? "rgba(239,68,68,0.12)" : "rgba(255,255,255,0.05)"}`,
                 borderLeft: `3px solid ${col}`, borderRadius: "0 8px 8px 0",
               }}>
                 <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 8 }}>
                   <span style={{ fontSize: 13, fontWeight: 800, color: "rgba(255,255,255,0.82)" }}>{o.canal}</span>
-                  <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 0.8, color: col, background: `${col}14`, borderRadius: 3, padding: "2px 6px", fontFamily: "JetBrains Mono, monospace" }}>
+                  <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 0.8, color: col, background: `${col}14`, backdropFilter: "blur(10px) saturate(150%)", WebkitBackdropFilter: "blur(10px) saturate(150%)", border: `1px solid ${col}30`, borderRadius: 3, padding: "2px 6px", fontFamily: "JetBrains Mono, monospace" }}>
                     {isCrit ? "CRÍTICO" : o.urgency === "alto" ? "ALTO" : "MÉDIO"}
                   </span>
                   <span style={{ fontSize: 9, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace" }}>{o.gain}</span>
                 </div>
                 <p style={{ fontSize: 13, color: "rgba(255,255,255,0.44)", lineHeight: 1.68, marginBottom: 10 }}>{o.why}</p>
-                <div style={{ padding: "7px 12px", background: "rgba(255,149,0,0.05)", border: "1px solid rgba(255,149,0,0.12)", borderRadius: 4 }}>
+                <div style={{ padding: "7px 12px", background: "rgba(255,149,0,0.05)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", border: "1px solid rgba(255,149,0,0.12)", borderRadius: 4 }}>
                   <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", marginRight: 8 }}>AÇÃO</span>
                   <span style={{ fontSize: 12, color: "rgba(255,255,255,0.48)" }}>{o.action}</span>
                 </div>
@@ -402,6 +408,8 @@ export function Fluxo() {
             <div key={b.action} style={{
               flex: 1, minWidth: 200, padding: "16px 18px",
               background: "rgba(255,255,255,0.016)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: `1px solid ${b.color}25`,
               borderTop: `2px solid ${b.color}`,
               borderRadius: "0 0 8px 8px",
@@ -419,7 +427,7 @@ export function Fluxo() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 3, padding: "18px 22px", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.05)", borderTop: "2px solid rgba(255,255,255,0.08)", borderRadius: "0 0 8px 8px" }}>
+        <div style={{ marginTop: 3, padding: "18px 22px", background: "rgba(0,0,0,0.3)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.05)", borderTop: "2px solid rgba(255,255,255,0.08)", borderRadius: "0 0 8px 8px" }}>
           <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>SÍNTESE DO FLUXO</div>
           <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.68)", lineHeight: 1.7, maxWidth: 680 }}>
             O mercado está pagando caro para competir onde todos estão. Os canais com maior retorno são os menos disputados — e os menos usados.{" "}
