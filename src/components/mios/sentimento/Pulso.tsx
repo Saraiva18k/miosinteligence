@@ -186,7 +186,7 @@ function ToneBadge({ tone }: { tone: SentimentTone }) {
   };
   const s = MAP[tone];
   return (
-    <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1, color: s.color, background: s.bg, border: `1px solid ${s.color}30`, borderRadius: 3, padding: "2px 6px", fontFamily: "JetBrains Mono, monospace" }}>
+    <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1, color: s.color, background: s.bg, backdropFilter: "blur(10px) saturate(150%)", WebkitBackdropFilter: "blur(10px) saturate(150%)", border: `1px solid ${s.color}30`, borderRadius: 3, padding: "2px 6px", fontFamily: "JetBrains Mono, monospace" }}>
       {s.label}
     </span>
   );
@@ -317,8 +317,8 @@ export function Pulso() {
         <div key={activeChannel} style={{ flex: 1, padding: "22px 26px", animation: "mios-sweep 0.22s ease" }}>
           <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 10 }}>
             <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>{ch.id}</span>
-            <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.22)", background: "rgba(255,255,255,0.04)", borderRadius: 3, padding: "2px 7px", fontFamily: "JetBrains Mono, monospace" }}>{ch.source}</span>
-            <span style={{ fontSize: 9, fontWeight: 700, color: TREND_COLOR[ch.trend], fontFamily: "JetBrains Mono, monospace", padding: "2px 7px", border: `1px solid ${TREND_COLOR[ch.trend]}40`, borderRadius: 3 }}>{TREND_LABEL[ch.trend]}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.22)", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(10px) saturate(150%)", WebkitBackdropFilter: "blur(10px) saturate(150%)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 3, padding: "2px 7px", fontFamily: "JetBrains Mono, monospace" }}>{ch.source}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, color: TREND_COLOR[ch.trend], background: `${TREND_COLOR[ch.trend]}10`, backdropFilter: "blur(10px) saturate(150%)", WebkitBackdropFilter: "blur(10px) saturate(150%)", fontFamily: "JetBrains Mono, monospace", padding: "2px 7px", border: `1px solid ${TREND_COLOR[ch.trend]}40`, borderRadius: 3 }}>{TREND_LABEL[ch.trend]}</span>
           </div>
 
           <h2 style={{ fontSize: 17, fontWeight: 800, color: "rgba(255,255,255,0.88)", lineHeight: 1.3, marginBottom: 18 }}>{ch.name}</h2>
@@ -341,13 +341,13 @@ export function Pulso() {
           </div>
 
           {/* Sample verbatim */}
-          <div style={{ padding: "14px 18px", background: "rgba(255,149,0,0.03)", border: "1px solid rgba(255,149,0,0.08)", borderLeft: "2px solid rgba(255,149,0,0.35)", borderRadius: "0 6px 6px 0", marginBottom: 10 }}>
+          <div style={{ padding: "14px 18px", background: "rgba(255,149,0,0.03)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.08)", borderLeft: "2px solid rgba(255,149,0,0.35)", borderRadius: "0 6px 6px 0", marginBottom: 10 }}>
             <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>VERBATIM REPRESENTATIVO</div>
             <p style={{ fontSize: 13, color: "rgba(255,255,255,0.58)", lineHeight: 1.72, fontStyle: "italic" }}>"{ch.sample}"</p>
           </div>
 
           {/* Diagnosis */}
-          <div style={{ padding: "14px 18px", background: "rgba(0,0,0,0.28)", border: "1px solid rgba(255,255,255,0.06)", borderTop: "2px solid rgba(255,255,255,0.1)", borderRadius: "0 0 8px 8px" }}>
+          <div style={{ padding: "14px 18px", background: "rgba(0,0,0,0.28)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.06)", borderTop: "2px solid rgba(255,255,255,0.1)", borderRadius: "0 0 8px 8px" }}>
             <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>DIAGNÓSTICO DO CANAL</div>
             <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.62)", lineHeight: 1.65 }}>
               {ch.id === "CH-01" && "Avaliações públicas com maior peso decisório. Score negativo puxado por espera e silêncio pós-atendimento — não pela qualidade do resultado. Reversível com protocolo operacional."}
@@ -376,6 +376,8 @@ export function Pulso() {
               <div key={v.id} style={{
                 padding: "15px 20px",
                 background: i === 0 || i === 1 ? "rgba(239,68,68,0.03)" : "rgba(255,255,255,0.016)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: `1px solid ${i < 2 ? "rgba(239,68,68,0.1)" : "rgba(255,255,255,0.05)"}`,
                 borderLeft: `3px solid ${toneCol}`,
                 borderRadius: "0 8px 8px 0",
@@ -435,7 +437,7 @@ export function Pulso() {
         </div>
 
         {/* Bottom synthesis */}
-        <div style={{ marginTop: 3, padding: "20px 22px", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.05)", borderTop: "2px solid rgba(255,255,255,0.08)", borderRadius: "0 0 8px 8px" }}>
+        <div style={{ marginTop: 3, padding: "20px 22px", background: "rgba(0,0,0,0.3)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.05)", borderTop: "2px solid rgba(255,255,255,0.08)", borderRadius: "0 0 8px 8px" }}>
           <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>SÍNTESE DO PULSO</div>
           <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.68)", lineHeight: 1.7, maxWidth: 680 }}>
             O mercado não odeia o resultado — odeia o vácuo que vem depois. Frustração (38%) e Desconfiança (27%) são emoções de processo, não de entrega. O cliente que sai satisfeito ainda assim não volta nem indica porque{" "}
