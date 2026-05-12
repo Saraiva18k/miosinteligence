@@ -164,7 +164,7 @@ function ScoreBar({ score }: { score: number }) {
           <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: 2, marginLeft: "auto" }} />
         )}
       </div>
-      <span style={{ fontSize: 11, fontWeight: 900, color, fontFamily: "JetBrains Mono, monospace", width: 34, textAlign: "center", flexShrink: 0 }}>
+      <span style={{ fontSize: 13, fontWeight: 900, color, fontFamily: "JetBrains Mono, monospace", width: 34, textAlign: "center", flexShrink: 0 }}>
         {isPos ? "+" : ""}{score}
       </span>
       {/* positive side */}
@@ -186,7 +186,7 @@ function ToneBadge({ tone }: { tone: SentimentTone }) {
   };
   const s = MAP[tone];
   return (
-    <span style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1, color: s.color, background: s.bg, border: `1px solid ${s.color}30`, borderRadius: 3, padding: "2px 6px", fontFamily: "JetBrains Mono, monospace" }}>
+    <span style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1, color: s.color, background: s.bg, border: `1px solid ${s.color}30`, borderRadius: 3, padding: "2px 6px", fontFamily: "JetBrains Mono, monospace" }}>
       {s.label}
     </span>
   );
@@ -226,9 +226,9 @@ export function Pulso() {
       <div style={{ padding: "16px 24px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)", flexShrink: 0 }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
-            <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>SENTIMENTO — O PULSO</span>
-            <span style={{ fontSize: 8, color: "rgba(255,255,255,0.12)", fontFamily: "JetBrains Mono, monospace" }}>v1.0.0</span>
+            <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
+            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>SENTIMENTO — O PULSO</span>
+            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.12)", fontFamily: "JetBrains Mono, monospace" }}>v1.0.0</span>
           </div>
           <div style={{ display: "flex", gap: 22, flexWrap: "wrap" }}>
             {[
@@ -238,7 +238,7 @@ export function Pulso() {
               { label: "TOM DOMINANTE",  value: "FRUSTRAÇÃO",                                color: "#ef4444"          },
             ].map(m => (
               <div key={m.label} style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 1 }}>{m.label}</div>
+                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 1 }}>{m.label}</div>
                 <div style={{ fontSize: 14, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
               </div>
             ))}
@@ -268,7 +268,7 @@ export function Pulso() {
           <rect x="0" y="32" width="600" height="32" fill="rgba(239,68,68,0.03)" />
         </svg>
         <div style={{ position: "absolute", right: 72, top: "50%", transform: "translateY(-50%)", display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: 7, fontWeight: 700, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>PULSO DE MERCADO · 12 MESES</span>
+          <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>PULSO DE MERCADO · 12 MESES</span>
         </div>
       </div>
 
@@ -278,7 +278,7 @@ export function Pulso() {
         {/* Canal index */}
         <div style={{ width: 214, flexShrink: 0, borderRight: "1px solid rgba(255,255,255,0.05)" }}>
           <div style={{ padding: "10px 14px 8px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-            <span style={{ fontSize: 7, fontWeight: 700, letterSpacing: 1.8, color: "rgba(255,255,255,0.16)", fontFamily: "JetBrains Mono, monospace" }}>CANAIS MONITORADOS</span>
+            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.8, color: "rgba(255,255,255,0.16)", fontFamily: "JetBrains Mono, monospace" }}>CANAIS MONITORADOS</span>
           </div>
           {CHANNELS.map(c => {
             const isActive = c.id === activeChannel;
@@ -294,10 +294,10 @@ export function Pulso() {
                 cursor: "pointer",
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                  <span style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>{c.id}</span>
-                  <span style={{ fontSize: 9, fontWeight: 900, color: col, fontFamily: "JetBrains Mono, monospace" }}>{c.score > 0 ? "+" : ""}{c.score}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>{c.id}</span>
+                  <span style={{ fontSize: 11, fontWeight: 900, color: col, fontFamily: "JetBrains Mono, monospace" }}>{c.score > 0 ? "+" : ""}{c.score}</span>
                 </div>
-                <div style={{ fontSize: 10, fontWeight: 600, lineHeight: 1.3, marginBottom: 6, color: isActive ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.38)" }}>{c.name}</div>
+                <div style={{ fontSize: 12, fontWeight: 600, lineHeight: 1.3, marginBottom: 6, color: isActive ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.38)" }}>{c.name}</div>
                 {/* mini score bar */}
                 <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 3 }}>
                   <div style={{ flex: 1, height: 2, background: "rgba(255,255,255,0.05)", borderRadius: 1, overflow: "hidden" }}>
@@ -305,8 +305,8 @@ export function Pulso() {
                   </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <span style={{ fontSize: 7, color: TREND_COLOR[c.trend], fontFamily: "JetBrains Mono, monospace", fontWeight: 700 }}>{TREND_LABEL[c.trend]}</span>
-                  <span style={{ fontSize: 7, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>{(c.volume/1000).toFixed(1)}k/mês</span>
+                  <span style={{ fontSize: 9, color: TREND_COLOR[c.trend], fontFamily: "JetBrains Mono, monospace", fontWeight: 700 }}>{TREND_LABEL[c.trend]}</span>
+                  <span style={{ fontSize: 9, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>{(c.volume/1000).toFixed(1)}k/mês</span>
                 </div>
               </button>
             );
@@ -316,9 +316,9 @@ export function Pulso() {
         {/* Canal detalhe */}
         <div key={activeChannel} style={{ flex: 1, padding: "22px 26px", animation: "mios-sweep 0.22s ease" }}>
           <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: 10 }}>
-            <span style={{ fontSize: 7, fontWeight: 700, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>{ch.id}</span>
-            <span style={{ fontSize: 7, fontWeight: 700, color: "rgba(255,255,255,0.22)", background: "rgba(255,255,255,0.04)", borderRadius: 3, padding: "2px 7px", fontFamily: "JetBrains Mono, monospace" }}>{ch.source}</span>
-            <span style={{ fontSize: 7, fontWeight: 700, color: TREND_COLOR[ch.trend], fontFamily: "JetBrains Mono, monospace", padding: "2px 7px", border: `1px solid ${TREND_COLOR[ch.trend]}40`, borderRadius: 3 }}>{TREND_LABEL[ch.trend]}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>{ch.id}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.22)", background: "rgba(255,255,255,0.04)", borderRadius: 3, padding: "2px 7px", fontFamily: "JetBrains Mono, monospace" }}>{ch.source}</span>
+            <span style={{ fontSize: 9, fontWeight: 700, color: TREND_COLOR[ch.trend], fontFamily: "JetBrains Mono, monospace", padding: "2px 7px", border: `1px solid ${TREND_COLOR[ch.trend]}40`, borderRadius: 3 }}>{TREND_LABEL[ch.trend]}</span>
           </div>
 
           <h2 style={{ fontSize: 17, fontWeight: 800, color: "rgba(255,255,255,0.88)", lineHeight: 1.3, marginBottom: 18 }}>{ch.name}</h2>
@@ -326,7 +326,7 @@ export function Pulso() {
           {/* Metrics */}
           <div className="flex items-center gap-8 flex-wrap" style={{ marginBottom: 20, paddingBottom: 18, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
             <div>
-              <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>SCORE DE SENTIMENTO</div>
+              <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>SCORE DE SENTIMENTO</div>
               <ScoreBar score={ch.score} />
             </div>
             {[
@@ -334,7 +334,7 @@ export function Pulso() {
               { label: "VARIAÇÃO",       value: ch.trendVal                                     },
             ].map(m => (
               <div key={m.label}>
-                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 3 }}>{m.label}</div>
+                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 3 }}>{m.label}</div>
                 <div style={{ fontSize: 13, fontWeight: 900, color: "rgba(255,255,255,0.6)", fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
               </div>
             ))}
@@ -342,14 +342,14 @@ export function Pulso() {
 
           {/* Sample verbatim */}
           <div style={{ padding: "14px 18px", background: "rgba(255,149,0,0.03)", border: "1px solid rgba(255,149,0,0.08)", borderLeft: "2px solid rgba(255,149,0,0.35)", borderRadius: "0 6px 6px 0", marginBottom: 10 }}>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>VERBATIM REPRESENTATIVO</div>
+            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>VERBATIM REPRESENTATIVO</div>
             <p style={{ fontSize: 13, color: "rgba(255,255,255,0.58)", lineHeight: 1.72, fontStyle: "italic" }}>"{ch.sample}"</p>
           </div>
 
           {/* Diagnosis */}
           <div style={{ padding: "14px 18px", background: "rgba(0,0,0,0.28)", border: "1px solid rgba(255,255,255,0.06)", borderTop: "2px solid rgba(255,255,255,0.1)", borderRadius: "0 0 8px 8px" }}>
-            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>DIAGNÓSTICO DO CANAL</div>
-            <p style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.62)", lineHeight: 1.65 }}>
+            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>DIAGNÓSTICO DO CANAL</div>
+            <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.62)", lineHeight: 1.65 }}>
               {ch.id === "CH-01" && "Avaliações públicas com maior peso decisório. Score negativo puxado por espera e silêncio pós-atendimento — não pela qualidade do resultado. Reversível com protocolo operacional."}
               {ch.id === "CH-02" && "Canal de maior alcance e tom mais positivo, mas superficial. Comentários enaltecem o resultado e silenciam o processo. Não resolve desconfiança de novos clientes."}
               {ch.id === "CH-03" && "Canal mais crítico e com maior queda. Grupos fechados amplificam experiências negativas sem filtro e sem resposta da marca. Invisível para a empresa, visível para 890 potenciais clientes/mês."}
@@ -365,8 +365,8 @@ export function Pulso() {
       {/* ── VERBATIMS REAIS ──────────────────────────────────────────────── */}
       <div style={{ padding: "26px 24px 0" }}>
         <div style={{ marginBottom: 14 }}>
-          <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginRight: 12 }}>ESCUTA DIRETA</span>
-          <span style={{ fontSize: 7, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>VERBATIMS REAIS — O QUE O MERCADO ESTÁ DIZENDO AGORA</span>
+          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginRight: 12 }}>ESCUTA DIRETA</span>
+          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>VERBATIMS REAIS — O QUE O MERCADO ESTÁ DIZENDO AGORA</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 28 }}>
@@ -382,13 +382,13 @@ export function Pulso() {
               }}>
                 <div className="flex items-start gap-3">
                   <div style={{ flex: 1 }}>
-                    <p style={{ fontSize: 12, color: "rgba(255,255,255,0.60)", lineHeight: 1.72, fontStyle: "italic", marginBottom: 10 }}>
+                    <p style={{ fontSize: 13, color: "rgba(255,255,255,0.60)", lineHeight: 1.72, fontStyle: "italic", marginBottom: 10 }}>
                       "{v.text}"
                     </p>
                     <div className="flex items-center gap-3 flex-wrap">
                       <ToneBadge tone={v.tone} />
-                      <span style={{ fontSize: 7, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace" }}>{v.source}</span>
-                      <span style={{ fontSize: 7, color: "rgba(255,149,0,0.45)", fontFamily: "JetBrains Mono, monospace" }}>{v.reach}</span>
+                      <span style={{ fontSize: 9, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace" }}>{v.source}</span>
+                      <span style={{ fontSize: 9, color: "rgba(255,149,0,0.45)", fontFamily: "JetBrains Mono, monospace" }}>{v.reach}</span>
                     </div>
                   </div>
                 </div>
@@ -401,7 +401,7 @@ export function Pulso() {
       {/* ── MAPA EMOCIONAL ───────────────────────────────────────────────── */}
       <div style={{ padding: "0 24px 56px" }}>
         <div style={{ marginBottom: 14 }}>
-          <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>FREQUÊNCIA EMOCIONAL — COMPOSIÇÃO DO SENTIMENTO</span>
+          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>FREQUÊNCIA EMOCIONAL — COMPOSIÇÃO DO SENTIMENTO</span>
         </div>
 
         {/* Stacked bar */}
@@ -417,6 +417,8 @@ export function Pulso() {
               display: "flex", alignItems: "flex-start", gap: 14,
               padding: "12px 18px",
               background: "rgba(255,255,255,0.016)",
+              backdropFilter: "blur(12px) saturate(150%)",
+              WebkitBackdropFilter: "blur(12px) saturate(150%)",
               border: "1px solid rgba(255,255,255,0.04)",
               borderLeft: `3px solid ${e.color}`,
               borderRadius: "0 6px 6px 0",
@@ -425,8 +427,8 @@ export function Pulso() {
                 <span style={{ fontSize: 16, fontWeight: 900, color: e.color, fontFamily: "JetBrains Mono, monospace" }}>{e.pct}%</span>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, fontWeight: 800, color: "rgba(255,255,255,0.72)", marginBottom: 3 }}>{e.label}</div>
-                <p style={{ fontSize: 11, color: "rgba(255,255,255,0.38)", lineHeight: 1.58 }}>{e.insight}</p>
+                <div style={{ fontSize: 13, fontWeight: 800, color: "rgba(255,255,255,0.72)", marginBottom: 3 }}>{e.label}</div>
+                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.38)", lineHeight: 1.58 }}>{e.insight}</p>
               </div>
             </div>
           ))}
@@ -434,7 +436,7 @@ export function Pulso() {
 
         {/* Bottom synthesis */}
         <div style={{ marginTop: 3, padding: "20px 22px", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.05)", borderTop: "2px solid rgba(255,255,255,0.08)", borderRadius: "0 0 8px 8px" }}>
-          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>SÍNTESE DO PULSO</div>
+          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>SÍNTESE DO PULSO</div>
           <p style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.68)", lineHeight: 1.7, maxWidth: 680 }}>
             O mercado não odeia o resultado — odeia o vácuo que vem depois. Frustração (38%) e Desconfiança (27%) são emoções de processo, não de entrega. O cliente que sai satisfeito ainda assim não volta nem indica porque{" "}
             <span style={{ color: "#ff9500" }}>ninguém fechou o ciclo.</span>{" "}
