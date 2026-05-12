@@ -436,8 +436,8 @@ export function Ticker() {
           <div style={{
             padding: "15px 18px",
             background: "rgba(255,149,0,0.04)",
-            backdropFilter: "blur(12px) saturate(150%)",
-            WebkitBackdropFilter: "blur(12px) saturate(150%)",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
             border: "1px solid rgba(255,149,0,0.1)",
             borderLeft: "2px solid rgba(255,149,0,0.4)",
             borderRadius: "0 6px 6px 0",
@@ -534,8 +534,8 @@ export function Ticker() {
                 <div style={{
                   padding: "8px 12px",
                   background: "rgba(255,149,0,0.05)",
-                  backdropFilter: "blur(12px) saturate(150%)",
-                  WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
                   border: "1px solid rgba(255,149,0,0.12)",
                   borderRadius: 4,
                 }}>
@@ -566,8 +566,8 @@ export function Ticker() {
               display: "flex", alignItems: "flex-start", gap: 16,
               padding: "14px 18px",
               background: "rgba(255,255,255,0.016)",
-              backdropFilter: "blur(12px) saturate(150%)",
-              WebkitBackdropFilter: "blur(12px) saturate(150%)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: "1px solid rgba(255,255,255,0.05)",
               borderLeft: `3px solid ${u.color}`,
               borderRadius: "0 6px 6px 0",
