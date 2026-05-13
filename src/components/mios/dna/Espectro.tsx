@@ -223,11 +223,11 @@ export function Espectro() {
       <style>{KEYFRAMES}</style>
 
       {/* ── HEADER ────────────────────────────────────────────────────────── */}
-      <div style={{ padding: "16px 24px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ padding: "16px 24px 14px", background: "rgba(255,255,255,0.012)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
-            <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
-            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>DNA DA MARCA — O ESPECTRO</span>
+            <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>DNA DA MARCA — O ESPECTRO</span>
           </div>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[
@@ -237,7 +237,7 @@ export function Espectro() {
               { label: "PILARES DEFINIDOS",    value: "4",        color: "rgba(255,255,255,0.55)" },
             ].map(m => (
               <div key={m.label} style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
+                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
                 <div style={{ fontSize: 16, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
               </div>
             ))}
@@ -249,8 +249,8 @@ export function Espectro() {
       <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 0, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
 
         {/* Radar */}
-        <div style={{ padding: "24px", borderRight: "1px solid rgba(255,255,255,0.05)", display: "flex", flexDirection: "column", gap: 16 }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace" }}>PERFIL DO DNA</div>
+        <div style={{ padding: "24px", background: "rgba(255,255,255,0.008)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", borderRight: "1px solid rgba(255,255,255,0.05)", display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace" }}>PERFIL DO DNA</div>
           <div style={{ width: "100%", aspectRatio: "1 / 1" }}>
             <RadarChart />
           </div>
@@ -258,22 +258,24 @@ export function Espectro() {
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <div className="flex items-center gap-3">
               <div style={{ width: 22, height: 1.5, background: "rgba(255,149,0,0.65)", flexShrink: 0 }} />
-              <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>DNA atual — 41% alinhado</span>
+              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>DNA atual — 41% alinhado</span>
             </div>
             <div className="flex items-center gap-3">
               <div style={{ width: 22, height: 1.5, background: "rgba(255,149,0,0.4)", flexShrink: 0, borderTop: "1px dashed rgba(255,149,0,0.4)" }} />
-              <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>DNA ideal — referência alvo</span>
+              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>DNA ideal — referência alvo</span>
             </div>
           </div>
         </div>
 
         {/* Archetypes */}
         <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: 14 }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>PERFIL ARQUETÍPICO</div>
+          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>PERFIL ARQUETÍPICO</div>
           {ARCHETYPES.map((arch, i) => (
             <div key={i} style={{
               padding: "18px 20px",
               background: arch.role === "primary" ? "rgba(255,149,0,0.05)" : "rgba(255,255,255,0.015)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               border: `1px solid ${arch.role === "primary" ? "rgba(255,149,0,0.2)" : "rgba(255,255,255,0.05)"}`,
               borderLeft: `3px solid ${arch.color}`,
               borderRadius: "0 8px 8px 0",
@@ -281,7 +283,7 @@ export function Espectro() {
             }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
                 <div>
-                  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 3 }}>
+                  <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 3 }}>
                     {arch.role === "primary" ? "PRIMÁRIO" : arch.role === "secondary" ? "SECUNDÁRIO" : "SOMBRA (LATENTE)"}
                   </div>
                   <div style={{ fontSize: 17, fontWeight: 900, color: arch.color }}>{arch.name}</div>
@@ -291,17 +293,17 @@ export function Espectro() {
                   opacity: arch.role === "primary" ? 1 : 0.6, lineHeight: 1,
                 }}>{arch.pct}%</div>
               </div>
-              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.65 }}>{arch.desc}</p>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.42)", lineHeight: 1.65 }}>{arch.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* ── SECTION 2: DIMENSION SPECTRUM ────────────────────────────────── */}
-      <div style={{ padding: "24px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ padding: "24px", background: "rgba(255,255,255,0.008)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div style={{ marginBottom: 18 }}>
-          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace" }}>ESPECTRO DE DIMENSÕES</span>
-          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>POSIÇÃO ATUAL vs. POSIÇÃO IDEAL — GAP DO DNA</span>
+          <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace" }}>ESPECTRO DE DIMENSÕES</span>
+          <span style={{ fontSize: 7, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>POSIÇÃO ATUAL vs. POSIÇÃO IDEAL — GAP DO DNA</span>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 32px" }}>
@@ -313,8 +315,8 @@ export function Espectro() {
             return (
               <div key={i} style={{ animation: `word-appear 0.3s ease ${delay}s both` }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.35)", fontFamily: "JetBrains Mono, monospace" }}>{dim.leftLabel}</span>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.35)", fontFamily: "JetBrains Mono, monospace" }}>{dim.rightLabel}</span>
+                  <span style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.35)", fontFamily: "JetBrains Mono, monospace" }}>{dim.leftLabel}</span>
+                  <span style={{ fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.35)", fontFamily: "JetBrains Mono, monospace" }}>{dim.rightLabel}</span>
                 </div>
 
                 {/* Track */}
@@ -343,7 +345,7 @@ export function Espectro() {
                     zIndex: 2,
                   }}>
                     <div style={{ position: "absolute", bottom: "100%", left: "50%", transform: "translateX(-50%)", marginBottom: 3,
-                      fontSize: 9, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap" }}>
+                      fontSize: 7, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap" }}>
                       {dim.current}
                     </div>
                   </div>
@@ -360,7 +362,7 @@ export function Espectro() {
                     animation: "gap-pulse 2.5s infinite",
                   }}>
                     <div style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", marginTop: 3,
-                      fontSize: 9, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap" }}>
+                      fontSize: 7, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap" }}>
                       {dim.ideal}
                     </div>
                   </div>
@@ -368,7 +370,7 @@ export function Espectro() {
 
                 {/* Gap label */}
                 <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 14 }}>
-                  <span style={{ fontSize: 10, fontWeight: 700, color: gapColor, fontFamily: "JetBrains Mono, monospace" }}>
+                  <span style={{ fontSize: 8, fontWeight: 700, color: gapColor, fontFamily: "JetBrains Mono, monospace" }}>
                     gap {isNegGap ? "−" : "+"}{gapAbs} pts {gapAbs > 30 ? "● CRÍTICO" : gapAbs > 15 ? "● ALTO" : "● OK"}
                   </span>
                 </div>
@@ -383,17 +385,17 @@ export function Espectro() {
 
         {/* Verbal Identity */}
         <div style={{ padding: "24px", borderRight: "1px solid rgba(255,255,255,0.05)" }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>IDENTIDADE VERBAL</div>
+          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>IDENTIDADE VERBAL</div>
 
           <div style={{ marginBottom: 18 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>PALAVRAS QUE DEFINEM A MARCA</div>
+            <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>PALAVRAS QUE DEFINEM A MARCA</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {WORDS_OWN.map((w, i) => (
                 <span key={i} style={{
-                  padding: "5px 12px", fontSize: 12, fontWeight: 700,
+                  padding: "5px 12px", fontSize: 10, fontWeight: 700,
                   background: "rgba(255,149,0,0.08)", color: "#ff9500",
-                  backdropFilter: "blur(16px) saturate(180%)",
-                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
+                  backdropFilter: "blur(12px) saturate(160%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(160%)",
                   border: "1px solid rgba(255,149,0,0.22)", borderRadius: 4,
                   fontFamily: "JetBrains Mono, monospace",
                   animation: `word-appear 0.25s ease ${i * 0.05}s both`,
@@ -403,14 +405,14 @@ export function Espectro() {
           </div>
 
           <div>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>PALAVRAS A EVITAR</div>
+            <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>PALAVRAS A EVITAR</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {WORDS_AVOID.map((w, i) => (
                 <span key={i} style={{
-                  padding: "5px 12px", fontSize: 12, fontWeight: 700,
+                  padding: "5px 12px", fontSize: 10, fontWeight: 700,
                   background: "rgba(239,68,68,0.06)", color: "rgba(239,68,68,0.7)",
-                  backdropFilter: "blur(16px) saturate(180%)",
-                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
+                  backdropFilter: "blur(12px) saturate(160%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(160%)",
                   border: "1px solid rgba(239,68,68,0.18)", borderRadius: 4,
                   fontFamily: "JetBrains Mono, monospace",
                   textDecoration: "line-through",
@@ -421,9 +423,9 @@ export function Espectro() {
           </div>
 
           {/* Brand essence */}
-          <div style={{ marginTop: 20, padding: "16px 18px", background: "rgba(255,149,0,0.04)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "3px solid #ff9500", borderRadius: "0 6px 6px 0" }}>
-            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 6 }}>ESSÊNCIA DA MARCA</div>
-            <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.72)", lineHeight: 1.65, fontStyle: "italic" }}>
+          <div style={{ marginTop: 20, padding: "16px 18px", background: "rgba(255,149,0,0.04)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "3px solid #ff9500", borderRadius: "0 6px 6px 0" }}>
+            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 6 }}>ESSÊNCIA DA MARCA</div>
+            <p style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.72)", lineHeight: 1.65, fontStyle: "italic" }}>
               "Somos o especialista que te acompanha — não o serviço que te esquece."
             </p>
           </div>
@@ -431,15 +433,15 @@ export function Espectro() {
 
         {/* Tone Matrix */}
         <div style={{ padding: "24px" }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>TOM DE VOZ</div>
+          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>TOM DE VOZ</div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
             {/* SIM column header */}
-            <div style={{ padding: "8px 12px", background: "rgba(16,185,129,0.06)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: "6px 6px 0 0", textAlign: "center" }}>
-              <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 1.5, color: "rgba(16,185,129,0.8)", fontFamily: "JetBrains Mono, monospace" }}>✓ A MARCA É</span>
+            <div style={{ padding: "8px 12px", background: "rgba(16,185,129,0.06)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: "6px 6px 0 0", textAlign: "center" }}>
+              <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 1.5, color: "rgba(16,185,129,0.8)", fontFamily: "JetBrains Mono, monospace" }}>✓ A MARCA É</span>
             </div>
-            <div style={{ padding: "8px 12px", background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: "6px 6px 0 0", textAlign: "center" }}>
-              <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 1.5, color: "rgba(239,68,68,0.8)", fontFamily: "JetBrains Mono, monospace" }}>✗ A MARCA NÃO É</span>
+            <div style={{ padding: "8px 12px", background: "rgba(239,68,68,0.06)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: "6px 6px 0 0", textAlign: "center" }}>
+              <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 1.5, color: "rgba(239,68,68,0.8)", fontFamily: "JetBrains Mono, monospace" }}>✗ A MARCA NÃO É</span>
             </div>
 
             {/* SIM items */}
@@ -453,8 +455,8 @@ export function Espectro() {
                 borderTop: "none",
                 animation: `word-appear 0.25s ease ${i * 0.07}s both`,
               }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(16,185,129,0.8)", marginBottom: 3 }}>{t.y}</div>
-                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.5 }}>{t.desc}</p>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(16,185,129,0.8)", marginBottom: 3 }}>{t.y}</div>
+                <p style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", lineHeight: 1.5 }}>{t.desc}</p>
               </div>
             ))}
 
@@ -471,8 +473,8 @@ export function Espectro() {
                 gridRow: i + 2,
                 animation: `word-appear 0.25s ease ${i * 0.07}s both`,
               }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(239,68,68,0.7)", marginBottom: 3 }}>{t.y}</div>
-                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", lineHeight: 1.5 }}>{t.desc}</p>
+                <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(239,68,68,0.7)", marginBottom: 3 }}>{t.y}</div>
+                <p style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", lineHeight: 1.5 }}>{t.desc}</p>
               </div>
             ))}
           </div>
@@ -482,8 +484,8 @@ export function Espectro() {
       {/* ── SECTION 4: CONTENT PILLARS ───────────────────────────────────── */}
       <div style={{ padding: "24px 24px 48px" }}>
         <div style={{ marginBottom: 18 }}>
-          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace" }}>PILARES DE CONTEÚDO</span>
-          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>MIX EDITORIAL RECOMENDADO</span>
+          <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace" }}>PILARES DE CONTEÚDO</span>
+          <span style={{ fontSize: 7, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>MIX EDITORIAL RECOMENDADO</span>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginBottom: 16 }}>
@@ -500,7 +502,7 @@ export function Espectro() {
             }}>
               {/* Code + share */}
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-                <span style={{ fontSize: 10, fontWeight: 900, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1 }}>{p.code}</span>
+                <span style={{ fontSize: 8, fontWeight: 900, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1 }}>{p.code}</span>
                 <span style={{ fontSize: 20, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>{p.share}%</span>
               </div>
 
@@ -515,13 +517,13 @@ export function Espectro() {
               </div>
 
               <div style={{ fontSize: 13, fontWeight: 800, color: "rgba(255,255,255,0.82)", marginBottom: 8, lineHeight: 1.3 }}>{p.title}</div>
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", lineHeight: 1.6, marginBottom: 12 }}>{p.desc}</p>
+              <p style={{ fontSize: 10, color: "rgba(255,255,255,0.38)", lineHeight: 1.6, marginBottom: 12 }}>{p.desc}</p>
 
               {/* Formats */}
               {p.formats.map((f, j) => (
                 <div key={j} style={{ display: "flex", gap: 7, alignItems: "flex-start", marginBottom: 5 }}>
-                  <span style={{ color: "rgba(255,149,0,0.5)", fontSize: 12, flexShrink: 0 }}>→</span>
-                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", lineHeight: 1.4 }}>{f}</span>
+                  <span style={{ color: "rgba(255,149,0,0.5)", fontSize: 10, flexShrink: 0 }}>→</span>
+                  <span style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", lineHeight: 1.4 }}>{f}</span>
                 </div>
               ))}
             </div>
@@ -529,8 +531,8 @@ export function Espectro() {
         </div>
 
         {/* Mix bar */}
-        <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 8, padding: "16px 20px" }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>MIX EDITORIAL RECOMENDADO</div>
+        <div style={{ background: "rgba(255,255,255,0.02)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 8, padding: "16px 20px" }}>
+          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>MIX EDITORIAL RECOMENDADO</div>
           <div style={{ height: 20, borderRadius: 5, overflow: "hidden", display: "flex" }}>
             {PILLARS.map((p, i) => (
               <div key={i} style={{
@@ -540,13 +542,13 @@ export function Espectro() {
                 animation: `bar-grow 0.6s ease ${i * 0.06}s both`,
                 transformOrigin: "left",
               }}>
-                <span style={{ fontSize: 10, fontWeight: 900, color: "rgba(255,255,255,0.85)", fontFamily: "JetBrains Mono, monospace" }}>{p.share}%</span>
+                <span style={{ fontSize: 8, fontWeight: 900, color: "rgba(255,255,255,0.85)", fontFamily: "JetBrains Mono, monospace" }}>{p.share}%</span>
               </div>
             ))}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
             {PILLARS.map((p, i) => (
-              <span key={i} style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{p.title}</span>
+              <span key={i} style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{p.title}</span>
             ))}
           </div>
         </div>
