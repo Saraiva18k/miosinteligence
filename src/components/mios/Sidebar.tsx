@@ -66,11 +66,10 @@ interface SidebarProps {
 export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
 
-  // Compute progress: count modules up to and including activeModule as done
-  const flat = sections.flatMap((s) => s.modules.map((m) => m.label));
-  const activeIdx = flat.indexOf(activeModule);
+  // Compute progress: count modules with status "done" over total
+  const flat = sections.flatMap((s) => s.modules);
   const total = flat.length;
-  const doneCount = activeIdx >= 0 ? activeIdx : 0;
+  const doneCount = flat.filter((m) => m.status === "done").length;
   const progress = Math.round((doneCount / total) * 100);
 
   if (collapsed) {
@@ -304,20 +303,23 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
         ))}
       </div>
 
-      <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ padding: "12px 12px 14px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
         <Link
           to="/mentor"
           style={{
             display: "block",
-            borderRadius: 10,
+            borderRadius: 12,
             textDecoration: "none",
             overflow: "hidden",
             position: "relative",
             animation: "mentor-glow 3s ease infinite",
             background: activeModule === "Mentor IA"
-              ? "linear-gradient(135deg, rgba(255,149,0,0.16) 0%, rgba(255,80,0,0.08) 100%)"
-              : "linear-gradient(135deg, rgba(255,149,0,0.1) 0%, rgba(255,80,0,0.04) 100%)",
-            border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.65)" : "rgba(255,149,0,0.32)"}`,
+              ? "linear-gradient(135deg, rgba(255,149,0,0.22) 0%, rgba(255,80,0,0.12) 100%)"
+              : "linear-gradient(135deg, rgba(255,149,0,0.16) 0%, rgba(255,80,0,0.07) 100%)",
+            border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.75)" : "rgba(255,149,0,0.5)"}`,
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
+            boxShadow: "0 4px 24px -6px rgba(255,149,0,0.18), 0 0 0 1px rgba(255,149,0,0.06) inset",
           }}
         >
           {/* Shimmer sweep */}
@@ -325,20 +327,20 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
             position: "absolute",
             top: 0, bottom: 0,
             width: "55%",
-            background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.08), transparent)",
+            background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.12), transparent)",
             animation: "mentor-shimmer 4s ease infinite",
             pointerEvents: "none",
           }} />
 
-          <div style={{ padding: "10px 12px", position: "relative" }}>
+          <div style={{ padding: "12px 14px", position: "relative" }}>
             {/* Row 1: Online + label + score */}
-            <div style={{ display: "flex", alignItems: "center", gap: 5, marginBottom: 6 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 7 }}>
               {/* Pulsing online dot with ripple */}
-              <div style={{ position: "relative", width: 8, height: 8, flexShrink: 0 }}>
+              <div style={{ position: "relative", width: 9, height: 9, flexShrink: 0 }}>
                 <div style={{
                   position: "absolute", inset: 0,
                   borderRadius: "50%",
-                  background: "rgba(16,185,129,0.9)",
+                  background: "rgba(16,185,129,0.95)",
                 }} />
                 <div style={{
                   position: "absolute", inset: 0,
@@ -347,27 +349,33 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
                   animation: "online-ripple 2s ease-out infinite",
                 }} />
               </div>
-              <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.2, color: "#ff9500" }}>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, color: "#ff9500" }}>
                 MENTOR IA
               </span>
               <div style={{ marginLeft: "auto", display: "flex", alignItems: "baseline", gap: 1 }}>
-                <span style={{ fontSize: 14, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>87</span>
-                <span style={{ fontSize: 7, color: "rgba(255,149,0,0.45)", fontFamily: "JetBrains Mono, monospace" }}>/100</span>
+                <span style={{ fontSize: 18, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>87</span>
+                <span style={{ fontSize: 9, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace" }}>/100</span>
               </div>
             </div>
 
             {/* Row 2: Description */}
-            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.38)", marginBottom: 8, lineHeight: 1.35 }}>
-              O Sócio · 14 módulos integrados
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.52)", marginBottom: 10, lineHeight: 1.4 }}>
+              O Sócio · {total} módulos integrados
             </div>
 
             {/* Row 3: CTA */}
-            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <Brain size={9} style={{ color: "rgba(255,149,0,0.6)", flexShrink: 0 }} />
-              <span style={{ fontSize: 8, color: "rgba(255,149,0,0.65)", letterSpacing: 0.6 }}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 6,
+              padding: "6px 10px",
+              borderRadius: 7,
+              background: "rgba(255,149,0,0.12)",
+              border: "1px solid rgba(255,149,0,0.25)",
+            }}>
+              <Brain size={11} style={{ color: "rgba(255,149,0,0.85)", flexShrink: 0 }} />
+              <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,149,0,0.9)", letterSpacing: 0.3 }}>
                 Janela ativa · Conversar
               </span>
-              <ArrowUpRight size={9} style={{ color: "rgba(255,149,0,0.55)", marginLeft: "auto" }} />
+              <ArrowUpRight size={11} style={{ color: "rgba(255,149,0,0.7)", marginLeft: "auto" }} />
             </div>
           </div>
         </Link>
