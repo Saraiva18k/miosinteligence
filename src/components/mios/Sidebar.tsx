@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Brain, MapPin, Home } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Brain, MapPin, Home, X } from "lucide-react";
 import { Logo } from "@/components/mios/Logo";
 import { WorkspaceSwitcher } from "@/components/mios/WorkspaceSwitcher";
 
@@ -86,6 +86,16 @@ interface SidebarProps {
 
 export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
+  const [mentorExpanded, setMentorExpanded] = useState(false);
+  const [mentorNew, setMentorNew] = useState(false);
+
+  // Simulate new analysis arriving: dot → expand → collapse
+  useEffect(() => {
+    const t1 = setTimeout(() => setMentorNew(true), 1200);
+    const t2 = setTimeout(() => { setMentorNew(false); setMentorExpanded(true); }, 2800);
+    const t3 = setTimeout(() => setMentorExpanded(false), 11000);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, []);
 
   const flat      = sections.flatMap(s => s.modules);
   const total     = flat.length;
@@ -281,45 +291,42 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
           ))}
         </div>
 
-        {/* ── Mentor card ───────────────────────────────────────────────────── */}
-        <div style={{ padding: "10px 10px 12px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-          <Link
-            to="/mentor"
+        {/* ── Mentor card (dynamic) ─────────────────────────────────────────── */}
+        <div style={{ flexShrink: 0, borderTop: "1px solid rgba(255,255,255,0.05)", padding: "8px 10px 10px" }}>
+
+          {/* Expandable detail — slides up from compact row */}
+          <div
             style={{
-              display: "block", borderRadius: 12, textDecoration: "none",
-              overflow: "hidden", position: "relative",
-              animation: "mentor-glow 3s ease infinite",
-              background: activeModule === "Mentor IA"
-                ? "linear-gradient(135deg, rgba(255,149,0,0.22) 0%, rgba(255,80,0,0.12) 100%)"
-                : "linear-gradient(135deg, rgba(255,149,0,0.15) 0%, rgba(255,80,0,0.06) 100%)",
-              border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.7)" : "rgba(255,149,0,0.45)"}`,
-              backdropFilter: "blur(16px) saturate(180%)",
-              WebkitBackdropFilter: "blur(16px) saturate(180%)",
+              maxHeight: mentorExpanded ? 260 : 0,
+              overflow: "hidden",
+              transition: "max-height 0.42s cubic-bezier(0.4,0,0.2,1)",
             }}
           >
-            {/* Shimmer */}
-            <div style={{ position: "absolute", top: 0, bottom: 0, width: "55%", background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.1), transparent)", animation: "mentor-shimmer 4.5s ease infinite", pointerEvents: "none" }} />
+            <div
+              style={{
+                opacity: mentorExpanded ? 1 : 0,
+                transition: "opacity 0.28s ease",
+                transitionDelay: mentorExpanded ? "0.12s" : "0s",
+                padding: "12px 14px 10px",
+                borderRadius: "10px 10px 0 0",
+                background: "linear-gradient(135deg, rgba(255,149,0,0.15) 0%, rgba(255,80,0,0.06) 100%)",
+                border: "1px solid rgba(255,149,0,0.40)",
+                borderBottom: "none",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              {/* Shimmer */}
+              <div style={{ position: "absolute", top: 0, bottom: 0, width: "55%", background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.08), transparent)", animation: "mentor-shimmer 4.5s ease infinite", pointerEvents: "none" }} />
 
-            <div style={{ padding: "12px 14px", position: "relative" }}>
-
-              {/* Row 1: online dot + label */}
-              <div className="flex items-center gap-2 mb-3">
-                <div style={{ position: "relative", width: 8, height: 8, flexShrink: 0 }}>
-                  <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "rgba(16,185,129,0.95)" }} />
-                  <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "rgba(16,185,129,0.5)", animation: "online-ripple 2s ease-out infinite" }} />
-                </div>
-                <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, color: "#ff9500" }}>MENTOR IA</span>
-                <span style={{ marginLeft: "auto", fontSize: 9, fontWeight: 600, color: "rgba(255,149,0,0.5)", letterSpacing: 0.4 }}>O Sócio</span>
-              </div>
-
-              {/* Row 2: Score + Evolution */}
-              <div className="flex items-end justify-between mb-3">
+              {/* Score + evolution */}
+              <div className="flex items-end justify-between" style={{ marginBottom: 10, position: "relative" }}>
                 <div className="flex items-baseline gap-1">
-                  <span style={{ fontSize: 28, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>87</span>
-                  <span style={{ fontSize: 10, color: "rgba(255,149,0,0.45)", fontFamily: "JetBrains Mono, monospace" }}>/100</span>
+                  <span style={{ fontSize: 32, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>87</span>
+                  <span style={{ fontSize: 11, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>/100</span>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,149,0,0.85)", fontFamily: "JetBrains Mono, monospace" }}>{progress}%</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,149,0,0.85)", fontFamily: "JetBrains Mono, monospace" }}>{progress}%</div>
                   <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>{doneCount}/{total} módulos</div>
                 </div>
               </div>
@@ -330,23 +337,69 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
               </div>
 
               {/* Insight block */}
-              <div style={{ padding: "8px 10px", borderRadius: 8, marginBottom: 10, background: "rgba(255,149,0,0.07)", border: "1px solid rgba(255,149,0,0.15)" }}>
+              <div style={{ padding: "8px 10px", borderRadius: 8, background: "rgba(255,149,0,0.07)", border: "1px solid rgba(255,149,0,0.15)" }}>
                 <div style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,149,0,0.5)", letterSpacing: 1, marginBottom: 4 }}>INSIGHT DO MENTOR</div>
                 <div style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{progressInsight}</div>
                 <div style={{ fontSize: 9, color: "rgba(255,149,0,0.5)", marginTop: 6, lineHeight: 1.4, borderTop: "1px solid rgba(255,149,0,0.12)", paddingTop: 6 }}>
                   💡 {OPPORTUNITY_INSIGHT}
                 </div>
               </div>
-
-              {/* CTA */}
-              <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "7px 10px", borderRadius: 8, background: "rgba(255,149,0,0.13)", border: "1px solid rgba(255,149,0,0.28)" }}>
-                <Brain size={11} style={{ color: "rgba(255,149,0,0.85)", flexShrink: 0 }} />
-                <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,149,0,0.9)", letterSpacing: 0.2 }}>Janela ativa · Conversar</span>
-                <ArrowUpRight size={11} style={{ color: "rgba(255,149,0,0.65)", marginLeft: "auto" }} />
-              </div>
-
             </div>
-          </Link>
+          </div>
+
+          {/* Always-visible compact row */}
+          <div
+            style={{
+              display: "flex", alignItems: "center", gap: 7,
+              padding: "9px 12px",
+              borderRadius: mentorExpanded ? "0 0 10px 10px" : 10,
+              background: "linear-gradient(135deg, rgba(255,149,0,0.18) 0%, rgba(255,80,0,0.08) 100%)",
+              border: "1px solid rgba(255,149,0,0.45)",
+              borderTop: mentorExpanded ? "1px solid rgba(255,149,0,0.18)" : undefined,
+              animation: "mentor-glow 3s ease infinite",
+              cursor: "pointer",
+              position: "relative",
+              transition: "border-radius 0.42s cubic-bezier(0.4,0,0.2,1)",
+            }}
+            onClick={() => setMentorExpanded(v => !v)}
+          >
+            {/* Online dot */}
+            <div style={{ position: "relative", width: 8, height: 8, flexShrink: 0 }}>
+              <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "rgba(16,185,129,0.95)" }} />
+              <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "rgba(16,185,129,0.5)", animation: "online-ripple 2s ease-out infinite" }} />
+            </div>
+
+            <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, color: "#ff9500" }}>MENTOR IA</span>
+
+            {/* New-insight notification dot */}
+            {mentorNew && (
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#ff9500", boxShadow: "0 0 8px rgba(255,149,0,0.9)", flexShrink: 0 }} />
+            )}
+
+            {/* Score chip */}
+            <span style={{ marginLeft: "auto", fontSize: 11, fontWeight: 700, color: "rgba(255,149,0,0.85)", fontFamily: "JetBrains Mono, monospace", flexShrink: 0 }}>87</span>
+
+            {mentorExpanded ? (
+              /* Close button */
+              <button
+                onClick={e => { e.stopPropagation(); setMentorExpanded(false); }}
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 18, height: 18, borderRadius: 5, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)", color: "rgba(255,255,255,0.45)", cursor: "pointer", flexShrink: 0 }}
+              >
+                <X size={9} strokeWidth={2.5} />
+              </button>
+            ) : (
+              /* Conversar CTA */
+              <Link
+                to="/mentor"
+                onClick={e => e.stopPropagation()}
+                style={{ display: "flex", alignItems: "center", gap: 3, padding: "3px 7px", borderRadius: 6, background: "rgba(255,149,0,0.13)", border: "1px solid rgba(255,149,0,0.28)", textDecoration: "none", flexShrink: 0 }}
+              >
+                <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,149,0,0.85)", letterSpacing: 0.3 }}>Conversar</span>
+                <ArrowUpRight size={9} style={{ color: "rgba(255,149,0,0.65)" }} />
+              </Link>
+            )}
+          </div>
+
         </div>
 
       </aside>
