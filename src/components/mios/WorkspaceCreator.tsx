@@ -11,7 +11,7 @@ import {
 
 const KF = `
 @keyframes wc-backdrop { from { opacity:0 } to { opacity:1 } }
-@keyframes wc-modal-in { from { opacity:0; transform:scale(0.96) translateY(12px) } to { opacity:1; transform:scale(1) translateY(0) } }
+@keyframes wc-modal-in { from { opacity:0; transform:scale(0.93) } to { opacity:1; transform:scale(1) } }
 @keyframes wc-step-right { from { opacity:0; transform:translateX(28px) } to { opacity:1; transform:translateX(0) } }
 @keyframes wc-step-left  { from { opacity:0; transform:translateX(-28px) } to { opacity:1; transform:translateX(0) } }
 @keyframes wc-ring-pulse { 0%,100% { filter:drop-shadow(0 0 4px rgba(255,149,0,0.3)) } 50% { filter:drop-shadow(0 0 14px rgba(255,149,0,0.7)) } }
@@ -902,7 +902,7 @@ export function WorkspaceCreator({ open, onClose, onCreated }: WorkspaceCreatorP
           WebkitBackdropFilter: "blur(40px) saturate(200%)",
           border: "1px solid rgba(255,255,255,0.09)",
           boxShadow: "0 0 0 1px rgba(255,255,255,0.04) inset, 0 32px 80px -20px rgba(0,0,0,0.9), 0 8px 32px -8px rgba(255,149,0,0.08)",
-          animation: "wc-modal-in 0.3s cubic-bezier(0.16,1,0.3,1)",
+          animation: "wc-modal-in 0.35s cubic-bezier(0.16,1,0.3,1)",
           overflow: "hidden",
         }}
       >
