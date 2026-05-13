@@ -11,7 +11,7 @@ import {
 
 const KF = `
 @keyframes wc-backdrop { from { opacity:0 } to { opacity:1 } }
-@keyframes wc-modal-in { from { opacity:0; transform:scale(0.93) } to { opacity:1; transform:scale(1) } }
+@keyframes wc-modal-in { from { opacity:0; transform:translate(-50%,-50%) scale(0.93) } to { opacity:1; transform:translate(-50%,-50%) scale(1) } }
 @keyframes wc-step-right { from { opacity:0; transform:translateX(28px) } to { opacity:1; transform:translateX(0) } }
 @keyframes wc-step-left  { from { opacity:0; transform:translateX(-28px) } to { opacity:1; transform:translateX(0) } }
 @keyframes wc-ring-pulse { 0%,100% { filter:drop-shadow(0 0 4px rgba(255,149,0,0.3)) } 50% { filter:drop-shadow(0 0 14px rgba(255,149,0,0.7)) } }
