@@ -45,6 +45,8 @@ export function WorkspaceSwitcher() {
           borderRadius: 8,
           border: `1px solid ${open ? "rgba(255,149,0,0.25)" : "rgba(255,255,255,0.06)"}`,
           background: open ? "rgba(255,149,0,0.05)" : "rgba(255,255,255,0.02)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
         }}
         onMouseEnter={(e) => {
           if (!open) e.currentTarget.style.background = "rgba(255,255,255,0.04)";
