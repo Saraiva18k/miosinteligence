@@ -45,8 +45,6 @@ export function WorkspaceSwitcher() {
           borderRadius: 8,
           border: `1px solid ${open ? "rgba(255,149,0,0.25)" : "rgba(255,255,255,0.06)"}`,
           background: open ? "rgba(255,149,0,0.05)" : "rgba(255,255,255,0.02)",
-          backdropFilter: "blur(16px) saturate(180%)",
-          WebkitBackdropFilter: "blur(16px) saturate(180%)",
         }}
         onMouseEnter={(e) => {
           if (!open) e.currentTarget.style.background = "rgba(255,255,255,0.04)";
@@ -107,10 +105,12 @@ export function WorkspaceSwitcher() {
             top: "calc(100% + 6px)",
             width: 280,
             borderRadius: 12,
-            border: "1px solid rgba(255,255,255,0.1)",
-            background: "rgba(10,13,22,0.94)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(10,13,22,0.35)",
+            backdropFilter: "blur(80px) saturate(220%)",
+            WebkitBackdropFilter: "blur(80px) saturate(220%)",
             boxShadow:
-              "0 1px 0 rgba(255,255,255,0.06) inset, 0 24px 60px -16px rgba(0,0,0,0.85), 0 8px 20px -8px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03)",
+              "0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 60px -16px rgba(0,0,0,0.7), 0 8px 20px -8px rgba(0,0,0,0.5)",
             animationDuration: "180ms",
           }}
         >
