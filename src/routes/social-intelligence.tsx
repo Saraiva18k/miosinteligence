@@ -2,13 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Header } from "@/components/mios/Header";
 import { Sidebar } from "@/components/mios/Sidebar";
-import { TopBar } from "@/components/mios/TopBar";
 import { SocialHero } from "@/components/mios/social/SocialHero";
 import { PlatformGrid } from "@/components/mios/social/PlatformGrid";
 import { CrossInsights } from "@/components/mios/social/CrossInsights";
 import { SubTabs } from "@/components/mios/social/SubTabs";
 import { CompetitorSelector } from "@/components/mios/social/CompetitorSelector";
 import { StrategyView } from "@/components/mios/social/StrategyView";
+import { ContextTabs } from "@/components/mios/ContextTabs";
 
 export const Route = createFileRoute("/social-intelligence")({
   component: SocialIntelligence,
@@ -52,8 +52,8 @@ function SocialIntelligence() {
       <div className="flex flex-1 min-h-0">
         <Sidebar activeModule="Social Intelligence" />
         <main className="flex-1 flex flex-col min-w-0">
-          <TopBar />
           <div className="mios-scroll flex-1 overflow-y-auto px-6 py-5 space-y-4">
+            <ContextTabs />
             <SocialHero />
             <SubTabs active={tab} onChange={handleTabChange} />
             {tab === "concorrentes" ? (
