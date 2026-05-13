@@ -107,12 +107,10 @@ export function WorkspaceSwitcher() {
             top: "calc(100% + 6px)",
             width: 280,
             borderRadius: 12,
-            border: "1px solid rgba(255,255,255,0.08)",
-            background: "rgba(10,13,22,0.35)",
-            backdropFilter: "blur(80px) saturate(220%)",
-            WebkitBackdropFilter: "blur(80px) saturate(220%)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            background: "rgba(10,13,22,0.94)",
             boxShadow:
-              "0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 60px -16px rgba(0,0,0,0.7), 0 8px 20px -8px rgba(0,0,0,0.5)",
+              "0 1px 0 rgba(255,255,255,0.06) inset, 0 24px 60px -16px rgba(0,0,0,0.85), 0 8px 20px -8px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03)",
             animationDuration: "180ms",
           }}
         >
