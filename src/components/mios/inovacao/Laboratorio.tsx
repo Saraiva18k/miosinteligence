@@ -217,11 +217,11 @@ export function Laboratorio() {
       <style>{KEYFRAMES}</style>
 
       {/* ── HEADER ────────────────────────────────────────────────────────── */}
-      <div style={{ padding: "16px 24px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ padding: "16px 24px 14px", background: "rgba(255,255,255,0.012)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
-            <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
-            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>INOVAÇÃO — O LABORATÓRIO</span>
+            <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.7)", fontFamily: "JetBrains Mono, monospace", animation: "mios-pulse 2s infinite" }}>● LIVE</span>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1.5, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>INOVAÇÃO — O LABORATÓRIO</span>
           </div>
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[
@@ -231,7 +231,7 @@ export function Laboratorio() {
               { label: "QUICK WINS",       value: "2",                        color: "#ff9500"                },
             ].map(m => (
               <div key={m.label} style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
+                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 2 }}>{m.label}</div>
                 <div style={{ fontSize: 16, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
               </div>
             ))}
@@ -240,7 +240,7 @@ export function Laboratorio() {
       </div>
 
       {/* ── PIPELINE HEADER ───────────────────────────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", background: "rgba(255,255,255,0.008)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         {STAGES.map((stage, i) => {
           const count = EXPERIMENTS.filter(e => e.stage === stage.key).length;
           return (
@@ -253,7 +253,7 @@ export function Laboratorio() {
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <div style={{ width: 8, height: 8, borderRadius: "50%", background: stage.color,
                   animation: stage.key === "teste" ? "dot-blink 2s infinite" : "none" }} />
-                <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 1.5, color: stage.color, fontFamily: "JetBrains Mono, monospace" }}>{stage.label}</span>
+                <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 1.5, color: stage.color, fontFamily: "JetBrains Mono, monospace" }}>{stage.label}</span>
               </div>
               <span style={{ fontSize: 20, fontWeight: 900, color: stage.color, fontFamily: "JetBrains Mono, monospace", marginLeft: "auto", opacity: 0.9 }}>{count}</span>
             </div>
@@ -281,6 +281,8 @@ export function Laboratorio() {
                     padding: "12px 12px",
                     marginBottom: 8,
                     background: isSel ? "rgba(255,149,0,0.08)" : "rgba(255,255,255,0.02)",
+                    backdropFilter: "blur(16px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(16px) saturate(180%)",
                     border: `1px solid ${isSel ? "rgba(255,149,0,0.35)" : "rgba(255,255,255,0.06)"}`,
                     borderLeft: `3px solid ${stage.color}`,
                     borderRadius: "0 6px 6px 0",
@@ -289,18 +291,18 @@ export function Laboratorio() {
                     animation: `card-appear 0.25s ease ${(si * 2 + ei) * 0.05}s both`,
                   }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
-                      <span style={{ fontSize: 9, fontWeight: 900, color: stage.color, fontFamily: "JetBrains Mono, monospace", letterSpacing: 1 }}>{exp.id}</span>
+                      <span style={{ fontSize: 7, fontWeight: 900, color: stage.color, fontFamily: "JetBrains Mono, monospace", letterSpacing: 1 }}>{exp.id}</span>
                       {exp.weeks > 0 && (
-                        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>{exp.weeks}w</span>
+                        <span style={{ fontSize: 7, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>{exp.weeks}w</span>
                       )}
                     </div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: isSel ? "rgba(255,255,255,0.88)" : "rgba(255,255,255,0.58)", lineHeight: 1.3, marginBottom: 6 }}>{exp.title}</div>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: isSel ? "rgba(255,255,255,0.88)" : "rgba(255,255,255,0.58)", lineHeight: 1.3, marginBottom: 6 }}>{exp.title}</div>
                     {exp.metric && (
-                      <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(16,185,129,0.8)", fontFamily: "JetBrains Mono, monospace" }}>{exp.metric.split(" ").slice(0,3).join(" ")}...</div>
+                      <div style={{ fontSize: 9, fontWeight: 700, color: "rgba(16,185,129,0.8)", fontFamily: "JetBrains Mono, monospace" }}>{exp.metric.split(" ").slice(0,3).join(" ")}...</div>
                     )}
                     <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 6 }}>
                       {exp.tags.slice(0,2).map(t => (
-                        <span key={t} style={{ fontSize: 9, padding: "2px 6px", background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)", borderRadius: 3, fontFamily: "JetBrains Mono, monospace" }}>{t}</span>
+                        <span key={t} style={{ fontSize: 7, padding: "2px 6px", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", color: "rgba(255,255,255,0.25)", borderRadius: 3, fontFamily: "JetBrains Mono, monospace" }}>{t}</span>
                       ))}
                     </div>
                   </button>
@@ -315,53 +317,55 @@ export function Laboratorio() {
           padding: "18px 18px",
           borderLeft: "1px solid rgba(255,255,255,0.06)",
           background: "rgba(255,255,255,0.015)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           display: "flex", flexDirection: "column", gap: 14,
           animation: "detail-slide 0.2s ease",
           overflowY: "auto",
         }}>
           {/* Stage badge */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 1.5, color: activeStage.color, fontFamily: "JetBrains Mono, monospace" }}>
+            <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: 1.5, color: activeStage.color, fontFamily: "JetBrains Mono, monospace" }}>
               {activeExp.id} · {activeStage.label}
             </span>
             {activeExp.weeks > 0 && (
-              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>{activeExp.weeks} semanas</span>
+              <span style={{ fontSize: 7, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>{activeExp.weeks} semanas</span>
             )}
           </div>
 
           <div style={{ fontSize: 15, fontWeight: 900, color: "rgba(255,255,255,0.88)", lineHeight: 1.3 }}>{activeExp.title}</div>
 
           {/* Hypothesis */}
-          <div style={{ padding: "12px 14px", background: "rgba(255,149,0,0.04)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "2px solid rgba(255,149,0,0.4)", borderRadius: "0 5px 5px 0" }}>
-            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>HIPÓTESE</div>
-            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.58)", lineHeight: 1.65 }}>{activeExp.hypothesis}</p>
+          <div style={{ padding: "12px 14px", background: "rgba(255,149,0,0.04)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "2px solid rgba(255,149,0,0.4)", borderRadius: "0 5px 5px 0" }}>
+            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>HIPÓTESE</div>
+            <p style={{ fontSize: 10, color: "rgba(255,255,255,0.58)", lineHeight: 1.65 }}>{activeExp.hypothesis}</p>
           </div>
 
           {/* Method */}
           <div>
-            <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>MÉTODO</div>
-            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.42)", lineHeight: 1.65 }}>{activeExp.method}</p>
+            <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>MÉTODO</div>
+            <p style={{ fontSize: 10, color: "rgba(255,255,255,0.42)", lineHeight: 1.65 }}>{activeExp.method}</p>
           </div>
 
           {/* Metric */}
           {activeExp.metric && (
-            <div style={{ padding: "12px 14px", background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 6 }}>
-              <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(16,185,129,0.6)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>RESULTADO-CHAVE</div>
+            <div style={{ padding: "12px 14px", background: "rgba(16,185,129,0.05)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(16,185,129,0.15)", borderRadius: 6 }}>
+              <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(16,185,129,0.6)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>RESULTADO-CHAVE</div>
               <div style={{ fontSize: 13, fontWeight: 800, color: "rgba(16,185,129,0.9)" }}>{activeExp.metric}</div>
             </div>
           )}
 
           {/* Result / conclusion */}
           {activeExp.result && (
-            <div style={{ padding: "12px 14px", background: "rgba(16,185,129,0.04)", border: "1px solid rgba(16,185,129,0.12)", borderRadius: 6 }}>
-              <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(16,185,129,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>CONCLUSÃO ✓</div>
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{activeExp.result}</p>
+            <div style={{ padding: "12px 14px", background: "rgba(16,185,129,0.04)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(16,185,129,0.12)", borderRadius: 6 }}>
+              <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 1.5, color: "rgba(16,185,129,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 5 }}>CONCLUSÃO ✓</div>
+              <p style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{activeExp.result}</p>
             </div>
           )}
 
           {!activeExp.result && (
-            <div style={{ padding: "10px 14px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 5 }}>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>
+            <div style={{ padding: "10px 14px", background: "rgba(255,255,255,0.02)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 5 }}>
+              <div style={{ fontSize: 8, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>
                 {activeExp.stage === "hipotese" ? "⬜ Aguardando priorização" :
                  activeExp.stage === "prototipagem" ? "🔧 Em construção" : "⚗️ Teste em andamento"}
               </div>
@@ -374,9 +378,9 @@ export function Laboratorio() {
               { label: "IMPACTO", value: activeExp.impact, color: "#ff9500"                },
               { label: "ESFORÇO", value: activeExp.effort, color: "rgba(255,255,255,0.45)" },
             ].map(m => (
-              <div key={m.label} style={{ padding: "10px 12px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 5 }}>
-                <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{m.label}</div>
-                <div style={{ fontSize: 22, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>{m.value}<span style={{ fontSize: 12 }}>/10</span></div>
+              <div key={m.label} style={{ padding: "10px 12px", background: "rgba(255,255,255,0.02)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 5 }}>
+                <div style={{ fontSize: 7, letterSpacing: 1.2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{m.label}</div>
+                <div style={{ fontSize: 22, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>{m.value}<span style={{ fontSize: 10 }}>/10</span></div>
                 <div style={{ marginTop: 6, height: 3, background: "rgba(255,255,255,0.05)", borderRadius: 2, overflow: "hidden" }}>
                   <div style={{ height: "100%", width: `${m.value * 10}%`, background: m.color, borderRadius: 2,
                     animation: "bar-grow 0.4s ease both", transformOrigin: "left" }} />
@@ -388,7 +392,7 @@ export function Laboratorio() {
           {/* Tags */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
             {activeExp.tags.map(t => (
-              <span key={t} style={{ fontSize: 10, padding: "3px 9px", background: "rgba(255,149,0,0.07)", color: "rgba(255,149,0,0.6)", border: "1px solid rgba(255,149,0,0.15)", borderRadius: 3, fontFamily: "JetBrains Mono, monospace" }}>{t}</span>
+              <span key={t} style={{ fontSize: 8, padding: "3px 9px", background: "rgba(255,149,0,0.07)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", color: "rgba(255,149,0,0.6)", border: "1px solid rgba(255,149,0,0.15)", borderRadius: 3, fontFamily: "JetBrains Mono, monospace" }}>{t}</span>
             ))}
           </div>
         </div>
@@ -398,8 +402,8 @@ export function Laboratorio() {
       <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: 0 }}>
 
         {/* Matrix */}
-        <div style={{ padding: "20px", borderRight: "1px solid rgba(255,255,255,0.05)" }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 12 }}>MATRIZ DE OPORTUNIDADE</div>
+        <div style={{ padding: "20px", background: "rgba(255,255,255,0.008)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", borderRight: "1px solid rgba(255,255,255,0.05)" }}>
+          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 12 }}>MATRIZ DE OPORTUNIDADE</div>
           <div style={{ aspectRatio: "260/200" }}>
             <OpportunityMatrix selected={selected} onSelect={setSelected} />
           </div>
@@ -407,7 +411,7 @@ export function Laboratorio() {
             {STAGES.map(s => (
               <div key={s.key} className="flex items-center gap-2">
                 <div style={{ width: 6, height: 6, borderRadius: "50%", background: s.color, flexShrink: 0 }} />
-                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{s.label}</span>
+                <span style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>{s.label}</span>
               </div>
             ))}
           </div>
@@ -415,7 +419,7 @@ export function Laboratorio() {
 
         {/* Insights grid */}
         <div style={{ padding: "20px 24px 48px" }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>LEITURAS DO LABORATÓRIO</div>
+          <div style={{ fontSize: 7, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 16 }}>LEITURAS DO LABORATÓRIO</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
             {[
               {
@@ -450,15 +454,17 @@ export function Laboratorio() {
               <div key={i} style={{
                 padding: "16px 18px",
                 background: "rgba(255,255,255,0.015)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: `1px solid ${ins.border}`,
                 borderTop: `2px solid ${ins.color}`,
                 borderRadius: "0 0 8px 8px",
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>{ins.title}</span>
+                  <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>{ins.title}</span>
                   <span style={{ fontSize: 18, fontWeight: 900, color: ins.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>{ins.value}</span>
                 </div>
-                <p style={{ fontSize: 12, color: "rgba(255,255,255,0.42)", lineHeight: 1.65 }}>{ins.desc}</p>
+                <p style={{ fontSize: 10, color: "rgba(255,255,255,0.42)", lineHeight: 1.65 }}>{ins.desc}</p>
               </div>
             ))}
           </div>
