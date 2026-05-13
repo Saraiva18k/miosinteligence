@@ -72,6 +72,8 @@ function PullQuote({ text, author }: { text: string; author?: string }) {
       padding: "12px 18px",
       margin: "20px 0",
       background: "rgba(255,149,0,0.04)",
+      backdropFilter: "blur(16px) saturate(180%)",
+      WebkitBackdropFilter: "blur(16px) saturate(180%)",
       borderRadius: "0 8px 8px 0",
     }}>
       <p style={{
@@ -96,6 +98,8 @@ function DataCallout({ label, value, sub, color = "var(--accent)" }: {
     <div style={{
       display: "inline-flex", flexDirection: "column",
       background: "rgba(255,255,255,0.03)",
+      backdropFilter: "blur(16px) saturate(180%)",
+      WebkitBackdropFilter: "blur(16px) saturate(180%)",
       border: `1px solid ${color}25`,
       borderTop: `2px solid ${color}`,
       borderRadius: "0 0 8px 8px",
@@ -157,6 +161,8 @@ function RiskRow({ risk, prob, impact, mitigation }: {
       <span style={{
         fontSize: 11, fontWeight: 700, textAlign: "center",
         color: PROB_COLOR[prob], background: `${PROB_COLOR[prob]}15`,
+        backdropFilter: "blur(12px) saturate(160%)",
+        WebkitBackdropFilter: "blur(12px) saturate(160%)",
         borderRadius: 5, padding: "3px 0",
       }}>
         {prob.toUpperCase()}
@@ -164,6 +170,8 @@ function RiskRow({ risk, prob, impact, mitigation }: {
       <span style={{
         fontSize: 11, fontWeight: 700, textAlign: "center",
         color: IMP_COLOR[impact], background: `${IMP_COLOR[impact]}15`,
+        backdropFilter: "blur(12px) saturate(160%)",
+        WebkitBackdropFilter: "blur(12px) saturate(160%)",
         borderRadius: 5, padding: "3px 0",
       }}>
         {impact.toUpperCase()}
@@ -200,6 +208,8 @@ function MilestoneRow({ phase, period, items, done }: {
           <span style={{
             fontSize: 11, color: done ? "#10b981" : "rgba(255,149,0,0.7)",
             background: done ? "rgba(16,185,129,0.08)" : "rgba(255,149,0,0.07)",
+            backdropFilter: "blur(12px) saturate(160%)",
+            WebkitBackdropFilter: "blur(12px) saturate(160%)",
             border: `1px solid ${done ? "rgba(16,185,129,0.2)" : "rgba(255,149,0,0.2)"}`,
             borderRadius: 4, padding: "1px 6px", fontWeight: 600,
           }}>
@@ -302,7 +312,10 @@ function PropostaValor() {
       ].map(pillar => (
         <div key={pillar.title} style={{
           display: "flex", gap: 14, padding: "14px 16px", marginBottom: 10,
-          background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)",
+          background: "rgba(255,255,255,0.02)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
+          border: "1px solid rgba(255,255,255,0.05)",
           borderLeft: `3px solid ${pillar.color}`, borderRadius: "0 8px 8px 0",
         }}>
           <div style={{ color: pillar.color, marginTop: 2, flexShrink: 0 }}>{pillar.icon}</div>
@@ -515,6 +528,8 @@ function AnaliseRiscos() {
           display: "grid", gridTemplateColumns: "1fr 80px 80px 1fr",
           gap: 12, padding: "8px 14px",
           background: "rgba(255,255,255,0.03)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}>
           {["Risco", "Prob.", "Impacto", "Mitigacao"].map(h => (
@@ -622,6 +637,8 @@ export function Manuscript() {
         <div style={{
           position: "sticky", top: 0,
           background: "var(--card)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.055)",
           borderRadius: 12, padding: "16px 0", overflow: "hidden",
         }}>
@@ -644,6 +661,8 @@ export function Manuscript() {
                     width: "100%", textAlign: "left", padding: "7px 16px",
                     display: "flex", alignItems: "center", gap: 10,
                     background: isActive ? "rgba(255,149,0,0.07)" : "transparent",
+                    backdropFilter: isActive ? "blur(12px) saturate(160%)" : undefined,
+                    WebkitBackdropFilter: isActive ? "blur(12px) saturate(160%)" : undefined,
                     borderLeft: isActive ? "2px solid var(--accent)" : "2px solid transparent",
                     border: "none", borderRight: "none", borderTop: "none", borderBottom: "none",
                     borderLeftWidth: 2,
@@ -693,6 +712,8 @@ export function Manuscript() {
         {/* Document cover strip */}
         <div style={{
           background: "var(--card)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1px solid rgba(255,255,255,0.055)",
           borderRadius: 12, padding: "20px 28px", marginBottom: 20,
         }}>
@@ -738,6 +759,8 @@ export function Manuscript() {
               ref={el => { sectionRefs.current[section.id] = el; }}
               style={{
                 background: "var(--card)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 border: "1px solid rgba(255,255,255,0.055)",
                 borderRadius: 12, padding: "24px 28px",
               }}
