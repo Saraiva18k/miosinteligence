@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Brain, MapPin } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Brain, MapPin, Home } from "lucide-react";
 import { Logo } from "@/components/mios/Logo";
 import { WorkspaceSwitcher } from "@/components/mios/WorkspaceSwitcher";
 
@@ -60,7 +60,7 @@ const sections: TimelineSection[] = [
       { label: "Compliance",    status: "done",   href: "/compliance"                                           },
       { label: "Investimento",  status: "done",   href: "/investimento"                                         },
       { label: "Business Plan", status: "done",   href: "/business-plan"                                        },
-      { label: "Veredito",      status: "active", href: "/",             preview: "Score 87 · Entrar agora"     },
+      { label: "Veredito",      status: "active", href: "/veredito",      preview: "Score 87 · Entrar agora"     },
     ],
   },
 ];
@@ -116,14 +116,14 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
             padding: "12px 0",
           }}
         >
-          {/* Brain icon only — no wordmark */}
-          <div style={{ marginBottom: 10 }}>
+          {/* Brain icon = Home shortcut when collapsed */}
+          <Link to="/" style={{ textDecoration: "none", display: "block", marginBottom: 10 }}>
             <img
               src="/mios-brain.png"
-              alt="MIOS"
+              alt="MIOS Home"
               style={{ height: 32, width: "auto", display: "block", mixBlendMode: "screen" }}
             />
-          </div>
+          </Link>
 
           <button
             onClick={() => setCollapsed(false)}
@@ -183,13 +183,29 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
           style={{ padding: "14px 14px 12px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}
         >
           <Logo size={44} />
-          <button
-            onClick={() => setCollapsed(true)}
-            style={{ color: "rgba(255,255,255,0.3)", lineHeight: 0 }}
-            aria-label="Recolher sidebar"
-          >
-            <ChevronLeft size={14} strokeWidth={2.4} />
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginLeft: "auto" }}>
+            <Link
+              to="/"
+              aria-label="Home"
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center",
+                width: 26, height: 26, borderRadius: 7, textDecoration: "none",
+                background: activeModule === "Home" ? "rgba(255,149,0,0.12)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${activeModule === "Home" ? "rgba(255,149,0,0.3)" : "rgba(255,255,255,0.07)"}`,
+                color: activeModule === "Home" ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.35)",
+                transition: "all 0.15s",
+              }}
+            >
+              <Home size={12} strokeWidth={2.2} />
+            </Link>
+            <button
+              onClick={() => setCollapsed(true)}
+              style={{ color: "rgba(255,255,255,0.3)", lineHeight: 0, background: "none", border: "none", cursor: "pointer" }}
+              aria-label="Recolher sidebar"
+            >
+              <ChevronLeft size={14} strokeWidth={2.4} />
+            </button>
+          </div>
         </div>
 
         {/* ── Workspace switcher ────────────────────────────────────────────── */}
