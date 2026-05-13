@@ -180,7 +180,7 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
           className="flex items-center justify-between"
           style={{ padding: "14px 14px 12px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}
         >
-          <Logo size={20} />
+          <Logo size={26} />
           <button
             onClick={() => setCollapsed(true)}
             style={{ color: "rgba(255,255,255,0.3)", lineHeight: 0 }}
