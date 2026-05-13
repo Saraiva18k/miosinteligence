@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Check, ChevronsUpDown, Plus, Search } from "lucide-react";
+import { WorkspaceCreator, type NewWorkspace } from "@/components/mios/WorkspaceCreator";
 
 interface Workspace {
   id: string;
@@ -19,8 +20,16 @@ export function WorkspaceSwitcher() {
   const [open, setOpen]               = useState(false);
   const [active, setActive]           = useState(initialWorkspaces[0]);
   const [dropPos, setDropPos]         = useState({ top: 0, left: 0 });
+  const [workspaces, setWorkspaces]   = useState(initialWorkspaces);
+  const [creating, setCreating]       = useState(false);
   const containerRef                  = useRef<HTMLDivElement>(null);
   const buttonRef                     = useRef<HTMLButtonElement>(null);
+
+  const handleCreated = (ws: NewWorkspace) => {
+    const newWs = { id: ws.id, name: ws.name, location: ws.location, initial: ws.initial };
+    setWorkspaces(prev => [...prev, newWs]);
+    setActive(newWs);
+  };
 
   const handleToggle = () => {
     if (!open && buttonRef.current) {
@@ -133,7 +142,7 @@ export function WorkspaceSwitcher() {
 
           {/* List */}
           <div className="px-1.5 pb-1.5 mios-scroll" style={{ maxHeight: 220, overflowY: "auto" }}>
-            {initialWorkspaces.map(w => {
+            {workspaces.map(w => {
               const isActive = w.id === active.id;
               return (
                 <button
@@ -173,6 +182,7 @@ export function WorkspaceSwitcher() {
             style={{ padding: "10px 14px", borderTop: "1px solid rgba(255,255,255,0.06)", fontSize: 13, fontWeight: 600, color: "rgba(255,149,0,0.85)", borderBottomLeftRadius: 12, borderBottomRightRadius: 12, cursor: "pointer" }}
             onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,149,0,0.07)"; }}
             onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
+            onClick={() => { setOpen(false); setCreating(true); }}
           >
             <span className="flex items-center justify-center" style={{ width: 18, height: 18, borderRadius: 5, border: "1px dashed rgba(255,149,0,0.4)" }}>
               <Plus size={11} strokeWidth={2.5} />
@@ -182,6 +192,11 @@ export function WorkspaceSwitcher() {
         </div>,
         document.body
       )}
+      <WorkspaceCreator
+        open={creating}
+        onClose={() => setCreating(false)}
+        onCreated={handleCreated}
+      />
     </div>
   );
 }
