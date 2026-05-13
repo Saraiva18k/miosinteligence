@@ -7,20 +7,6 @@ const KEYFRAMES = `
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.3; }
 }
-@keyframes radar-ping {
-  0%   { opacity: 0.75; }
-  60%  { opacity: 0.05; }
-  100% { opacity: 0.75; }
-}
-@keyframes scale-tilt {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(-8deg); }
-}
-@keyframes node-pop {
-  0%   { opacity: 0; r: 0; }
-  60%  { opacity: 1; r: 5; }
-  100% { opacity: 1; r: 3.5; }
-}
 @keyframes bar-grow {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
@@ -41,16 +27,7 @@ const KEYFRAMES = `
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type Tab = "mapa" | "precos" | "balanca" | "tiers";
-
-interface Player {
-  id: string;
-  name: string;
-  x: number;
-  y: number;
-  isTarget: boolean;
-  zone: "commodity" | "medio" | "premium" | "armadilha" | "oculto";
-}
+type Tab = "precos" | "balanca" | "tiers";
 
 interface PriceBar {
   label: string;
@@ -81,23 +58,6 @@ interface Tier {
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-
-const PLAYERS: Player[] = [
-  { id: "P1", name: "Mega Rede",     x: 22, y: 28, isTarget: false, zone: "commodity" },
-  { id: "P2", name: "Alpha Clinic",  x: 38, y: 42, isTarget: false, zone: "medio"     },
-  { id: "P3", name: "Centro Beauty", x: 68, y: 35, isTarget: false, zone: "armadilha" },
-  { id: "P4", name: "Studio Plus",   x: 52, y: 54, isTarget: false, zone: "medio"     },
-  { id: "P5", name: "Premium Ref.",  x: 82, y: 76, isTarget: false, zone: "premium"   },
-  { id: "TG", name: "POSIÇÃO ALVO",  x: 62, y: 82, isTarget: true,  zone: "oculto"    },
-];
-
-const ZONE_STYLE: Record<string, { color: string; label: string; bg: string }> = {
-  commodity:  { color: "rgba(255,255,255,0.4)",  label: "COMMODITY",  bg: "rgba(255,255,255,0.015)" },
-  medio:      { color: "rgba(255,149,0,0.55)",   label: "MÉDIO",      bg: "rgba(255,149,0,0.02)"   },
-  armadilha:  { color: "#ef4444",                label: "ARMADILHA",  bg: "rgba(239,68,68,0.04)"   },
-  premium:    { color: "rgba(255,149,0,0.85)",   label: "PREMIUM",    bg: "rgba(255,149,0,0.04)"   },
-  oculto:     { color: "#ff9500",                label: "OCULTO",     bg: "rgba(255,149,0,0.08)"   },
-};
 
 const PRICE_BARS: PriceBar[] = [
   { label: "Procedimento Base",   min: 150, max: 520,  avg: 318,  target: 290  },
@@ -152,167 +112,6 @@ const TIERS: Tier[] = [
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
-
-function MapaTab() {
-  const W = 100, H = 100, PAD = 10;
-  const toSVG = (x: number, y: number) => ({
-    cx: PAD + (x / 100) * (W - PAD * 2),
-    cy: (H - PAD) - (y / 100) * (H - PAD * 2),
-  });
-
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 248px", gap: 20, padding: "24px", animation: "sweep-in 0.3s ease" }}>
-      {/* Matrix */}
-      <div>
-        <div style={{ marginBottom: 12 }}>
-          <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>QUADRANTE PREÇO × VALOR PERCEBIDO</span>
-          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>5 PLAYERS + POSIÇÃO ALVO</span>
-        </div>
-        <div style={{ aspectRatio: "1 / 1", background: "rgba(4,6,15,0.85)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, overflow: "hidden", position: "relative" }}>
-          {/* Scanlines overlay */}
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.007) 3px, rgba(255,255,255,0.007) 4px)", pointerEvents: "none", zIndex: 1 }} />
-          <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "100%", display: "block" }} preserveAspectRatio="xMidYMid meet">
-            {/* Zone backgrounds */}
-            <rect x={PAD} y={PAD} width={W/2-PAD/2} height={H/2-PAD/2} fill="rgba(255,149,0,0.08)" rx="1" />
-            <rect x={W/2} y={PAD} width={W/2-PAD} height={H/2-PAD/2} fill="rgba(255,149,0,0.03)" rx="1" />
-            <rect x={PAD} y={H/2} width={W/2-PAD/2} height={H/2-PAD} fill="rgba(255,255,255,0.012)" rx="1" />
-            <rect x={W/2} y={H/2} width={W/2-PAD} height={H/2-PAD} fill="rgba(239,68,68,0.07)" rx="1" />
-
-            {/* Zone label pill backgrounds */}
-            <rect x={PAD+0.5} y={PAD+0.8} width={23} height={9} fill="rgba(255,149,0,0.15)" rx="1.2" />
-            <rect x={W/2+2} y={PAD+0.8} width={15} height={5.5} fill="rgba(255,255,255,0.05)" rx="1.2" />
-            <rect x={PAD+0.5} y={H-PAD-6.5} width={19} height={5.5} fill="rgba(255,255,255,0.04)" rx="1.2" />
-            <rect x={W/2+2} y={H-PAD-6.5} width={19} height={5.5} fill="rgba(239,68,68,0.12)" rx="1.2" />
-
-            {/* Zone labels */}
-            <text x={PAD+2} y={PAD+5.5} fontSize="3.4" fill="rgba(255,149,0,0.95)" fontFamily="JetBrains Mono" fontWeight="bold">OCULTO ★</text>
-            <text x={PAD+2} y={PAD+9} fontSize="2.2" fill="rgba(255,149,0,0.45)" fontFamily="JetBrains Mono">zona vazia</text>
-            <text x={W/2+3} y={PAD+4.8} fontSize="3.2" fill="rgba(255,255,255,0.32)" fontFamily="JetBrains Mono" fontWeight="600">PREMIUM</text>
-            <text x={PAD+2} y={H-PAD-2.8} fontSize="3.2" fill="rgba(255,255,255,0.25)" fontFamily="JetBrains Mono">COMMODITY</text>
-            <text x={W/2+3} y={H-PAD-2.8} fontSize="3.2" fill="rgba(239,68,68,0.8)" fontFamily="JetBrains Mono" fontWeight="600">ARMADILHA</text>
-
-            {/* Grid */}
-            <line x1={W/2} y1={PAD} x2={W/2} y2={H-PAD} stroke="rgba(255,255,255,0.09)" strokeWidth="0.35" strokeDasharray="1.5,1" />
-            <line x1={PAD} y1={H/2} x2={W-PAD} y2={H/2} stroke="rgba(255,255,255,0.09)" strokeWidth="0.35" strokeDasharray="1.5,1" />
-
-            {/* Axes */}
-            <line x1={PAD} y1={H-PAD} x2={W-PAD} y2={H-PAD} stroke="rgba(255,255,255,0.2)" strokeWidth="0.4" />
-            <line x1={PAD} y1={PAD} x2={PAD} y2={H-PAD} stroke="rgba(255,255,255,0.2)" strokeWidth="0.4" />
-            <text x={W/2} y={H-1.5} textAnchor="middle" fontSize="2.8" fill="rgba(255,255,255,0.22)" fontFamily="JetBrains Mono">PREÇO →</text>
-            <text x={2.5} y={H/2} textAnchor="middle" fontSize="2.8" fill="rgba(255,255,255,0.22)" fontFamily="JetBrains Mono" transform={`rotate(-90, 2.5, ${H/2})`}>VALOR PERCEBIDO →</text>
-
-            {/* Target zone outer halo */}
-            {(() => { const t = toSVG(62, 82); return (
-              <circle cx={t.cx} cy={t.cy} r="13" fill="rgba(255,149,0,0.04)" stroke="rgba(255,149,0,0.18)" strokeWidth="0.5" strokeDasharray="2,1.5" />
-            ); })()}
-
-            {/* Competitor players */}
-            {PLAYERS.filter(p => !p.isTarget).map((p, i) => {
-              const { cx, cy } = toSVG(p.x, p.y);
-              const zs = ZONE_STYLE[p.zone];
-              return (
-                <g key={p.id} style={{ animation: `node-pop 0.5s ease ${i * 0.09}s both` }}>
-                  {/* Outer ring */}
-                  <circle cx={cx} cy={cy} r="4" fill="none" stroke={zs.color} strokeWidth="0.5" opacity="0.55" />
-                  {/* Inner core */}
-                  <circle cx={cx} cy={cy} r="2.2" fill={zs.color} opacity="0.9" />
-                  {/* ID label bg */}
-                  <rect x={cx+4.5} y={cy-2.8} width={11.5} height={5} fill="rgba(4,6,15,0.75)" rx="0.8" />
-                  <text x={cx+5.2} y={cy+0.8} fontSize="2.9" fill="rgba(255,255,255,0.55)" fontFamily="JetBrains Mono" fontWeight="700">{p.id}</text>
-                </g>
-              );
-            })}
-
-            {/* Target node — animated */}
-            {(() => {
-              const { cx, cy } = toSVG(62, 82);
-              return (
-                <g key="TG">
-                  {/* Pulsing rings */}
-                  <circle cx={cx} cy={cy} r="10" fill="none" stroke="#ff9500" strokeWidth="0.6" style={{ animation: "radar-ping 2.2s ease-in-out infinite" }} />
-                  <circle cx={cx} cy={cy} r="6.5" fill="none" stroke="#ff9500" strokeWidth="0.5" style={{ animation: "radar-ping 2.2s ease-in-out 0.7s infinite" }} />
-                  {/* Crosshair arms */}
-                  <line x1={cx-9} y1={cy} x2={cx-4} y2={cy} stroke="#ff9500" strokeWidth="0.45" opacity="0.55" />
-                  <line x1={cx+4} y1={cy} x2={cx+9} y2={cy} stroke="#ff9500" strokeWidth="0.45" opacity="0.55" />
-                  <line x1={cx} y1={cy-9} x2={cx} y2={cy-4} stroke="#ff9500" strokeWidth="0.45" opacity="0.55" />
-                  <line x1={cx} y1={cy+4} x2={cx} y2={cy+9} stroke="#ff9500" strokeWidth="0.45" opacity="0.55" />
-                  {/* Core */}
-                  <circle cx={cx} cy={cy} r="2.8" fill="#ff9500" style={{ animation: "node-pop 0.5s ease 0.3s both" }} />
-                  {/* Label tag */}
-                  <rect x={cx+4} y={cy-3.5} width={14} height={6.2} fill="rgba(255,149,0,0.28)" rx="1.2" />
-                  <text x={cx+5} y={cy+1} fontSize="3.4" fill="#ff9500" fontFamily="JetBrains Mono" fontWeight="bold">ALVO</text>
-                </g>
-              );
-            })()}
-          </svg>
-        </div>
-      </div>
-
-      {/* Right sidebar — named player index */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {/* Section header */}
-        <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", paddingBottom: 8, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-          5 PLAYERS IDENTIFICADOS
-        </div>
-
-        {/* Player cards */}
-        {PLAYERS.filter(p => !p.isTarget).map((p) => {
-          const zs = ZONE_STYLE[p.zone];
-          return (
-            <div key={p.id} style={{
-              background: "rgba(255,255,255,0.018)",
-              backdropFilter: "blur(16px) saturate(180%)",
-              WebkitBackdropFilter: "blur(16px) saturate(180%)",
-              border: "1px solid rgba(255,255,255,0.05)",
-              borderLeft: `3px solid ${zs.color}`,
-              borderRadius: "0 6px 6px 0",
-              padding: "9px 12px",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-                <span style={{ fontSize: 9, fontWeight: 900, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace" }}>{p.id}</span>
-                <span style={{ fontSize: 8, fontWeight: 700, color: zs.color, fontFamily: "JetBrains Mono, monospace", letterSpacing: 0.5 }}>{zs.label}</span>
-              </div>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.72)", marginBottom: 3 }}>{p.name}</div>
-              <div style={{ fontSize: 8.5, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>P{p.x} · V{p.y}</div>
-            </div>
-          );
-        })}
-
-        {/* Target card */}
-        <div style={{
-          background: "rgba(255,149,0,0.06)",
-          backdropFilter: "blur(16px) saturate(180%)",
-          WebkitBackdropFilter: "blur(16px) saturate(180%)",
-          border: "1px solid rgba(255,149,0,0.25)",
-          borderLeft: "3px solid #ff9500",
-          borderRadius: "0 6px 6px 0",
-          padding: "11px 12px",
-        }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <span style={{ fontSize: 9, fontWeight: 900, color: "rgba(255,149,0,0.45)", fontFamily: "JetBrains Mono, monospace" }}>TG</span>
-              <span style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#ff9500", animation: "mios-pulse 1.8s infinite" }} />
-            </div>
-            <span style={{ fontSize: 8, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", letterSpacing: 0.5 }}>OCULTO ★</span>
-          </div>
-          <div style={{ fontSize: 12, fontWeight: 900, color: "#ff9500", marginBottom: 3 }}>POSIÇÃO ALVO</div>
-          <div style={{ fontSize: 8.5, color: "rgba(255,149,0,0.42)", fontFamily: "JetBrains Mono, monospace" }}>P62 · V82 — zona vazia</div>
-        </div>
-
-        {/* Insight */}
-        <div style={{ flex: 1, background: "rgba(255,149,0,0.04)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "3px solid #ff9500", borderRadius: "0 8px 8px 0", padding: "14px 12px", marginTop: 2 }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>LEITURA DO MAPA</div>
-          <p style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, marginBottom: 8 }}>
-            A zona <span style={{ color: "#ff9500" }}>OCULTO</span> está vazia.
-          </p>
-          <p style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", lineHeight: 1.7 }}>
-            Nenhum player ocupa alto valor + preço médio-alto. A posição alvo não compete — ela preenche o vazio.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function PrecosTab() {
   const MAX_PRICE = 2400;
@@ -659,10 +458,9 @@ function TiersTab() {
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function Balanca() {
-  const [activeTab, setActiveTab] = useState<Tab>("mapa");
+  const [activeTab, setActiveTab] = useState<Tab>("precos");
 
   const TABS: { key: Tab; label: string; badge?: string }[] = [
-    { key: "mapa",    label: "Mapa de Posicionamento" },
     { key: "precos",  label: "Inteligência de Preços"  },
     { key: "balanca", label: "A Balança",   badge: "3 CRÍTICOS" },
     { key: "tiers",   label: "Arquitetura de Preços"   },
@@ -682,7 +480,6 @@ export function Balanca() {
           <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             {[
               { label: "PLAYERS",      value: "5",       color: "rgba(255,255,255,0.55)" },
-              { label: "ZONA VAZIA",   value: "1",       color: "#ff9500"                },
               { label: "GAPS CRÍTICOS",value: "3",       color: "#ef4444"                },
               { label: "TIERS ALVO",   value: "3",       color: "#ff9500"                },
             ].map(m => (
@@ -732,7 +529,6 @@ export function Balanca() {
       </div>
 
       {/* ── TAB CONTENT ───────────────────────────────────────────────────── */}
-      {activeTab === "mapa"    && <MapaTab    key="mapa"    />}
       {activeTab === "precos"  && <PrecosTab  key="precos"  />}
       {activeTab === "balanca" && <BalancaTab key="balanca" />}
       {activeTab === "tiers"   && <TiersTab   key="tiers"   />}
