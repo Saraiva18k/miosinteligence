@@ -7,6 +7,11 @@ const KEYFRAMES = `
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.3; }
 }
+@keyframes radar-ping {
+  0%   { opacity: 0.75; }
+  60%  { opacity: 0.05; }
+  100% { opacity: 0.75; }
+}
 @keyframes scale-tilt {
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(-8deg); }
@@ -156,105 +161,153 @@ function MapaTab() {
   });
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: 20, padding: "24px", animation: "sweep-in 0.3s ease" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 248px", gap: 20, padding: "24px", animation: "sweep-in 0.3s ease" }}>
       {/* Matrix */}
       <div>
         <div style={{ marginBottom: 12 }}>
           <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>QUADRANTE PREÇO × VALOR PERCEBIDO</span>
-          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>5 PLAYERS DO MERCADO + POSIÇÃO ALVO</span>
+          <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>5 PLAYERS + POSIÇÃO ALVO</span>
         </div>
-        <div style={{ aspectRatio: "1 / 1", maxHeight: 420, background: "rgba(4,6,15,0.8)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, overflow: "hidden", position: "relative" }}>
+        <div style={{ aspectRatio: "1 / 1", background: "rgba(4,6,15,0.85)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, overflow: "hidden", position: "relative" }}>
+          {/* Scanlines overlay */}
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.007) 3px, rgba(255,255,255,0.007) 4px)", pointerEvents: "none", zIndex: 1 }} />
           <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "100%", display: "block" }} preserveAspectRatio="xMidYMid meet">
             {/* Zone backgrounds */}
-            <rect x={PAD} y={PAD} width={W/2-PAD/2} height={H/2-PAD/2} fill="rgba(255,149,0,0.05)" rx="1" />
-            <rect x={W/2} y={PAD} width={W/2-PAD} height={H/2-PAD/2} fill="rgba(255,149,0,0.02)" rx="1" />
-            <rect x={PAD} y={H/2} width={W/2-PAD/2} height={H/2-PAD} fill="rgba(255,255,255,0.01)" rx="1" />
-            <rect x={W/2} y={H/2} width={W/2-PAD} height={H/2-PAD} fill="rgba(239,68,68,0.04)" rx="1" />
+            <rect x={PAD} y={PAD} width={W/2-PAD/2} height={H/2-PAD/2} fill="rgba(255,149,0,0.08)" rx="1" />
+            <rect x={W/2} y={PAD} width={W/2-PAD} height={H/2-PAD/2} fill="rgba(255,149,0,0.03)" rx="1" />
+            <rect x={PAD} y={H/2} width={W/2-PAD/2} height={H/2-PAD} fill="rgba(255,255,255,0.012)" rx="1" />
+            <rect x={W/2} y={H/2} width={W/2-PAD} height={H/2-PAD} fill="rgba(239,68,68,0.07)" rx="1" />
+
+            {/* Zone label pill backgrounds */}
+            <rect x={PAD+0.5} y={PAD+0.8} width={23} height={9} fill="rgba(255,149,0,0.15)" rx="1.2" />
+            <rect x={W/2+2} y={PAD+0.8} width={15} height={5.5} fill="rgba(255,255,255,0.05)" rx="1.2" />
+            <rect x={PAD+0.5} y={H-PAD-6.5} width={19} height={5.5} fill="rgba(255,255,255,0.04)" rx="1.2" />
+            <rect x={W/2+2} y={H-PAD-6.5} width={19} height={5.5} fill="rgba(239,68,68,0.12)" rx="1.2" />
 
             {/* Zone labels */}
-            <text x={PAD+1} y={PAD+5} fontSize="3.2" fill="rgba(255,149,0,0.7)" fontFamily="JetBrains Mono" fontWeight="bold">OCULTO ★</text>
-            <text x={PAD+1} y={PAD+8.5} fontSize="2.4" fill="rgba(255,149,0,0.35)" fontFamily="JetBrains Mono">zona vazia — oportunidade</text>
-            <text x={W/2+2} y={PAD+5} fontSize="3.2" fill="rgba(255,255,255,0.25)" fontFamily="JetBrains Mono">PREMIUM</text>
-            <text x={PAD+1} y={H-PAD-2} fontSize="3.2" fill="rgba(255,255,255,0.2)" fontFamily="JetBrains Mono">COMMODITY</text>
-            <text x={W/2+2} y={H-PAD-2} fontSize="3.2" fill="rgba(239,68,68,0.65)" fontFamily="JetBrains Mono">ARMADILHA</text>
+            <text x={PAD+2} y={PAD+5.5} fontSize="3.4" fill="rgba(255,149,0,0.95)" fontFamily="JetBrains Mono" fontWeight="bold">OCULTO ★</text>
+            <text x={PAD+2} y={PAD+9} fontSize="2.2" fill="rgba(255,149,0,0.45)" fontFamily="JetBrains Mono">zona vazia</text>
+            <text x={W/2+3} y={PAD+4.8} fontSize="3.2" fill="rgba(255,255,255,0.32)" fontFamily="JetBrains Mono" fontWeight="600">PREMIUM</text>
+            <text x={PAD+2} y={H-PAD-2.8} fontSize="3.2" fill="rgba(255,255,255,0.25)" fontFamily="JetBrains Mono">COMMODITY</text>
+            <text x={W/2+3} y={H-PAD-2.8} fontSize="3.2" fill="rgba(239,68,68,0.8)" fontFamily="JetBrains Mono" fontWeight="600">ARMADILHA</text>
 
             {/* Grid */}
-            <line x1={W/2} y1={PAD} x2={W/2} y2={H-PAD} stroke="rgba(255,255,255,0.07)" strokeWidth="0.3" strokeDasharray="1.5,1" />
-            <line x1={PAD} y1={H/2} x2={W-PAD} y2={H/2} stroke="rgba(255,255,255,0.07)" strokeWidth="0.3" strokeDasharray="1.5,1" />
+            <line x1={W/2} y1={PAD} x2={W/2} y2={H-PAD} stroke="rgba(255,255,255,0.09)" strokeWidth="0.35" strokeDasharray="1.5,1" />
+            <line x1={PAD} y1={H/2} x2={W-PAD} y2={H/2} stroke="rgba(255,255,255,0.09)" strokeWidth="0.35" strokeDasharray="1.5,1" />
 
             {/* Axes */}
-            <line x1={PAD} y1={H-PAD} x2={W-PAD} y2={H-PAD} stroke="rgba(255,255,255,0.15)" strokeWidth="0.4" />
-            <line x1={PAD} y1={PAD} x2={PAD} y2={H-PAD} stroke="rgba(255,255,255,0.15)" strokeWidth="0.4" />
-            <text x={W/2} y={H-1.5} textAnchor="middle" fontSize="3" fill="rgba(255,255,255,0.2)" fontFamily="JetBrains Mono">PREÇO →</text>
-            <text x={2.5} y={H/2} textAnchor="middle" fontSize="3" fill="rgba(255,255,255,0.2)" fontFamily="JetBrains Mono" transform={`rotate(-90, 2.5, ${H/2})`}>VALOR PERCEBIDO →</text>
+            <line x1={PAD} y1={H-PAD} x2={W-PAD} y2={H-PAD} stroke="rgba(255,255,255,0.2)" strokeWidth="0.4" />
+            <line x1={PAD} y1={PAD} x2={PAD} y2={H-PAD} stroke="rgba(255,255,255,0.2)" strokeWidth="0.4" />
+            <text x={W/2} y={H-1.5} textAnchor="middle" fontSize="2.8" fill="rgba(255,255,255,0.22)" fontFamily="JetBrains Mono">PREÇO →</text>
+            <text x={2.5} y={H/2} textAnchor="middle" fontSize="2.8" fill="rgba(255,255,255,0.22)" fontFamily="JetBrains Mono" transform={`rotate(-90, 2.5, ${H/2})`}>VALOR PERCEBIDO →</text>
 
-            {/* Target zone halo */}
+            {/* Target zone outer halo */}
             {(() => { const t = toSVG(62, 82); return (
-              <circle cx={t.cx} cy={t.cy} r="11" fill="rgba(255,149,0,0.06)" stroke="rgba(255,149,0,0.25)" strokeWidth="0.5" strokeDasharray="2,1.5" />
+              <circle cx={t.cx} cy={t.cy} r="13" fill="rgba(255,149,0,0.04)" stroke="rgba(255,149,0,0.18)" strokeWidth="0.5" strokeDasharray="2,1.5" />
             ); })()}
 
-            {/* Players */}
-            {PLAYERS.map((p, i) => {
+            {/* Competitor players */}
+            {PLAYERS.filter(p => !p.isTarget).map((p, i) => {
               const { cx, cy } = toSVG(p.x, p.y);
               const zs = ZONE_STYLE[p.zone];
-              const delay = i * 0.08;
-              if (p.isTarget) return (
-                <g key={p.id} style={{ animation: `node-pop 0.5s ease ${delay}s both` }}>
-                  <circle cx={cx} cy={cy} r="3.8" fill="#ff9500" opacity="0.95" />
-                  <circle cx={cx} cy={cy} r="6" fill="none" stroke="#ff9500" strokeWidth="0.6" opacity="0.5" />
-                  <text x={cx+4.5} y={cy+1} fontSize="3.2" fill="#ff9500" fontFamily="JetBrains Mono" fontWeight="bold">ALVO</text>
-                </g>
-              );
               return (
-                <g key={p.id} style={{ animation: `node-pop 0.5s ease ${delay}s both` }}>
-                  <circle cx={cx} cy={cy} r="2.5" fill={zs.color} />
-                  <text x={cx+3} y={cy+1} fontSize="2.6" fill="rgba(255,255,255,0.38)" fontFamily="JetBrains Mono">{p.name}</text>
+                <g key={p.id} style={{ animation: `node-pop 0.5s ease ${i * 0.09}s both` }}>
+                  {/* Outer ring */}
+                  <circle cx={cx} cy={cy} r="4" fill="none" stroke={zs.color} strokeWidth="0.5" opacity="0.55" />
+                  {/* Inner core */}
+                  <circle cx={cx} cy={cy} r="2.2" fill={zs.color} opacity="0.9" />
+                  {/* ID label bg */}
+                  <rect x={cx+4.5} y={cy-2.8} width={11.5} height={5} fill="rgba(4,6,15,0.75)" rx="0.8" />
+                  <text x={cx+5.2} y={cy+0.8} fontSize="2.9" fill="rgba(255,255,255,0.55)" fontFamily="JetBrains Mono" fontWeight="700">{p.id}</text>
                 </g>
               );
             })}
+
+            {/* Target node — animated */}
+            {(() => {
+              const { cx, cy } = toSVG(62, 82);
+              return (
+                <g key="TG">
+                  {/* Pulsing rings */}
+                  <circle cx={cx} cy={cy} r="10" fill="none" stroke="#ff9500" strokeWidth="0.6" style={{ animation: "radar-ping 2.2s ease-in-out infinite" }} />
+                  <circle cx={cx} cy={cy} r="6.5" fill="none" stroke="#ff9500" strokeWidth="0.5" style={{ animation: "radar-ping 2.2s ease-in-out 0.7s infinite" }} />
+                  {/* Crosshair arms */}
+                  <line x1={cx-9} y1={cy} x2={cx-4} y2={cy} stroke="#ff9500" strokeWidth="0.45" opacity="0.55" />
+                  <line x1={cx+4} y1={cy} x2={cx+9} y2={cy} stroke="#ff9500" strokeWidth="0.45" opacity="0.55" />
+                  <line x1={cx} y1={cy-9} x2={cx} y2={cy-4} stroke="#ff9500" strokeWidth="0.45" opacity="0.55" />
+                  <line x1={cx} y1={cy+4} x2={cx} y2={cy+9} stroke="#ff9500" strokeWidth="0.45" opacity="0.55" />
+                  {/* Core */}
+                  <circle cx={cx} cy={cy} r="2.8" fill="#ff9500" style={{ animation: "node-pop 0.5s ease 0.3s both" }} />
+                  {/* Label tag */}
+                  <rect x={cx+4} y={cy-3.5} width={14} height={6.2} fill="rgba(255,149,0,0.28)" rx="1.2" />
+                  <text x={cx+5} y={cy+1} fontSize="3.4" fill="#ff9500" fontFamily="JetBrains Mono" fontWeight="bold">ALVO</text>
+                </g>
+              );
+            })()}
           </svg>
         </div>
       </div>
 
-      {/* Right panel */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-        {/* Zone legend */}
-        <div style={{ background: "rgba(255,255,255,0.02)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 8, padding: "16px" }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 12 }}>ZONAS DO MAPA</div>
-          {Object.entries(ZONE_STYLE).map(([key, zs]) => (
-            <div key={key} className="flex items-center gap-3" style={{ marginBottom: 10 }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: zs.color, flexShrink: 0 }} />
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: zs.color, fontFamily: "JetBrains Mono, monospace" }}>{zs.label}</div>
-              </div>
-            </div>
-          ))}
+      {/* Right sidebar — named player index */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {/* Section header */}
+        <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace", paddingBottom: 8, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+          5 PLAYERS IDENTIFICADOS
         </div>
 
-        {/* Insight card */}
-        <div style={{ flex: 1, background: "rgba(255,149,0,0.04)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.15)", borderLeft: "3px solid #ff9500", borderRadius: "0 8px 8px 0", padding: "18px 16px" }}>
-          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.55)", fontFamily: "JetBrains Mono, monospace", marginBottom: 10 }}>LEITURA DO MAPA</div>
-          <p style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.75)", lineHeight: 1.65, marginBottom: 12 }}>
+        {/* Player cards */}
+        {PLAYERS.filter(p => !p.isTarget).map((p) => {
+          const zs = ZONE_STYLE[p.zone];
+          return (
+            <div key={p.id} style={{
+              background: "rgba(255,255,255,0.018)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
+              border: "1px solid rgba(255,255,255,0.05)",
+              borderLeft: `3px solid ${zs.color}`,
+              borderRadius: "0 6px 6px 0",
+              padding: "9px 12px",
+            }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+                <span style={{ fontSize: 9, fontWeight: 900, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace" }}>{p.id}</span>
+                <span style={{ fontSize: 8, fontWeight: 700, color: zs.color, fontFamily: "JetBrains Mono, monospace", letterSpacing: 0.5 }}>{zs.label}</span>
+              </div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.72)", marginBottom: 3 }}>{p.name}</div>
+              <div style={{ fontSize: 8.5, color: "rgba(255,255,255,0.18)", fontFamily: "JetBrains Mono, monospace" }}>P{p.x} · V{p.y}</div>
+            </div>
+          );
+        })}
+
+        {/* Target card */}
+        <div style={{
+          background: "rgba(255,149,0,0.06)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
+          border: "1px solid rgba(255,149,0,0.25)",
+          borderLeft: "3px solid #ff9500",
+          borderRadius: "0 6px 6px 0",
+          padding: "11px 12px",
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <span style={{ fontSize: 9, fontWeight: 900, color: "rgba(255,149,0,0.45)", fontFamily: "JetBrains Mono, monospace" }}>TG</span>
+              <span style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#ff9500", animation: "mios-pulse 1.8s infinite" }} />
+            </div>
+            <span style={{ fontSize: 8, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", letterSpacing: 0.5 }}>OCULTO ★</span>
+          </div>
+          <div style={{ fontSize: 12, fontWeight: 900, color: "#ff9500", marginBottom: 3 }}>POSIÇÃO ALVO</div>
+          <div style={{ fontSize: 8.5, color: "rgba(255,149,0,0.42)", fontFamily: "JetBrains Mono, monospace" }}>P62 · V82 — zona vazia</div>
+        </div>
+
+        {/* Insight */}
+        <div style={{ flex: 1, background: "rgba(255,149,0,0.04)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "3px solid #ff9500", borderRadius: "0 8px 8px 0", padding: "14px 12px", marginTop: 2 }}>
+          <div style={{ fontSize: 9, fontWeight: 900, letterSpacing: 1.5, color: "rgba(255,149,0,0.5)", fontFamily: "JetBrains Mono, monospace", marginBottom: 8 }}>LEITURA DO MAPA</div>
+          <p style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, marginBottom: 8 }}>
             A zona <span style={{ color: "#ff9500" }}>OCULTO</span> está vazia.
           </p>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.42)", lineHeight: 1.7 }}>
-            Nenhum player local ocupa o quadrante alto valor + preço médio-alto. Todos estão ou no commodity ou cobrando caro por baixa entrega. O quadrante vazio não pede guerra de preço — pede prova de valor.
+          <p style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", lineHeight: 1.7 }}>
+            Nenhum player ocupa alto valor + preço médio-alto. A posição alvo não compete — ela preenche o vazio.
           </p>
-        </div>
-
-        {/* Player count */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-          {[
-            { label: "PLAYERS", value: "5",       color: "rgba(255,255,255,0.55)" },
-            { label: "ZONA VAZIA", value: "1",     color: "#ff9500" },
-            { label: "ARMADILHAS", value: "1",     color: "#ef4444" },
-            { label: "GAP DE VALOR", value: "↑40%", color: "#ff9500" },
-          ].map(m => (
-            <div key={m.label} style={{ background: "rgba(255,255,255,0.02)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 6, padding: "10px 12px" }}>
-              <div style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>{m.label}</div>
-              <div style={{ fontSize: 18, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace" }}>{m.value}</div>
-            </div>
-          ))}
         </div>
       </div>
     </div>
@@ -265,116 +318,116 @@ function PrecosTab() {
   const MAX_PRICE = 2400;
   return (
     <div style={{ padding: "24px", animation: "sweep-in 0.3s ease" }}>
-      <div style={{ marginBottom: 20 }}>
-        <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace" }}>INTELIGÊNCIA DE PREÇOS</span>
-        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", marginLeft: 12 }}>AMPLITUDE DE MERCADO POR PROCEDIMENTO</span>
-      </div>
-
-      {/* Scale header */}
-      <div style={{ display: "flex", gap: 0, marginBottom: 4, paddingLeft: 200 }}>
-        {[0, 25, 50, 75, 100].map(p => (
-          <div key={p} style={{ flex: 1, textAlign: "center", fontSize: 9, color: "rgba(255,255,255,0.15)", fontFamily: "JetBrains Mono, monospace" }}>
-            R${Math.round(MAX_PRICE * p / 100).toLocaleString("pt-BR")}
+      {/* Header row with inline legend */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 20 }}>
+        <div>
+          <div style={{ fontSize: 10, fontWeight: 900, letterSpacing: 2, color: "rgba(255,149,0,0.6)", fontFamily: "JetBrains Mono, monospace", marginBottom: 4 }}>INTELIGÊNCIA DE PREÇOS</div>
+          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>AMPLITUDE DE MERCADO POR PROCEDIMENTO</div>
+        </div>
+        {/* Legend */}
+        <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{ width: 22, height: 7, background: "rgba(255,255,255,0.1)", borderRadius: 3 }} />
+            <span style={{ fontSize: 9, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>AMPLITUDE</span>
           </div>
-        ))}
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{ width: 2, height: 14, background: "rgba(255,255,255,0.35)", borderRadius: 1 }} />
+            <span style={{ fontSize: 9, color: "rgba(255,255,255,0.25)", fontFamily: "JetBrains Mono, monospace" }}>MÉD</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{ width: 3, height: 14, background: "#ff9500", borderRadius: 1.5, boxShadow: "0 0 6px rgba(255,149,0,0.5)" }} />
+            <span style={{ fontSize: 9, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>ALVO</span>
+          </div>
+        </div>
       </div>
 
-      {PRICE_BARS.map((bar, i) => {
-        const minPct  = (bar.min  / MAX_PRICE) * 100;
-        const maxPct  = (bar.max  / MAX_PRICE) * 100;
-        const avgPct  = (bar.avg  / MAX_PRICE) * 100;
-        const tgtPct  = (bar.target / MAX_PRICE) * 100;
-        const delay   = i * 0.06;
-        return (
-          <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
-            {/* Label */}
-            <div style={{ width: 188, flexShrink: 0 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>{bar.label}</div>
-              <div style={{ display: "flex", gap: 10, marginTop: 3 }}>
-                <span style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>média R${bar.avg.toLocaleString("pt-BR")}</span>
-                <span style={{ fontSize: 10, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>
-                  {bar.isTarget ? "GRÁTIS" : `alvo R$${bar.target.toLocaleString("pt-BR")}`}
-                </span>
+      {/* Single glass container for all bars */}
+      <div style={{ background: "rgba(255,255,255,0.018)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, overflow: "hidden" }}>
+        {PRICE_BARS.map((bar, i) => {
+          const minPct = (bar.min  / MAX_PRICE) * 100;
+          const maxPct = (bar.max  / MAX_PRICE) * 100;
+          const avgPct = (bar.avg  / MAX_PRICE) * 100;
+          const tgtPct = (bar.target / MAX_PRICE) * 100;
+          const delta  = bar.target > 0 ? Math.round((bar.target / bar.avg - 1) * 100) : null;
+          const delay  = i * 0.07;
+          return (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 20, padding: "18px 22px", borderTop: i > 0 ? "1px solid rgba(255,255,255,0.04)" : "none" }}>
+
+              {/* Label column */}
+              <div style={{ width: 200, flexShrink: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6, flexWrap: "wrap" }}>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.75)" }}>{bar.label}</span>
+                  {delta !== null && (
+                    <span style={{ fontSize: 8.5, fontWeight: 900, padding: "2px 6px", background: "rgba(255,149,0,0.12)", color: "#ff9500", border: "1px solid rgba(255,149,0,0.25)", borderRadius: 3, fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap" }}>
+                      {delta > 0 ? `+${delta}%` : `${delta}%`} da média
+                    </span>
+                  )}
+                  {bar.isTarget && (
+                    <span style={{ fontSize: 8.5, fontWeight: 900, padding: "2px 6px", background: "rgba(255,149,0,0.12)", color: "#ff9500", border: "1px solid rgba(255,149,0,0.25)", borderRadius: 3, fontFamily: "JetBrains Mono, monospace" }}>
+                      ISCA
+                    </span>
+                  )}
+                </div>
+                <div style={{ display: "flex", gap: 14 }}>
+                  <span style={{ fontSize: 10, color: "rgba(255,255,255,0.28)", fontFamily: "JetBrains Mono, monospace" }}>
+                    MÉD R${bar.avg.toLocaleString("pt-BR")}
+                  </span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>
+                    {bar.isTarget ? "ALVO: GRÁTIS" : `ALVO R$${bar.target.toLocaleString("pt-BR")}`}
+                  </span>
+                </div>
               </div>
-            </div>
 
-            {/* Track */}
-            <div style={{ flex: 1, position: "relative", height: 32 }}>
-              {/* Grid lines */}
-              {[0, 25, 50, 75, 100].map(p => (
-                <div key={p} style={{ position: "absolute", left: `${p}%`, top: 0, bottom: 0, width: 1, background: "rgba(255,255,255,0.04)" }} />
-              ))}
+              {/* Track — fixed 60px height, all layers absolutely positioned */}
+              <div style={{ flex: 1, position: "relative", height: 60 }}>
+                {/* Vertical grid lines */}
+                {[0, 25, 50, 75, 100].map(p => (
+                  <div key={p} style={{ position: "absolute", left: `${p}%`, top: 0, bottom: 0, width: 1, background: "rgba(255,255,255,0.04)" }} />
+                ))}
 
-              {/* Market range bar */}
-              <div style={{
-                position: "absolute",
-                left: `${minPct}%`,
-                width: `${maxPct - minPct}%`,
-                top: "50%",
-                height: 10,
-                transform: "translateY(-50%)",
-                background: "rgba(255,255,255,0.08)",
-                borderRadius: 5,
-                transformOrigin: "left center",
-                animation: `bar-grow 0.5s ease ${delay}s both`,
-              }} />
-
-              {/* Avg marker */}
-              <div style={{
-                position: "absolute",
-                left: `${avgPct}%`,
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 2,
-                height: 22,
-                background: "rgba(255,255,255,0.3)",
-                borderRadius: 1,
-              }} />
-
-              {/* Target marker */}
-              {bar.target > 0 && (
+                {/* Range bar — centered vertically (30px - 7px = top: 23px) */}
                 <div style={{
                   position: "absolute",
-                  left: `${tgtPct}%`,
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                  display: "flex", flexDirection: "column", alignItems: "center",
-                }}>
-                  <div style={{ width: 3, height: 26, background: "#ff9500", borderRadius: 1.5, boxShadow: "0 0 8px rgba(255,149,0,0.5)" }} />
-                </div>
-              )}
+                  left: `${minPct}%`,
+                  width: `${maxPct - minPct}%`,
+                  top: 23,
+                  height: 14,
+                  background: "linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.13) 40%, rgba(255,255,255,0.06))",
+                  borderRadius: 7,
+                  transformOrigin: "left center",
+                  animation: `bar-grow 0.55s ease ${delay}s both`,
+                }} />
 
-              {/* Min/max labels */}
-              <div style={{ position: "absolute", left: `${minPct}%`, top: "100%", marginTop: 2, fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", transform: "translateX(-50%)" }}>
-                {bar.min === 0 ? "0" : `R$${bar.min}`}
-              </div>
-              <div style={{ position: "absolute", left: `${maxPct}%`, top: "100%", marginTop: 2, fontSize: 9, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace", transform: "translateX(-50%)" }}>
-                R${bar.max.toLocaleString("pt-BR")}
+                {/* Avg marker: 28px tall centered at 30px → top:16, bottom:16 */}
+                <div style={{ position: "absolute", left: `${avgPct}%`, top: 16, width: 2, height: 28, background: "rgba(255,255,255,0.3)", borderRadius: 1, transform: "translateX(-50%)" }} />
+                {/* Avg label above */}
+                <div style={{ position: "absolute", left: `${avgPct}%`, top: 6, transform: "translateX(-50%)", fontSize: 7.5, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap" }}>MÉD</div>
+
+                {/* Target marker + labels */}
+                {bar.target > 0 && (
+                  <>
+                    <div style={{ position: "absolute", left: `${tgtPct}%`, top: 16, width: 3, height: 28, background: "#ff9500", borderRadius: 1.5, boxShadow: "0 0 8px rgba(255,149,0,0.55)", transform: "translateX(-50%)" }} />
+                    <div style={{ position: "absolute", left: `${tgtPct}%`, top: 6, transform: "translateX(-50%)", fontSize: 7.5, fontWeight: 700, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", whiteSpace: "nowrap" }}>ALVO</div>
+                  </>
+                )}
+
+                {/* Min/max price labels at bottom */}
+                <div style={{ position: "absolute", left: `${minPct}%`, bottom: 2, fontSize: 8, color: "rgba(255,255,255,0.16)", fontFamily: "JetBrains Mono, monospace", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
+                  {bar.min === 0 ? "R$0" : `R$${bar.min}`}
+                </div>
+                <div style={{ position: "absolute", left: `${maxPct}%`, bottom: 2, fontSize: 8, color: "rgba(255,255,255,0.16)", fontFamily: "JetBrains Mono, monospace", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>
+                  R${bar.max.toLocaleString("pt-BR")}
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
-
-      {/* Legend */}
-      <div style={{ display: "flex", gap: 20, marginTop: 24, padding: "12px 16px", background: "rgba(255,255,255,0.02)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 6 }}>
-        <div className="flex items-center gap-2">
-          <div style={{ width: 24, height: 8, background: "rgba(255,255,255,0.1)", borderRadius: 4 }} />
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>Amplitude do mercado</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div style={{ width: 2, height: 18, background: "rgba(255,255,255,0.35)", borderRadius: 1 }} />
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "JetBrains Mono, monospace" }}>Média de mercado</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div style={{ width: 3, height: 18, background: "#ff9500", borderRadius: 1.5, boxShadow: "0 0 8px rgba(255,149,0,0.4)" }} />
-          <span style={{ fontSize: 11, color: "#ff9500", fontFamily: "JetBrains Mono, monospace" }}>Posição alvo</span>
-        </div>
+          );
+        })}
       </div>
 
-      <div style={{ marginTop: 12, padding: "14px 18px", background: "rgba(255,149,0,0.04)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "3px solid #ff9500", borderRadius: "0 6px 6px 0" }}>
+      {/* Strategy note */}
+      <div style={{ marginTop: 14, padding: "16px 20px", background: "rgba(255,149,0,0.04)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,149,0,0.12)", borderLeft: "3px solid #ff9500", borderRadius: "0 6px 6px 0" }}>
         <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.65 }}>
-          <span style={{ color: "#ff9500", fontWeight: 700 }}>Estratégia:</span> Posição alvo fica 8–15% abaixo do Premium Ref. e 10–20% acima da média — diferencial está no <em>o que está incluso</em>, não apenas no número.
+          <span style={{ color: "#ff9500", fontWeight: 700 }}>Estratégia:</span> Posição alvo fica 8–15% abaixo do Premium Ref. e 10–20% acima da média — o diferencial está no <em>o que está incluso</em>, não apenas no número.
         </p>
       </div>
     </div>
