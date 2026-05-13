@@ -279,7 +279,7 @@ function InvestmentSection({ investimentoInicial }: { investimentoInicial: numbe
   const totalEssential = investmentPlan.flatMap(c => c.items.filter(i => i.essential)).reduce((s, i) => s + i.value, 0);
   const totalAll = investmentPlan.flatMap(c => c.items).reduce((s, i) => s + i.value, 0);
   return (
-    <div style={{ background: "var(--card)", border: "1px solid rgba(255,255,255,0.055)", borderRadius: 12, overflow: "hidden" }}>
+    <div style={{ background: "var(--card)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.055)", borderRadius: 12, overflow: "hidden" }}>
       <div className="px-5 py-4 flex items-center justify-between" style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="flex items-center gap-2">
           <DollarSign size={13} style={{ color: "var(--accent)", opacity: 0.7 }} />
@@ -318,7 +318,7 @@ function InvestmentSection({ investimentoInicial }: { investimentoInicial: numbe
               <div className="space-y-1.5">
                 {cat.items.map(item => (
                   <div key={item.name} className="flex items-center justify-between gap-3"
-                    style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 7, padding: "8px 12px" }}>
+                    style={{ background: "rgba(255,255,255,0.02)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 7, padding: "8px 12px" }}>
                     <div className="flex items-center gap-2 min-w-0">
                       <div style={{ width: 5, height: 5, borderRadius: "50%", flexShrink: 0, background: item.essential ? "#10b981" : "rgba(255,255,255,0.2)" }} />
                       <div style={{ minWidth: 0 }}>
@@ -328,7 +328,7 @@ function InvestmentSection({ investimentoInicial }: { investimentoInicial: numbe
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {!item.essential && (
-                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.04)", borderRadius: 4, padding: "1px 5px" }}>
+                        <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", borderRadius: 4, padding: "1px 5px" }}>
                           opcional
                         </span>
                       )}
@@ -451,7 +451,10 @@ export function LiveSheet() {
             {isCustomized && (
               <span style={{
                 fontSize: 10, fontWeight: 700, color: "var(--accent)",
-                background: "rgba(255,149,0,0.12)", border: "1px solid rgba(255,149,0,0.3)",
+                background: "rgba(255,149,0,0.12)",
+                backdropFilter: "blur(12px) saturate(160%)",
+                WebkitBackdropFilter: "blur(12px) saturate(160%)",
+                border: "1px solid rgba(255,149,0,0.3)",
                 borderRadius: 4, padding: "1px 6px", letterSpacing: 0.5,
               }}>
                 USANDO SEUS DADOS
@@ -474,6 +477,8 @@ export function LiveSheet() {
               display: "flex", alignItems: "center", gap: 6,
               padding: "7px 13px", borderRadius: 8, cursor: "pointer", border: "none",
               background: panelOpen ? "rgba(255,149,0,0.12)" : "rgba(255,255,255,0.04)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
               outline: panelOpen ? "1px solid rgba(255,149,0,0.3)" : "1px solid rgba(255,255,255,0.08)",
               color: panelOpen ? "var(--accent)" : "rgba(255,255,255,0.5)",
               fontSize: 13, fontWeight: 600, transition: "all 0.2s",
@@ -492,6 +497,8 @@ export function LiveSheet() {
               <button key={k} onClick={() => setActiveScenario(k)} style={{
                 padding: "7px 14px", borderRadius: 8, cursor: "pointer", border: "none",
                 background: isActive ? sc.bg : "rgba(255,255,255,0.03)",
+                backdropFilter: "blur(16px) saturate(180%)",
+                WebkitBackdropFilter: "blur(16px) saturate(180%)",
                 outline: isActive ? `1px solid ${sc.color}40` : "1px solid rgba(255,255,255,0.06)",
                 fontSize: 13, fontWeight: 700,
                 color: isActive ? sc.color : "rgba(255,255,255,0.35)",
@@ -527,7 +534,10 @@ export function LiveSheet() {
               <button onClick={reset} style={{
                 display: "flex", alignItems: "center", gap: 5,
                 padding: "5px 11px", borderRadius: 7, cursor: "pointer", border: "none",
-                background: "rgba(255,255,255,0.04)", outline: "1px solid rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.04)",
+                backdropFilter: "blur(12px) saturate(160%)",
+                WebkitBackdropFilter: "blur(12px) saturate(160%)",
+                outline: "1px solid rgba(255,255,255,0.08)",
                 color: "rgba(255,255,255,0.4)", fontSize: 12, fontWeight: 600,
               }}>
                 <RotateCcw size={10} /> Restaurar padrao
@@ -577,7 +587,10 @@ export function LiveSheet() {
               const l12 = sc.months.reduce((sum, m) => sum + m.lucro, 0);
               return (
                 <div key={k} style={{
-                  flex: 1, background: sc.bg, border: `1px solid ${sc.color}20`,
+                  flex: 1, background: sc.bg,
+                  backdropFilter: "blur(16px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(16px) saturate(180%)",
+                  border: `1px solid ${sc.color}20`,
                   borderRadius: 8, padding: "10px 12px",
                 }}>
                   <div style={{ fontSize: 11, fontWeight: 700, color: sc.color, marginBottom: 4 }}>
@@ -611,7 +624,7 @@ export function LiveSheet() {
       </div>
 
       {/* ── Projection chart ───────────────────────────────────────────────────── */}
-      <div style={{ background: "var(--card)", border: `1px solid ${s.color}20`, borderRadius: 12, padding: "20px 24px" }}>
+      <div style={{ background: "var(--card)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: `1px solid ${s.color}20`, borderRadius: 12, padding: "20px 24px" }}>
         <div className="flex items-center justify-between mb-4">
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.6)", marginBottom: 2 }}>
@@ -644,7 +657,7 @@ export function LiveSheet() {
       </div>
 
       {/* ── Month table ────────────────────────────────────────────────────────────────────── */}
-      <div style={{ background: "var(--card)", border: "1px solid rgba(255,255,255,0.055)", borderRadius: 12, overflow: "hidden" }}>
+      <div style={{ background: "var(--card)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(255,255,255,0.055)", borderRadius: 12, overflow: "hidden" }}>
         <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
           <div className="flex items-center gap-2">
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: s.color, boxShadow: `0 0 8px ${s.color}` }} />
@@ -662,7 +675,7 @@ export function LiveSheet() {
       <InvestmentSection investimentoInicial={inputs.investimentoInicial} />
 
       {/* ── Risk alerts ────────────────────────────────────────────────────────────────── */}
-      <div style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.18)", borderRadius: 12, padding: "16px 20px" }}>
+      <div style={{ background: "rgba(245,158,11,0.06)", backdropFilter: "blur(16px) saturate(180%)", WebkitBackdropFilter: "blur(16px) saturate(180%)", border: "1px solid rgba(245,158,11,0.18)", borderRadius: 12, padding: "16px 20px" }}>
         <div className="flex items-start gap-3">
           <AlertTriangle size={14} style={{ color: "#f59e0b", marginTop: 1, flexShrink: 0 }} />
           <div>
