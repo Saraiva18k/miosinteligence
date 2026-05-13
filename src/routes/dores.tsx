@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/mios/Header";
 import { Sidebar } from "@/components/mios/Sidebar";
-import { TopBar } from "@/components/mios/TopBar";
 import { Interrogatorio } from "@/components/mios/dores/Interrogatorio";
+import { ContextTabs } from "@/components/mios/ContextTabs";
 
 export const Route = createFileRoute("/dores")({
   component: DoresPage,
@@ -30,8 +30,8 @@ function DoresPage() {
       <div className="flex flex-1 min-h-0">
         <Sidebar activeModule="Dores" />
         <main className="flex-1 flex flex-col min-w-0">
-          <TopBar />
           <div className="mios-scroll flex-1 overflow-y-auto px-6 py-5">
+            <ContextTabs />
             <Interrogatorio />
           </div>
         </main>
