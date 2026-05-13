@@ -116,11 +116,13 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
             padding: "12px 0",
           }}
         >
-          {/* Logo icon only */}
+          {/* Brain icon only — no wordmark */}
           <div style={{ marginBottom: 10 }}>
-            <div style={{ width: 22, height: 22, borderRadius: 5, background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div style={{ width: 8, height: 8, background: "var(--bg-base)", transform: "rotate(45deg)" }} />
-            </div>
+            <img
+              src="/mios-brain.png"
+              alt="MIOS"
+              style={{ height: 32, width: "auto", display: "block", mixBlendMode: "screen" }}
+            />
           </div>
 
           <button
@@ -180,7 +182,7 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
           className="flex items-center justify-between"
           style={{ padding: "14px 14px 12px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}
         >
-          <Logo size={26} />
+          <Logo size={44} />
           <button
             onClick={() => setCollapsed(true)}
             style={{ color: "rgba(255,255,255,0.3)", lineHeight: 0 }}
