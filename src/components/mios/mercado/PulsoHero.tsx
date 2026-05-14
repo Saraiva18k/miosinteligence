@@ -1,15 +1,19 @@
 import { useState, useEffect, useRef } from "react";
-import { Activity, Radio, Zap, TrendingUp, TrendingDown, AlertCircle, Clock, ArrowUpRight, Filter, RefreshCw } from "lucide-react";
+import {
+  Activity, Radio, Zap, TrendingUp, TrendingDown,
+  AlertCircle, Clock, ArrowUpRight, RefreshCw,
+  Eye, Target, Flame,
+} from "lucide-react";
 
 // ─── Keyframes ────────────────────────────────────────────────────────────────
 
 const KF = `
-@keyframes pulso-live   { 0%,100%{opacity:1;transform:scale(1)}   50%{opacity:0.5;transform:scale(0.92)} }
-@keyframes pulso-ripple { 0%{transform:scale(1);opacity:0.7}       100%{transform:scale(3.2);opacity:0}  }
-@keyframes pulso-bar    { 0%,100%{transform:scaleY(0.3)} 50%{transform:scaleY(1)} }
-@keyframes pulso-slide  { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
-@keyframes pulso-ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-@keyframes pulso-glow   { 0%,100%{box-shadow:0 0 0 0 rgba(255,149,0,0)} 50%{box-shadow:0 0 24px -4px rgba(255,149,0,0.25)} }
+@keyframes pulso-ripple  { 0%{transform:scale(1);opacity:0.8} 100%{transform:scale(3.2);opacity:0} }
+@keyframes pulso-ticker  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes pulso-slide   { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulso-beat    { 0%,100%{transform:scale(1);opacity:0.9} 50%{transform:scale(1.35);opacity:0.3} }
+@keyframes pulso-glow    { 0%,100%{opacity:0.15} 50%{opacity:0.35} }
+@keyframes pulso-scan    { 0%{transform:translateX(-100%)} 100%{transform:translateX(340%)} }
 `;
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -17,179 +21,215 @@ const KF = `
 type SignalType = "alert" | "trend" | "signal" | "neutral" | "opportunity";
 
 interface Signal {
-  id: number;
-  time: string;
-  type: SignalType;
-  source: string;
-  text: string;
-  delta?: string;
-  deltaUp?: boolean;
+  id: number; time: string; type: SignalType;
+  source: string; text: string; delta?: string; deltaUp?: boolean;
 }
 
 const INITIAL_SIGNALS: Signal[] = [
-  { id: 1,  time: "agora",   type: "alert",       source: "Concorrentes",  text: "Player principal reduziu preço em 12% — possível resposta à queda de NPS detectada",                delta: "−12%",  deltaUp: false },
-  { id: 2,  time: "3 min",   type: "trend",       source: "Buscas",        text: "Volume de busca por 'gestão de times remotos' acelera: +28% nas últimas 2 horas",                    delta: "+28%",  deltaUp: true  },
-  { id: 3,  time: "11 min",  type: "opportunity", source: "Social",        text: "Fórum setorial com 4.2k membros debatendo dor exatamente mapeada no módulo Dores",                   delta: "4.2k",  deltaUp: true  },
-  { id: 4,  time: "34 min",  type: "signal",      source: "Autoridade",    text: "Nova publicação de referência do setor — potencial de agenda-setting nos próximos 14 dias",          delta: null,    deltaUp: true  },
-  { id: 5,  time: "1h",      type: "neutral",     source: "Regulação",     text: "Consulta pública em andamento — prazo de comentários encerra em 18 dias",                           delta: "18d",   deltaUp: false },
-  { id: 6,  time: "1h 20m",  type: "trend",       source: "Buscas",        text: "Palavra-chave secundária do seu segmento entra no top 10 do Google Trends Brasil",                  delta: "Top 10",deltaUp: true  },
-  { id: 7,  time: "2h",      type: "alert",       source: "Concorrentes",  text: "Concorrente B lançou feature nova — captura direta do gap identificado no mapeamento MIOS",        delta: null,    deltaUp: false },
-  { id: 8,  time: "3h",      type: "opportunity", source: "Mercado",       text: "Janela 22h–23h mantém-se sem cobertura por qualquer player — oportunidade de ativação exclusiva",  delta: null,    deltaUp: true  },
+  { id: 1, time: "agora",  type: "alert",       source: "Concorrentes", text: "Player principal reduziu preço em 12% — resposta direta à queda de NPS detectada na semana passada",     delta: "−12%",  deltaUp: false },
+  { id: 2, time: "3 min",  type: "trend",       source: "Buscas",       text: "Volume de busca por 'estética premium sp' acelera: +28% nas últimas 2 horas — tendência validada",          delta: "+28%",  deltaUp: true  },
+  { id: 3, time: "11 min", type: "opportunity", source: "Social",        text: "Fórum setorial com 4.2k membros debatendo exatamente a dor mapeada no módulo Dores — janela aberta",        delta: "4.2k",  deltaUp: true  },
+  { id: 4, time: "34 min", type: "signal",      source: "Autoridade",   text: "Nova publicação de referência do setor — potencial de agenda-setting nos próximos 14 dias",                 delta: null,    deltaUp: true  },
+  { id: 5, time: "1h",     type: "neutral",     source: "Regulação",    text: "Consulta pública em andamento — prazo de comentários encerra em 18 dias, risco de impacto moderado",         delta: "18d",   deltaUp: false },
+  { id: 6, time: "1h 20m", type: "trend",       source: "Buscas",       text: "Palavra-chave secundária do segmento entra no top 10 do Google Trends Brasil — oportunidade de conteúdo",   delta: "Top 10",deltaUp: true  },
+  { id: 7, time: "2h",     type: "alert",       source: "Concorrentes", text: "Concorrente B lançou feature nova — captura direta do gap identificado no mapeamento MIOS",                 delta: null,    deltaUp: false },
+  { id: 8, time: "3h",     type: "opportunity", source: "Mercado",       text: "Janela 22h–23h mantém-se sem cobertura por qualquer player — oportunidade de ativação exclusiva",           delta: null,    deltaUp: true  },
 ];
 
 const TICKER_ITEMS = [
-  "🔴  Concorrente A  −12% preço",
-  "🟢  Busca orgânica  +28% (2h)",
-  "🟡  Consulta pública  18 dias",
-  "🟢  Fórum setorial  4.2k membros",
-  "🔴  Feature lançada  Concorrente B",
-  "🟢  Janela 22h–23h  sem cobertura",
-  "🟢  Tendência  Top 10 Brasil",
-  "🟡  Publicação autoridade  14 dias",
+  "● ALERTA  ·  Concorrente A  −12% preço",
+  "● TENDÊNCIA  ·  Busca orgânica  +28% (2h)",
+  "● INFO  ·  Consulta pública  18 dias",
+  "● OPORTUNIDADE  ·  Fórum setorial  4.2k membros",
+  "● ALERTA  ·  Feature lançada  Concorrente B",
+  "● OPORTUNIDADE  ·  Janela 22h–23h  sem cobertura",
+  "● TENDÊNCIA  ·  Top 10 Brasil  palavra-chave",
+  "● SINAL  ·  Publicação autoridade  agenda 14 dias",
 ];
 
 const SIGNAL_CONFIG: Record<SignalType, { color: string; bg: string; border: string; label: string }> = {
-  alert:       { color: "rgba(239,68,68,0.9)",   bg: "rgba(239,68,68,0.06)",   border: "rgba(239,68,68,0.18)",   label: "ALERTA"      },
-  trend:       { color: "rgba(255,149,0,0.9)",   bg: "rgba(255,149,0,0.06)",   border: "rgba(255,149,0,0.18)",   label: "TENDÊNCIA"   },
-  opportunity: { color: "rgba(16,185,129,0.9)",  bg: "rgba(16,185,129,0.06)",  border: "rgba(16,185,129,0.18)",  label: "OPORTUNIDADE"},
-  signal:      { color: "rgba(99,102,241,0.85)", bg: "rgba(99,102,241,0.06)",  border: "rgba(99,102,241,0.18)",  label: "SINAL"       },
-  neutral:     { color: "rgba(255,255,255,0.35)",bg: "rgba(255,255,255,0.03)", border: "rgba(255,255,255,0.08)", label: "INFO"        },
+  alert:       { color: "#f43f5e", bg: "rgba(244,63,94,0.05)",   border: "rgba(244,63,94,0.18)",   label: "ALERTA"       },
+  trend:       { color: "#ff9500", bg: "rgba(255,149,0,0.05)",   border: "rgba(255,149,0,0.18)",   label: "TENDÊNCIA"    },
+  opportunity: { color: "#10b981", bg: "rgba(16,185,129,0.05)",  border: "rgba(16,185,129,0.18)",  label: "OPORTUNIDADE" },
+  signal:      { color: "#6366f1", bg: "rgba(99,102,241,0.05)",  border: "rgba(99,102,241,0.18)",  label: "SINAL"        },
+  neutral:     { color: "rgba(255,255,255,0.35)", bg: "rgba(255,255,255,0.02)", border: "rgba(255,255,255,0.08)", label: "INFO" },
 };
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
+const VITALS = [
+  { label: "Momentum",         value: "ALTA",   sub: "acelerando",     color: "#10b981", Icon: TrendingUp,   up: true  },
+  { label: "Sinais / hora",    value: "8",      sub: "últimas 2h",     color: "#ff9500", Icon: Activity,     up: true  },
+  { label: "Ativ. Competitiva",value: "3",      sub: "eventos ativos", color: "#f43f5e", Icon: AlertCircle,  up: false },
+  { label: "Veloc. de Busca",  value: "+340%",  sub: "6 meses",        color: "#6366f1", Icon: Zap,          up: true  },
+  { label: "Sentimento",       value: "74",     sub: "/100 · forte",   color: "#06b6d4", Icon: Eye,          up: true  },
+];
+
+const SEARCH_TERMS = [
+  { term: "gestão estética premium",   growth: "+340%", pct: 91, hot: true  },
+  { term: "clínica de estética sp",    growth: "+128%", pct: 65, hot: true  },
+  { term: "tratamento facial 2026",    growth: "+94%",  pct: 48, hot: false },
+  { term: "spa day são paulo",         growth: "+71%",  pct: 36, hot: false },
+  { term: "skincare profissional sp",  growth: "+52%",  pct: 26, hot: false },
+];
+
+const COMPETITORS = [
+  { name: "Player A", tag: "Preço",    event: "Reduziu pricing em 12%",        color: "#f43f5e", time: "2h",  bars: 3 },
+  { name: "Player B", tag: "Produto",  event: "Lançou nova feature de booking", color: "#f59e0b", time: "3h",  bars: 2 },
+  { name: "Player C", tag: "Conteúdo", event: "Campanha agressiva no Instagram", color: "#6366f1", time: "5h",  bars: 1 },
+];
+
+const FILTER_TYPES: Array<{ key: SignalType | "all"; label: string }> = [
+  { key: "all",         label: "Todos"         },
+  { key: "alert",       label: "Alertas"       },
+  { key: "opportunity", label: "Oportunidades" },
+  { key: "trend",       label: "Tendências"    },
+  { key: "signal",      label: "Sinais"        },
+];
+
+// ─── Market ECG ───────────────────────────────────────────────────────────────
+
+function MarketECG() {
+  const MID = 28, vW = 600;
+  const d = `M 0,${MID} L 60,${MID} L 70,${MID} L 75,${MID - 6} L 80,${MID} L 82,${MID + 3} L 86,${MID - 24} L 90,${MID + 18} L 94,${MID} L 98,${MID - 8} L 104,${MID} L 200,${MID} L 210,${MID} L 215,${MID - 6} L 220,${MID} L 222,${MID + 3} L 226,${MID - 24} L 230,${MID + 18} L 234,${MID} L 238,${MID - 8} L 244,${MID} L 360,${MID} L 370,${MID} L 375,${MID - 6} L 380,${MID} L 382,${MID + 3} L 386,${MID - 24} L 390,${MID + 18} L 394,${MID} L 398,${MID - 8} L 404,${MID} L ${vW},${MID}`;
+
+  return (
+    <svg width="100%" height={56} viewBox={`0 0 ${vW} 56`} preserveAspectRatio="none" style={{ display: "block" }}>
+      <defs>
+        <linearGradient id="ecg-line-grad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stopColor="rgba(255,149,0,0.00)" />
+          <stop offset="30%"  stopColor="rgba(255,149,0,0.08)" />
+          <stop offset="68%"  stopColor="rgba(255,149,0,0.55)" />
+          <stop offset="100%" stopColor="rgba(255,149,0,0.95)" />
+        </linearGradient>
+        <linearGradient id="ecg-area-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="rgba(255,149,0,0.06)" />
+          <stop offset="100%" stopColor="rgba(255,149,0,0.00)" />
+        </linearGradient>
+        <filter id="ecg-glow">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      {/* Baseline */}
+      <line x1="0" y1={MID} x2={vW} y2={MID} stroke="rgba(255,255,255,0.05)" strokeWidth={0.5} />
+
+      {/* Area under curve */}
+      <path
+        d={`${d} L ${vW},${MID + 4} L 0,${MID + 4} Z`}
+        fill="url(#ecg-area-grad)"
+      />
+
+      {/* ECG main line */}
+      <path d={d} fill="none" stroke="url(#ecg-line-grad)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* ECG glow duplicate */}
+      <path d={d} fill="none" stroke="rgba(255,149,0,0.2)" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" filter="url(#ecg-glow)" />
+
+      {/* Live endpoint — outer pulse */}
+      <circle cx={vW} cy={MID} r={10} fill="rgba(255,149,0,0.12)">
+        <animate attributeName="r" values="8;16;8" dur="1.5s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.3;0;0.3" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+
+      {/* Live endpoint — core dot */}
+      <circle cx={vW} cy={MID} r={3.5} fill="#ff9500" filter="url(#ecg-glow)">
+        <animate attributeName="r" values="3.5;4.5;3.5" dur="1.5s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+    </svg>
+  );
+}
+
+// ─── Live dot ─────────────────────────────────────────────────────────────────
 
 function LiveDot() {
   return (
     <div style={{ position: "relative", width: 10, height: 10, flexShrink: 0 }}>
-      <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#ff9500", animation: "pulso-live 1.8s ease infinite" }} />
+      <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#ff9500" }} />
       <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "rgba(255,149,0,0.5)", animation: "pulso-ripple 2s ease-out infinite" }} />
     </div>
   );
 }
 
-function Equalizer({ bars = 28, height = 48 }: { bars?: number; height?: number }) {
-  return (
-    <div style={{ display: "flex", alignItems: "flex-end", gap: 2, height, paddingBottom: 2 }}>
-      {Array.from({ length: bars }).map((_, i) => {
-        const baseH = 8 + Math.random() * (height - 12);
-        const delay = (i * 0.07).toFixed(2);
-        const dur   = (0.6 + Math.random() * 0.9).toFixed(2);
-        return (
-          <div
-            key={i}
-            style={{
-              flex: 1, borderRadius: "1px 1px 0 0",
-              background: `rgba(255,149,0,${0.18 + (i % 3) * 0.12})`,
-              height: baseH,
-              transformOrigin: "bottom",
-              animation: `pulso-bar ${dur}s ease ${delay}s infinite`,
-            }}
-          />
-        );
-      })}
-    </div>
-  );
-}
+// ─── Signal Row ───────────────────────────────────────────────────────────────
 
 function SignalRow({ signal, isNew }: { signal: Signal; isNew?: boolean }) {
   const cfg = SIGNAL_CONFIG[signal.type];
   return (
-    <div
-      style={{
-        display: "flex", alignItems: "flex-start", gap: 12,
-        padding: "11px 14px", borderRadius: 10,
-        background: cfg.bg,
-        border: `1px solid ${cfg.border}`,
-        animation: isNew ? "pulso-slide 0.35s ease" : undefined,
-        transition: "all 0.2s",
-      }}
-    >
-      {/* Type badge */}
+    <div style={{
+      display: "flex", alignItems: "flex-start", gap: 10,
+      padding: "10px 12px", borderRadius: 9,
+      background: cfg.bg, border: `1px solid ${cfg.border}`,
+      animation: isNew ? "pulso-slide 0.35s ease" : undefined,
+      transition: "all 0.2s",
+    }}>
       <span style={{
         flexShrink: 0, marginTop: 1,
-        fontSize: 7, fontWeight: 800, letterSpacing: 1,
-        padding: "2px 6px", borderRadius: 4,
-        background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}`,
-        whiteSpace: "nowrap",
+        fontSize: 7, fontWeight: 800, letterSpacing: 0.8,
+        padding: "2px 5px", borderRadius: 4,
+        background: `${cfg.color}18`, color: cfg.color,
+        border: `1px solid ${cfg.color}30`, whiteSpace: "nowrap",
       }}>
         {cfg.label}
       </span>
-
-      {/* Source */}
-      <span style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.35)", flexShrink: 0, marginTop: 2, minWidth: 72 }}>
+      <span style={{ fontSize: 9.5, fontWeight: 600, color: "rgba(255,255,255,0.3)", flexShrink: 0, marginTop: 1.5, minWidth: 68 }}>
         {signal.source}
       </span>
-
-      {/* Text */}
-      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.62)", lineHeight: 1.55, flex: 1 }}>
+      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", lineHeight: 1.55, flex: 1 }}>
         {signal.text}
       </span>
-
-      {/* Delta */}
       {signal.delta && (
         <span style={{
           flexShrink: 0, marginTop: 1,
-          fontSize: 10, fontWeight: 700,
-          color: signal.deltaUp ? "rgba(16,185,129,0.85)" : "rgba(239,68,68,0.85)",
+          fontSize: 10, fontWeight: 800,
+          color: signal.deltaUp ? "#10b981" : "#f43f5e",
           fontFamily: "JetBrains Mono, monospace",
         }}>
           {signal.delta}
         </span>
       )}
-
-      {/* Time */}
-      <span style={{ fontSize: 9, color: "rgba(255,255,255,0.22)", flexShrink: 0, marginTop: 2, minWidth: 44, textAlign: "right" }}>
+      <span style={{ fontSize: 9, color: "rgba(255,255,255,0.2)", flexShrink: 0, marginTop: 1.5, minWidth: 40, textAlign: "right", fontFamily: "JetBrains Mono, monospace" }}>
         {signal.time}
       </span>
     </div>
   );
 }
 
-// ─── Main component ───────────────────────────────────────────────────────────
-
-const FILTER_TYPES: Array<{ key: SignalType | "all"; label: string }> = [
-  { key: "all",         label: "Todos"        },
-  { key: "alert",       label: "Alertas"      },
-  { key: "opportunity", label: "Oportunidades"},
-  { key: "trend",       label: "Tendências"   },
-  { key: "signal",      label: "Sinais"       },
-];
+// ─── Main Component ───────────────────────────────────────────────────────────
 
 export function PulsoHero() {
-  const [filter, setFilter]     = useState<SignalType | "all">("all");
-  const [signals, setSignals]   = useState<Signal[]>(INITIAL_SIGNALS);
-  const [newId, setNewId]       = useState<number | null>(null);
-  const nextId = useRef(INITIAL_SIGNALS.length + 1);
+  const [filter, setFilter]   = useState<SignalType | "all">("all");
+  const [signals, setSignals] = useState<Signal[]>(INITIAL_SIGNALS);
+  const [newId, setNewId]     = useState<number | null>(null);
+  const nextId                = useRef(INITIAL_SIGNALS.length + 1);
 
-  // Simulate live incoming signal every ~8s
+  // Simulate live signals
   useEffect(() => {
-    const LIVE_SIGNALS: Omit<Signal, "id" | "time">[] = [
-      { type: "trend",       source: "Buscas",      text: "Novo pico de busca: +44% em termos relacionados ao seu posicionamento",   delta: "+44%", deltaUp: true  },
-      { type: "opportunity", source: "Mercado",      text: "Menção positiva em newsletter com 12k assinantes do setor",               delta: "12k",  deltaUp: true  },
-      { type: "alert",       source: "Concorrentes", text: "Concorrente C atualizou landing page — mudança de proposta de valor",     delta: null,   deltaUp: false },
+    const LIVE: Omit<Signal, "id" | "time">[] = [
+      { type: "trend",       source: "Buscas",       text: "Novo pico de busca: +44% em termos ligados ao seu posicionamento — janela de ativação",          delta: "+44%", deltaUp: true  },
+      { type: "opportunity", source: "Mercado",       text: "Menção positiva em newsletter com 12k assinantes do setor — potencial de tráfego orgânico",       delta: "12k",  deltaUp: true  },
+      { type: "alert",       source: "Concorrentes",  text: "Concorrente C atualizou proposta de valor na landing — possível resposta ao seu posicionamento",   delta: null,   deltaUp: false },
     ];
     let i = 0;
-    const interval = setInterval(() => {
-      const base = LIVE_SIGNALS[i % LIVE_SIGNALS.length];
-      const id   = nextId.current++;
-      const sig: Signal = { ...base, id, time: "agora" };
-      setSignals(prev => [sig, ...prev.slice(0, 11)]);
+    const timer = setInterval(() => {
+      const base = LIVE[i % LIVE.length];
+      const id = nextId.current++;
+      setSignals(prev => {
+        const aged = prev.map((s, idx) => idx === 0 ? s : {
+          ...s,
+          time: s.time === "agora" ? "1 min" : s.time === "1 min" ? "3 min" : s.time,
+        });
+        return [{ ...base, id, time: "agora" }, ...aged.slice(0, 11)];
+      });
       setNewId(id);
       setTimeout(() => setNewId(null), 600);
-      // Age existing signals
-      setSignals(prev => prev.map((s, idx) => idx === 0 ? s : {
-        ...s,
-        time: s.time === "agora" ? "1 min" :
-              s.time === "1 min" ? "3 min" : s.time,
-      }));
       i++;
-    }, 8000);
-    return () => clearInterval(interval);
+    }, 9000);
+    return () => clearInterval(timer);
   }, []);
 
   const filtered = filter === "all" ? signals : signals.filter(s => s.type === filter);
-
-  const counts = {
+  const counts   = {
     alert:       signals.filter(s => s.type === "alert").length,
     opportunity: signals.filter(s => s.type === "opportunity").length,
     trend:       signals.filter(s => s.type === "trend").length,
@@ -198,150 +238,348 @@ export function PulsoHero() {
   return (
     <>
       <style>{KF}</style>
+      <div style={{ display: "flex", flexDirection: "column", gap: 14, paddingBottom: 48 }}>
 
-      {/* ── Hero header ──────────────────────────────────────────────────────── */}
-      <div style={{
-        borderRadius: 16, marginBottom: 20, padding: "24px 28px 20px",
-        position: "relative", overflow: "hidden",
-        background: "linear-gradient(135deg, rgba(255,149,0,0.09) 0%, rgba(4,6,15,0) 100%)",
-        border: "1px solid rgba(255,149,0,0.18)",
-        animation: "pulso-glow 4s ease infinite",
-      }}>
-        <div style={{ position: "absolute", top: -50, right: -50, width: 240, height: 240, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,149,0,0.06) 0%, transparent 68%)", pointerEvents: "none" }} />
-
-        <div style={{ position: "relative", display: "flex", alignItems: "flex-start", gap: 20 }}>
-          {/* Left: identity */}
-          <div style={{ flex: 1 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
-              <div style={{ width: 46, height: 46, borderRadius: 13, background: "rgba(255,149,0,0.10)", border: "1px solid rgba(255,149,0,0.26)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Activity size={20} strokeWidth={1.8} style={{ color: "rgba(255,149,0,0.85)" }} />
-              </div>
-              <div>
-                <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: "2px", color: "rgba(255,149,0,0.5)", marginBottom: 3 }}>PULSO DO MERCADO · GRUPO MERCADO</div>
-                <div style={{ fontSize: 22, fontWeight: 900, color: "rgba(255,255,255,0.93)", letterSpacing: "-0.3px" }}>Monitoramento em Tempo Real</div>
-              </div>
-
-              {/* Live badge */}
-              <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8, padding: "6px 12px", borderRadius: 8, background: "rgba(255,149,0,0.08)", border: "1px solid rgba(255,149,0,0.22)" }}>
-                <LiveDot />
-                <span style={{ fontSize: 10, fontWeight: 800, color: "rgba(255,149,0,0.85)", letterSpacing: "1.5px" }}>AO VIVO</span>
-              </div>
-            </div>
-            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.42)", lineHeight: 1.65, maxWidth: 560, marginBottom: 16 }}>
-              Sinais contínuos de mercado filtrados pela lente do seu negócio — concorrentes, tendências,
-              sentimento e regulação, em tempo real e com contexto estratégico.
-            </p>
-
-            {/* Equalizer */}
-            <Equalizer bars={40} height={36} />
+        {/* ── Hero Header ────────────────────────────────────────────────────── */}
+        <div style={{
+          borderRadius: 16, padding: "24px 28px 20px",
+          background: "rgba(255,255,255,0.03)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
+          border: "1px solid rgba(255,149,0,0.14)",
+          boxShadow: "0 0 60px -20px rgba(255,149,0,0.10), 0 1px 0 rgba(255,255,255,0.04) inset",
+          position: "relative", overflow: "hidden",
+        }}>
+          {/* Ambient glow */}
+          <div style={{ position: "absolute", top: -60, right: -60, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,149,0,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
+          {/* Scan shimmer */}
+          <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+            <div style={{ position: "absolute", top: 0, bottom: 0, width: "25%", background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.04), transparent)", animation: "pulso-scan 5s ease-in-out infinite" }} />
           </div>
 
-          {/* Right: counters */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 8, flexShrink: 0 }}>
-            {[
-              { label: "ALERTAS",       value: counts.alert,       color: "rgba(239,68,68,0.85)"  },
-              { label: "OPORTUNIDADES", value: counts.opportunity, color: "rgba(16,185,129,0.85)" },
-              { label: "TENDÊNCIAS",    value: counts.trend,       color: "rgba(255,149,0,0.85)"  },
-            ].map(c => (
-              <div key={c.label} style={{ padding: "8px 14px", borderRadius: 9, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", textAlign: "right", minWidth: 100 }}>
-                <div style={{ fontSize: 22, fontWeight: 900, color: c.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>{c.value}</div>
-                <div style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.28)", letterSpacing: 1, marginTop: 3 }}>{c.label}</div>
+          <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 320px", gap: 28, alignItems: "center" }}>
+            {/* Left: identity + counters */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+                <div style={{
+                  width: 44, height: 44, borderRadius: 12,
+                  background: "rgba(255,149,0,0.10)", border: "1px solid rgba(255,149,0,0.26)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <Activity size={20} strokeWidth={1.8} style={{ color: "rgba(255,149,0,0.85)" }} />
+                </div>
+                <div>
+                  <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 2, color: "rgba(255,149,0,0.5)", marginBottom: 3 }}>
+                    PULSO DO MERCADO · GRUPO MERCADO
+                  </div>
+                  <div style={{ fontSize: 22, fontWeight: 900, color: "rgba(255,255,255,0.93)", letterSpacing: "-0.4px" }}>
+                    Monitoramento em Tempo Real
+                  </div>
+                </div>
+                <div style={{
+                  marginLeft: "auto", display: "flex", alignItems: "center", gap: 8,
+                  padding: "6px 12px", borderRadius: 8,
+                  background: "rgba(255,149,0,0.08)", border: "1px solid rgba(255,149,0,0.22)",
+                }}>
+                  <LiveDot />
+                  <span style={{ fontSize: 10, fontWeight: 800, color: "rgba(255,149,0,0.88)", letterSpacing: 1.5 }}>AO VIVO</span>
+                </div>
               </div>
+
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", lineHeight: 1.65, maxWidth: 520, margin: "0 0 18px" }}>
+                Sinais contínuos filtrados pela lente do seu negócio — concorrentes, tendências,
+                sentimento e regulação com contexto estratégico em tempo real.
+              </p>
+
+              {/* ECG */}
+              <MarketECG />
+            </div>
+
+            {/* Right: signal counters */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div style={{ fontSize: 8.5, fontWeight: 800, letterSpacing: 1.8, color: "rgba(255,255,255,0.2)", marginBottom: 4 }}>
+                RESUMO ATUAL
+              </div>
+              {[
+                { label: "ALERTAS",        value: counts.alert,       color: "#f43f5e", Icon: AlertCircle  },
+                { label: "OPORTUNIDADES",  value: counts.opportunity, color: "#10b981", Icon: Target       },
+                { label: "TENDÊNCIAS",     value: counts.trend,       color: "#ff9500", Icon: TrendingUp   },
+              ].map(c => (
+                <div key={c.label} style={{
+                  display: "flex", alignItems: "center", gap: 12,
+                  padding: "10px 14px", borderRadius: 10,
+                  background: `${c.color}08`, border: `1px solid ${c.color}20`,
+                }}>
+                  <c.Icon size={15} style={{ color: c.color, flexShrink: 0, opacity: 0.8 }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.28)", letterSpacing: 1, marginBottom: 1 }}>
+                      {c.label}
+                    </div>
+                  </div>
+                  <div style={{ fontSize: 28, fontWeight: 900, color: c.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>
+                    {c.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Market Vitals Strip ────────────────────────────────────────────── */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 10 }}>
+          {VITALS.map(v => (
+            <div key={v.label} style={{
+              padding: "14px 16px",
+              borderRadius: 12,
+              background: "rgba(255,255,255,0.025)",
+              backdropFilter: "blur(12px) saturate(180%)",
+              WebkitBackdropFilter: "blur(12px) saturate(180%)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderTop: `2px solid ${v.color}`,
+            }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                <v.Icon size={12} style={{ color: v.color, opacity: 0.75 }} />
+                {v.up
+                  ? <TrendingUp size={10} style={{ color: "#10b981", opacity: 0.7 }} />
+                  : <TrendingDown size={10} style={{ color: "#f43f5e", opacity: 0.7 }} />
+                }
+              </div>
+              <div style={{ fontSize: 18, fontWeight: 900, color: v.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1, marginBottom: 4 }}>
+                {v.value}
+              </div>
+              <div style={{ fontSize: 8.5, fontWeight: 700, color: "rgba(255,255,255,0.22)", letterSpacing: 0.4, marginBottom: 1 }}>
+                {v.label}
+              </div>
+              <div style={{ fontSize: 9, color: "rgba(255,255,255,0.18)" }}>{v.sub}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Ticker ─────────────────────────────────────────────────────────── */}
+        <div style={{
+          borderRadius: 10, padding: "8px 0", overflow: "hidden",
+          background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)",
+          position: "relative",
+        }}>
+          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to right, rgba(4,6,15,0.95), transparent)", zIndex: 2, pointerEvents: "none" }} />
+          <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to left, rgba(4,6,15,0.95), transparent)", zIndex: 2, pointerEvents: "none" }} />
+          <div style={{ display: "flex", animation: "pulso-ticker 34s linear infinite", whiteSpace: "nowrap" }}>
+            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+              <span key={i} style={{
+                fontSize: 9.5, fontWeight: 600,
+                color: "rgba(255,255,255,0.35)",
+                padding: "0 32px",
+                borderRight: "1px solid rgba(255,255,255,0.05)",
+              }}>
+                {item}
+              </span>
             ))}
           </div>
         </div>
-      </div>
 
-      {/* ── Ticker ───────────────────────────────────────────────────────────── */}
-      <div style={{
-        borderRadius: 10, marginBottom: 18, padding: "9px 0", overflow: "hidden",
-        background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)",
-        position: "relative",
-      }}>
-        {/* Fade edges */}
-        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 40, background: "linear-gradient(to right, rgba(4,6,15,0.9), transparent)", zIndex: 2, pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 40, background: "linear-gradient(to left, rgba(4,6,15,0.9), transparent)", zIndex: 2, pointerEvents: "none" }} />
-        <div style={{ display: "flex", animation: "pulso-ticker 28s linear infinite", whiteSpace: "nowrap" }}>
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <span key={i} style={{ fontSize: 10, fontWeight: 500, color: "rgba(255,255,255,0.4)", padding: "0 28px", borderRight: "1px solid rgba(255,255,255,0.05)" }}>
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
+        {/* ── Main Grid ──────────────────────────────────────────────────────── */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: 14, alignItems: "start" }}>
 
-      {/* ── Filter bar ───────────────────────────────────────────────────────── */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-        <div style={{ display: "flex", gap: 6 }}>
-          {FILTER_TYPES.map(f => {
-            const isActive = filter === f.key;
-            return (
-              <button
-                key={f.key}
-                onClick={() => setFilter(f.key)}
-                style={{
-                  padding: "5px 12px", borderRadius: 7, fontSize: 11, fontWeight: isActive ? 700 : 500, cursor: "pointer",
-                  background: isActive ? "rgba(255,149,0,0.10)" : "rgba(255,255,255,0.03)",
-                  border: `1px solid ${isActive ? "rgba(255,149,0,0.32)" : "rgba(255,255,255,0.07)"}`,
-                  color: isActive ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.38)",
-                  transition: "all 0.15s",
-                }}
-              >
-                {f.label}
-              </button>
-            );
-          })}
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <Clock size={11} style={{ color: "rgba(255,255,255,0.28)" }} />
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.28)" }}>Atualiza a cada 30s</span>
-        </div>
-      </div>
-
-      {/* ── Signal feed ──────────────────────────────────────────────────────── */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 20 }}>
-        {filtered.map(sig => (
-          <SignalRow key={sig.id} signal={sig} isNew={sig.id === newId} />
-        ))}
-      </div>
-
-      {/* ── Setup cards ──────────────────────────────────────────────────────── */}
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", color: "rgba(255,255,255,0.25)", marginBottom: 12 }}>
-        CONFIGURE O MONITORAMENTO
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
-        {[
-          { Icon: Zap,        title: "Alertas inteligentes",  body: "Defina limiares e receba notificação apenas quando sinais superam o threshold estratégico configurado.", cta: "Configurar alertas"  },
-          { Icon: Radio,      title: "Fontes monitoradas",    body: "Conecte buscas, redes sociais, portais setoriais e movimentos da concorrência em um único feed unificado.", cta: "Adicionar fontes"   },
-          { Icon: TrendingUp, title: "Frequência de análise", body: "Escolha entre tempo real, resumo diário às 8h ou relatório semanal estratégico entregue toda segunda-feira.", cta: "Definir frequência" },
-        ].map(({ Icon, title, body, cta }) => (
-          <div
-            key={title}
-            style={{
-              padding: "18px 18px 16px", borderRadius: 13,
-              background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)",
-              cursor: "pointer", transition: "all 0.18s",
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.background    = "rgba(255,255,255,0.04)";
-              (e.currentTarget as HTMLElement).style.borderColor   = "rgba(255,149,0,0.2)";
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.background    = "rgba(255,255,255,0.02)";
-              (e.currentTarget as HTMLElement).style.borderColor   = "rgba(255,255,255,0.06)";
-            }}
-          >
-            <div style={{ width: 32, height: 32, borderRadius: 9, background: "rgba(255,149,0,0.08)", border: "1px solid rgba(255,149,0,0.18)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
-              <Icon size={15} strokeWidth={1.8} style={{ color: "rgba(255,149,0,0.7)" }} />
+          {/* ── Signal Feed ──────────────────────────────────────────────────── */}
+          <div style={{
+            borderRadius: 14, padding: "18px 18px",
+            background: "rgba(255,255,255,0.025)",
+            backdropFilter: "blur(16px) saturate(180%)",
+            WebkitBackdropFilter: "blur(16px) saturate(180%)",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}>
+            {/* Feed header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <Radio size={12} style={{ color: "rgba(255,149,0,0.6)" }} />
+                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.24)" }}>
+                  FEED DE SINAIS
+                </span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <Clock size={10} style={{ color: "rgba(255,255,255,0.22)" }} />
+                <span style={{ fontSize: 9, color: "rgba(255,255,255,0.22)" }}>Atualiza a cada 30s</span>
+              </div>
             </div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.72)", marginBottom: 7 }}>{title}</div>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", lineHeight: 1.6, marginBottom: 14 }}>{body}</div>
-            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-              <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,149,0,0.65)" }}>{cta}</span>
-              <ArrowUpRight size={11} style={{ color: "rgba(255,149,0,0.45)" }} />
+
+            {/* Filters */}
+            <div style={{ display: "flex", gap: 5, marginBottom: 14, flexWrap: "wrap" }}>
+              {FILTER_TYPES.map(f => {
+                const isActive = filter === f.key;
+                return (
+                  <button
+                    key={f.key}
+                    onClick={() => setFilter(f.key)}
+                    style={{
+                      padding: "4px 11px", borderRadius: 6,
+                      fontSize: 10.5, fontWeight: isActive ? 700 : 500, cursor: "pointer",
+                      background: isActive ? "rgba(255,149,0,0.10)" : "rgba(255,255,255,0.03)",
+                      border: `1px solid ${isActive ? "rgba(255,149,0,0.32)" : "rgba(255,255,255,0.07)"}`,
+                      color: isActive ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.35)",
+                      transition: "all 0.15s",
+                    }}
+                  >
+                    {f.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Signals */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {filtered.map(sig => (
+                <SignalRow key={sig.id} signal={sig} isNew={sig.id === newId} />
+              ))}
+              {filtered.length === 0 && (
+                <div style={{ textAlign: "center", padding: "24px 0", color: "rgba(255,255,255,0.2)", fontSize: 12 }}>
+                  Nenhum sinal deste tipo no momento
+                </div>
+              )}
             </div>
           </div>
-        ))}
+
+          {/* ── Right Column ─────────────────────────────────────────────────── */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+
+            {/* Search Velocity */}
+            <div style={{
+              borderRadius: 14, padding: "16px 16px",
+              background: "rgba(255,255,255,0.025)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
+              border: "1px solid rgba(255,255,255,0.06)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 14 }}>
+                <Zap size={11} style={{ color: "rgba(255,149,0,0.6)" }} />
+                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.24)" }}>
+                  VELOCIDADE DE BUSCA
+                </span>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {SEARCH_TERMS.map((s, i) => (
+                  <div key={i}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 5, flex: 1, minWidth: 0 }}>
+                        {s.hot && (
+                          <Flame size={9} style={{ color: "#f43f5e", flexShrink: 0 }} />
+                        )}
+                        <span style={{
+                          fontSize: 10, fontWeight: s.hot ? 600 : 400,
+                          color: s.hot ? "rgba(255,255,255,0.72)" : "rgba(255,255,255,0.42)",
+                          overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                        }}>
+                          {s.term}
+                        </span>
+                      </div>
+                      <span style={{
+                        fontSize: 10, fontWeight: 800, flexShrink: 0, marginLeft: 6,
+                        color: s.hot ? "#10b981" : "rgba(255,255,255,0.35)",
+                        fontFamily: "JetBrains Mono, monospace",
+                      }}>
+                        {s.growth}
+                      </span>
+                    </div>
+                    <div style={{ height: 3, borderRadius: 2, background: "rgba(255,255,255,0.05)", overflow: "hidden" }}>
+                      <div style={{
+                        height: "100%", borderRadius: 2,
+                        width: `${s.pct}%`,
+                        background: s.hot
+                          ? "linear-gradient(90deg, rgba(255,149,0,0.8), rgba(16,185,129,0.7))"
+                          : "rgba(255,255,255,0.18)",
+                        transition: "width 0.7s ease",
+                      }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Competitor Activity */}
+            <div style={{
+              borderRadius: 14, padding: "16px 16px",
+              background: "rgba(255,255,255,0.025)",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
+              border: "1px solid rgba(255,255,255,0.06)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 14 }}>
+                <Target size={11} style={{ color: "rgba(255,149,0,0.6)" }} />
+                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 2, color: "rgba(255,255,255,0.24)" }}>
+                  ATIVIDADE COMPETITIVA
+                </span>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {COMPETITORS.map((c, i) => (
+                  <div key={i} style={{
+                    padding: "10px 12px", borderRadius: 9,
+                    background: `${c.color}08`, border: `1px solid ${c.color}22`,
+                    position: "relative", overflow: "hidden",
+                  }}>
+                    {/* Left accent */}
+                    <div style={{
+                      position: "absolute", left: 0, top: 0, bottom: 0,
+                      width: 3, borderRadius: "9px 0 0 9px",
+                      background: c.color, opacity: 0.6,
+                    }} />
+                    <div style={{ paddingLeft: 6 }}>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 5 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                          <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.7)" }}>{c.name}</span>
+                          <span style={{
+                            fontSize: 7.5, fontWeight: 800, padding: "1px 5px", borderRadius: 4,
+                            background: `${c.color}18`, border: `1px solid ${c.color}32`,
+                            color: c.color, letterSpacing: 0.5,
+                          }}>
+                            {c.tag.toUpperCase()}
+                          </span>
+                        </div>
+                        <span style={{ fontSize: 9, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace" }}>
+                          {c.time}
+                        </span>
+                      </div>
+                      <div style={{ fontSize: 10.5, color: "rgba(255,255,255,0.48)", lineHeight: 1.45, marginBottom: 6 }}>
+                        {c.event}
+                      </div>
+                      {/* Intensity bars */}
+                      <div style={{ display: "flex", gap: 3 }}>
+                        {[1, 2, 3].map(n => (
+                          <div key={n} style={{
+                            height: 3, flex: 1, borderRadius: 2,
+                            background: n <= c.bars ? c.color : "rgba(255,255,255,0.06)",
+                            opacity: n <= c.bars ? 0.7 : 1,
+                          }} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Configure Alerts — compact */}
+            <div style={{
+              padding: "14px 16px", borderRadius: 12,
+              background: "rgba(255,255,255,0.015)",
+              border: "1px dashed rgba(255,149,0,0.2)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <RefreshCw size={11} style={{ color: "rgba(255,149,0,0.5)" }} />
+                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: 1.5, color: "rgba(255,149,0,0.45)" }}>
+                  MONITORAMENTO CONTÍNUO
+                </span>
+              </div>
+              <div style={{ fontSize: 10.5, color: "rgba(255,255,255,0.3)", lineHeight: 1.5, marginBottom: 10 }}>
+                Configure fontes, alertas e frequência de análise para o seu segmento.
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,149,0,0.6)" }}>Configurar monitoramento</span>
+                <ArrowUpRight size={11} style={{ color: "rgba(255,149,0,0.45)" }} />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
