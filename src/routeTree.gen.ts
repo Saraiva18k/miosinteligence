@@ -29,6 +29,7 @@ import { Route as PulsoRouteImport }              from './routes/pulso'
 import { Route as BenchmarkingRouteImport }       from './routes/benchmarking'
 import { Route as StakeholdersRouteImport }       from './routes/stakeholders'
 import { Route as AudienciaHubRouteImport }       from './routes/audiencia-hub'
+import { Route as MarcaHubRouteImport }           from './routes/marca-hub'
 import { Route as IndexRouteImport }              from './routes/index'
 
 const MentorRoute              = MentorRouteImport.update({              id: '/mentor',              path: '/mentor',              getParentRoute: () => rootRouteImport } as any)
@@ -51,6 +52,7 @@ const PulsoRoute               = PulsoRouteImport.update({               id: '/p
 const BenchmarkingRoute        = BenchmarkingRouteImport.update({        id: '/benchmarking',        path: '/benchmarking',        getParentRoute: () => rootRouteImport } as any)
 const StakeholdersRoute        = StakeholdersRouteImport.update({        id: '/stakeholders',        path: '/stakeholders',        getParentRoute: () => rootRouteImport } as any)
 const AudienciaHubRoute        = AudienciaHubRouteImport.update({        id: '/audiencia-hub',       path: '/audiencia-hub',       getParentRoute: () => rootRouteImport } as any)
+const MarcaHubRoute            = MarcaHubRouteImport.update({            id: '/marca-hub',           path: '/marca-hub',           getParentRoute: () => rootRouteImport } as any)
 const IndexRoute               = IndexRouteImport.update({               id: '/',                    path: '/',                    getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
@@ -75,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/benchmarking':        typeof BenchmarkingRoute
   '/stakeholders':        typeof StakeholdersRoute
   '/audiencia-hub':       typeof AudienciaHubRoute
+  '/marca-hub':           typeof MarcaHubRoute
 }
 export interface FileRoutesByTo {
   '/':                    typeof IndexRoute
@@ -98,6 +101,7 @@ export interface FileRoutesByTo {
   '/benchmarking':        typeof BenchmarkingRoute
   '/stakeholders':        typeof StakeholdersRoute
   '/audiencia-hub':       typeof AudienciaHubRoute
+  '/marca-hub':           typeof MarcaHubRoute
 }
 export interface FileRoutesById {
   __root__:               typeof rootRouteImport
@@ -122,6 +126,7 @@ export interface FileRoutesById {
   '/benchmarking':        typeof BenchmarkingRoute
   '/stakeholders':        typeof StakeholdersRoute
   '/audiencia-hub':       typeof AudienciaHubRoute
+  '/marca-hub':           typeof MarcaHubRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -130,20 +135,20 @@ export interface FileRouteTypes {
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub'
+    | '/audiencia-hub' | '/marca-hub'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub'
+    | '/audiencia-hub' | '/marca-hub'
   id:
     | '__root__' | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub'
+    | '/audiencia-hub' | '/marca-hub'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -168,6 +173,7 @@ export interface RootRouteChildren {
   BenchmarkingRoute:       typeof BenchmarkingRoute
   StakeholdersRoute:       typeof StakeholdersRoute
   AudienciaHubRoute:       typeof AudienciaHubRoute
+  MarcaHubRoute:           typeof MarcaHubRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -193,6 +199,7 @@ declare module '@tanstack/react-router' {
     '/benchmarking':        { id: '/benchmarking';        path: '/benchmarking';        fullPath: '/benchmarking';        preLoaderRoute: typeof BenchmarkingRouteImport;        parentRoute: typeof rootRouteImport }
     '/stakeholders':        { id: '/stakeholders';        path: '/stakeholders';        fullPath: '/stakeholders';        preLoaderRoute: typeof StakeholdersRouteImport;        parentRoute: typeof rootRouteImport }
     '/audiencia-hub':       { id: '/audiencia-hub';       path: '/audiencia-hub';       fullPath: '/audiencia-hub';       preLoaderRoute: typeof AudienciaHubRouteImport;        parentRoute: typeof rootRouteImport }
+    '/marca-hub':           { id: '/marca-hub';           path: '/marca-hub';           fullPath: '/marca-hub';           preLoaderRoute: typeof MarcaHubRouteImport;            parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -201,7 +208,7 @@ const rootRouteChildren: RootRouteChildren = {
   CanaisRoute, PrecificacaoRoute, DnaRoute, InovacaoRoute, ComplianceRoute,
   ConcorrentesRoute, AudienciaRoute, InvestimentoRoute, BusinessPlanRoute, DoresRoute,
   VereditorRoute, MercadoRoute, PulsoRoute, BenchmarkingRoute, StakeholdersRoute,
-  AudienciaHubRoute,
+  AudienciaHubRoute, MarcaHubRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
