@@ -33,6 +33,7 @@ import { Route as MarcaHubRouteImport }           from './routes/marca-hub'
 import { Route as EstrategiaHubRouteImport }      from './routes/estrategia-hub'
 import { Route as ScoreFinalRouteImport }         from './routes/score-final'
 import { Route as CenariosRouteImport }           from './routes/cenarios'
+import { Route as OKRRouteImport }                from './routes/okr'
 import { Route as IndexRouteImport }              from './routes/index'
 
 const MentorRoute              = MentorRouteImport.update({              id: '/mentor',              path: '/mentor',              getParentRoute: () => rootRouteImport } as any)
@@ -59,6 +60,7 @@ const MarcaHubRoute            = MarcaHubRouteImport.update({            id: '/m
 const EstrategiaHubRoute       = EstrategiaHubRouteImport.update({       id: '/estrategia-hub',      path: '/estrategia-hub',      getParentRoute: () => rootRouteImport } as any)
 const ScoreFinalRoute          = ScoreFinalRouteImport.update({          id: '/score-final',         path: '/score-final',         getParentRoute: () => rootRouteImport } as any)
 const CenariosRoute            = CenariosRouteImport.update({            id: '/cenarios',            path: '/cenarios',            getParentRoute: () => rootRouteImport } as any)
+const OKRRoute                 = OKRRouteImport.update({                 id: '/okr',                 path: '/okr',                 getParentRoute: () => rootRouteImport } as any)
 const IndexRoute               = IndexRouteImport.update({               id: '/',                    path: '/',                    getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
@@ -87,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/estrategia-hub':      typeof EstrategiaHubRoute
   '/score-final':         typeof ScoreFinalRoute
   '/cenarios':            typeof CenariosRoute
+  '/okr':                 typeof OKRRoute
 }
 export interface FileRoutesByTo {
   '/':                    typeof IndexRoute
@@ -114,6 +117,7 @@ export interface FileRoutesByTo {
   '/estrategia-hub':      typeof EstrategiaHubRoute
   '/score-final':         typeof ScoreFinalRoute
   '/cenarios':            typeof CenariosRoute
+  '/okr':                 typeof OKRRoute
 }
 export interface FileRoutesById {
   __root__:               typeof rootRouteImport
@@ -142,6 +146,7 @@ export interface FileRoutesById {
   '/estrategia-hub':      typeof EstrategiaHubRoute
   '/score-final':         typeof ScoreFinalRoute
   '/cenarios':            typeof CenariosRoute
+  '/okr':                 typeof OKRRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -150,20 +155,23 @@ export interface FileRouteTypes {
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final' | '/cenarios'
+    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
+    | '/cenarios' | '/okr'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final' | '/cenarios'
+    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
+    | '/cenarios' | '/okr'
   id:
     | '__root__' | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final' | '/cenarios'
+    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
+    | '/cenarios' | '/okr'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -192,6 +200,7 @@ export interface RootRouteChildren {
   EstrategiaHubRoute:      typeof EstrategiaHubRoute
   ScoreFinalRoute:         typeof ScoreFinalRoute
   CenariosRoute:           typeof CenariosRoute
+  OKRRoute:                typeof OKRRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -221,6 +230,7 @@ declare module '@tanstack/react-router' {
     '/estrategia-hub':      { id: '/estrategia-hub';      path: '/estrategia-hub';      fullPath: '/estrategia-hub';      preLoaderRoute: typeof EstrategiaHubRouteImport;       parentRoute: typeof rootRouteImport }
     '/score-final':         { id: '/score-final';         path: '/score-final';         fullPath: '/score-final';         preLoaderRoute: typeof ScoreFinalRouteImport;          parentRoute: typeof rootRouteImport }
     '/cenarios':            { id: '/cenarios';            path: '/cenarios';            fullPath: '/cenarios';            preLoaderRoute: typeof CenariosRouteImport;            parentRoute: typeof rootRouteImport }
+    '/okr':                 { id: '/okr';                 path: '/okr';                 fullPath: '/okr';                 preLoaderRoute: typeof OKRRouteImport;                 parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -229,7 +239,8 @@ const rootRouteChildren: RootRouteChildren = {
   CanaisRoute, PrecificacaoRoute, DnaRoute, InovacaoRoute, ComplianceRoute,
   ConcorrentesRoute, AudienciaRoute, InvestimentoRoute, BusinessPlanRoute, DoresRoute,
   VereditorRoute, MercadoRoute, PulsoRoute, BenchmarkingRoute, StakeholdersRoute,
-  AudienciaHubRoute, MarcaHubRoute, EstrategiaHubRoute, ScoreFinalRoute, CenariosRoute,
+  AudienciaHubRoute, MarcaHubRoute, EstrategiaHubRoute, ScoreFinalRoute,
+  CenariosRoute, OKRRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
