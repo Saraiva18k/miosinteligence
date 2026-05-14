@@ -94,10 +94,7 @@ const EKG_DOUBLED = EKG_POINTS + " " + EKG_POINTS.split(" ").map(p => {
 
 function MarketECG() {
   return (
-    <div style={{ position: "relative", overflow: "hidden" }}>
-      {/* Fade masks */}
-      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to right, rgba(4,6,15,1), transparent)", zIndex: 2, pointerEvents: "none" }} />
-      <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to left, rgba(4,6,15,1), transparent)", zIndex: 2, pointerEvents: "none" }} />
+    <div style={{ position: "relative" }}>
 
       <svg width="100%" height="64" viewBox="0 0 600 64" preserveAspectRatio="none" fill="none">
         <defs>
