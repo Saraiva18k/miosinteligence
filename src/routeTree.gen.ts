@@ -32,6 +32,7 @@ import { Route as AudienciaHubRouteImport }       from './routes/audiencia-hub'
 import { Route as MarcaHubRouteImport }           from './routes/marca-hub'
 import { Route as EstrategiaHubRouteImport }      from './routes/estrategia-hub'
 import { Route as ScoreFinalRouteImport }         from './routes/score-final'
+import { Route as CenariosRouteImport }           from './routes/cenarios'
 import { Route as IndexRouteImport }              from './routes/index'
 
 const MentorRoute              = MentorRouteImport.update({              id: '/mentor',              path: '/mentor',              getParentRoute: () => rootRouteImport } as any)
@@ -57,6 +58,7 @@ const AudienciaHubRoute        = AudienciaHubRouteImport.update({        id: '/a
 const MarcaHubRoute            = MarcaHubRouteImport.update({            id: '/marca-hub',           path: '/marca-hub',           getParentRoute: () => rootRouteImport } as any)
 const EstrategiaHubRoute       = EstrategiaHubRouteImport.update({       id: '/estrategia-hub',      path: '/estrategia-hub',      getParentRoute: () => rootRouteImport } as any)
 const ScoreFinalRoute          = ScoreFinalRouteImport.update({          id: '/score-final',         path: '/score-final',         getParentRoute: () => rootRouteImport } as any)
+const CenariosRoute            = CenariosRouteImport.update({            id: '/cenarios',            path: '/cenarios',            getParentRoute: () => rootRouteImport } as any)
 const IndexRoute               = IndexRouteImport.update({               id: '/',                    path: '/',                    getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
@@ -84,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/marca-hub':           typeof MarcaHubRoute
   '/estrategia-hub':      typeof EstrategiaHubRoute
   '/score-final':         typeof ScoreFinalRoute
+  '/cenarios':            typeof CenariosRoute
 }
 export interface FileRoutesByTo {
   '/':                    typeof IndexRoute
@@ -110,6 +113,7 @@ export interface FileRoutesByTo {
   '/marca-hub':           typeof MarcaHubRoute
   '/estrategia-hub':      typeof EstrategiaHubRoute
   '/score-final':         typeof ScoreFinalRoute
+  '/cenarios':            typeof CenariosRoute
 }
 export interface FileRoutesById {
   __root__:               typeof rootRouteImport
@@ -137,6 +141,7 @@ export interface FileRoutesById {
   '/marca-hub':           typeof MarcaHubRoute
   '/estrategia-hub':      typeof EstrategiaHubRoute
   '/score-final':         typeof ScoreFinalRoute
+  '/cenarios':            typeof CenariosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -145,20 +150,20 @@ export interface FileRouteTypes {
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
+    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final' | '/cenarios'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
+    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final' | '/cenarios'
   id:
     | '__root__' | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
-    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
+    | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final' | '/cenarios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -186,6 +191,7 @@ export interface RootRouteChildren {
   MarcaHubRoute:           typeof MarcaHubRoute
   EstrategiaHubRoute:      typeof EstrategiaHubRoute
   ScoreFinalRoute:         typeof ScoreFinalRoute
+  CenariosRoute:           typeof CenariosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -214,6 +220,7 @@ declare module '@tanstack/react-router' {
     '/marca-hub':           { id: '/marca-hub';           path: '/marca-hub';           fullPath: '/marca-hub';           preLoaderRoute: typeof MarcaHubRouteImport;            parentRoute: typeof rootRouteImport }
     '/estrategia-hub':      { id: '/estrategia-hub';      path: '/estrategia-hub';      fullPath: '/estrategia-hub';      preLoaderRoute: typeof EstrategiaHubRouteImport;       parentRoute: typeof rootRouteImport }
     '/score-final':         { id: '/score-final';         path: '/score-final';         fullPath: '/score-final';         preLoaderRoute: typeof ScoreFinalRouteImport;          parentRoute: typeof rootRouteImport }
+    '/cenarios':            { id: '/cenarios';            path: '/cenarios';            fullPath: '/cenarios';            preLoaderRoute: typeof CenariosRouteImport;            parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -222,7 +229,7 @@ const rootRouteChildren: RootRouteChildren = {
   CanaisRoute, PrecificacaoRoute, DnaRoute, InovacaoRoute, ComplianceRoute,
   ConcorrentesRoute, AudienciaRoute, InvestimentoRoute, BusinessPlanRoute, DoresRoute,
   VereditorRoute, MercadoRoute, PulsoRoute, BenchmarkingRoute, StakeholdersRoute,
-  AudienciaHubRoute, MarcaHubRoute, EstrategiaHubRoute, ScoreFinalRoute,
+  AudienciaHubRoute, MarcaHubRoute, EstrategiaHubRoute, ScoreFinalRoute, CenariosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
