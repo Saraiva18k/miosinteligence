@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
-  Compass, FileText, TrendingUp, ShieldCheck, Map, Target,
+  FileText, TrendingUp, ShieldCheck, MapPin, Target,
   ArrowUpRight, Brain, Lock,
 } from "lucide-react";
 
@@ -129,7 +129,7 @@ function ExecBars() {
 // ─── Micro-viz: Funding track ─────────────────────────────────────────────────
 
 function FundingTrack() {
-  const stages = [
+  const stages: { label: string; done: boolean; active?: boolean; next?: boolean }[] = [
     { label: "Pre-seed", done: true  },
     { label: "Seed",     done: true, active: true },
     { label: "Series A", done: false, next: true   },
@@ -266,7 +266,7 @@ const MODULES: EstModule[] = [
     accentColor: "rgba(245,158,11,0.85)",
   },
   {
-    id: "EST-004", label: "Cenários",       Icon: Map,         href: "/cenarios",
+    id: "EST-004", label: "Cenários",       Icon: MapPin,      href: "/cenarios",
     metric: "—",    metricSub: "em configuração",
     insight: "3 cenários estratégicos identificados sem mapeamento formal — risco de decisão cega",
     viz: <NewModuleTeaser color="#8b5cf6" />,
