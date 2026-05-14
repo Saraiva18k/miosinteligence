@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/mios/Header";
 import { Sidebar } from "@/components/mios/Sidebar";
-import { VerdictHero } from "@/components/mios/VerdictHero";
 import { ContextTabs } from "@/components/mios/ContextTabs";
+import { VeredidoDashboard } from "@/components/mios/veredito/VeredidoDashboard";
 
 export const Route = createFileRoute("/veredito")({
   component: VereditorPage,
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/veredito")({
       {
         name: "description",
         content:
-          "Veredito executivo: síntese estratégica completa com score de viabilidade e recomendações do Mentor IA.",
+          "Veredito executivo: síntese estratégica completa com conviction gauge, recomendações priorizadas e risk register.",
       },
       { property: "og:title", content: "Veredito — MIOS" },
     ],
@@ -28,7 +28,7 @@ function VereditorPage() {
         <main className="flex-1 flex flex-col min-w-0">
           <div className="mios-scroll flex-1 overflow-y-auto px-6 py-5">
             <ContextTabs />
-            <VerdictHero />
+            <VeredidoDashboard />
           </div>
         </main>
       </div>
