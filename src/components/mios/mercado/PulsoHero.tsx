@@ -12,8 +12,8 @@ const KF = `
 @keyframes pulso-ticker  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 @keyframes pulso-slide   { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
 @keyframes pulso-beat    { 0%,100%{transform:scale(1);opacity:0.9} 50%{transform:scale(1.35);opacity:0.3} }
-@keyframes pulso-glow    { 0%,100%{opacity:0.15} 50%{opacity:0.35} }
 @keyframes pulso-scan    { 0%{transform:translateX(-100%)} 100%{transform:translateX(340%)} }
+@keyframes ekg-draw      { 0%{stroke-dashoffset:1300} 100%{stroke-dashoffset:0} }
 `;
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -87,56 +87,74 @@ const FILTER_TYPES: Array<{ key: SignalType | "all"; label: string }> = [
 
 // ─── Market ECG ───────────────────────────────────────────────────────────────
 
+const EKG_POINTS = "0,32 18,32 24,32 30,8 36,56 42,4 48,60 54,32 60,32 80,32 86,32 92,20 98,44 104,32 120,32 140,32 146,32 152,14 158,50 164,32 180,32 200,32 206,32 212,18 218,46 224,32 240,32 260,32 266,32 272,22 278,42 284,32 300,32";
+const EKG_DOUBLED = EKG_POINTS + " " + EKG_POINTS.split(" ").map(p => {
+  const [x, y] = p.split(","); return `${+x + 300},${y}`;
+}).join(" ");
+
 function MarketECG() {
-  const MID = 28, vW = 600;
-  const d = `M 0,${MID} L 60,${MID} L 70,${MID} L 75,${MID - 6} L 80,${MID} L 82,${MID + 3} L 86,${MID - 24} L 90,${MID + 18} L 94,${MID} L 98,${MID - 8} L 104,${MID} L 200,${MID} L 210,${MID} L 215,${MID - 6} L 220,${MID} L 222,${MID + 3} L 226,${MID - 24} L 230,${MID + 18} L 234,${MID} L 238,${MID - 8} L 244,${MID} L 360,${MID} L 370,${MID} L 375,${MID - 6} L 380,${MID} L 382,${MID + 3} L 386,${MID - 24} L 390,${MID + 18} L 394,${MID} L 398,${MID - 8} L 404,${MID} L ${vW},${MID}`;
-
   return (
-    <svg width="100%" height={56} viewBox={`0 0 ${vW} 56`} preserveAspectRatio="none" style={{ display: "block" }}>
-      <defs>
-        <linearGradient id="ecg-line-grad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stopColor="rgba(255,149,0,0.00)" />
-          <stop offset="30%"  stopColor="rgba(255,149,0,0.08)" />
-          <stop offset="68%"  stopColor="rgba(255,149,0,0.55)" />
-          <stop offset="100%" stopColor="rgba(255,149,0,0.95)" />
-        </linearGradient>
-        <linearGradient id="ecg-area-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="rgba(255,149,0,0.06)" />
-          <stop offset="100%" stopColor="rgba(255,149,0,0.00)" />
-        </linearGradient>
-        <filter id="ecg-glow">
-          <feGaussianBlur stdDeviation="2" result="blur" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
+    <div style={{ position: "relative", overflow: "hidden" }}>
+      {/* Fade masks */}
+      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to right, rgba(4,6,15,1), transparent)", zIndex: 2, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to left, rgba(4,6,15,1), transparent)", zIndex: 2, pointerEvents: "none" }} />
 
-      {/* Baseline */}
-      <line x1="0" y1={MID} x2={vW} y2={MID} stroke="rgba(255,255,255,0.05)" strokeWidth={0.5} />
+      <svg width="100%" height="64" viewBox="0 0 600 64" preserveAspectRatio="none" fill="none">
+        <defs>
+          <linearGradient id="pulso-ecg-grad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stopColor="rgba(255,149,0,0.00)" />
+            <stop offset="40%"  stopColor="rgba(255,149,0,0.35)" />
+            <stop offset="82%"  stopColor="rgba(255,149,0,0.75)" />
+            <stop offset="100%" stopColor="rgba(255,149,0,0.95)" />
+          </linearGradient>
+          <filter id="pulso-ecg-glow" x="-20%" y="-60%" width="140%" height="220%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
 
-      {/* Area under curve */}
-      <path
-        d={`${d} L ${vW},${MID + 4} L 0,${MID + 4} Z`}
-        fill="url(#ecg-area-grad)"
-      />
+        <line x1="0" y1="32" x2="600" y2="32" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
 
-      {/* ECG main line */}
-      <path d={d} fill="none" stroke="url(#ecg-line-grad)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+        {/* Negative zone tint */}
+        <rect x="0" y="32" width="600" height="32" fill="rgba(239,68,68,0.02)" />
 
-      {/* ECG glow duplicate */}
-      <path d={d} fill="none" stroke="rgba(255,149,0,0.2)" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" filter="url(#ecg-glow)" />
+        {/* Glow layer */}
+        <polyline
+          points={EKG_DOUBLED}
+          stroke="rgba(255,149,0,0.18)" strokeWidth="5"
+          fill="none" strokeLinecap="round" strokeLinejoin="round"
+          filter="url(#pulso-ecg-glow)"
+          strokeDasharray="1300" strokeDashoffset="0"
+          style={{ animation: "ekg-draw 3s ease forwards" }}
+        />
 
-      {/* Live endpoint — outer pulse */}
-      <circle cx={vW} cy={MID} r={10} fill="rgba(255,149,0,0.12)">
-        <animate attributeName="r" values="8;16;8" dur="1.5s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.3;0;0.3" dur="1.5s" repeatCount="indefinite" />
-      </circle>
+        {/* Main ECG line */}
+        <polyline
+          points={EKG_DOUBLED}
+          stroke="url(#pulso-ecg-grad)" strokeWidth="1.8"
+          fill="none" strokeLinecap="round" strokeLinejoin="round"
+          strokeDasharray="1300" strokeDashoffset="0"
+          style={{ animation: "ekg-draw 3s ease forwards" }}
+        />
 
-      {/* Live endpoint — core dot */}
-      <circle cx={vW} cy={MID} r={3.5} fill="#ff9500" filter="url(#ecg-glow)">
-        <animate attributeName="r" values="3.5;4.5;3.5" dur="1.5s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
-      </circle>
-    </svg>
+        {/* Live endpoint pulse rings */}
+        <circle cx="600" cy="32" r="10" fill="rgba(255,149,0,0.12)">
+          <animate attributeName="r" values="8;18;8" dur="1.5s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.3;0;0.3" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+
+        {/* Live endpoint core */}
+        <circle cx="600" cy="32" r="3.5" fill="#ff9500" filter="url(#pulso-ecg-glow)">
+          <animate attributeName="r" values="3.5;5;3.5" dur="1.5s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+      </svg>
+
+      {/* Label */}
+      <div style={{ position: "absolute", right: 56, top: "50%", transform: "translateY(-50%)", fontSize: 8, fontWeight: 700, color: "rgba(255,255,255,0.14)", fontFamily: "JetBrains Mono, monospace", letterSpacing: 1.5, zIndex: 3 }}>
+        PULSO · 12 MESES
+      </div>
+    </div>
   );
 }
 
