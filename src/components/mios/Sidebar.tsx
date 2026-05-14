@@ -102,7 +102,7 @@ const GROUPS: SidebarGroup[] = [
     Icon: Award,
     href: "/veredito",
     modules: [
-      { label: "Veredito",    href: "/veredito",    status: "active"  },
+      { label: "Score Final", href: "/score-final", status: "active"  },
       { label: "Exportação",  href: "/exportacao",  status: "pending", isNew: true },
       { label: "Histórico",   href: "/historico",   status: "pending", isNew: true },
       { label: "Comparativo", href: "/comparativo", status: "pending", isNew: true },
