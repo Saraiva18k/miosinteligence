@@ -165,22 +165,29 @@ function ModuleCard({ mod, large }: { mod: ModDef; large?: boolean }) {
         display: "block", textDecoration: "none",
         borderRadius: 14, overflow: "hidden", position: "relative",
         background: done
-          ? "rgba(255,255,255,0.025)"
-          : "rgba(255,255,255,0.015)",
-        border: `1px solid ${done ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)"}`,
+          ? "rgba(255,255,255,0.035)"
+          : "rgba(255,255,255,0.018)",
+        backdropFilter: "blur(16px) saturate(170%)",
+        WebkitBackdropFilter: "blur(16px) saturate(170%)",
+        border: `1px solid ${done ? "rgba(255,255,255,0.09)" : "rgba(255,255,255,0.05)"}`,
+        boxShadow: done
+          ? "0 4px 20px -8px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05) inset"
+          : "0 2px 12px -6px rgba(0,0,0,0.3)",
         transition: "all 0.2s ease",
         ...(large ? { gridColumn: "span 1" } : {}),
       }}
       onMouseEnter={e => {
         const el = e.currentTarget as HTMLElement;
-        el.style.background   = done ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.025)";
-        el.style.borderColor  = done ? "rgba(255,149,0,0.22)"   : "rgba(255,255,255,0.07)";
-        el.style.transform    = "translateY(-1px)";
+        el.style.background   = done ? "rgba(255,255,255,0.055)" : "rgba(255,255,255,0.032)";
+        el.style.borderColor  = done ? "rgba(255,149,0,0.24)"    : "rgba(255,255,255,0.09)";
+        el.style.boxShadow    = done ? "0 8px 28px -8px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.07) inset" : "0 4px 16px -6px rgba(0,0,0,0.35)";
+        el.style.transform    = "translateY(-2px)";
       }}
       onMouseLeave={e => {
         const el = e.currentTarget as HTMLElement;
-        el.style.background   = done ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.015)";
-        el.style.borderColor  = done ? "rgba(255,255,255,0.08)"  : "rgba(255,255,255,0.04)";
+        el.style.background   = done ? "rgba(255,255,255,0.035)" : "rgba(255,255,255,0.018)";
+        el.style.borderColor  = done ? "rgba(255,255,255,0.09)"  : "rgba(255,255,255,0.05)";
+        el.style.boxShadow    = done ? "0 4px 20px -8px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05) inset" : "0 2px 12px -6px rgba(0,0,0,0.3)";
         el.style.transform    = "translateY(0)";
       }}
     >
@@ -307,8 +314,11 @@ export function MercadoDashboard() {
       {/* ── Hero — Radar + Identity ───────────────────────────────────────── */}
       <div style={{
         borderRadius: 18, marginBottom: 20, overflow: "hidden", position: "relative",
-        background: "radial-gradient(ellipse at 20% 50%, rgba(255,149,0,0.07) 0%, rgba(4,6,15,0) 60%), rgba(255,255,255,0.02)",
-        border: "1px solid rgba(255,255,255,0.07)",
+        background: "radial-gradient(ellipse at 20% 50%, rgba(255,149,0,0.07) 0%, rgba(4,6,15,0) 60%), rgba(255,255,255,0.025)",
+        backdropFilter: "blur(24px) saturate(180%)",
+        WebkitBackdropFilter: "blur(24px) saturate(180%)",
+        border: "1px solid rgba(255,255,255,0.09)",
+        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.06) inset",
       }}>
         {/* Top accent line */}
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, rgba(255,149,0,0.6), rgba(255,149,0,0.1), transparent)" }} />
@@ -336,7 +346,7 @@ export function MercadoDashboard() {
                 { label: "TENDÊNCIA",   value: "+340%",sub: "em 6m",        color: "rgba(255,149,0,0.8)"  },
                 { label: "SENTIMENTO",  value: "89%", sub: "positivo",      color: "rgba(16,185,129,0.85)"},
               ].map(m => (
-                <div key={m.label} style={{ padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div key={m.label} style={{ padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.04)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", border: "1px solid rgba(255,255,255,0.07)", boxShadow: "0 2px 12px -4px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset" }}>
                   <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: 1.2, color: "rgba(255,255,255,0.28)", marginBottom: 5 }}>{m.label}</div>
                   <div style={{ fontSize: 20, fontWeight: 900, color: m.color, fontFamily: "JetBrains Mono, monospace", lineHeight: 1, marginBottom: 2 }}>{m.value}</div>
                   <div style={{ fontSize: 9, color: "rgba(255,255,255,0.25)" }}>{m.sub}</div>
@@ -359,8 +369,10 @@ export function MercadoDashboard() {
           {/* Right — radar */}
           <div style={{
             flexShrink: 0, width: 280, display: "flex", alignItems: "center", justifyContent: "center",
-            borderLeft: "1px solid rgba(255,255,255,0.05)",
-            background: "radial-gradient(ellipse at center, rgba(255,149,0,0.04) 0%, transparent 70%)",
+            borderLeft: "1px solid rgba(255,255,255,0.06)",
+            background: "radial-gradient(ellipse at center, rgba(255,149,0,0.05) 0%, rgba(255,255,255,0.01) 70%)",
+            backdropFilter: "blur(16px) saturate(160%)",
+            WebkitBackdropFilter: "blur(16px) saturate(160%)",
             padding: "20px 10px",
           }}>
             <RadarViz />
@@ -396,7 +408,7 @@ export function MercadoDashboard() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
           {INSIGHTS.map(ins => (
-            <div key={ins.label} style={{ padding: "14px 16px", borderRadius: 12, background: ins.bg, border: `1px solid ${ins.border}` }}>
+            <div key={ins.label} style={{ padding: "14px 16px", borderRadius: 12, background: ins.bg, backdropFilter: "blur(14px) saturate(170%)", WebkitBackdropFilter: "blur(14px) saturate(170%)", border: `1px solid ${ins.border}`, boxShadow: "0 4px 20px -8px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.04) inset" }}>
               <div style={{ fontSize: 8, fontWeight: 800, color: ins.color, letterSpacing: 1.5, marginBottom: 8 }}>{ins.label}</div>
               <div style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{ins.text}</div>
             </div>
@@ -407,7 +419,11 @@ export function MercadoDashboard() {
       {/* ── Mentor contextualizado ────────────────────────────────────────── */}
       <div style={{
         borderRadius: 14, padding: "20px 22px", position: "relative", overflow: "hidden",
-        background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)",
+        background: "rgba(255,255,255,0.03)",
+        backdropFilter: "blur(20px) saturate(180%)",
+        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        boxShadow: "0 8px 32px -10px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.06) inset",
       }}>
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.4), transparent)" }} />
         <div style={{ position: "absolute", top: 0, bottom: 0, width: "40%", background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.03), transparent)", animation: "mkt-shimmer 6s ease infinite", pointerEvents: "none" }} />
