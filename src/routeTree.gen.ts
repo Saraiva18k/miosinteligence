@@ -8,121 +8,163 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as MentorRouteImport } from './routes/mentor'
+import { Route as rootRouteImport }              from './routes/__root'
+import { Route as MentorRouteImport }            from './routes/mentor'
 import { Route as SocialIntelligenceRouteImport } from './routes/social-intelligence'
-import { Route as TendenciasRouteImport } from './routes/tendencias'
-import { Route as SentimentoRouteImport } from './routes/sentimento'
-import { Route as CanaisRouteImport } from './routes/canais'
-import { Route as PrecificacaoRouteImport } from './routes/precificacao'
-import { Route as DnaRouteImport } from './routes/dna'
-import { Route as InovacaoRouteImport } from './routes/inovacao'
-import { Route as ComplianceRouteImport } from './routes/compliance'
-import { Route as ConcorrentesRouteImport } from './routes/concorrentes'
-import { Route as AudienciaRouteImport } from './routes/audiencia'
-import { Route as InvestimentoRouteImport } from './routes/investimento'
-import { Route as BusinessPlanRouteImport } from './routes/business-plan'
-import { Route as DoresRouteImport } from './routes/dores'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as TendenciasRouteImport }         from './routes/tendencias'
+import { Route as SentimentoRouteImport }         from './routes/sentimento'
+import { Route as CanaisRouteImport }             from './routes/canais'
+import { Route as PrecificacaoRouteImport }       from './routes/precificacao'
+import { Route as DnaRouteImport }                from './routes/dna'
+import { Route as InovacaoRouteImport }           from './routes/inovacao'
+import { Route as ComplianceRouteImport }         from './routes/compliance'
+import { Route as ConcorrentesRouteImport }       from './routes/concorrentes'
+import { Route as AudienciaRouteImport }          from './routes/audiencia'
+import { Route as InvestimentoRouteImport }       from './routes/investimento'
+import { Route as BusinessPlanRouteImport }       from './routes/business-plan'
+import { Route as DoresRouteImport }              from './routes/dores'
+import { Route as VereditorRouteImport }          from './routes/veredito'
+import { Route as MercadoRouteImport }            from './routes/mercado'
+import { Route as PulsoRouteImport }              from './routes/pulso'
+import { Route as BenchmarkingRouteImport }       from './routes/benchmarking'
+import { Route as StakeholdersRouteImport }       from './routes/stakeholders'
+import { Route as IndexRouteImport }              from './routes/index'
 
-const MentorRoute           = MentorRouteImport.update({           id: '/mentor',            path: '/mentor',            getParentRoute: () => rootRouteImport } as any)
-const SocialIntelligenceRoute = SocialIntelligenceRouteImport.update({ id: '/social-intelligence', path: '/social-intelligence', getParentRoute: () => rootRouteImport } as any)
-const TendenciasRoute         = TendenciasRouteImport.update({         id: '/tendencias',          path: '/tendencias',          getParentRoute: () => rootRouteImport } as any)
-const SentimentoRoute         = SentimentoRouteImport.update({         id: '/sentimento',          path: '/sentimento',          getParentRoute: () => rootRouteImport } as any)
-const CanaisRoute             = CanaisRouteImport.update({             id: '/canais',              path: '/canais',              getParentRoute: () => rootRouteImport } as any)
-const PrecificacaoRoute       = PrecificacaoRouteImport.update({       id: '/precificacao',        path: '/precificacao',        getParentRoute: () => rootRouteImport } as any)
-const DnaRoute                = DnaRouteImport.update({                id: '/dna',                 path: '/dna',                 getParentRoute: () => rootRouteImport } as any)
-const InovacaoRoute           = InovacaoRouteImport.update({           id: '/inovacao',            path: '/inovacao',            getParentRoute: () => rootRouteImport } as any)
-const ComplianceRoute         = ComplianceRouteImport.update({         id: '/compliance',          path: '/compliance',          getParentRoute: () => rootRouteImport } as any)
-const ConcorrentesRoute       = ConcorrentesRouteImport.update({       id: '/concorrentes',        path: '/concorrentes',        getParentRoute: () => rootRouteImport } as any)
-const AudienciaRoute          = AudienciaRouteImport.update({          id: '/audiencia',           path: '/audiencia',           getParentRoute: () => rootRouteImport } as any)
-const InvestimentoRoute       = InvestimentoRouteImport.update({       id: '/investimento',        path: '/investimento',        getParentRoute: () => rootRouteImport } as any)
-const BusinessPlanRoute       = BusinessPlanRouteImport.update({       id: '/business-plan',       path: '/business-plan',       getParentRoute: () => rootRouteImport } as any)
-const DoresRoute              = DoresRouteImport.update({              id: '/dores',               path: '/dores',               getParentRoute: () => rootRouteImport } as any)
-const IndexRoute              = IndexRouteImport.update({              id: '/',                    path: '/',                    getParentRoute: () => rootRouteImport } as any)
+const MentorRoute              = MentorRouteImport.update({              id: '/mentor',              path: '/mentor',              getParentRoute: () => rootRouteImport } as any)
+const SocialIntelligenceRoute  = SocialIntelligenceRouteImport.update({  id: '/social-intelligence', path: '/social-intelligence', getParentRoute: () => rootRouteImport } as any)
+const TendenciasRoute          = TendenciasRouteImport.update({          id: '/tendencias',          path: '/tendencias',          getParentRoute: () => rootRouteImport } as any)
+const SentimentoRoute          = SentimentoRouteImport.update({          id: '/sentimento',          path: '/sentimento',          getParentRoute: () => rootRouteImport } as any)
+const CanaisRoute              = CanaisRouteImport.update({              id: '/canais',              path: '/canais',              getParentRoute: () => rootRouteImport } as any)
+const PrecificacaoRoute        = PrecificacaoRouteImport.update({        id: '/precificacao',        path: '/precificacao',        getParentRoute: () => rootRouteImport } as any)
+const DnaRoute                 = DnaRouteImport.update({                 id: '/dna',                 path: '/dna',                 getParentRoute: () => rootRouteImport } as any)
+const InovacaoRoute            = InovacaoRouteImport.update({            id: '/inovacao',            path: '/inovacao',            getParentRoute: () => rootRouteImport } as any)
+const ComplianceRoute          = ComplianceRouteImport.update({          id: '/compliance',          path: '/compliance',          getParentRoute: () => rootRouteImport } as any)
+const ConcorrentesRoute        = ConcorrentesRouteImport.update({        id: '/concorrentes',        path: '/concorrentes',        getParentRoute: () => rootRouteImport } as any)
+const AudienciaRoute           = AudienciaRouteImport.update({           id: '/audiencia',           path: '/audiencia',           getParentRoute: () => rootRouteImport } as any)
+const InvestimentoRoute        = InvestimentoRouteImport.update({        id: '/investimento',        path: '/investimento',        getParentRoute: () => rootRouteImport } as any)
+const BusinessPlanRoute        = BusinessPlanRouteImport.update({        id: '/business-plan',       path: '/business-plan',       getParentRoute: () => rootRouteImport } as any)
+const DoresRoute               = DoresRouteImport.update({               id: '/dores',               path: '/dores',               getParentRoute: () => rootRouteImport } as any)
+const VereditorRoute           = VereditorRouteImport.update({           id: '/veredito',            path: '/veredito',            getParentRoute: () => rootRouteImport } as any)
+const MercadoRoute             = MercadoRouteImport.update({             id: '/mercado',             path: '/mercado',             getParentRoute: () => rootRouteImport } as any)
+const PulsoRoute               = PulsoRouteImport.update({               id: '/pulso',               path: '/pulso',               getParentRoute: () => rootRouteImport } as any)
+const BenchmarkingRoute        = BenchmarkingRouteImport.update({        id: '/benchmarking',        path: '/benchmarking',        getParentRoute: () => rootRouteImport } as any)
+const StakeholdersRoute        = StakeholdersRouteImport.update({        id: '/stakeholders',        path: '/stakeholders',        getParentRoute: () => rootRouteImport } as any)
+const IndexRoute               = IndexRouteImport.update({               id: '/',                    path: '/',                    getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/mentor': typeof MentorRoute
+  '/':                    typeof IndexRoute
+  '/mentor':              typeof MentorRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
-  '/tendencias': typeof TendenciasRoute
-  '/sentimento': typeof SentimentoRoute
-  '/canais': typeof CanaisRoute
-  '/precificacao': typeof PrecificacaoRoute
-  '/dna': typeof DnaRoute
-  '/inovacao': typeof InovacaoRoute
-  '/compliance': typeof ComplianceRoute
-  '/concorrentes': typeof ConcorrentesRoute
-  '/audiencia': typeof AudienciaRoute
-  '/investimento': typeof InvestimentoRoute
-  '/business-plan': typeof BusinessPlanRoute
-  '/dores': typeof DoresRoute
+  '/tendencias':          typeof TendenciasRoute
+  '/sentimento':          typeof SentimentoRoute
+  '/canais':              typeof CanaisRoute
+  '/precificacao':        typeof PrecificacaoRoute
+  '/dna':                 typeof DnaRoute
+  '/inovacao':            typeof InovacaoRoute
+  '/compliance':          typeof ComplianceRoute
+  '/concorrentes':        typeof ConcorrentesRoute
+  '/audiencia':           typeof AudienciaRoute
+  '/investimento':        typeof InvestimentoRoute
+  '/business-plan':       typeof BusinessPlanRoute
+  '/dores':               typeof DoresRoute
+  '/veredito':            typeof VereditorRoute
+  '/mercado':             typeof MercadoRoute
+  '/pulso':               typeof PulsoRoute
+  '/benchmarking':        typeof BenchmarkingRoute
+  '/stakeholders':        typeof StakeholdersRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/mentor': typeof MentorRoute
+  '/':                    typeof IndexRoute
+  '/mentor':              typeof MentorRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
-  '/tendencias': typeof TendenciasRoute
-  '/sentimento': typeof SentimentoRoute
-  '/canais': typeof CanaisRoute
-  '/precificacao': typeof PrecificacaoRoute
-  '/dna': typeof DnaRoute
-  '/inovacao': typeof InovacaoRoute
-  '/compliance': typeof ComplianceRoute
-  '/concorrentes': typeof ConcorrentesRoute
-  '/audiencia': typeof AudienciaRoute
-  '/investimento': typeof InvestimentoRoute
-  '/business-plan': typeof BusinessPlanRoute
-  '/dores': typeof DoresRoute
+  '/tendencias':          typeof TendenciasRoute
+  '/sentimento':          typeof SentimentoRoute
+  '/canais':              typeof CanaisRoute
+  '/precificacao':        typeof PrecificacaoRoute
+  '/dna':                 typeof DnaRoute
+  '/inovacao':            typeof InovacaoRoute
+  '/compliance':          typeof ComplianceRoute
+  '/concorrentes':        typeof ConcorrentesRoute
+  '/audiencia':           typeof AudienciaRoute
+  '/investimento':        typeof InvestimentoRoute
+  '/business-plan':       typeof BusinessPlanRoute
+  '/dores':               typeof DoresRoute
+  '/veredito':            typeof VereditorRoute
+  '/mercado':             typeof MercadoRoute
+  '/pulso':               typeof PulsoRoute
+  '/benchmarking':        typeof BenchmarkingRoute
+  '/stakeholders':        typeof StakeholdersRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/mentor': typeof MentorRoute
+  __root__:               typeof rootRouteImport
+  '/':                    typeof IndexRoute
+  '/mentor':              typeof MentorRoute
   '/social-intelligence': typeof SocialIntelligenceRoute
-  '/tendencias': typeof TendenciasRoute
-  '/sentimento': typeof SentimentoRoute
-  '/canais': typeof CanaisRoute
-  '/precificacao': typeof PrecificacaoRoute
-  '/dna': typeof DnaRoute
-  '/inovacao': typeof InovacaoRoute
-  '/compliance': typeof ComplianceRoute
-  '/concorrentes': typeof ConcorrentesRoute
-  '/audiencia': typeof AudienciaRoute
-  '/investimento': typeof InvestimentoRoute
-  '/business-plan': typeof BusinessPlanRoute
-  '/dores': typeof DoresRoute
+  '/tendencias':          typeof TendenciasRoute
+  '/sentimento':          typeof SentimentoRoute
+  '/canais':              typeof CanaisRoute
+  '/precificacao':        typeof PrecificacaoRoute
+  '/dna':                 typeof DnaRoute
+  '/inovacao':            typeof InovacaoRoute
+  '/compliance':          typeof ComplianceRoute
+  '/concorrentes':        typeof ConcorrentesRoute
+  '/audiencia':           typeof AudienciaRoute
+  '/investimento':        typeof InvestimentoRoute
+  '/business-plan':       typeof BusinessPlanRoute
+  '/dores':               typeof DoresRoute
+  '/veredito':            typeof VereditorRoute
+  '/mercado':             typeof MercadoRoute
+  '/pulso':               typeof PulsoRoute
+  '/benchmarking':        typeof BenchmarkingRoute
+  '/stakeholders':        typeof StakeholdersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  fullPaths:
+    | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
+    | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
+    | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+    | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
-  id: '__root__' | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento' | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance' | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+  to:
+    | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
+    | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
+    | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+    | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
+  id:
+    | '__root__' | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
+    | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
+    | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
+    | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  MentorRoute: typeof MentorRoute
+  IndexRoute:              typeof IndexRoute
+  MentorRoute:             typeof MentorRoute
   SocialIntelligenceRoute: typeof SocialIntelligenceRoute
-  TendenciasRoute: typeof TendenciasRoute
-  SentimentoRoute: typeof SentimentoRoute
-  CanaisRoute: typeof CanaisRoute
-  PrecificacaoRoute: typeof PrecificacaoRoute
-  DnaRoute: typeof DnaRoute
-  InovacaoRoute: typeof InovacaoRoute
-  ComplianceRoute: typeof ComplianceRoute
-  ConcorrentesRoute: typeof ConcorrentesRoute
-  AudienciaRoute: typeof AudienciaRoute
-  InvestimentoRoute: typeof InvestimentoRoute
-  BusinessPlanRoute: typeof BusinessPlanRoute
-  DoresRoute: typeof DoresRoute
+  TendenciasRoute:         typeof TendenciasRoute
+  SentimentoRoute:         typeof SentimentoRoute
+  CanaisRoute:             typeof CanaisRoute
+  PrecificacaoRoute:       typeof PrecificacaoRoute
+  DnaRoute:                typeof DnaRoute
+  InovacaoRoute:           typeof InovacaoRoute
+  ComplianceRoute:         typeof ComplianceRoute
+  ConcorrentesRoute:       typeof ConcorrentesRoute
+  AudienciaRoute:          typeof AudienciaRoute
+  InvestimentoRoute:       typeof InvestimentoRoute
+  BusinessPlanRoute:       typeof BusinessPlanRoute
+  DoresRoute:              typeof DoresRoute
+  VereditorRoute:          typeof VereditorRoute
+  MercadoRoute:            typeof MercadoRoute
+  PulsoRoute:              typeof PulsoRoute
+  BenchmarkingRoute:       typeof BenchmarkingRoute
+  StakeholdersRoute:       typeof StakeholdersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/mentor':             { id: '/mentor';             path: '/mentor';             fullPath: '/mentor';             preLoaderRoute: typeof MentorRouteImport;             parentRoute: typeof rootRouteImport }
-    '/social-intelligence': { id: '/social-intelligence'; path: '/social-intelligence'; fullPath: '/social-intelligence'; preLoaderRoute: typeof SocialIntelligenceRouteImport; parentRoute: typeof rootRouteImport }
+    '/mentor':              { id: '/mentor';              path: '/mentor';              fullPath: '/mentor';              preLoaderRoute: typeof MentorRouteImport;             parentRoute: typeof rootRouteImport }
+    '/social-intelligence': { id: '/social-intelligence'; path: '/social-intelligence'; fullPath: '/social-intelligence'; preLoaderRoute: typeof SocialIntelligenceRouteImport;  parentRoute: typeof rootRouteImport }
     '/tendencias':          { id: '/tendencias';          path: '/tendencias';          fullPath: '/tendencias';          preLoaderRoute: typeof TendenciasRouteImport;          parentRoute: typeof rootRouteImport }
     '/sentimento':          { id: '/sentimento';          path: '/sentimento';          fullPath: '/sentimento';          preLoaderRoute: typeof SentimentoRouteImport;          parentRoute: typeof rootRouteImport }
     '/canais':              { id: '/canais';              path: '/canais';              fullPath: '/canais';              preLoaderRoute: typeof CanaisRouteImport;              parentRoute: typeof rootRouteImport }
@@ -133,9 +175,14 @@ declare module '@tanstack/react-router' {
     '/concorrentes':        { id: '/concorrentes';        path: '/concorrentes';        fullPath: '/concorrentes';        preLoaderRoute: typeof ConcorrentesRouteImport;        parentRoute: typeof rootRouteImport }
     '/audiencia':           { id: '/audiencia';           path: '/audiencia';           fullPath: '/audiencia';           preLoaderRoute: typeof AudienciaRouteImport;           parentRoute: typeof rootRouteImport }
     '/investimento':        { id: '/investimento';        path: '/investimento';        fullPath: '/investimento';        preLoaderRoute: typeof InvestimentoRouteImport;        parentRoute: typeof rootRouteImport }
-    '/business-plan':       { id: '/business-plan';       path: '/business-plan';       fullPath: '/business-plan';       preLoaderRoute: typeof BusinessPlanRouteImport;       parentRoute: typeof rootRouteImport }
+    '/business-plan':       { id: '/business-plan';       path: '/business-plan';       fullPath: '/business-plan';       preLoaderRoute: typeof BusinessPlanRouteImport;        parentRoute: typeof rootRouteImport }
     '/dores':               { id: '/dores';               path: '/dores';               fullPath: '/dores';               preLoaderRoute: typeof DoresRouteImport;               parentRoute: typeof rootRouteImport }
     '/':                    { id: '/';                    path: '/';                    fullPath: '/';                    preLoaderRoute: typeof IndexRouteImport;               parentRoute: typeof rootRouteImport }
+    '/veredito':            { id: '/veredito';            path: '/veredito';            fullPath: '/veredito';            preLoaderRoute: typeof VereditorRouteImport;           parentRoute: typeof rootRouteImport }
+    '/mercado':             { id: '/mercado';             path: '/mercado';             fullPath: '/mercado';             preLoaderRoute: typeof MercadoRouteImport;             parentRoute: typeof rootRouteImport }
+    '/pulso':               { id: '/pulso';               path: '/pulso';               fullPath: '/pulso';               preLoaderRoute: typeof PulsoRouteImport;               parentRoute: typeof rootRouteImport }
+    '/benchmarking':        { id: '/benchmarking';        path: '/benchmarking';        fullPath: '/benchmarking';        preLoaderRoute: typeof BenchmarkingRouteImport;        parentRoute: typeof rootRouteImport }
+    '/stakeholders':        { id: '/stakeholders';        path: '/stakeholders';        fullPath: '/stakeholders';        preLoaderRoute: typeof StakeholdersRouteImport;        parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -143,6 +190,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute, MentorRoute, SocialIntelligenceRoute, TendenciasRoute, SentimentoRoute,
   CanaisRoute, PrecificacaoRoute, DnaRoute, InovacaoRoute, ComplianceRoute,
   ConcorrentesRoute, AudienciaRoute, InvestimentoRoute, BusinessPlanRoute, DoresRoute,
+  VereditorRoute, MercadoRoute, PulsoRoute, BenchmarkingRoute, StakeholdersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
