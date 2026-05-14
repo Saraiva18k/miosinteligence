@@ -1,6 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Brain, MapPin, Home, X } from "lucide-react";
+import {
+  ChevronLeft, ChevronRight, ChevronDown,
+  Globe, Users, Layers, Compass, Award, Brain,
+  MapPin, Home, ArrowUpRight, X,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Logo } from "@/components/mios/Logo";
 import { WorkspaceSwitcher } from "@/components/mios/WorkspaceSwitcher";
 
@@ -21,60 +26,99 @@ const KEYFRAMES = `
 }
 `;
 
-// ─── Types & data ─────────────────────────────────────────────────────────────
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
 type ModuleStatus = "done" | "active" | "pending";
 
-interface TimelineModule {
+interface SidebarModule {
   label: string;
+  href: string;
   status: ModuleStatus;
-  preview?: string;
-  alertCount?: number;
-  href?: string;
+  isNew?: boolean;
 }
 
-interface TimelineSection {
-  title: string;
-  modules: TimelineModule[];
+interface SidebarGroup {
+  id: string;
+  label: string;
+  Icon: LucideIcon;
+  href: string;
+  modules: SidebarModule[];
 }
 
-const sections: TimelineSection[] = [
+const GROUPS: SidebarGroup[] = [
   {
-    title: "PESQUISA",
+    id: "mercado",
+    label: "Mercado",
+    Icon: Globe,
+    href: "/mercado",
     modules: [
-      { label: "Dores",               status: "done",   href: "/dores",              preview: "Gap de confiança real"  },
-      { label: "Concorrentes",        status: "done",   href: "/concorrentes",        preview: "5 players, NPS baixo"  },
-      { label: "Tendências",          status: "done",   href: "/tendencias",          preview: "Busca +340% 6 meses"   },
-      { label: "Audiência",           status: "done",   href: "/audiencia"                                             },
-      { label: "Sentimento",          status: "done",   href: "/sentimento"                                            },
-      { label: "Canais",              status: "done",   href: "/canais"                                                },
-      { label: "Precificação",        status: "done",   href: "/precificacao"                                          },
-      { label: "Social Intelligence", status: "done",   href: "/social-intelligence", alertCount: 2                   },
-      { label: "DNA da Marca",        status: "done",   href: "/dna"                                                   },
+      { label: "Concorrentes",     href: "/concorrentes",        status: "done"    },
+      { label: "Tendências",       href: "/tendencias",          status: "done"    },
+      { label: "Sentimento",       href: "/sentimento",          status: "done"    },
+      { label: "Pulso do Mercado", href: "/pulso",               status: "pending", isNew: true },
+      { label: "Benchmarking",     href: "/benchmarking",        status: "pending", isNew: true },
+      { label: "Stakeholders",     href: "/stakeholders",        status: "pending", isNew: true },
     ],
   },
   {
-    title: "SÍNTESE",
+    id: "audiencia",
+    label: "Audiência",
+    Icon: Users,
+    href: "/audiencia-hub",
     modules: [
-      { label: "Inovação",      status: "done",   href: "/inovacao"                                             },
-      { label: "Compliance",    status: "done",   href: "/compliance"                                           },
-      { label: "Investimento",  status: "done",   href: "/investimento"                                         },
-      { label: "Business Plan", status: "done",   href: "/business-plan"                                        },
-      { label: "Veredito",      status: "active", href: "/veredito",      preview: "Score 87 · Entrar agora"     },
+      { label: "Dores",              href: "/dores",               status: "done" },
+      { label: "Audiência",          href: "/audiencia",           status: "done" },
+      { label: "Social Intelligence",href: "/social-intelligence", status: "done" },
+      { label: "Canais",             href: "/canais",              status: "done" },
+    ],
+  },
+  {
+    id: "marca",
+    label: "Marca & Produto",
+    Icon: Layers,
+    href: "/marca-hub",
+    modules: [
+      { label: "DNA da Marca",  href: "/dna",        status: "done" },
+      { label: "Precificação",  href: "/precificacao",status: "done" },
+      { label: "Inovação",      href: "/inovacao",    status: "done" },
+    ],
+  },
+  {
+    id: "estrategia",
+    label: "Estratégia",
+    Icon: Compass,
+    href: "/estrategia-hub",
+    modules: [
+      { label: "Business Plan", href: "/business-plan", status: "done"    },
+      { label: "Investimento",  href: "/investimento",  status: "done"    },
+      { label: "Compliance",    href: "/compliance",    status: "done"    },
+      { label: "Cenários",      href: "/cenarios",      status: "pending", isNew: true },
+      { label: "OKR",           href: "/okr",           status: "pending", isNew: true },
+    ],
+  },
+  {
+    id: "veredito",
+    label: "Veredito",
+    Icon: Award,
+    href: "/veredito",
+    modules: [
+      { label: "Veredito",    href: "/veredito",    status: "active"  },
+      { label: "Exportação",  href: "/exportacao",  status: "pending", isNew: true },
+      { label: "Histórico",   href: "/historico",   status: "pending", isNew: true },
+      { label: "Comparativo", href: "/comparativo", status: "pending", isNew: true },
     ],
   },
 ];
 
-// ─── Mentor insights ──────────────────────────────────────────────────────────
+function resolveActiveGroup(activeModule: string): string | null {
+  for (const g of GROUPS) {
+    if (g.label === activeModule || g.id === activeModule) return g.id;
+    if (g.modules.some(m => m.label === activeModule))    return g.id;
+  }
+  return null;
+}
 
-const PROGRESS_INSIGHTS = [
-  { min: 90, text: "Análise matura · Pronto para decisão de investimento" },
-  { min: 70, text: "Análise avançada · Consolidando síntese estratégica"  },
-  { min: 40, text: "Dados emergindo · Primeiros padrões identificados"    },
-  { min: 0,  text: "Em construção · Aguardando módulos críticos"          },
-];
-
-const OPPORTUNITY_INSIGHT = "Janela 22h–23h ignorada por todos os concorrentes mapeados";
+const MENTOR_INSIGHT = "Janela 22h–23h ignorada por todos os concorrentes mapeados";
 
 // ─── Props ────────────────────────────────────────────────────────────────────
 
@@ -84,12 +128,20 @@ interface SidebarProps {
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false);
+export function Sidebar({ activeModule = "" }: SidebarProps) {
+  const [collapsed, setCollapsed]         = useState(false);
   const [mentorExpanded, setMentorExpanded] = useState(false);
-  const [mentorNew, setMentorNew] = useState(false);
+  const [mentorNew, setMentorNew]           = useState(false);
 
-  // Simulate new analysis arriving: dot → expand → collapse
+  const activeGroupId = useMemo(() => resolveActiveGroup(activeModule), [activeModule]);
+  const [expandedGroup, setExpandedGroup] = useState<string | null>(activeGroupId);
+
+  // Auto-expand correct group when route changes
+  useEffect(() => {
+    if (activeGroupId) setExpandedGroup(activeGroupId);
+  }, [activeGroupId]);
+
+  // Mentor IA auto-expand sequence
   useEffect(() => {
     const t1 = setTimeout(() => setMentorNew(true), 1200);
     const t2 = setTimeout(() => { setMentorNew(false); setMentorExpanded(true); }, 2800);
@@ -97,14 +149,13 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
-  const flat      = sections.flatMap(s => s.modules);
-  const total     = flat.length;
-  const doneCount = flat.filter(m => m.status === "done").length;
-  const progress  = Math.round((doneCount / total) * 100);
+  const allModules = GROUPS.flatMap(g => g.modules);
+  const doneCount  = allModules.filter(m => m.status === "done").length;
+  const total      = allModules.length;
+  const progress   = Math.round((doneCount / total) * 100);
 
-  const progressInsight =
-    PROGRESS_INSIGHTS.find(i => progress >= i.min)?.text ??
-    PROGRESS_INSIGHTS[PROGRESS_INSIGHTS.length - 1].text;
+  const toggleGroup = (id: string) =>
+    setExpandedGroup(prev => (prev === id ? null : id));
 
   // ── Collapsed ───────────────────────────────────────────────────────────────
 
@@ -122,45 +173,62 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
             background: "rgba(255,255,255,0.04)",
             backdropFilter: "blur(24px) saturate(180%)",
             WebkitBackdropFilter: "blur(24px) saturate(180%)",
-            boxShadow: "0 8px 32px -8px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.05) inset",
-            padding: "12px 0",
+            boxShadow: "0 8px 32px -8px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.2)",
+            padding: "12px 0 10px",
+            gap: 6,
           }}
         >
-          {/* Brain icon = Home shortcut when collapsed */}
-          <Link to="/" style={{ textDecoration: "none", display: "block", marginBottom: 10 }}>
-            <img
-              src="/mios-brain.png"
-              alt="MIOS Home"
-              style={{ height: 32, width: "auto", display: "block", mixBlendMode: "screen" }}
-            />
+          {/* Brain → Home */}
+          <Link to="/" style={{ textDecoration: "none", marginBottom: 4 }}>
+            <img src="/mios-brain.png" alt="MIOS" style={{ height: 28, width: "auto", mixBlendMode: "screen" }} />
           </Link>
 
+          {/* Expand */}
           <button
             onClick={() => setCollapsed(false)}
-            className="flex items-center justify-center"
-            style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.55)", marginBottom: 8 }}
-            aria-label="Expandir sidebar"
+            style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.45)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", marginBottom: 6 }}
+            aria-label="Expandir"
           >
-            <ChevronRight size={14} strokeWidth={2.4} />
+            <ChevronRight size={13} strokeWidth={2.4} />
           </button>
 
-          {/* Progress bar */}
-          <div className="flex-1 flex flex-col items-center justify-center" style={{ width: "100%", padding: "16px 0" }}>
-            <div style={{ width: 3, flex: 1, borderRadius: 2, background: "rgba(255,255,255,0.05)", position: "relative", overflow: "hidden", minHeight: 120 }}>
-              <div style={{ position: "absolute", left: 0, right: 0, top: 0, height: `${progress}%`, background: "linear-gradient(to bottom, rgba(255,149,0,0.8), rgba(255,149,0,0.3))", borderRadius: 2 }} />
-            </div>
-            <span className="mt-2" style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,149,0,0.7)", letterSpacing: "0.5px" }}>
-              {progress}%
-            </span>
-          </div>
+          {/* Group icons */}
+          {GROUPS.map(({ id, label, Icon, href }) => {
+            const isActive = activeGroupId === id;
+            return (
+              <Link
+                key={id} to={href as any} title={label}
+                style={{
+                  width: 34, height: 34, borderRadius: 9,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: isActive ? "rgba(255,149,0,0.10)" : "rgba(255,255,255,0.03)",
+                  border: `1px solid ${isActive ? "rgba(255,149,0,0.38)" : "rgba(255,255,255,0.06)"}`,
+                  color: isActive ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.35)",
+                  textDecoration: "none",
+                  transition: "all 0.15s",
+                }}
+              >
+                <Icon size={14} strokeWidth={2.2} />
+              </Link>
+            );
+          })}
 
-          {/* Mentor icon */}
+          {/* Mentor */}
+          <div style={{ flex: 1 }} />
           <Link
             to="/mentor"
-            style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg, rgba(255,149,0,0.2), rgba(255,149,0,0.07))", border: `1px solid ${activeModule === "Mentor IA" ? "rgba(255,149,0,0.7)" : "rgba(255,149,0,0.4)"}`, color: "rgba(255,149,0,0.95)", textDecoration: "none", animation: "mentor-glow 3s ease infinite" }}
-            aria-label="Mentor IA"
+            title="Mentor IA"
+            style={{
+              width: 34, height: 34, borderRadius: 9,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              background: "linear-gradient(135deg, rgba(255,149,0,0.18), rgba(255,80,0,0.08))",
+              border: "1px solid rgba(255,149,0,0.4)",
+              color: "rgba(255,149,0,0.9)",
+              textDecoration: "none",
+              animation: "mentor-glow 3s ease infinite",
+            }}
           >
-            <Brain size={16} strokeWidth={2.2} />
+            <Brain size={15} strokeWidth={2.2} />
           </Link>
         </aside>
       </>
@@ -186,14 +254,13 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
           overflow: "hidden",
         }}
       >
-
         {/* ── Logo ──────────────────────────────────────────────────────────── */}
         <div
           className="flex items-center justify-between"
           style={{ padding: "14px 14px 12px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}
         >
           <Logo size={44} />
-          <div style={{ display: "flex", alignItems: "center", gap: 6, marginLeft: "auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <Link
               to="/"
               aria-label="Home"
@@ -202,23 +269,22 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
                 width: 26, height: 26, borderRadius: 7, textDecoration: "none",
                 background: activeModule === "Home" ? "rgba(255,149,0,0.12)" : "rgba(255,255,255,0.04)",
                 border: `1px solid ${activeModule === "Home" ? "rgba(255,149,0,0.3)" : "rgba(255,255,255,0.07)"}`,
-                color: activeModule === "Home" ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.35)",
-                transition: "all 0.15s",
+                color: activeModule === "Home" ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.3)",
               }}
             >
               <Home size={12} strokeWidth={2.2} />
             </Link>
             <button
               onClick={() => setCollapsed(true)}
-              style={{ color: "rgba(255,255,255,0.3)", lineHeight: 0, background: "none", border: "none", cursor: "pointer" }}
-              aria-label="Recolher sidebar"
+              style={{ color: "rgba(255,255,255,0.28)", lineHeight: 0, background: "none", border: "none", cursor: "pointer" }}
+              aria-label="Recolher"
             >
               <ChevronLeft size={14} strokeWidth={2.4} />
             </button>
           </div>
         </div>
 
-        {/* ── Workspace switcher ────────────────────────────────────────────── */}
+        {/* ── Workspace ─────────────────────────────────────────────────────── */}
         <div style={{ padding: "10px 10px 8px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
           <WorkspaceSwitcher />
         </div>
@@ -238,116 +304,170 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
           </div>
         </div>
 
-        {/* ── Module list ───────────────────────────────────────────────────── */}
-        <div className="mios-scroll flex-1 overflow-y-auto" style={{ padding: "10px 8px" }}>
-          {sections.map(section => (
-            <div key={section.title} style={{ marginBottom: 14 }}>
-              <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: "2px", color: "rgba(255,255,255,0.25)", padding: "4px 8px" }}>
-                {section.title}
-              </div>
-              <div className="mt-1">
-                {section.modules.map(m => {
-                  const isActive = m.label === activeModule;
-                  const dotColor =
-                    m.status === "done"  ? "rgba(16,185,129,0.8)"  :
-                    isActive             ? "rgba(255,149,0,0.95)"  :
-                                          "rgba(255,255,255,0.15)";
+        {/* ── Group accordion ───────────────────────────────────────────────── */}
+        <div className="mios-scroll flex-1 overflow-y-auto" style={{ padding: "8px 8px" }}>
+          {GROUPS.map(group => {
+            const { Icon } = group;
+            const isActiveGroup = activeGroupId === group.id;
+            const isExpanded    = expandedGroup === group.id;
+            const done = group.modules.filter(m => m.status === "done").length;
+            const gtotal = group.modules.length;
 
-                  const content = (
-                    <div
-                      className="flex items-center gap-2 transition-colors"
-                      style={{
-                        padding: "6px 8px", borderRadius: 6,
-                        background: isActive ? "rgba(255,149,0,0.06)" : "transparent",
-                        border: `1px solid ${isActive ? "rgba(255,149,0,0.18)" : "transparent"}`,
-                      }}
-                    >
-                      <span style={{ width: 6, height: 6, borderRadius: 999, background: dotColor, boxShadow: isActive ? "0 0 8px rgba(255,149,0,0.6)" : undefined, flexShrink: 0 }} />
-                      <span
-                        className="flex-1 truncate"
-                        style={{
-                          fontSize: 11, fontWeight: isActive ? 600 : 500,
-                          color: isActive ? "rgba(255,149,0,0.95)" : m.status === "done" ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.35)",
-                        }}
-                      >
-                        {m.label}
-                      </span>
-                      {m.alertCount && (
-                        <span style={{ fontSize: 8, fontWeight: 700, padding: "1px 5px", borderRadius: 8, background: "rgba(239,68,68,0.18)", color: "rgba(239,68,68,0.95)", border: "1px solid rgba(239,68,68,0.35)" }}>
-                          {m.alertCount}
-                        </span>
-                      )}
-                    </div>
-                  );
+            return (
+              <div key={group.id} style={{ marginBottom: 2 }}>
 
-                  return m.href ? (
-                    <Link key={m.label} to={m.href as any} className="block">{content}</Link>
-                  ) : (
-                    <div key={m.label}>{content}</div>
-                  );
-                })}
+                {/* Group row */}
+                <div
+                  style={{
+                    display: "flex", alignItems: "center",
+                    borderRadius: 8,
+                    background: isActiveGroup ? "rgba(255,149,0,0.07)" : "transparent",
+                    border: `1px solid ${isActiveGroup ? "rgba(255,149,0,0.16)" : "transparent"}`,
+                    transition: "all 0.15s",
+                  }}
+                >
+                  {/* Icon + label → navigate to group dashboard */}
+                  <Link
+                    to={group.href as any}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 8,
+                      flex: 1, padding: "8px 6px 8px 8px",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <Icon
+                      size={14} strokeWidth={2.2}
+                      style={{ color: isActiveGroup ? "rgba(255,149,0,0.9)" : "rgba(255,255,255,0.38)", flexShrink: 0 }}
+                    />
+                    <span style={{
+                      fontSize: 12, fontWeight: 600,
+                      color: isActiveGroup ? "rgba(255,149,0,0.95)" : "rgba(255,255,255,0.62)",
+                      flex: 1,
+                    }}>
+                      {group.label}
+                    </span>
+                  </Link>
+
+                  {/* Progress fraction */}
+                  <span style={{ fontSize: 9, fontFamily: "JetBrains Mono, monospace", color: "rgba(255,255,255,0.22)", paddingRight: 4, flexShrink: 0 }}>
+                    {done}/{gtotal}
+                  </span>
+
+                  {/* Chevron — toggle submenu only */}
+                  <button
+                    onClick={() => toggleGroup(group.id)}
+                    style={{
+                      width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center",
+                      background: "none", border: "none", cursor: "pointer",
+                      color: isExpanded ? "rgba(255,149,0,0.5)" : "rgba(255,255,255,0.22)",
+                      flexShrink: 0,
+                    }}
+                    aria-label={isExpanded ? "Recolher" : "Expandir"}
+                  >
+                    <ChevronDown
+                      size={12} strokeWidth={2.4}
+                      style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.22s ease" }}
+                    />
+                  </button>
+                </div>
+
+                {/* Submenu */}
+                <div style={{
+                  maxHeight: isExpanded ? group.modules.length * 30 + 4 : 0,
+                  overflow: "hidden",
+                  transition: "max-height 0.28s cubic-bezier(0.4,0,0.2,1)",
+                }}>
+                  <div style={{ padding: "2px 0 4px" }}>
+                    {group.modules.map(m => {
+                      const isActiveMod = m.label === activeModule;
+                      const dotColor =
+                        m.status === "done"  ? "rgba(16,185,129,0.75)" :
+                        isActiveMod          ? "rgba(255,149,0,0.95)"  :
+                                               "rgba(255,255,255,0.14)";
+                      return (
+                        <Link
+                          key={m.label}
+                          to={m.href as any}
+                          style={{
+                            display: "flex", alignItems: "center", gap: 7,
+                            padding: "5px 8px 5px 28px",
+                            borderRadius: 6, textDecoration: "none",
+                            background: isActiveMod ? "rgba(255,149,0,0.06)" : "transparent",
+                            border: `1px solid ${isActiveMod ? "rgba(255,149,0,0.15)" : "transparent"}`,
+                            transition: "all 0.12s",
+                          }}
+                        >
+                          <span style={{ width: 5, height: 5, borderRadius: "50%", background: dotColor, flexShrink: 0,
+                            boxShadow: isActiveMod ? "0 0 6px rgba(255,149,0,0.6)" : undefined }} />
+                          <span style={{
+                            fontSize: 11, flex: 1,
+                            fontWeight: isActiveMod ? 600 : 400,
+                            color: isActiveMod       ? "rgba(255,149,0,0.9)"  :
+                                   m.status === "done" ? "rgba(255,255,255,0.48)" :
+                                                         "rgba(255,255,255,0.28)",
+                          }}>
+                            {m.label}
+                          </span>
+                          {m.isNew && (
+                            <span style={{
+                              fontSize: 8, fontWeight: 700, padding: "1px 5px", borderRadius: 4,
+                              background: "rgba(255,149,0,0.10)", color: "rgba(255,149,0,0.65)",
+                              border: "1px solid rgba(255,149,0,0.18)", flexShrink: 0,
+                            }}>
+                              NEW
+                            </span>
+                          )}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* ── Mentor card (dynamic) ─────────────────────────────────────────── */}
         <div style={{ flexShrink: 0, borderTop: "1px solid rgba(255,255,255,0.05)", padding: "8px 10px 10px" }}>
 
-          {/* Expandable detail — slides up from compact row */}
-          <div
-            style={{
-              maxHeight: mentorExpanded ? 260 : 0,
-              overflow: "hidden",
-              transition: "max-height 0.42s cubic-bezier(0.4,0,0.2,1)",
-            }}
-          >
-            <div
-              style={{
-                opacity: mentorExpanded ? 1 : 0,
-                transition: "opacity 0.28s ease",
-                transitionDelay: mentorExpanded ? "0.12s" : "0s",
-                padding: "12px 14px 10px",
-                borderRadius: "10px 10px 0 0",
-                background: "linear-gradient(135deg, rgba(255,149,0,0.15) 0%, rgba(255,80,0,0.06) 100%)",
-                border: "1px solid rgba(255,149,0,0.40)",
-                borderBottom: "none",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              {/* Shimmer */}
-              <div style={{ position: "absolute", top: 0, bottom: 0, width: "55%", background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.08), transparent)", animation: "mentor-shimmer 4.5s ease infinite", pointerEvents: "none" }} />
+          {/* Expandable detail */}
+          <div style={{ maxHeight: mentorExpanded ? 240 : 0, overflow: "hidden", transition: "max-height 0.42s cubic-bezier(0.4,0,0.2,1)" }}>
+            <div style={{
+              opacity: mentorExpanded ? 1 : 0,
+              transition: "opacity 0.28s ease",
+              transitionDelay: mentorExpanded ? "0.12s" : "0s",
+              padding: "12px 14px 10px",
+              borderRadius: "10px 10px 0 0",
+              background: "linear-gradient(135deg, rgba(255,149,0,0.15) 0%, rgba(255,80,0,0.06) 100%)",
+              border: "1px solid rgba(255,149,0,0.40)",
+              borderBottom: "none",
+              position: "relative", overflow: "hidden",
+            }}>
+              <div style={{ position: "absolute", top: 0, bottom: 0, width: "55%", background: "linear-gradient(90deg, transparent, rgba(255,149,0,0.07), transparent)", animation: "mentor-shimmer 4.5s ease infinite", pointerEvents: "none" }} />
 
-              {/* Score + evolution */}
+              {/* Score + progress */}
               <div className="flex items-end justify-between" style={{ marginBottom: 10, position: "relative" }}>
                 <div className="flex items-baseline gap-1">
-                  <span style={{ fontSize: 32, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>87</span>
-                  <span style={{ fontSize: 11, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>/100</span>
+                  <span style={{ fontSize: 30, fontWeight: 900, color: "#ff9500", fontFamily: "JetBrains Mono, monospace", lineHeight: 1 }}>87</span>
+                  <span style={{ fontSize: 10, color: "rgba(255,149,0,0.4)", fontFamily: "JetBrains Mono, monospace" }}>/100</span>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: "rgba(255,149,0,0.85)", fontFamily: "JetBrains Mono, monospace" }}>{progress}%</div>
-                  <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>{doneCount}/{total} módulos</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,149,0,0.85)", fontFamily: "JetBrains Mono, monospace" }}>{progress}%</div>
+                  <div style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginTop: 1 }}>{doneCount}/{total} módulos</div>
                 </div>
               </div>
-
-              {/* Progress bar */}
               <div style={{ height: 3, borderRadius: 2, background: "rgba(255,255,255,0.07)", marginBottom: 10, overflow: "hidden" }}>
                 <div style={{ height: "100%", width: `${progress}%`, borderRadius: 2, background: "linear-gradient(90deg, rgba(255,149,0,0.9), rgba(255,149,0,0.5))" }} />
               </div>
-
-              {/* Insight block */}
-              <div style={{ padding: "8px 10px", borderRadius: 8, background: "rgba(255,149,0,0.07)", border: "1px solid rgba(255,149,0,0.15)" }}>
-                <div style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,149,0,0.5)", letterSpacing: 1, marginBottom: 4 }}>INSIGHT DO MENTOR</div>
-                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{progressInsight}</div>
-                <div style={{ fontSize: 9, color: "rgba(255,149,0,0.5)", marginTop: 6, lineHeight: 1.4, borderTop: "1px solid rgba(255,149,0,0.12)", paddingTop: 6 }}>
-                  💡 {OPPORTUNITY_INSIGHT}
-                </div>
+              <div style={{ padding: "7px 10px", borderRadius: 8, background: "rgba(255,149,0,0.07)", border: "1px solid rgba(255,149,0,0.14)" }}>
+                <div style={{ fontSize: 8, fontWeight: 700, color: "rgba(255,149,0,0.5)", letterSpacing: 1, marginBottom: 3 }}>INSIGHT DO MENTOR</div>
+                <div style={{ fontSize: 9, color: "rgba(255,149,0,0.5)", lineHeight: 1.4 }}>💡 {MENTOR_INSIGHT}</div>
               </div>
             </div>
           </div>
 
-          {/* Always-visible compact row */}
+          {/* Compact row */}
           <div
             style={{
               display: "flex", alignItems: "center", gap: 7,
@@ -355,32 +475,21 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
               borderRadius: mentorExpanded ? "0 0 10px 10px" : 10,
               background: "linear-gradient(135deg, rgba(255,149,0,0.18) 0%, rgba(255,80,0,0.08) 100%)",
               border: "1px solid rgba(255,149,0,0.45)",
-              borderTop: mentorExpanded ? "1px solid rgba(255,149,0,0.18)" : undefined,
+              borderTop: mentorExpanded ? "1px solid rgba(255,149,0,0.16)" : undefined,
               animation: "mentor-glow 3s ease infinite",
               cursor: "pointer",
-              position: "relative",
               transition: "border-radius 0.42s cubic-bezier(0.4,0,0.2,1)",
             }}
             onClick={() => setMentorExpanded(v => !v)}
           >
-            {/* Online dot */}
             <div style={{ position: "relative", width: 8, height: 8, flexShrink: 0 }}>
               <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "rgba(16,185,129,0.95)" }} />
               <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "rgba(16,185,129,0.5)", animation: "online-ripple 2s ease-out infinite" }} />
             </div>
-
             <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, color: "#ff9500" }}>MENTOR IA</span>
-
-            {/* New-insight notification dot */}
-            {mentorNew && (
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#ff9500", boxShadow: "0 0 8px rgba(255,149,0,0.9)", flexShrink: 0 }} />
-            )}
-
-            {/* Score chip */}
+            {mentorNew && <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#ff9500", boxShadow: "0 0 8px rgba(255,149,0,0.9)", flexShrink: 0 }} />}
             <span style={{ marginLeft: "auto", fontSize: 11, fontWeight: 700, color: "rgba(255,149,0,0.85)", fontFamily: "JetBrains Mono, monospace", flexShrink: 0 }}>87</span>
-
             {mentorExpanded ? (
-              /* Close button */
               <button
                 onClick={e => { e.stopPropagation(); setMentorExpanded(false); }}
                 style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 18, height: 18, borderRadius: 5, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)", color: "rgba(255,255,255,0.45)", cursor: "pointer", flexShrink: 0 }}
@@ -388,18 +497,16 @@ export function Sidebar({ activeModule = "Veredito" }: SidebarProps) {
                 <X size={9} strokeWidth={2.5} />
               </button>
             ) : (
-              /* Conversar CTA */
               <Link
                 to="/mentor"
                 onClick={e => e.stopPropagation()}
                 style={{ display: "flex", alignItems: "center", gap: 3, padding: "3px 7px", borderRadius: 6, background: "rgba(255,149,0,0.13)", border: "1px solid rgba(255,149,0,0.28)", textDecoration: "none", flexShrink: 0 }}
               >
-                <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,149,0,0.85)", letterSpacing: 0.3 }}>Conversar</span>
+                <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,149,0,0.85)" }}>Conversar</span>
                 <ArrowUpRight size={9} style={{ color: "rgba(255,149,0,0.65)" }} />
               </Link>
             )}
           </div>
-
         </div>
 
       </aside>
