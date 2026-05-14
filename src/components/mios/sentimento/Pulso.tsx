@@ -246,29 +246,69 @@ export function Pulso() {
         </div>
       </div>
 
-      {/* ── EKG STRIP ────────────────────────────────────────────────────── */}
-      <div style={{ position: "relative", overflow: "hidden", borderBottom: "1px solid rgba(255,149,0,0.08)", background: "rgba(255,149,0,0.025)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", padding: "10px 24px", flexShrink: 0 }}>
-        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to right, #04060f, transparent)", zIndex: 2, pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 48, background: "linear-gradient(to left, #04060f, transparent)", zIndex: 2, pointerEvents: "none" }} />
-        <svg width="100%" height="64" viewBox="0 0 600 64" preserveAspectRatio="none" fill="none">
-          <line x1="0" y1="32" x2="600" y2="32" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
-          <polyline
-            points={EKG_POINTS + " " + EKG_POINTS.split(" ").map(p => { const [x,y] = p.split(","); return `${+x+300},${y}`; }).join(" ")}
-            stroke="#ff9500"
-            strokeWidth="1.5"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeDasharray="800"
-            strokeDashoffset="0"
-            style={{ animation: "ekg-draw 2.5s ease forwards" }}
-            opacity="0.7"
-          />
-          {/* Negative zone tint */}
-          <rect x="0" y="32" width="600" height="32" fill="rgba(239,68,68,0.03)" />
-        </svg>
-        <div style={{ position: "absolute", right: 72, top: "50%", transform: "translateY(-50%)", display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: 9, fontWeight: 700, color: "rgba(255,255,255,0.2)", fontFamily: "JetBrains Mono, monospace" }}>PULSO DE MERCADO · 12 MESES</span>
+      {/* ── SENTIMENT SPECTRUM ───────────────────────────────────────────── */}
+      <div style={{ borderBottom: "1px solid rgba(255,255,255,0.05)", background: "rgba(255,255,255,0.012)", backdropFilter: "blur(12px) saturate(160%)", WebkitBackdropFilter: "blur(12px) saturate(160%)", padding: "13px 24px", flexShrink: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+
+          {/* Spectrum bar */}
+          <div style={{ flex: 1 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+              <span style={{ fontSize: 8, fontWeight: 700, color: "#ef4444", fontFamily: "JetBrains Mono, monospace" }}>−100  CRÍTICO</span>
+              <span style={{ fontSize: 8, letterSpacing: 1.2, color: "rgba(255,255,255,0.16)", fontFamily: "JetBrains Mono, monospace" }}>ESPECTRO EMOCIONAL COMPOSTO</span>
+              <span style={{ fontSize: 8, fontWeight: 700, color: "#10b981", fontFamily: "JetBrains Mono, monospace" }}>POSITIVO  +100</span>
+            </div>
+
+            <div style={{ position: "relative", height: 8, borderRadius: 4 }}>
+              {/* Color gradient track */}
+              <div style={{ position: "absolute", inset: 0, borderRadius: 4, background: "linear-gradient(to right, #ef4444 0%, #f97316 28%, #ff9500 46%, rgba(255,255,255,0.10) 52%, #ff9500 58%, #10b981 100%)" }} />
+              {/* Score pin */}
+              <div style={{
+                position: "absolute",
+                left: `${((macroScore + 100) / 200) * 100}%`,
+                top: "50%", transform: "translate(-50%, -50%)",
+                width: 16, height: 16, borderRadius: "50%",
+                background: "#fff",
+                border: `2.5px solid ${scoreColor}`,
+                boxShadow: `0 0 10px ${scoreColor}90, 0 0 20px ${scoreColor}40`,
+                animation: "mios-pulse 2s infinite",
+                zIndex: 2,
+              }} />
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 5 }}>
+              <span style={{ fontSize: 8, color: "rgba(255,255,255,0.14)", fontFamily: "JetBrains Mono, monospace" }}>CRÍTICO</span>
+              <span style={{ fontSize: 9, fontWeight: 900, color: scoreColor, fontFamily: "JetBrains Mono, monospace" }}>
+                SCORE {macroScore > 0 ? "+" : ""}{macroScore}
+              </span>
+              <span style={{ fontSize: 8, color: "rgba(255,255,255,0.14)", fontFamily: "JetBrains Mono, monospace" }}>EXCELENTE</span>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div style={{ width: 1, height: 54, background: "rgba(255,255,255,0.06)", flexShrink: 0 }} />
+
+          {/* Emotion frequency bars */}
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 7, paddingBottom: 2 }}>
+            {EMOTIONS.map((e, i) => {
+              const barH = Math.max(5, Math.round((e.pct / 38) * 38));
+              return (
+                <div key={e.emotion} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+                  <div style={{
+                    width: 10, height: barH, background: e.color,
+                    borderRadius: "2px 2px 0 0", opacity: 0.72,
+                    animation: `pulse-beat ${1.8 + i * 0.25}s ease ${i * 0.15}s infinite`,
+                  }} />
+                  <span style={{ fontSize: 7, color: "rgba(255,255,255,0.22)", fontFamily: "JetBrains Mono, monospace" }}>
+                    {e.pct}%
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          <span style={{ fontSize: 7.5, fontWeight: 700, letterSpacing: 1, color: "rgba(255,255,255,0.12)", fontFamily: "JetBrains Mono, monospace", textAlign: "center", lineHeight: 1.5, flexShrink: 0 }}>
+            FREQ.<br/>EMOCIONAL
+          </span>
         </div>
       </div>
 
