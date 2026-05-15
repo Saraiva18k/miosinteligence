@@ -12,93 +12,14 @@ const KF = `
 
 // ─── MIOS Brand ───────────────────────────────────────────────────────────────
 
-// Neural brain network — faithful SVG recreation of the MIOS logo
+// MIOS brain logo — uses the real asset (public/mios-brain.png, bg removed)
 function MIOSBrain({ size = 56, opacity = 1 }: { size?: number; opacity?: number }) {
-  // Left hemisphere nodes [x, y, r] — orange, glowing
-  const LN: [number,number,number][] = [
-    [42,50,7],[65,32,9],[92,25,7.5],[118,38,6],
-    [30,78,6],[60,68,10],[90,60,8],
-    [26,108,5.5],[56,98,8.5],[84,90,7],
-    [40,135,6],[68,125,7.5],[96,118,6],
-  ];
-  // Right hemisphere nodes [x, y, r] — silver/dim
-  const RN: [number,number,number][] = [
-    [132,42,5],[152,32,4.5],[170,52,4.5],
-    [145,68,5.5],[168,75,4],[183,90,4.5],
-    [150,95,5],[173,108,4],[158,122,4.5],
-    [140,140,4],
-  ];
-  const ALL = [...LN, ...RN];
-  // Left edges (orange wires)
-  const LE = [
-    [0,1],[1,2],[2,3],[0,4],[1,5],[2,6],[3,5],
-    [4,5],[5,6],[4,7],[5,8],[6,9],[3,6],
-    [7,8],[8,9],[7,10],[8,11],[9,12],
-    [10,11],[11,12],
-  ];
-  // Right edges (silver wires)
-  const RE = [
-    [13,14],[14,15],[13,16],[15,17],[16,17],
-    [16,19],[17,18],[17,20],[18,20],
-    [19,21],[20,21],[21,22],
-  ];
-  // Cross hemisphere edges
-  const XE = [[3,13],[6,16],[9,19],[12,22]];
-
   return (
-    <svg width={size} height={Math.round(size * 0.83)} viewBox="0 0 210 175"
-      style={{ display: "block", opacity }}>
-      <defs>
-        <filter id="mb-glow-hi" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur stdDeviation="5" result="b1"/>
-          <feGaussianBlur stdDeviation="2.5" result="b2"/>
-          <feMerge>
-            <feMergeNode in="b1"/>
-            <feMergeNode in="b1"/>
-            <feMergeNode in="b2"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-        <filter id="mb-glow-lo" x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="2.5" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-
-      {/* Right (silver) edges */}
-      {RE.map(([a,b],i) => (
-        <line key={`re${i}`}
-          x1={ALL[a][0]} y1={ALL[a][1]} x2={ALL[b][0]} y2={ALL[b][1]}
-          stroke="#64748b" strokeWidth="0.7" opacity="0.45" />
-      ))}
-      {/* Left (orange) edges */}
-      {LE.map(([a,b],i) => (
-        <line key={`le${i}`}
-          x1={ALL[a][0]} y1={ALL[a][1]} x2={ALL[b][0]} y2={ALL[b][1]}
-          stroke="#ff9500" strokeWidth="0.9" opacity="0.38" />
-      ))}
-      {/* Cross edges */}
-      {XE.map(([a,b],i) => (
-        <line key={`xe${i}`}
-          x1={ALL[a][0]} y1={ALL[a][1]} x2={ALL[b][0]} y2={ALL[b][1]}
-          stroke="#ff9500" strokeWidth="0.6" opacity="0.2" />
-      ))}
-
-      {/* Right hemisphere nodes (silver) */}
-      {RN.map(([x,y,r],i) => (
-        <circle key={`rn${i}`} cx={x} cy={y} r={r} fill="#94a3b8" opacity="0.55" />
-      ))}
-      {/* Left hemisphere nodes (orange, glowing) */}
-      {LN.map(([x,y,r],i) => {
-        const bright = i < 9;
-        return (
-          <circle key={`ln${i}`} cx={x} cy={y} r={r}
-            fill={bright ? "#ff9500" : "#c07010"}
-            filter={bright ? "url(#mb-glow-hi)" : "url(#mb-glow-lo)"}
-            opacity={bright ? 1 : 0.75} />
-        );
-      })}
-    </svg>
+    <img
+      src="/mios-brain.png"
+      alt="MIOS"
+      style={{ width: size, height: "auto", display: "block", opacity }}
+    />
   );
 }
 
