@@ -37,6 +37,7 @@ import { Route as OKRRouteImport }                from './routes/okr'
 import { Route as ComparativoRouteImport }        from './routes/comparativo'
 import { Route as ExportacaoRouteImport }         from './routes/exportacao'
 import { Route as HistoricoRouteImport }          from './routes/historico'
+import { Route as RelatorioRouteImport }          from './routes/relatorio'
 import { Route as IndexRouteImport }              from './routes/index'
 
 const MentorRoute              = MentorRouteImport.update({              id: '/mentor',              path: '/mentor',              getParentRoute: () => rootRouteImport } as any)
@@ -67,6 +68,7 @@ const OKRRoute                 = OKRRouteImport.update({                 id: '/o
 const ComparativoRoute         = ComparativoRouteImport.update({         id: '/comparativo',         path: '/comparativo',         getParentRoute: () => rootRouteImport } as any)
 const ExportacaoRoute          = ExportacaoRouteImport.update({          id: '/exportacao',          path: '/exportacao',          getParentRoute: () => rootRouteImport } as any)
 const HistoricoRoute           = HistoricoRouteImport.update({           id: '/historico',           path: '/historico',           getParentRoute: () => rootRouteImport } as any)
+const RelatorioRoute           = RelatorioRouteImport.update({           id: '/relatorio',           path: '/relatorio',           getParentRoute: () => rootRouteImport } as any)
 const IndexRoute               = IndexRouteImport.update({               id: '/',                    path: '/',                    getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
@@ -99,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/comparativo':         typeof ComparativoRoute
   '/exportacao':          typeof ExportacaoRoute
   '/historico':           typeof HistoricoRoute
+  '/relatorio':           typeof RelatorioRoute
 }
 export interface FileRoutesByTo {
   '/':                    typeof IndexRoute
@@ -130,6 +133,7 @@ export interface FileRoutesByTo {
   '/comparativo':         typeof ComparativoRoute
   '/exportacao':          typeof ExportacaoRoute
   '/historico':           typeof HistoricoRoute
+  '/relatorio':           typeof RelatorioRoute
 }
 export interface FileRoutesById {
   __root__:               typeof rootRouteImport
@@ -162,6 +166,7 @@ export interface FileRoutesById {
   '/comparativo':         typeof ComparativoRoute
   '/exportacao':          typeof ExportacaoRoute
   '/historico':           typeof HistoricoRoute
+  '/relatorio':           typeof RelatorioRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,7 +176,7 @@ export interface FileRouteTypes {
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
     | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
-    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao' | '/historico'
+    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao' | '/historico' | '/relatorio'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
@@ -179,14 +184,14 @@ export interface FileRouteTypes {
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
     | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
-    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao' | '/historico'
+    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao' | '/historico' | '/relatorio'
   id:
     | '__root__' | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
     | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
-    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao' | '/historico'
+    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao' | '/historico' | '/relatorio'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -219,6 +224,7 @@ export interface RootRouteChildren {
   ComparativoRoute:        typeof ComparativoRoute
   ExportacaoRoute:         typeof ExportacaoRoute
   HistoricoRoute:          typeof HistoricoRoute
+  RelatorioRoute:          typeof RelatorioRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +258,7 @@ declare module '@tanstack/react-router' {
     '/comparativo':         { id: '/comparativo';         path: '/comparativo';         fullPath: '/comparativo';         preLoaderRoute: typeof ComparativoRouteImport;         parentRoute: typeof rootRouteImport }
     '/exportacao':          { id: '/exportacao';          path: '/exportacao';          fullPath: '/exportacao';          preLoaderRoute: typeof ExportacaoRouteImport;          parentRoute: typeof rootRouteImport }
     '/historico':           { id: '/historico';           path: '/historico';           fullPath: '/historico';           preLoaderRoute: typeof HistoricoRouteImport;           parentRoute: typeof rootRouteImport }
+    '/relatorio':           { id: '/relatorio';           path: '/relatorio';           fullPath: '/relatorio';           preLoaderRoute: typeof RelatorioRouteImport;           parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -262,6 +269,7 @@ const rootRouteChildren: RootRouteChildren = {
   VereditorRoute, MercadoRoute, PulsoRoute, BenchmarkingRoute, StakeholdersRoute,
   AudienciaHubRoute, MarcaHubRoute, EstrategiaHubRoute, ScoreFinalRoute,
   CenariosRoute, OKRRoute, ComparativoRoute, ExportacaoRoute, HistoricoRoute,
+  RelatorioRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
