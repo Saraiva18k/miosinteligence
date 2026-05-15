@@ -35,6 +35,7 @@ import { Route as ScoreFinalRouteImport }         from './routes/score-final'
 import { Route as CenariosRouteImport }           from './routes/cenarios'
 import { Route as OKRRouteImport }                from './routes/okr'
 import { Route as ComparativoRouteImport }        from './routes/comparativo'
+import { Route as ExportacaoRouteImport }         from './routes/exportacao'
 import { Route as IndexRouteImport }              from './routes/index'
 
 const MentorRoute              = MentorRouteImport.update({              id: '/mentor',              path: '/mentor',              getParentRoute: () => rootRouteImport } as any)
@@ -63,6 +64,7 @@ const ScoreFinalRoute          = ScoreFinalRouteImport.update({          id: '/s
 const CenariosRoute            = CenariosRouteImport.update({            id: '/cenarios',            path: '/cenarios',            getParentRoute: () => rootRouteImport } as any)
 const OKRRoute                 = OKRRouteImport.update({                 id: '/okr',                 path: '/okr',                 getParentRoute: () => rootRouteImport } as any)
 const ComparativoRoute         = ComparativoRouteImport.update({         id: '/comparativo',         path: '/comparativo',         getParentRoute: () => rootRouteImport } as any)
+const ExportacaoRoute          = ExportacaoRouteImport.update({          id: '/exportacao',          path: '/exportacao',          getParentRoute: () => rootRouteImport } as any)
 const IndexRoute               = IndexRouteImport.update({               id: '/',                    path: '/',                    getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
@@ -93,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/cenarios':            typeof CenariosRoute
   '/okr':                 typeof OKRRoute
   '/comparativo':         typeof ComparativoRoute
+  '/exportacao':          typeof ExportacaoRoute
 }
 export interface FileRoutesByTo {
   '/':                    typeof IndexRoute
@@ -122,6 +125,7 @@ export interface FileRoutesByTo {
   '/cenarios':            typeof CenariosRoute
   '/okr':                 typeof OKRRoute
   '/comparativo':         typeof ComparativoRoute
+  '/exportacao':          typeof ExportacaoRoute
 }
 export interface FileRoutesById {
   __root__:               typeof rootRouteImport
@@ -152,6 +156,7 @@ export interface FileRoutesById {
   '/cenarios':            typeof CenariosRoute
   '/okr':                 typeof OKRRoute
   '/comparativo':         typeof ComparativoRoute
+  '/exportacao':          typeof ExportacaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,7 +166,7 @@ export interface FileRouteTypes {
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
     | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
-    | '/cenarios' | '/okr' | '/comparativo'
+    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
@@ -169,14 +174,14 @@ export interface FileRouteTypes {
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
     | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
-    | '/cenarios' | '/okr' | '/comparativo'
+    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao'
   id:
     | '__root__' | '/' | '/mentor' | '/social-intelligence' | '/tendencias' | '/sentimento'
     | '/canais' | '/precificacao' | '/dna' | '/inovacao' | '/compliance'
     | '/concorrentes' | '/audiencia' | '/investimento' | '/business-plan' | '/dores'
     | '/veredito' | '/mercado' | '/pulso' | '/benchmarking' | '/stakeholders'
     | '/audiencia-hub' | '/marca-hub' | '/estrategia-hub' | '/score-final'
-    | '/cenarios' | '/okr' | '/comparativo'
+    | '/cenarios' | '/okr' | '/comparativo' | '/exportacao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -207,6 +212,7 @@ export interface RootRouteChildren {
   CenariosRoute:           typeof CenariosRoute
   OKRRoute:                typeof OKRRoute
   ComparativoRoute:        typeof ComparativoRoute
+  ExportacaoRoute:         typeof ExportacaoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -238,6 +244,7 @@ declare module '@tanstack/react-router' {
     '/cenarios':            { id: '/cenarios';            path: '/cenarios';            fullPath: '/cenarios';            preLoaderRoute: typeof CenariosRouteImport;            parentRoute: typeof rootRouteImport }
     '/okr':                 { id: '/okr';                 path: '/okr';                 fullPath: '/okr';                 preLoaderRoute: typeof OKRRouteImport;                 parentRoute: typeof rootRouteImport }
     '/comparativo':         { id: '/comparativo';         path: '/comparativo';         fullPath: '/comparativo';         preLoaderRoute: typeof ComparativoRouteImport;         parentRoute: typeof rootRouteImport }
+    '/exportacao':          { id: '/exportacao';          path: '/exportacao';          fullPath: '/exportacao';          preLoaderRoute: typeof ExportacaoRouteImport;          parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -247,7 +254,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConcorrentesRoute, AudienciaRoute, InvestimentoRoute, BusinessPlanRoute, DoresRoute,
   VereditorRoute, MercadoRoute, PulsoRoute, BenchmarkingRoute, StakeholdersRoute,
   AudienciaHubRoute, MarcaHubRoute, EstrategiaHubRoute, ScoreFinalRoute,
-  CenariosRoute, OKRRoute, ComparativoRoute,
+  CenariosRoute, OKRRoute, ComparativoRoute, ExportacaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
