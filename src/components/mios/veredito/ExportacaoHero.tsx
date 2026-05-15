@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FileText, Layers, BarChart2, Code2, Clock, CheckCircle2, Calendar, Users, Download, Zap, RefreshCw, Send } from "lucide-react";
+import { FileText, Layers, BarChart2, Code2, Clock, CheckCircle2, Calendar, Users, Download, Zap, RefreshCw, Send, Globe, Database, Hash } from "lucide-react";
 
 // ─── Keyframes ────────────────────────────────────────────────────────────────
 
@@ -15,10 +15,13 @@ const KF = `
 
 interface Format { id: string; label: string; ext: string; desc: string; color: string; Icon: React.ElementType; size: string }
 const FORMATS: Format[] = [
-  { id: "pdf",  label: "PDF",        ext: ".pdf",  desc: "Relatório executivo para impressão e apresentação",  color: "#ef4444", Icon: FileText,  size: "~2.4 MB" },
-  { id: "pptx", label: "PowerPoint", ext: ".pptx", desc: "Slides prontos para board e stakeholders",           color: "#ff9500", Icon: Layers,    size: "~5.1 MB" },
-  { id: "xlsx", label: "Excel",      ext: ".xlsx", desc: "Dados estruturados para análise aprofundada",        color: "#10b981", Icon: BarChart2, size: "~890 KB" },
-  { id: "json", label: "JSON",       ext: ".json", desc: "Integração via API, webhooks e sistemas externos",   color: "#6366f1", Icon: Code2,     size: "~340 KB" },
+  { id: "pdf",  label: "PDF",        ext: ".pdf",  desc: "Relatório executivo para impressão e apresentação formal",   color: "#ef4444", Icon: FileText,  size: "~2.4 MB" },
+  { id: "pptx", label: "PowerPoint", ext: ".pptx", desc: "Slides prontos para board, investidores e stakeholders",     color: "#ff9500", Icon: Layers,    size: "~5.1 MB" },
+  { id: "html", label: "HTML",       ext: ".html", desc: "Relatório web interativo, abrível em qualquer navegador",    color: "#06b6d4", Icon: Globe,     size: "~1.2 MB" },
+  { id: "xlsx", label: "Excel",      ext: ".xlsx", desc: "Dados estruturados para análise e dashboards internos",      color: "#10b981", Icon: BarChart2, size: "~890 KB" },
+  { id: "csv",  label: "CSV",        ext: ".csv",  desc: "Tabelas brutas compatíveis com BI, Sheets e ferramentas data", color: "#84cc16", Icon: Database,  size: "~180 KB" },
+  { id: "md",   label: "Markdown",   ext: ".md",   desc: "Documentação estruturada para Notion, Obsidian ou wikis",    color: "#a78bfa", Icon: Hash,      size: "~95 KB"  },
+  { id: "json", label: "JSON",       ext: ".json", desc: "Payload completo para integração via API e webhooks",        color: "#6366f1", Icon: Code2,     size: "~340 KB" },
 ];
 
 interface Module { name: string; group: string; color: string }
@@ -48,24 +51,31 @@ const GROUPS_PIPE = [
 ];
 
 const FORMATS_PIPE = [
-  { id: "pdf",  label: "PDF",  color: "#ef4444", y: 56  },
-  { id: "pptx", label: "PPTX", color: "#ff9500", y: 102 },
-  { id: "xlsx", label: "XLSX", color: "#10b981", y: 148 },
-  { id: "json", label: "JSON", color: "#6366f1", y: 194 },
+  { id: "pdf",  label: "PDF",  color: "#ef4444", y: 24  },
+  { id: "pptx", label: "PPTX", color: "#ff9500", y: 58  },
+  { id: "html", label: "HTML", color: "#06b6d4", y: 92  },
+  { id: "xlsx", label: "XLSX", color: "#10b981", y: 126 },
+  { id: "csv",  label: "CSV",  color: "#84cc16", y: 160 },
+  { id: "md",   label: "MD",   color: "#a78bfa", y: 194 },
+  { id: "json", label: "JSON", color: "#6366f1", y: 228 },
 ];
 
 interface HistoryItem { date: string; title: string; format: string; recipient: string; modules: number; status: string }
 const HISTORY: HistoryItem[] = [
   { date: "14 Mai 2026", title: "Diagnóstico Completo Q2",  format: "pdf",  recipient: "pedro@mios.ai",        modules: 14, status: "sent" },
-  { date: "10 Mai 2026", title: "Relatório para Board",     format: "pptx", recipient: "board@empresa.com",    modules: 6,  status: "sent" },
-  { date: "05 Mai 2026", title: "Análise de Audiência",     format: "xlsx", recipient: "analista@empresa.com", modules: 3,  status: "sent" },
+  { date: "12 Mai 2026", title: "Dashboard Executivo Web",  format: "html", recipient: "board@empresa.com",    modules: 8,  status: "sent" },
+  { date: "10 Mai 2026", title: "Apresentação para Board",  format: "pptx", recipient: "board@empresa.com",    modules: 6,  status: "sent" },
+  { date: "07 Mai 2026", title: "Dados de Audiência",       format: "csv",  recipient: "bi@empresa.com",       modules: 3,  status: "sent" },
+  { date: "05 Mai 2026", title: "Análise de Mercado",       format: "xlsx", recipient: "analista@empresa.com", modules: 5,  status: "sent" },
   { date: "01 Mai 2026", title: "Export API Mensal",        format: "json", recipient: "webhook · sistema",    modules: 14, status: "sent" },
+  { date: "28 Abr 2026", title: "Documentação Estratégica", format: "md",   recipient: "notion · workspace",   modules: 4,  status: "sent" },
   { date: "15 Abr 2026", title: "Diagnóstico Inicial Q1",  format: "pdf",  recipient: "ceo@empresa.com",      modules: 14, status: "sent" },
 ];
 
 const SCHEDULED = [
   { title: "Relatório Mensal Completo", format: "pdf",  freq: "1ª segunda-feira do mês", next: "01 Jun 2026", recipients: 3 },
-  { title: "Dados Operacionais",        format: "xlsx", freq: "Todo domingo às 08h00",   next: "17 Mai 2026", recipients: 1 },
+  { title: "Dashboard Web Semanal",     format: "html", freq: "Todo domingo às 08h00",   next: "18 Mai 2026", recipients: 5 },
+  { title: "Dados Operacionais",        format: "xlsx", freq: "Toda terça-feira",         next: "19 Mai 2026", recipients: 1 },
 ];
 
 // ─── Pipeline SVG ─────────────────────────────────────────────────────────────
@@ -179,8 +189,8 @@ function PipelineSVG({ formatId }: { formatId: string }) {
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-const fmtColor: Record<string, string> = { pdf: "#ef4444", pptx: "#ff9500", xlsx: "#10b981", json: "#6366f1" };
-const fmtLabel: Record<string, string> = { pdf: "PDF", pptx: "PPTX", xlsx: "XLSX", json: "JSON" };
+const fmtColor: Record<string, string> = { pdf: "#ef4444", pptx: "#ff9500", html: "#06b6d4", xlsx: "#10b981", csv: "#84cc16", md: "#a78bfa", json: "#6366f1" };
+const fmtLabel: Record<string, string> = { pdf: "PDF", pptx: "PPTX", html: "HTML", xlsx: "XLSX", csv: "CSV", md: "Markdown", json: "JSON" };
 
 export function ExportacaoHero() {
   const [formatId, setFormatId]         = useState("pdf");
@@ -228,7 +238,7 @@ export function ExportacaoHero() {
                 <Send size={20} strokeWidth={1.8} style={{ color: "rgba(255,149,0,0.85)" }} />
               </div>
               <div>
-                <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 2, color: "rgba(255,149,0,0.5)", marginBottom: 3 }}>EXPORTAÇÃO · GRUPO VEREDITO</div>
+                <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: 2, color: "rgba(255,149,0,0.5)", marginBottom: 3 }}>EXPORTAR · GRUPO VEREDITO</div>
                 <div style={{ fontSize: 22, fontWeight: 900, color: "rgba(255,255,255,0.93)", letterSpacing: "-0.4px" }}>Central de Distribuição</div>
               </div>
             </div>
@@ -240,9 +250,9 @@ export function ExportacaoHero() {
           {/* Quick stats */}
           <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
             {[
-              { value: "5",  label: "Exports este mês", Icon: Download,   color: "#ff9500" },
-              { value: "2",  label: "Agendamentos ativos", Icon: Calendar, color: "#10b981" },
-              { value: "14", label: "Módulos disponíveis", Icon: Zap,     color: "#6366f1" },
+              { value: "8",  label: "Exports este mês",   Icon: Download,   color: "#ff9500" },
+              { value: "3",  label: "Agendamentos ativos", Icon: Calendar, color: "#10b981" },
+              { value: "7",  label: "Formatos suportados", Icon: Zap,     color: "#06b6d4" },
             ].map(s => (
               <div key={s.label} style={{
                 padding: "12px 16px", borderRadius: 12,
@@ -389,12 +399,12 @@ export function ExportacaoHero() {
               {SCHEDULED.length} ativos
             </div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 0 }}>
             {SCHEDULED.map((s, i) => {
               const c = fmtColor[s.format];
               return (
                 <div key={i} style={{
-                  padding: "14px 20px", borderRight: i === 0 ? "1px solid rgba(255,255,255,0.04)" : "none",
+                  padding: "14px 20px", borderRight: i < SCHEDULED.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
                   display: "flex", alignItems: "flex-start", gap: 14,
                   animation: `ex-appear 0.3s ease ${i * 0.1}s both`,
                 }}>
